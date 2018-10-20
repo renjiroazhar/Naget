@@ -6,4 +6,4 @@ script:
 install:
  — npm install -g firebase-tools
 after_success:
- — firebase deploy — project more-thrash — token 1/aDzzd75HJd_1R2V_C0VU9wf_NEOQOvNVVQALLmLHUueOeuX21MWwQnUPuqOUOiqz.
+ — firebase deploy --only hosting — project more-thrash — token 1/aDzzd75HJd_1R2V_C0VU9wf_NEOQOvNVVQALLmLHUueOeuX21MWwQnUPuqOUOiqz.
