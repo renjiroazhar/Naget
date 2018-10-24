@@ -18,7 +18,7 @@ const Homepage = Loadable({
 });
 
 const Checkout = Loadable({
-    loader: () => import("../Step/Checkout"),
+    loader: () => import("../Containers/Step/Checkout"),
     loading: loading
 });
 

@@ -10,7 +10,7 @@ import {
 import Button from "@material-ui/core/Button";
 import purple from "@material-ui/core/colors/purple";
 import green from "@material-ui/core/colors/green";
-// // import CarouselImage from "./Carousel";
+import Carousel from "./Carousel";
 import Tooltip from '@material-ui/core/Tooltip';
 import Pesan from "./image/baseline-chat-24px.svg";
 import { Link } from 'react-router-dom';
@@ -126,25 +126,25 @@ class Homepage extends Component {
     const { classes } = this.props; 
     return (
       <div className="home">
-     
       <div className="container">
         <img src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png" srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x" width="171" height="50" alt="Moretrash Logo" retina_logo_url="" class="fusion-standard-logo" style={{marginTop : "100px"}} />
-          <div style={{marginBottom : "200px", marginTop:"20px"}}>
-        <h3 style={{color : "white",fontWeight : 400}}>Drop Your Trash</h3>
-        <h3 style={{color : "white", fontWeight:400}}>and get benefit</h3>
+          <div style={{textAlign : "center"}}>
+        <p style={{color : "white",fontWeight : 400}}>Drop Your Trash and get benefit
+       </p>
+        <center><Carousel /></center>
         </div>
-        {/* <div style={{textAlign : "center", alignItems : "center", justifyContent : "center"}}><center>
-          <CarouselImage /></center></div>
-       */}
+        
+      
 
        <Grid container spacing={24}>
         <Grid item xs={12} s={12}>
         <MuiThemeProvider theme={theme}>
-         <Link to="/form"><Button
+         <Link to="/form" style={{textDecoration : "none"}}><Button
             variant="extendedFab"
             color="primary"
             className={classes.margin}
             size="large"
+            
           >
             Pick Trash
           </Button>
