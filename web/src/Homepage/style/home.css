@@ -1,3 +1,7 @@
 .home { 
     text-align: center;
 }
+
+.home p {
+    font-family: 'Merienda', cursive;
+}

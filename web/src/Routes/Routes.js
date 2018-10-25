@@ -22,6 +22,11 @@ const Checkout = Loadable({
     loading: loading
 });
 
+const Loginpage = Loadable({
+  loader: () => import("../Loginpage/Loginpage"),
+  loading: loading
+});
+
 
 export default class Routes extends Component {
   
@@ -39,7 +44,9 @@ export default class Routes extends Component {
     return (
             <div>
               <Route exact path="/" component={Homepage} />
-              <Route exact path="/form" component={Checkout} />
+              <Route path="/form" component={Checkout} />
+              <Route path="/login" component={Loginpage} />
+            
             </div>
          
     );

@@ -11,35 +11,34 @@ import Button from "@material-ui/core/Button";
 import purple from "@material-ui/core/colors/purple";
 import green from "@material-ui/core/colors/green";
 import Carousel from "./Carousel";
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from "@material-ui/core/Tooltip";
 import Pesan from "./image/baseline-chat-24px.svg";
-import { Link } from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
- 
+import { Link } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
+
 const styles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
   },
   fab: {
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing.unit * 2
   },
   absolute: {
-    position: 'fixed',
+    position: "fixed",
     bottom: theme.spacing.unit * 5,
     right: theme.spacing.unit * 5,
-    color : "#00c43e",
-    backgroundColor : "#00c43e",
+    color: "#00c43e",
+    backgroundColor: "#00c43e"
   },
   margin: {
     margin: theme.spacing.unit,
     maxWidth: "350px",
     width: "100%",
     fontWeight: 400,
-    color : "white",
-    backgroundColor : "#00c43e",
-    textDecoration : "none"
-
+    color: "white",
+    backgroundColor: "#00c43e",
+    textDecoration: "none"
   },
   cssRoot: {
     color: "black",
@@ -57,12 +56,12 @@ const styles = theme => ({
     maxWidth: "380px",
     width: "100%",
     fontSize: 16,
-    fontWeight : 400,
+    fontWeight: 400,
     padding: "6px 12px",
     border: "1px solid",
     backgroundColor: "#007bff",
     borderColor: "#007bff",
-    color:"white",
+    color: "white",
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -78,7 +77,7 @@ const styles = theme => ({
     "&:hover": {
       backgroundColor: "#0069d9",
       borderColor: "#0062cc",
-      color:"white",
+      color: "white"
     },
     "&:active": {
       boxShadow: "none",
@@ -90,11 +89,11 @@ const styles = theme => ({
     }
   },
   snackbar: {
-    position: 'absolute',
+    position: "absolute"
   },
   snackbarContent: {
-    width: 360,
-  },
+    width: 360
+  }
 });
 
 const theme = createMuiTheme({
@@ -108,7 +107,7 @@ const theme = createMuiTheme({
 
 class Homepage extends Component {
   state = {
-    open: false,
+    open: false
   };
 
   handleClick = () => {
@@ -119,62 +118,67 @@ class Homepage extends Component {
     this.setState({ open: false });
   };
 
-
-
-
   render() {
-    const { classes } = this.props; 
+    const { classes } = this.props;
     return (
       <div className="home">
-      <div className="container">
-        <img src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png" srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x" width="171" height="50" alt="Moretrash Logo" retina_logo_url="" class="fusion-standard-logo" style={{marginTop : "100px"}} />
-          <div style={{textAlign : "center"}}>
-        <p style={{color : "white",fontWeight : 400}}>Drop Your Trash and get benefit
-       </p>
-        <center><Carousel /></center>
-        </div>
-        
-      
+        <div className="container">
+          <img
+            src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
+            srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
+            width="171"
+            height="50"
+            alt="Moretrash Logo"
+            retina_logo_url=""
+            class="fusion-standard-logo"
+            style={{ marginTop: "100px" }}
+          />
+          <div style={{ textAlign: "center" }}>
+            <p style={{ color: "white", fontWeight: 400 }}>
+              Drop Your Trash and get benefit!
+            </p>
+            <center>
+              <Carousel />
+            </center>
+          </div>
 
-       <Grid container spacing={24}>
-        <Grid item xs={12} s={12}>
-        <MuiThemeProvider theme={theme}>
-         <Link to="/form" style={{textDecoration : "none"}}><Button
-            variant="extendedFab"
-            color="primary"
-            className={classes.margin}
-            size="large"
-            
-          >
-            Pick Trash
-          </Button>
-          </Link>
-        </MuiThemeProvider>
-</Grid>
-<Grid item xs={12} sm={12}>
-<Button
-      as={Link}
-      to={"/form"}
-          variant="extendedFab"
-          color="primary"
-          className={classNames(classes.margin, classes.cssRoot)}
-          style={{margin : "10px , 0, 10px,  0", width : ""}}
-          size = "large"
-        >
-         Masuk
-        </Button>
-     
-</Grid>
-</Grid>        
-      
-       
-      <Tooltip>
-        <Button variant="fab" color="#00c43e" className={classes.absolute}>
-        <img style={{color : "white"}} src={Pesan} alt="" />
-        </Button>
-      </Tooltip>
+          <Grid container spacing={24}>
+            <Grid item xs={12} s={12}>
+              <MuiThemeProvider theme={theme}>
+                <Link to="/form" style={{ textDecoration: "none" }}>
+                  <Button
+                    variant="extendedFab"
+                    color="primary"
+                    className={classes.margin}
+                    size="large"
+                  >
+                    Pick Trash
+                  </Button>
+                </Link>
+              </MuiThemeProvider>
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <Link to="/login" style={{ textDecoration: "none" }}>
+              <Button
+                variant="extendedFab"
+                color="primary"
+                className={classNames(classes.margin, classes.cssRoot)}
+                style={{ margin: "10px , 0, 10px,  0", width: "" }}
+                size="large"
+              >
+                Masuk
+              </Button>
+              </Link>
+            </Grid>
+          </Grid>
+
+          <Tooltip>
+            <Button variant="fab" color="#00c43e" className={classes.absolute}>
+              <img style={{ color: "white" }} src={Pesan} alt="" />
+            </Button>
+          </Tooltip>
+        </div>
       </div>
-      </div> 
     );
   }
 }
