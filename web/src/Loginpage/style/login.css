@@ -1,96 +1,33 @@
-@import url("https://fonts.googleapis.com/css?family=Nunito:300,400");
-html,
-body {
-  width: 100%;
+.container {
+  text-align: center;
+  background-color: #282c34;
+  overflow: hidden;
   height: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  font-family: 'Nunito', sans-serif;
-  color: #707070;
-  background: linear-gradient(45deg, #36D1DC, #5B86E5);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  min-width: 380px;
+  min-height: 100vh;
+  background-color: #282c34;
 }
 
-form {
-  background-color: white;
-  padding: 30px;
-  margin: 25px 0;
-  width: 250px;
-  box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-}
-form h1 {
-  margin: 0 0 20px 0;
-}
-form input,
-form button {
-  font-family: 'Nunito', sans-serif;
-  font-weight: bold;
-  color: #707070;
-  margin-bottom: 20px;
-  border: none;
-  border-radius: 300px;
-  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.2);
-  transition: box-shadow .2s ease-out;
-}
-form input:hover, form input:focus,
-form button:hover,
-form button:focus {
-  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
-}
-form input:focus,
-form button:focus {
+
+.formInput input {
+  width: 13.8em;
+  margin: 0 auto;
+  padding-top: 15px;
+  display: block;
+  background: 0;
+  border: 0;
+  border-bottom: 2px solid #fff;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(255, 255, 255);
+  color: #fff;
+  font-weight: 500;
   outline: 0;
-}
-form input {
-  background-color: white;
-  padding: 10px 15px;
-}
-form button {
-  background-color: #49ACE1;
-  color: white;
-  text-transform: uppercase;
-  padding: 10px;
-  cursor: pointer;
-}
-form .secondary {
   text-align: center;
-  margin-top: 15px;
-}
-form .secondary .secondary-title {
-  margin-bottom: 15px;
-}
-form .secondary button {
-  background-color: white;
-  color: black;
-  width: 40px;
-  height: 40px;
-  margin: 0 5px;
-}
-form .secondary button .fa-facebook {
-  color: #3b5999;
-}
-form .secondary button .fa-google {
-  color: #dd4b39;
-}
-form .copy {
-  text-align: center;
-  margin-top: 50px;
-}
-form .copy .fa-heart {
-  color: #f44336;
-}
-form .copy a {
-  color: inherit;
+  transition: border-color .2s ease;
 }

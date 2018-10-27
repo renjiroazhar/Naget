@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-
 import { Route } from "react-router-dom";
 import Loadable from "react-loadable";
+import BottomNavbar from '../Components';
 
 const loading = () => (
   <div className="loading-bro">
@@ -46,7 +46,7 @@ export default class Routes extends Component {
               <Route exact path="/" component={Homepage} />
               <Route path="/form" component={Checkout} />
               <Route path="/login" component={Loginpage} />
-            
+              <BottomNavbar />            
             </div>
          
     );
