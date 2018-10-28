@@ -100,8 +100,8 @@ const styles = theme => ({
   },
   cssFocused: {},
   cssUnderline: {
-    width:"345px",
-    color : "#fff",
+    width: "345px",
+    color: "#fff",
     "&:before": {
       borderBottomColor: "#fff",
     },
@@ -181,7 +181,7 @@ class Loginpage extends Component {
               Drop Your Trash and get benefit!
             </p>
 
-            <div style={{ textAlign: "center", marginTop: "20px",marginBottom:"20px" }}>
+            <div style={{ textAlign: "center", marginTop: "20px", marginBottom: "20px" }}>
               <FormControl>
                 <InputLabel
                   htmlFor="custom-css-input"
@@ -190,7 +190,7 @@ class Loginpage extends Component {
                     focused: classes.cssFocused
                   }}
                 >
-                Nama
+                  Nama
                 </InputLabel>
                 <Input
                   id="custom-css-input"
@@ -210,7 +210,7 @@ class Loginpage extends Component {
                     focused: classes.cssFocused
                   }}
                 >
-                Password
+                  Password
                 </InputLabel>
                 <Input
                   id="custom-css-input"
@@ -221,8 +221,8 @@ class Loginpage extends Component {
               </FormControl>
             </div>
           </div>
-<br/>
-<br/>
+          <br />
+          <br />
           <Grid container spacing={24}>
             <Grid item xs={12} sm={12}>
               <MuiThemeProvider theme={theme}>
@@ -239,6 +239,22 @@ class Loginpage extends Component {
               </MuiThemeProvider>
             </Grid>
           </Grid>
+          <center>
+            <Grid container spacing={3} item xs={4}>
+              <Grid item xs={6}>
+                <Link to="/sign-up" style={{ textDecoration: "none" }}>
+                  <p style={{ color: "white", fontWeight: 300 }}>
+                    Buat akun baru
+            </p>
+                </Link>
+              </Grid>
+              <Grid item xs={6}>
+                <p style={{ color: "white", fontWeight: 300 }}>
+                  Lupa kata sandi?
+                </p>
+              </Grid>
+            </Grid>
+          </center>
         </div>
       </div>
     );

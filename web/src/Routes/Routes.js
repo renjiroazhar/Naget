@@ -27,6 +27,11 @@ const Loginpage = Loadable({
   loading: loading
 });
 
+const Signuppage = Loadable({
+  loader: () => import("../Signuppage/Signuppage"),
+  loading: loading
+});
+
 
 export default class Routes extends Component {
   
@@ -46,6 +51,7 @@ export default class Routes extends Component {
               <Route exact path="/" component={Homepage} />
               <Route path="/form" component={Checkout} />
               <Route path="/login" component={Loginpage} />
+              <Route exact path="/sign-up" component={Signuppage} />
               <BottomNavbar />            
             </div>
          
