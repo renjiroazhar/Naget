@@ -249,9 +249,11 @@ class Loginpage extends Component {
                 </Link>
               </Grid>
               <Grid item xs={6}>
-                <p style={{ color: "white", fontWeight: 300 }}>
-                  Lupa kata sandi?
+                <Link to="/perbarui-sandi" style={{ textDecoration: "none" }}>
+                  <p style={{ color: "white", fontWeight: 300 }}>
+                    Lupa kata sandi?
                 </p>
+                </Link>
               </Grid>
             </Grid>
           </center>

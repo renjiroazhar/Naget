@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./style/signup.css";
+import "./style/lupasandipage.css";
 import PropTypes from "prop-types";
 import {
     withStyles,
@@ -148,7 +148,7 @@ const theme = createMuiTheme({
     }
 });
 
-class Signuppage extends Component {
+class Lupasandipage extends Component {
     state = {
         open: false
     };
@@ -178,7 +178,7 @@ class Signuppage extends Component {
                     />
                     <div style={{ textAlign: "center" }}>
                         <p style={{ color: "white", fontWeight: 400 }}>
-                            Buat Akun Baru
+                            Atur Sandi Baru
             </p>
 
                         <div style={{ textAlign: "center", marginTop: "20px", marginBottom: "20px" }}>
@@ -190,7 +190,7 @@ class Signuppage extends Component {
                                         focused: classes.cssFocused
                                     }}
                                 >
-                                    Nama Lengkap
+                                    Kata sandi baru
                 </InputLabel>
                                 <Input
                                     id="custom-css-input"
@@ -210,87 +210,7 @@ class Signuppage extends Component {
                                         focused: classes.cssFocused
                                     }}
                                 >
-                                    Username
-                </InputLabel>
-                                <Input
-                                    id="custom-css-input"
-                                    classes={{
-                                        underline: classes.cssUnderline
-                                    }}
-                                />
-                            </FormControl>
-                        </div>
-
-                        <div style={{ textAlign: "center", marginTop: "20px", marginBottom: "20px" }}>
-                            <FormControl>
-                                <InputLabel
-                                    htmlFor="custom-css-input"
-                                    FormLabelClasses={{
-                                        root: classes.cssLabel,
-                                        focused: classes.cssFocused
-                                    }}
-                                >
-                                    Alamat
-                </InputLabel>
-                                <Input
-                                    id="custom-css-input"
-                                    classes={{
-                                        underline: classes.cssUnderline
-                                    }}
-                                />
-                            </FormControl>
-                        </div>
-
-                        <div style={{ textAlign: "center", marginTop: "20px", marginBottom: "20px" }}>
-                            <FormControl>
-                                <InputLabel
-                                    htmlFor="custom-css-input"
-                                    FormLabelClasses={{
-                                        root: classes.cssLabel,
-                                        focused: classes.cssFocused
-                                    }}
-                                >
-                                    Nomor Handphone
-                </InputLabel>
-                                <Input
-                                    id="custom-css-input"
-                                    classes={{
-                                        underline: classes.cssUnderline
-                                    }}
-                                />
-                            </FormControl>
-                        </div>
-
-                        <div style={{ textAlign: "center", marginTop: "20px", marginBottom: "20px" }}>
-                            <FormControl>
-                                <InputLabel
-                                    htmlFor="custom-css-input"
-                                    FormLabelClasses={{
-                                        root: classes.cssLabel,
-                                        focused: classes.cssFocused
-                                    }}
-                                >
-                                    Email
-                </InputLabel>
-                                <Input
-                                    id="custom-css-input"
-                                    classes={{
-                                        underline: classes.cssUnderline
-                                    }}
-                                />
-                            </FormControl>
-                        </div>
-
-                        <div style={{ textAlign: "center" }}>
-                            <FormControl>
-                                <InputLabel
-                                    htmlFor="custom-css-input"
-                                    FormLabelClasses={{
-                                        root: classes.cssLabel,
-                                        focused: classes.cssFocused
-                                    }}
-                                >
-                                    Password
+                                    Konfirmasi kata sandi baru
                 </InputLabel>
                                 <Input
                                     id="custom-css-input"
@@ -313,7 +233,7 @@ class Signuppage extends Component {
                                         className={classes.margin}
                                         size="large"
                                     >
-                                        Daftar
+                                        Perbarui Sandi
                   </Button>
                                 </Link>
                             </MuiThemeProvider>
@@ -338,8 +258,8 @@ class Signuppage extends Component {
     }
 }
 
-Signuppage.propTypes = {
+Lupasandipage.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Signuppage);
+export default withStyles(styles)(Lupasandipage);

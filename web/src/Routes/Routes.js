@@ -18,8 +18,8 @@ const Homepage = Loadable({
 });
 
 const Checkout = Loadable({
-    loader: () => import("../Containers/Step/Checkout"),
-    loading: loading
+  loader: () => import("../Containers/Step/Checkout"),
+  loading: loading
 });
 
 const Loginpage = Loadable({
@@ -32,29 +32,35 @@ const Signuppage = Loadable({
   loading: loading
 });
 
+const Lupasandipage = Loadable({
+  loader: () => import("../Lupasandipage/Lupasandipage"),
+  loading: loading
+});
+
 
 export default class Routes extends Component {
-  
+
   state = {
     searchItem: "",
     data: [],
-    orderData : [],
+    orderData: [],
     visible: false
   };
 
 
- 
+
 
   render() {
     return (
-            <div>
-              <Route exact path="/" component={Homepage} />
-              <Route path="/form" component={Checkout} />
-              <Route path="/login" component={Loginpage} />
-              <Route exact path="/sign-up" component={Signuppage} />
-              <BottomNavbar />            
-            </div>
-         
+      <div>
+        <Route exact path="/" component={Homepage} />
+        <Route path="/form" component={Checkout} />
+        <Route path="/login" component={Loginpage} />
+        <Route exact path="/sign-up" component={Signuppage} />
+        <Route exact path="/perbarui-sandi" component={Lupasandipage} />
+        <BottomNavbar />
+      </div>
+
     );
   }
 }

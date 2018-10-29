@@ -1,0 +1,33 @@
+.container {
+    text-align: center;
+    background-color: #282c34;
+    overflow: hidden;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    min-width: 380px;
+    min-height: 100vh;
+    background-color: #282c34;
+  }
+  
+  
+  .formInput input {
+    width: 13.8em;
+    margin: 0 auto;
+    padding-top: 15px;
+    display: block;
+    background: 0;
+    border: 0;
+    border-bottom: 2px solid #fff;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(255, 255, 255);
+    color: #fff;
+    font-weight: 500;
+    outline: 0;
+    text-align: center;
+    transition: border-color .2s ease;
+  }
