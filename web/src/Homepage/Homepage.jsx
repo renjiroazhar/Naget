@@ -12,7 +12,7 @@ import purple from "@material-ui/core/colors/purple";
 import green from "@material-ui/core/colors/green";
 import Carousel from "./Carousel";
 import Tooltip from "@material-ui/core/Tooltip";
-import Pesan from "./image/baseline-chat-24px.svg";
+import ChatBubble from '@material-ui/icons/Chat';
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 
@@ -30,6 +30,7 @@ const styles = theme => ({
     right: theme.spacing.unit * 5,
     color: "#00c43e",
     backgroundColor: "#00c43e"
+    
   },
   margin: {
     margin: theme.spacing.unit,
@@ -48,6 +49,12 @@ const styles = theme => ({
     fontWeight: 400,
     "&:hover": {
       backgroundColor: purple[700]
+    }
+  },
+  iconchat: {
+    color: "#fff",
+    "&:hover": {
+      color : "#00c43e"
     }
   },
   bootstrapRoot: {
@@ -174,7 +181,7 @@ class Homepage extends Component {
 
           <Tooltip>
             <Button variant="fab" color="#00c43e" className={classes.absolute}>
-              <img style={{ color: "white" }} src={Pesan} alt="" />
+              <ChatBubble className={classes.iconchat} />
             </Button>
           </Tooltip>
         </div>

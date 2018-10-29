@@ -12,28 +12,27 @@ const loading = () => (
   </div>
 );
 
-const Homepage = Loadable({
-  loader: () => import("../Homepage"),
+const HomeContainer = Loadable({
+  loader: () => import("../Containers/Home"),
   loading: loading
 });
 
-const Checkout = Loadable({
-    loader: () => import("../Containers/Step/Checkout"),
+const FaqContainer = Loadable({
+  loader: () => import("../Containers/Faq"),
+  loading: loading
+});
+
+const HistoryContainer = Loadable({
+  loader: () => import("../Containers/History"),
+  loading: loading
+});
+
+const AccountContainer = Loadable({
+    loader: () => import("../Containers/Account"),
     loading: loading
-});
+  });
 
-const Loginpage = Loadable({
-  loader: () => import("../Loginpage/Loginpage"),
-  loading: loading
-});
-
-const Signuppage = Loadable({
-  loader: () => import("../Signuppage/Signuppage"),
-  loading: loading
-});
-
-
-export default class Routes extends Component {
+export default class SecondRoutes extends Component {
   
   state = {
     searchItem: "",
@@ -48,10 +47,10 @@ export default class Routes extends Component {
   render() {
     return (
             <div>
-              <Route exact path="/" component={Homepage} />
-              <Route path="/form" component={Checkout} />
-              <Route path="/login" component={Loginpage} />
-              <Route exact path="/sign-up" component={Signuppage} />
+              <Route exact path="/" component={HomeContainer} />
+              <Route path="/history" component={HistoryContainer} />
+              <Route path="/faq" component={FaqContainer} />
+              <Route exact path="/account" component={AccountContainer} />
               <BottomNavbar />            
             </div>
          

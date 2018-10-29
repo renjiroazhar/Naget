@@ -226,7 +226,7 @@ class Loginpage extends Component {
           <Grid container spacing={24}>
             <Grid item xs={12} sm={12}>
               <MuiThemeProvider theme={theme}>
-                <Link to="/form" style={{ textDecoration: "none" }}>
+                <Link to="/home" style={{ textDecoration: "none" }}>
                   <Button
                     variant="extendedFab"
                     color="primary"
