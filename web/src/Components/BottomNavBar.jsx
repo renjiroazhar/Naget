@@ -7,6 +7,7 @@ import AccountIcon from '@material-ui/icons/AccountCircleRounded';
 import RestoreIcon from '@material-ui/icons/Restore';
 import HomeIcon from '@material-ui/icons/Home';
 import ChatBubble from '@material-ui/icons/Chat';
+import { Link } from 'react-router-dom'
 
 const styles = {
   root: {
@@ -31,10 +32,10 @@ class BottomNavBar extends React.Component {
 
     return (
       <BottomNavigation value={value} onChange={this.handleChange} className={classes.root}>
-         <BottomNavigationAction label="Home" value="home" icon={<HomeIcon />} />
-        <BottomNavigationAction label="History" value="history" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="FAQ" value="FAQ" icon={<ChatBubble />} />
-        <BottomNavigationAction label="Folder" value="folder" icon={<AccountIcon />} />
+        <BottomNavigationAction label="Home" value="home" icon={<HomeIcon />} component={Link} to="/home" />
+        <BottomNavigationAction label="History" value="history" icon={<RestoreIcon />} component={Link} to="/history" />
+        <BottomNavigationAction label="FAQ" value="faq" icon={<ChatBubble />} component={Link} to="/faq" />
+        <BottomNavigationAction label="Account" value="account" icon={<AccountIcon />} component={Link} to="/account" />
       </BottomNavigation>
     );
   }

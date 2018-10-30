@@ -32,7 +32,7 @@ const AccountContainer = Loadable({
     loading: loading
   });
 
-export default class SecondRoutes extends Component {
+export default class Routes extends Component {
   
   state = {
     searchItem: "",
@@ -41,13 +41,10 @@ export default class SecondRoutes extends Component {
     visible: false
   };
 
-
- 
-
   render() {
     return (
             <div>
-              <Route exact path="/" component={HomeContainer} />
+              <Route exact path="/home" component={HomeContainer} />
               <Route path="/history" component={HistoryContainer} />
               <Route path="/faq" component={FaqContainer} />
               <Route exact path="/account" component={AccountContainer} />

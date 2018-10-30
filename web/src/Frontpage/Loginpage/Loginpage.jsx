@@ -14,6 +14,7 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+import { Redirect } from "react-router-dom";
 
 const styles = theme => ({
   container: {
@@ -100,7 +101,7 @@ const styles = theme => ({
   },
   cssFocused: {},
   cssUnderline: {
-    width: "345px",
+    width: "330px",
     color: "#fff",
     "&:before": {
       borderBottomColor: "#fff",
@@ -150,9 +151,17 @@ const theme = createMuiTheme({
 
 class Loginpage extends Component {
   state = {
-    open: false
+    open: false,
+    redirect : false
   };
 
+  login = () => {
+    this.setState({
+      redirect : true
+    })
+    this.props.loginFunction();
+  } 
+  
   handleClick = () => {
     this.setState({ open: true });
   };
@@ -226,36 +235,40 @@ class Loginpage extends Component {
           <Grid container spacing={24}>
             <Grid item xs={12} sm={12}>
               <MuiThemeProvider theme={theme}>
-                <Link to="/home" style={{ textDecoration: "none" }}>
+                
                   <Button
                     variant="extendedFab"
                     color="primary"
                     className={classes.margin}
                     size="large"
+                    onClick={()=>{this.login();}}
                   >
                     Masuk
                   </Button>
-                </Link>
+               
               </MuiThemeProvider>
             </Grid>
           </Grid>
           <center>
             <Grid container spacing={3} item xs={4}>
               <Grid item xs={6}>
-                <Link to="/sign-up" style={{ textDecoration: "none" }}>
+                <Link to="/signup" style={{ textDecoration: "none" }}>
                   <p style={{ color: "white", fontWeight: 300 }}>
                     Buat akun baru
             </p>
                 </Link>
               </Grid>
               <Grid item xs={6}>
+              <Link to="/forgot_password">
                 <p style={{ color: "white", fontWeight: 300 }}>
                   Lupa kata sandi?
                 </p>
+                </Link>
               </Grid>
             </Grid>
           </center>
         </div>
+        {this.state.redirect ? (<Redirect to="/" />):("")}
       </div>
     );
   }

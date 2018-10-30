@@ -148,7 +148,7 @@ const theme = createMuiTheme({
     }
 });
 
-class Lupasandipage extends Component {
+class Forgotpassword extends Component {
     state = {
         open: false
     };
@@ -258,8 +258,8 @@ class Lupasandipage extends Component {
     }
 }
 
-Lupasandipage.propTypes = {
+Forgotpassword.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Lupasandipage);
+export default withStyles(styles)(Forgotpassword);
