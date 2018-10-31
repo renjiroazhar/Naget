@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   min-width: 380px;
+  width: 100%
 }
 
 .App-logo {

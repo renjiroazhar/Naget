@@ -1,25 +1,32 @@
 import React, { Component } from "react";
-import "./style/login.css";
-import PropTypes from "prop-types";
+import "../Homepage/style/home.css";
 import {
   withStyles,
   MuiThemeProvider,
   createMuiTheme
 } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import purple from "@material-ui/core/colors/purple";
 import green from "@material-ui/core/colors/green";
+import Tooltip from "@material-ui/core/Tooltip";
+import ChatBubble from '@material-ui/icons/Chat';
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import { Redirect } from "react-router-dom";
+import PropTypes from 'prop-types';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+
 
 const styles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
+  },
+  dense: {
+    marginTop: 19,
+  },
+  menu: {
+    width: 200,
   },
   fab: {
     margin: theme.spacing.unit * 2
@@ -30,6 +37,7 @@ const styles = theme => ({
     right: theme.spacing.unit * 5,
     color: "#00c43e",
     backgroundColor: "#00c43e"
+    
   },
   margin: {
     margin: theme.spacing.unit,
@@ -40,6 +48,14 @@ const styles = theme => ({
     backgroundColor: "#00c43e",
     textDecoration: "none"
   },
+  marginForm: {
+    margin: theme.spacing.unit,
+    maxWidth: "350px",
+    width: "100%",
+    fontWeight: 400,
+    color: "white",
+    textDecoration: "none"
+  },
   cssRoot: {
     color: "black",
     backgroundColor: "white",
@@ -47,7 +63,32 @@ const styles = theme => ({
     width: "100%",
     fontWeight: 400,
     "&:hover": {
-      backgroundColor: purple[700]
+      backgroundColor: "white"
+        }
+  },
+   cssLabel: {
+     color : "#999",
+    '&$cssFocused': {
+      color: "white",
+    },
+  },
+  cssFocused: {},
+  cssUnderline: {
+    width : "100%",
+    maxWidth : "345px",
+    borderColor : "#fff",
+    borderBottomColor : "white",
+    '&:before': {
+      borderBottomColor: "white",
+    },
+    '&:after': {
+      borderBottomColor: "white",
+    },
+  },
+  iconchat: {
+    color: "#fff",
+    "&:hover": {
+      color : "#00c43e"
     }
   },
   bootstrapRoot: {
@@ -94,50 +135,34 @@ const styles = theme => ({
   snackbarContent: {
     width: 360
   },
-  cssLabel: {
-    "&$cssFocused": {
-      color: purple[500],
-    }
-  },
-  cssFocused: {},
-  cssUnderline: {
-    width: "330px",
-    color: "#fff",
-    "&:before": {
-      borderBottomColor: "#fff",
-    },
-    "&:after": {
-      borderBottomColor: purple[500]
-    }
-  },
   bootstrapInput: {
     borderRadius: 4,
     backgroundColor: theme.palette.common.white,
-    border: "1px solid #ced4da",
+    border: '1px solid #ced4da',
     fontSize: 16,
-    padding: "10px 12px",
-    transition: theme.transitions.create(["border-color", "box-shadow"]),
+    padding: '10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
+      '-apple-system',
+      'BlinkMacSystemFont',
       '"Segoe UI"',
-      "Roboto",
+      'Roboto',
       '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
+      'Arial',
+      'sans-serif',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(","),
-    "&:focus": {
-      borderColor: "#80bdff",
-      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)"
-    }
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
   },
   bootstrapFormLabel: {
-    fontSize: 18
-  }
+    fontSize: 18,
+  },
 });
 
 const theme = createMuiTheme({
@@ -151,24 +176,26 @@ const theme = createMuiTheme({
 
 class Loginpage extends Component {
   state = {
-    open: false,
-    redirect : false
+    open: false
   };
 
-  login = () => {
-    this.setState({
-      redirect : true
-    })
-    this.props.loginFunction();
-  } 
-  
   handleClick = () => {
     this.setState({ open: true });
   };
 
+  login = () => {
+    this.props.loginFunction();
+  }
+
   handleClose = () => {
     this.setState({ open: false });
   };
+
+  handleKeyPress = (e) => {
+    if(e.key === "Enter"){
+      this.props.loginFunction();
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -189,86 +216,91 @@ class Loginpage extends Component {
             <p style={{ color: "white", fontWeight: 400 }}>
               Drop Your Trash and get benefit!
             </p>
+            <div style={{textAlign : "center"}}>
+      <FormControl className={classes.marginForm}>
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+        >
+          Email
+        </InputLabel>
+        <Input
+          id="custom-css-input"
+          classes={{
+            underline: classes.cssUnderline,
+          }}
+          onKeyPress={()=>{this.handleKeyPress()}}
+                  
+        />
+      </FormControl>
+      <FormControl className={classes.marginForm}>
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+          onKeyPress={()=>{this.handleKeyPress()}}
+                  
+        >
+          Password
+        </InputLabel>
+        <Input
+          id="custom-css-input"
+          classes={{
+            underline: classes.cssUnderline,
+          }}
+        />
+      </FormControl>
 
-            <div style={{ textAlign: "center", marginTop: "20px", marginBottom: "20px" }}>
-              <FormControl>
-                <InputLabel
-                  htmlFor="custom-css-input"
-                  FormLabelClasses={{
-                    root: classes.cssLabel,
-                    focused: classes.cssFocused
-                  }}
-                >
-                  Nama
-                </InputLabel>
-                <Input
-                  id="custom-css-input"
-                  classes={{
-                    underline: classes.cssUnderline
-                  }}
-                />
-              </FormControl>
-            </div>
-
-            <div style={{ textAlign: "center" }}>
-              <FormControl>
-                <InputLabel
-                  htmlFor="custom-css-input"
-                  FormLabelClasses={{
-                    root: classes.cssLabel,
-                    focused: classes.cssFocused
-                  }}
-                >
-                  Password
-                </InputLabel>
-                <Input
-                  id="custom-css-input"
-                  classes={{
-                    underline: classes.cssUnderline
-                  }}
-                />
-              </FormControl>
-            </div>
+<Grid container spacing={12}>
+            <Grid item xs={6} s={6}>
+       <Link to="/forgot_password" style={{textDecoration : "none"}}><p style={{ color: "#fff", marginTop : "25px", marginBottom : "25px"}}>
+             Lupa Password?
+            </p>
+            </Link>
+            </Grid>
+            </Grid>
+         </div>
           </div>
-          <br />
-          <br />
+
           <Grid container spacing={24}>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} s={12}>
               <MuiThemeProvider theme={theme}>
-                
                   <Button
                     variant="extendedFab"
                     color="primary"
                     className={classes.margin}
                     size="large"
-                    onClick={()=>{this.login();}}
+                    onClick={()=>{this.login()}}
                   >
                     Masuk
                   </Button>
-               
               </MuiThemeProvider>
             </Grid>
           </Grid>
-          <center>
-            <Grid container spacing={3} item xs={4}>
-              <Grid item xs={6}>
-                <Link to="/signup" style={{ textDecoration: "none" }}>
-                  <p style={{ color: "white", fontWeight: 300 }}>
-                    Buat akun baru
+
+<div style={{textAlign : "center"}}>
+            <p style={{ color: "#999" }}>
+             Belum Punya Akun? <a href="/signup" style={{ color: "white" }}>
+              Sign Up
+            </a>
             </p>
-                </Link>
-              </Grid>
-              <Grid item xs={6}>
-              <Link to="/forgot_password">
-                <p style={{ color: "white", fontWeight: 300 }}>
-                  Lupa kata sandi?
-                </p>
-                </Link>
-              </Grid>
-            </Grid>
-          </center>
+
+            
+
+            
+           
+</div>
+          <Tooltip>
+            <Button variant="fab" color="#00c43e" className={classes.absolute}>
+              <ChatBubble className={classes.iconchat} />
+            </Button>
+          </Tooltip>
         </div>
-        {this.state.redirect ? (<Redirect to="/" />):("")}
       </div>
     );
   }
