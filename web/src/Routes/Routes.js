@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Loadable from "react-loadable";
 import BottomNavbar from '../Components';
+import Header from '../Components/Header';
+
 
 const loading = () => (
   <div className="loading-bro">
@@ -32,7 +34,8 @@ const AccountContainer = Loadable({
     loading: loading
   });
 
-export default class Routes extends Component {
+ 
+class Routes extends Component {
   
   state = {
     searchItem: "",
@@ -41,17 +44,25 @@ export default class Routes extends Component {
     visible: false
   };
 
+  logout = () => {
+    this.props.logoutFunc();
+}
+
   render() {
     return (
             <div>
-            
+              <Header />
               <Route exact path="/home" component={HomeContainer} />
               <Route path="/history" component={HistoryContainer} />
               <Route path="/faq" component={FaqContainer} />
-              <Route exact path="/account" component={AccountContainer} />
+              <Route exact path="/account" render={()=> <AccountContainer FunctionLogout={this.logout}/>}/>
               <BottomNavbar />            
             </div>
          
     );
   }
 }
+
+
+
+export default Routes;
