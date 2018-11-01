@@ -25,6 +25,7 @@ class App extends Component {
   }
 
   render() {
+
    
     if(!this.state.login){
       return <NewRoutes loginFunc={this.changeToLogin} />;
@@ -38,6 +39,7 @@ class App extends Component {
       <Routes logoutFunc={this.changeToLogout}/>
       {this.state.redirect ? (<Redirect to="/home"/>):("")}
       </div>);
+
   }
   
 }
