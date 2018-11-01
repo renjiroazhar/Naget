@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Loadable from "react-loadable";
 import BottomNavbar from '../Components';
 
@@ -44,13 +44,12 @@ export default class Routes extends Component {
   render() {
     return (
             <div>
-            <Switch>
+            
               <Route exact path="/home" component={HomeContainer} />
               <Route path="/history" component={HistoryContainer} />
               <Route path="/faq" component={FaqContainer} />
               <Route exact path="/account" component={AccountContainer} />
               <BottomNavbar />            
-            </Switch>
             </div>
          
     );

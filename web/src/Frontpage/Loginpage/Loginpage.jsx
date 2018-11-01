@@ -49,7 +49,6 @@ const styles = theme => ({
     textDecoration: "none"
   },
   marginForm: {
-    margin: theme.spacing.unit,
     maxWidth: "350px",
     width: "100%",
     fontWeight: 400,
@@ -77,6 +76,7 @@ const styles = theme => ({
     width : "100%",
     maxWidth : "345px",
     borderColor : "#fff",
+    color : "#fff",
     borderBottomColor : "white",
     '&:before': {
       borderBottomColor: "white",
@@ -194,6 +194,8 @@ class Loginpage extends Component {
   handleKeyPress = (e) => {
     if(e.key === "Enter"){
       this.props.loginFunction();
+    } else {
+      console.log("ohh")
     }
   }
 
@@ -217,7 +219,9 @@ class Loginpage extends Component {
               Drop Your Trash and get benefit!
             </p>
             <div style={{textAlign : "center"}}>
-      <FormControl className={classes.marginForm}>
+            <Grid container spacing={24}>
+            <Grid item xs={12} s={12}>
+            <FormControl className={classes.marginForm}>
         <InputLabel
           htmlFor="custom-css-input"
           FormLabelClasses={{
@@ -232,10 +236,12 @@ class Loginpage extends Component {
           classes={{
             underline: classes.cssUnderline,
           }}
-          onKeyPress={()=>{this.handleKeyPress()}}
+          onKeyPress={this.handleKeyPress}
                   
         />
       </FormControl>
+              </Grid>
+               <Grid item xs={12} s={12}>
       <FormControl className={classes.marginForm}>
         <InputLabel
           htmlFor="custom-css-input"
@@ -243,8 +249,7 @@ class Loginpage extends Component {
             root: classes.cssLabel,
             focused: classes.cssFocused,
           }}
-          onKeyPress={()=>{this.handleKeyPress()}}
-                  
+          
         >
           Password
         </InputLabel>
@@ -253,13 +258,18 @@ class Loginpage extends Component {
           classes={{
             underline: classes.cssUnderline,
           }}
+          onKeyPress={this.handleKeyPress}         
+        
         />
       </FormControl>
+              </Grid>
+            </Grid>
+           
 
-<Grid container spacing={12}>
-            <Grid item xs={6} s={6}>
+<Grid container spacing={24}>
+            <Grid item xs={12} s={12}>
        <Link to="/forgot_password" style={{textDecoration : "none"}}><p style={{ color: "#fff", marginTop : "25px", marginBottom : "25px"}}>
-             Lupa Password?
+             Lupa Password ?
             </p>
             </Link>
             </Grid>

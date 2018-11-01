@@ -7,13 +7,13 @@ import AccountIcon from '@material-ui/icons/AccountCircleRounded';
 import RestoreIcon from '@material-ui/icons/Restore';
 import HomeIcon from '@material-ui/icons/Home';
 import ChatBubble from '@material-ui/icons/Chat';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
-    width: '100%',
-    position: 'fixed',
-    bottom: '0px'
+    width: "100%",
+    position: "fixed",
+    bottom: "0px"
   }
 };
 
