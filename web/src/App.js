@@ -38,9 +38,9 @@ class App extends Component {
     
           
       <Routes logoutFunc={this.changeToLogout}/>
-      {this.state.redirect ? (<Redirect to="/home"/>):""};
-      </div>);
-
+      {this.state.redirect ? (<Redirect to="/home"/>):("")}
+      </div>
+      )
   }
   
 }

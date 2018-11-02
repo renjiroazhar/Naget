@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Loadable from "react-loadable";
 import PageNotFound from "./PageNotFound";
+
 const loading = () => (
   <div className="loading-bro">
     <h1>Loading</h1>

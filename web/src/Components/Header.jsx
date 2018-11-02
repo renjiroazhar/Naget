@@ -10,6 +10,7 @@ const styles = {
     position: "fixed", /* Safari */
     width : "100%",
     top: 0,
+    zIndex: 100
   },
 };
 

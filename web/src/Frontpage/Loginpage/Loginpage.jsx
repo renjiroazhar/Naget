@@ -176,8 +176,17 @@ const theme = createMuiTheme({
 
 class Loginpage extends Component {
   state = {
-    open: false
+    open: false,
+    email:"",
+    password:""
   };
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name] : e.target.value
+    });
+    console.log(this.state);
+  }
 
   handleClick = () => {
     this.setState({ open: true });
@@ -187,17 +196,25 @@ class Loginpage extends Component {
     this.props.loginFunction();
   }
 
+  handleSubmit = () => {
+    if(this.state.name === "admin" || this.state.password === "admin"){
+      this.login();
+      } else {
+        alert("ERROR Authentication")
+      }
+  }
+
   handleClose = () => {
     this.setState({ open: false });
   };
 
   handleKeyPress = (e) => {
     if(e.key === "Enter"){
-      this.props.loginFunction();
-    } else {
-      console.log("ohh")
-    }
+      this.handleSubmit();
+    } 
   }
+
+  
 
   render() {
     const { classes } = this.props;
@@ -237,7 +254,9 @@ class Loginpage extends Component {
             underline: classes.cssUnderline,
           }}
           onKeyPress={this.handleKeyPress}
-                  
+          name="email"
+          value={this.state.email}   
+          onChange={this.handleChange}   
         />
       </FormControl>
               </Grid>
@@ -259,7 +278,9 @@ class Loginpage extends Component {
             underline: classes.cssUnderline,
           }}
           onKeyPress={this.handleKeyPress}         
-        
+          name="password"
+          value={this.state.password}
+          onChange={this.handleChange}
         />
       </FormControl>
               </Grid>
@@ -285,7 +306,7 @@ class Loginpage extends Component {
                     color="primary"
                     className={classes.margin}
                     size="large"
-                    onClick={()=>{this.login()}}
+                    onClick={()=>{this.handleSubmit()}}
                   >
                     Masuk
                   </Button>

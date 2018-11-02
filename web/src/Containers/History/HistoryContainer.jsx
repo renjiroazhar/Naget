@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 const styles = {
     container: {
       width: '100%',
-      
+      marginTop:"50px",
       textAlign : "center",
       backgroundColor : "yellow",
       height: "100%"
@@ -30,6 +30,6 @@ class HistoryContainer extends Component {
 
 HistoryContainer.propTypes = {
   classes: PropTypes.object.isRequired
-};
+}
 
 export default withStyles(styles)(HistoryContainer);
