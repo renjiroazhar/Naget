@@ -13,7 +13,10 @@ const styles = {
   root: {
     width: "100%",
     position: "fixed",
-    bottom: "0px"
+    bottom: "0",
+    borderStyle: "solid",
+    borderWidth: "1px 0px 0px 0px",
+    borderColor: "#e7e7e7"
   }
 };
 
