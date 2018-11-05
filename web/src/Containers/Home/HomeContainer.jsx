@@ -12,6 +12,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CarouselHome from './CarouselHome';
 
 const styles = theme => ({
   root: {
@@ -75,10 +76,14 @@ class HomeContainer extends React.Component {
     return (
       <div className={classes.root}>
       
-        
+                 
             <Typography variant="h6" className={classes.title}>
               Avatar with text and icon
             </Typography>
+            <center>   
+             <CarouselHome />
+            </center>
+
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate(

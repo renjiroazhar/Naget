@@ -197,10 +197,10 @@ class Loginpage extends Component {
   }
 
   handleSubmit = () => {
-    if(this.state.name === "admin" || this.state.password === "admin"){
+    if(this.state.email === "admin" || this.state.password === "admin"){
       this.login();
       } else {
-        alert("ERROR Authentication")
+        alert("ERROR Authentication");
       }
   }
 
