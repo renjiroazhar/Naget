@@ -63,3 +63,30 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+
+# dependencies
+**/node_modules
+
+
+# testing
+**/coverage
+
+
+# production
+**/build
+**/staging
+
+
+# misc
+**/.DS_Store
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+.firebase/**
