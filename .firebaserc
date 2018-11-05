@@ -10,6 +10,9 @@
         ],
         "admin": [
           "more-thrash-admin"
+        ],
+        "staging": [
+          "more-thrash-staging"
         ]
       }
     }
