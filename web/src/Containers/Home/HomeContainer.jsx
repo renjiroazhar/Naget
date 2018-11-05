@@ -24,6 +24,7 @@ const styles = theme => ({
   },
   title: {
     margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
+    color: "#fff",
   },
   card: {
     maxWidth: 400,
@@ -78,7 +79,7 @@ class HomeContainer extends React.Component {
       
                  
             <Typography variant="h6" className={classes.title}>
-              Avatar with text and icon
+              Home
             </Typography>
             <center>   
              <CarouselHome />

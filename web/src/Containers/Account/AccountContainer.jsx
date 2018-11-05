@@ -14,8 +14,7 @@ const styles = {
     backgroundColor: "#fff",
     height: "100%",
     marginTop: "15px",
-    paddingTop: "15px",
-    paddingBottom: "15px",
+    padding: "15px",
   },
 };
 
