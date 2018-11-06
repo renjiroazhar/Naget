@@ -1,5 +1,20 @@
 {
   "projects": {
     "default": "more-thrash"
+  },
+  "targets": {
+    "more-thrash": {
+      "hosting": {
+        "web": [
+          "more-thrash"
+        ],
+        "admin": [
+          "more-thrash-admin"
+        ],
+        "staging": [
+          "more-thrash-staging"
+        ]
+      }
+    }
   }
 }
