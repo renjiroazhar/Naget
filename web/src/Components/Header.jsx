@@ -26,7 +26,7 @@ class Header extends Component {
         <div style={{display: "block",
     margin: "0 auto"}} >
           <img src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png" srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x" width="171" height="50" alt="Moretrash Logo" retina_logo_url="" className="fusion-standard-logo" style={{display: "block",
-    margin: "0 auto", padding: "15px"}}   />
+    margin: "0 auto", padding: "12px"}}   />
           </div>
         </Toolbar>
       </AppBar>
