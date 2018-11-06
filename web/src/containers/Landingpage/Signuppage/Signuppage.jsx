@@ -304,6 +304,7 @@ class Signuppage extends Component {
                       classes={{
                         underline: classes.cssUnderline
                       }}
+                      type="email"
                     />
                   </FormControl>
                 </Grid>
@@ -324,6 +325,7 @@ class Signuppage extends Component {
                       classes={{
                         underline: classes.cssUnderline
                       }}
+                      type="password"
                     />
                   </FormControl>
                 </Grid>

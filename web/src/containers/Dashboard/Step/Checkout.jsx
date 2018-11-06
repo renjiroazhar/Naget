@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -14,7 +12,7 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Choose from './Choose';
-import { Link } from 'react-router-dom';
+import Header from '../../../components/Header';
 
 const styles = theme => ({
   appBar: {
@@ -97,15 +95,7 @@ class Checkout extends React.Component {
         <div>
       <React.Fragment>
         <CssBaseline />
-        <AppBar position="absolute" color="default" className={classes.appBar}>
-          <Toolbar>
-          <div style={{display: "block",
-    margin: "0 auto"}} >
-          <Link to="/"><img src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png" srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x" width="171" height="50" alt="Moretrash Logo" retina_logo_url="" className="fusion-standard-logo" style={{display: "block",
-    margin: "0 auto"}}   /></Link>
-          </div>
-          </Toolbar>
-        </AppBar>
+        <Header />
         <main className={classes.layout}>
           <Paper className={classes.paper}>
          

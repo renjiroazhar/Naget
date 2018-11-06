@@ -33,16 +33,18 @@ const styles = theme => ({
     
   },
   margin: {
-    margin: theme.spacing.unit,
+    margin: "0 auto",
+    display : "block",
     maxWidth: "350px",
     width: "100%",
     fontWeight: 400,
     color: "white",
     backgroundColor: "#00c43e",
-    textDecoration: "none"
+    textDecoration: "none",
   },
   cssRoot: {
     color: "black",
+    display : "block",
     backgroundColor: "white",
     maxWidth: "350px",
     width: "100%",
@@ -154,6 +156,7 @@ class Homepage extends Component {
               <MuiThemeProvider theme={theme}>
                 <Link to="/form" style={{ textDecoration: "none" }}>
                   <Button
+                    id="login-button"
                     variant="extendedFab"
                     color="primary"
                     className={classes.margin}
@@ -167,6 +170,7 @@ class Homepage extends Component {
             <Grid item xs={12} sm={12}>
               <Link to="/login" style={{ textDecoration: "none" }}>
               <Button
+                id="login-button"
                 variant="extendedFab"
                 color="primary"
                 className={classNames(classes.margin, classes.cssRoot)}

@@ -256,6 +256,7 @@ class Loginpage extends Component {
           onKeyPress={this.handleKeyPress}
           name="email"
           value={this.state.email}   
+          type="email"
           onChange={this.handleChange}   
         />
       </FormControl>
@@ -279,6 +280,7 @@ class Loginpage extends Component {
           }}
           onKeyPress={this.handleKeyPress}         
           name="password"
+          type="password"
           value={this.state.password}
           onChange={this.handleChange}
         />

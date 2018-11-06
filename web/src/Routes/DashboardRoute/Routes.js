@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Loadable from "react-loadable";
-import BottomNavbar from '../Components';
-import Header from '../Components/Header';
+import BottomNavbar from '../../components';
+import Header from '../../components/Header';
 
 
 const loading = () => (
@@ -15,22 +15,22 @@ const loading = () => (
 );
 
 const HomeContainer = Loadable({
-  loader: () => import("../Containers/Home"),
+  loader: () => import("../../containers/Dashboard/Home"),
   loading: loading
 });
 
 const FaqContainer = Loadable({
-  loader: () => import("../Containers/Faq"),
+  loader: () => import("../../containers/Dashboard/Faq"),
   loading: loading
 });
 
 const HistoryContainer = Loadable({
-  loader: () => import("../Containers/History"),
+  loader: () => import("../../containers/Dashboard/History"),
   loading: loading
 });
 
 const AccountContainer = Loadable({
-    loader: () => import("../Containers/Account"),
+    loader: () => import("../../containers/Dashboard/Account"),
     loading: loading
   });
 
