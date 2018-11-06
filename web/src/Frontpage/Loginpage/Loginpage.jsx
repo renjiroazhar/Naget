@@ -268,7 +268,6 @@ class Loginpage extends Component {
             root: classes.cssLabel,
             focused: classes.cssFocused,
           }}
-          
         >
           Password
         </InputLabel>
@@ -281,6 +280,7 @@ class Loginpage extends Component {
           name="password"
           value={this.state.password}
           onChange={this.handleChange}
+          type="password"
         />
       </FormControl>
               </Grid>
