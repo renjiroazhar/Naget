@@ -14,8 +14,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
+    "build": "react-scripts build",
+    "build-staging" : "react-scripts build && rm -rf staging && mv build staging",
+    "deploy": "firebase deploy --only hosting:web",
+    "deploy-staging": "firebase deploy --only hosting:staging",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
