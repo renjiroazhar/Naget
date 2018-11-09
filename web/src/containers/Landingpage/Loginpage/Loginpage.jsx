@@ -183,7 +183,7 @@ class Loginpage extends Component {
 
   handleChange = (e) => {
     this.setState({
-      [e.target.name] : e.target.value
+      [e.target.id] : e.target.value
     });
     console.log(this.state);
   }
@@ -196,7 +196,7 @@ class Loginpage extends Component {
     this.props.loginFunction();
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
     if(this.state.email === "admin" || this.state.password === "admin"){
       this.login();
       } else {
@@ -249,13 +249,11 @@ class Loginpage extends Component {
           Email
         </InputLabel>
         <Input
-          id="custom-css-input"
           classes={{
             underline: classes.cssUnderline,
           }}
           onKeyPress={this.handleKeyPress}
-          name="email"
-          value={this.state.email}   
+          id="email"
           type="email"
           onChange={this.handleChange}   
         />
@@ -274,14 +272,12 @@ class Loginpage extends Component {
           Password
         </InputLabel>
         <Input
-          id="custom-css-input"
           classes={{
             underline: classes.cssUnderline,
           }}
           onKeyPress={this.handleKeyPress}         
-          name="password"
+          id="password"
           type="password"
-          value={this.state.password}
           onChange={this.handleChange}
         />
       </FormControl>
@@ -308,7 +304,7 @@ class Loginpage extends Component {
                     color="primary"
                     className={classes.margin}
                     size="large"
-                    onClick={()=>{this.handleSubmit()}}
+                    onClick={this.handleSubmit}
                   >
                     Masuk
                   </Button>

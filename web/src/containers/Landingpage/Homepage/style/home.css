@@ -3,29 +3,51 @@
     overflow: hidden;
     height: 100%;
     min-height: 100vh;
-    width: 100%;
-    margin : 0 auto;
     background-color: #282c34;
-}
-
-.container {
     width: 100%;
-    margin : 0 auto;
-}
-
-.home p {
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  .home p {
     font-family: 'Merienda', cursive;
-}
+  }
 
-@media (max-width: 425px){
-    #login-button {
-        margin-top: 20px;
-        margin-bottom: -8px;
-    }
+  .carousel-center { 
+    margin: auto;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .container {
+    text-align: center;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #282c34;
+  }
+  
+@media (max-width: 425px) {
+.login-button {
+    margin-top: 20px;
+    margin-bottom: -8px;
+  };
+  .home {
+    margin: 0 auto;
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px){
-    #login-button {
-        margin-bottom: 8px;
-    }
+.login-button {
+    margin-bottom: 8px;
+}
 }

@@ -173,7 +173,13 @@ const theme = createMuiTheme({
 
 class Signuppage extends Component {
   state = {
-    open: false
+    open: false,
+    name: '',
+    username: '',
+    password: '',
+    telephone: '',
+    address: '',
+    email: ''
   };
 
   handleClick = () => {
@@ -183,6 +189,31 @@ class Signuppage extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+ 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id] : e.target.value
+    });
+    console.log(this.state);
+  }
+
+  handleSubmit = () => {
+    let { name ,username, password, address, email, telephone } = this.state;
+    for(let i = this.state;i > null;i++){
+      this.setState({
+        name: name,
+        username: username,
+        password: password,
+        email: email,
+        address: address,
+        telephone: telephone
+      });
+      console.log(this.state);
+    }
+    if(this.state === null){
+      alert("Are you kidding me!??");
+    }
+  }
 
   //   handleKeyPress = (e) => {
   //     if(e.key === "Enter"){
@@ -224,7 +255,8 @@ class Signuppage extends Component {
                       Nama Lengkap
                     </InputLabel>
                     <Input
-                      id="custom-css-input"
+                      id="name"
+                      onChange={this.handleChange}
                       classes={{
                         underline: classes.cssUnderline
                       }}
@@ -243,7 +275,8 @@ class Signuppage extends Component {
                       Username
                     </InputLabel>
                     <Input
-                      id="custom-css-input"
+                      id="username"
+                      onChange={this.handleChange}
                       classes={{
                         underline: classes.cssUnderline
                       }}
@@ -262,7 +295,8 @@ class Signuppage extends Component {
                       Alamat
                     </InputLabel>
                     <Input
-                      id="custom-css-input"
+                      id="address"
+                      onChange={this.handleChange}
                       classes={{
                         underline: classes.cssUnderline
                       }}
@@ -281,7 +315,10 @@ class Signuppage extends Component {
                       Nomor Handphone
                     </InputLabel>
                     <Input
-                      id="custom-css-input"
+                      id="telephone"
+                      style={{textDecoration: 'none'}}
+                      type="number"
+                      onChange={this.handleChange}
                       classes={{
                         underline: classes.cssUnderline
                       }}
@@ -300,11 +337,12 @@ class Signuppage extends Component {
                       Email
                     </InputLabel>
                     <Input
-                      id="custom-css-input"
+                      id="email"
                       classes={{
                         underline: classes.cssUnderline
                       }}
                       type="email"
+                      onChange={this.handleChange}
                     />
                   </FormControl>
                 </Grid>
@@ -321,11 +359,12 @@ class Signuppage extends Component {
                     </InputLabel>
 
                     <Input
-                      id="custom-css-input"
+                      id="password"
                       classes={{
                         underline: classes.cssUnderline
                       }}
                       type="password"
+                      onChange={this.handleChange}
                     />
                   </FormControl>
                 </Grid>
@@ -337,6 +376,7 @@ class Signuppage extends Component {
               <Grid item xs={12} s={12}>
                 <MuiThemeProvider theme={theme}>
                   <Button
+                    onClick={this.handleSubmit}
                     variant="extendedFab"
                     color="primary"
                     className={classes.margin}
