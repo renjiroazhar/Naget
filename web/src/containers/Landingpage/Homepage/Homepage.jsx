@@ -29,11 +29,11 @@ const styles = theme => ({
     margin: theme.spacing.unit * 2
   },
   absolute: {
-    position: "fixed",
+   position: "absolute",
+    color: "#00c43e",
+    backgroundColor: "#00c43e",
     bottom: theme.spacing.unit * 5,
     right: theme.spacing.unit * 5,
-    color: "#00c43e",
-    backgroundColor: "#00c43e"
   },
   margin: {
     margin: theme.spacing.unit,
@@ -126,7 +126,9 @@ const styles = theme => ({
     }
   },
   snackbar: {
-    position: "absolute"
+    position: "absolute",
+    bottom: theme.spacing.unit * 5,
+    right: theme.spacing.unit * 5,
   },
   snackbarContent: {
     width: 360
@@ -195,9 +197,8 @@ class Homepage extends Component {
             height="50"
             alt="Moretrash Logo"
             retina_logo_url=""
-            class="fusion-standard-logo"
-            style={{ marginTop: "100px" }}
-          />
+            className="moretrash-logo"
+            />
           <div style={{ textAlign: "center" }}>
             <p style={{ color: "white", fontWeight: 400 }}>
               Drop Your Trash and get benefit!
@@ -244,8 +245,8 @@ class Homepage extends Component {
           </Grid>
 
 </div>
-          <Tooltip>
-            <Button variant="fab" color="#00c43e" className={classes.absolute}>
+<Tooltip>
+            <Button variant="fab" color="#00c43e" id="tooltip" className={classes.absolute}>
               <ChatBubble className={classes.iconchat} />
             </Button>
           </Tooltip>

@@ -1,4 +1,8 @@
-.container {
+  .moretrash-logo {
+    margin-top: 100px;
+  }
+
+  .container {
     text-align: center;
     background-color: #282c34;
     overflow: hidden;
@@ -12,8 +16,8 @@
     min-height: 100vh;
     background-color: #282c34;
   }
-  
-  
+
+
   .formInput input {
     width: 13.8em;
     margin: 0;

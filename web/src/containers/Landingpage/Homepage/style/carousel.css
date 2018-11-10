@@ -1,0 +1,15 @@
+#image-carousel {
+    height: 150;
+    display: block;
+    max-width: 400;
+    overflow: hidden;
+    width: 100%;
+}
+
+@media (device-height : 568px) 
+   and (device-width : 320px) 
+   and (-webkit-min-device-pixel-ratio: 2){
+    #image-carousel {
+        height: 120px;
+    }    
+  }

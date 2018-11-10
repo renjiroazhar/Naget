@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../Homepage/style/home.css";
+import "./style/login.css";
 import {
   withStyles,
   MuiThemeProvider,
@@ -32,13 +32,12 @@ const styles = theme => ({
     margin: theme.spacing.unit * 2
   },
   absolute: {
-    position: "fixed",
-    bottom: theme.spacing.unit * 5,
-    right: theme.spacing.unit * 5,
-    color: "#00c43e",
-    backgroundColor: "#00c43e"
-    
-  },
+    position: "absolute",
+     color: "#00c43e",
+     backgroundColor: "#00c43e",
+     bottom: theme.spacing.unit * 5,
+     right: theme.spacing.unit * 5,
+   },
   margin: {
     margin: theme.spacing.unit,
     maxWidth: "350px",
@@ -48,13 +47,7 @@ const styles = theme => ({
     backgroundColor: "#00c43e",
     textDecoration: "none"
   },
-  marginForm: {
-    maxWidth: "350px",
-    width: "100%",
-    fontWeight: 400,
-    color: "white",
-    textDecoration: "none"
-  },
+  
   cssRoot: {
     color: "black",
     backgroundColor: "white",
@@ -228,17 +221,17 @@ class Loginpage extends Component {
             height="50"
             alt="Moretrash Logo"
             retina_logo_url=""
-            class="fusion-standard-logo"
-            style={{ marginTop: "100px" }}
+            className="moretrash-logo"  
           />
           <div style={{ textAlign: "center" }}>
             <p style={{ color: "white", fontWeight: 400 }}>
               Drop Your Trash and get benefit!
             </p>
             <div style={{textAlign : "center"}}>
+           
             <Grid container spacing={24}>
             <Grid item xs={12} s={12}>
-            <FormControl className={classes.marginForm}>
+            <FormControl className="margin-form">
         <InputLabel
           htmlFor="custom-css-input"
           FormLabelClasses={{
@@ -260,7 +253,7 @@ class Loginpage extends Component {
       </FormControl>
               </Grid>
                <Grid item xs={12} s={12}>
-      <FormControl className={classes.marginForm}>
+      <FormControl className="margin-form">
         <InputLabel
           htmlFor="custom-css-input"
           FormLabelClasses={{
@@ -295,7 +288,7 @@ class Loginpage extends Component {
             </Grid>
          </div>
           </div>
-
+<div className="login-button">
           <Grid container spacing={24}>
             <Grid item xs={12} s={12}>
               <MuiThemeProvider theme={theme}>
@@ -311,7 +304,7 @@ class Loginpage extends Component {
               </MuiThemeProvider>
             </Grid>
           </Grid>
-
+          </div>
 <div style={{textAlign : "center"}}>
             <p style={{ color: "#999" }}>
              Belum Punya Akun? <a href="/signup" style={{ color: "white" }}>
@@ -325,7 +318,7 @@ class Loginpage extends Component {
            
 </div>
           <Tooltip>
-            <Button variant="fab" color="#00c43e" className={classes.absolute}>
+            <Button variant="fab" id="tooltip" color="#00c43e" className={classes.absolute}>
               <ChatBubble className={classes.iconchat} />
             </Button>
           </Tooltip>

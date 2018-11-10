@@ -1,11 +1,11 @@
-.home { 
+.home {
   text-align: center;
   overflow: hidden;
   height: 100%;
   min-height: 100vh;
   background-color: #282c34;
   width: 100%;
-  margin: 0 ;
+  margin: 0 auto;
   padding: 0;
 }
 
@@ -13,10 +13,16 @@
   font-family: 'Merienda', cursive;
 }
 
+.carousel-center {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   text-align: center;
   overflow: hidden;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   height: 100%;
   align-items: center;
@@ -24,28 +30,488 @@
   text-align: center;
   color: white;
   font-weight: 600;
-  min-width: 400px;
   width: 100%;
   min-height: 100vh;
   background-color: #282c34;
 }
 
+@media (max-width: 425px) {
+  .login-button {
+    margin-top: 20px;
+    margin-bottom: -8px;
+  }
 
-.formInput input {
-  width: 13.8em;
-  margin: 0 ;
-  padding-top: 15px;
-  display: block;
-  padding: 0;
-  background: 0;
-  border: 0;
-  border-bottom: 2px solid #fff;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  border-bottom-color: rgb(255, 255, 255);
-  color: #fff;
-  font-weight: 500;
-  outline: 0;
-  text-align: center;
-  transition: border-color .2s ease;
+  ;
+
+  .home {
+    margin: 0 auto;
+    width: 100%;
+  }
 }
+
+.margin-form {
+  max-width: 350px;
+  width: 100%;
+  font-weight: 400;
+  color: white;
+  text-decoration: none
+}
+
+
+@media (max-width: 768px) {
+  .login-button {
+    margin-bottom: 8px;
+  }
+}
+
+.moretrash-logo {
+  margin-top: 100px;
+}
+
+@media (max-width: 320px) {
+  .margin-form {
+    max-width: 270px;
+    width: 100%;
+    font-weight: 400;
+    color: white;
+    text-decoration: none
+  }
+  
+}
+
+@media (max-width: 420px) {
+  .margin-form {
+    max-width: 310px;
+    width: 100%;
+    font-weight: 400;
+    color: white;
+    text-decoration: none
+  }
+  
+}
+
+
+
+/* Samsung Galaxy S5 Portrait */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) and (device-width: 1440px) and (orientation: portrait) {
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 250;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 30px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }  
+  
+  .margin-form {
+    max-width: 300px;
+    width: 100%;
+    font-weight: 400;
+    color: white;
+    text-decoration: none
+  }
+  
+}
+
+
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) and (device-width: 1440px) and (orientation: portrait) {
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 250;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 30px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }  
+}
+
+@media (device-height : 568px) and (device-width : 320px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 250;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 30px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }
+}
+
+
+@media (min-height : 600px) and (device-width : 375px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 375px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 100px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }
+}
+
+
+@media (min-height : 600px) and (device-width : 425px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 425px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 30px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }
+}
+
+
+@media (min-height : 600px) and (device-width : 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 1024px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 150px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }
+}
+
+@media (min-height : 600px) and (device-width : 1440px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 1440px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 300px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }
+}
+
+@media (min-height : 600px) and (device-width : 2560px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 2560px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 700px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }
+}
+
+
+
+
+@media (min-height : 600px) and (device-width : 411px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 411px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 150px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }
+}
+
+@media (min-height : 600px) and (device-width : 414px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 414px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 150px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }
+}
+
+
+@media (device-height : 568px) and (device-width : 320px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .margin-form {
+    max-width: 300px;
+    width: 100%;
+    font-weight: 400;
+    color: white;
+    text-decoration: none
+  }
+
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 250;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 30px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }
+}
+
+@media (min-height : 600px) and (device-width : 768px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .container {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    text-align: center;
+  }
+
+  .home {
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 768px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+  .moretrash-logo {
+    margin-top: 100px;
+  }
+
+  #tooltip {
+    margin: 0 auto;
+  }
+}
+
