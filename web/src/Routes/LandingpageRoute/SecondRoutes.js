@@ -13,27 +13,27 @@ const loading = () => (
 );
 
 const Homepage = Loadable({
-  loader: () => import("../../containers/Landingpage/Homepage"),
+  loader: () => import("../../Containers/Landingpage/Homepage"),
   loading: loading
 });
 
 const Loginpage = Loadable({
-  loader: () => import("../../containers/Landingpage/Loginpage"),
+  loader: () => import("../../Containers/Landingpage/Loginpage"),
   loading: loading
 });
 
 const Signuppage = Loadable({
-  loader: () => import("../../containers/Landingpage/Signuppage"),
+  loader: () => import("../../Containers/Landingpage/Signuppage"),
   loading: loading
 });
 
 const Forgotpassword = Loadable({
-    loader: () => import("../../containers/Landingpage/Forgotpassword"),
+    loader: () => import("../../Containers/Landingpage/Forgotpassword"),
     loading: loading
   });
   
 const Checkout = Loadable({
-    loader: () => import("../../containers/Dashboard/Step/Checkout"),
+    loader: () => import("../../Containers/Dashboard/Step/Checkout"),
     loading: loading
   });
 

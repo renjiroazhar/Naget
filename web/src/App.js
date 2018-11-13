@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import SecondRoute from './routes/LandingpageRoute';
-import Routes from './routes/DashboardRoute';
+import SecondRoute from './Routes/LandingpageRoute';
+import Routes from './Routes/DashboardRoute';
 import { Redirect } from "react-router-dom";
 
 

@@ -45,7 +45,8 @@ const styles = theme => ({
     fontWeight: 400,
     color: "white",
     backgroundColor: "#00c43e",
-    textDecoration: "none"
+    textDecoration: "none",
+    borderRadius : 0
   },
   
   cssRoot: {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../Homepage/style/home.css";
+import "./style/lupasandipage.css";
 import {
   withStyles,
   MuiThemeProvider,
@@ -8,12 +8,13 @@ import {
 import Button from "@material-ui/core/Button";
 import green from "@material-ui/core/colors/green";
 import Tooltip from "@material-ui/core/Tooltip";
-import ChatBubble from "@material-ui/icons/Chat";
+import ChatBubble from '@material-ui/icons/Chat';
 import Grid from "@material-ui/core/Grid";
-import PropTypes from "prop-types";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
+import PropTypes from 'prop-types';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+
 
 const styles = theme => ({
   container: {
@@ -21,21 +22,21 @@ const styles = theme => ({
     flexWrap: "wrap"
   },
   dense: {
-    marginTop: 19
+    marginTop: 19,
   },
   menu: {
-    width: 200
+    width: 200,
   },
   fab: {
     margin: theme.spacing.unit * 2
   },
   absolute: {
-    position: "fixed",
-    bottom: theme.spacing.unit * 5,
-    right: theme.spacing.unit * 5,
-    color: "#00c43e",
-    backgroundColor: "#00c43e"
-  },
+    position: "absolute",
+     color: "#00c43e",
+     backgroundColor: "#00c43e",
+     bottom: theme.spacing.unit * 5,
+     right: theme.spacing.unit * 5,
+   },
   margin: {
     margin: theme.spacing.unit,
     maxWidth: "350px",
@@ -43,15 +44,10 @@ const styles = theme => ({
     fontWeight: 400,
     color: "white",
     backgroundColor: "#00c43e",
-    textDecoration: "none"
+    textDecoration: "none",
+    borderRadius : 0
   },
-  marginForm: {
-    maxWidth: "350px",
-    width: "100%",
-    fontWeight: 400,
-    color: "white",
-    textDecoration: "none"
-  },
+  
   cssRoot: {
     color: "black",
     backgroundColor: "white",
@@ -60,32 +56,32 @@ const styles = theme => ({
     fontWeight: 400,
     "&:hover": {
       backgroundColor: "white"
-    }
+        }
   },
-  cssLabel: {
-    color: "#999",
-    "&$cssFocused": {
-      color: "white"
-    }
+   cssLabel: {
+     color : "#999",
+    '&$cssFocused': {
+      color: "white",
+    },
   },
   cssFocused: {},
   cssUnderline: {
-    width: "100%",
+    width : "100%",
+    maxWidth : "345px",
+    borderColor : "#fff",
     color : "#fff",
-    maxWidth: "345px",
-    borderColor: "#fff",
-    borderBottomColor: "white",
-    "&:before": {
-      borderBottomColor: "white"
+    borderBottomColor : "white",
+    '&:before': {
+      borderBottomColor: "white",
     },
-    "&:after": {
-      borderBottomColor: "white"
-    }
+    '&:after': {
+      borderBottomColor: "white",
+    },
   },
   iconchat: {
     color: "#fff",
     "&:hover": {
-      color: "#00c43e"
+      color : "#00c43e"
     }
   },
   bootstrapRoot: {
@@ -135,31 +131,31 @@ const styles = theme => ({
   bootstrapInput: {
     borderRadius: 4,
     backgroundColor: theme.palette.common.white,
-    border: "1px solid #ced4da",
+    border: '1px solid #ced4da',
     fontSize: 16,
-    padding: "10px 12px",
-    transition: theme.transitions.create(["border-color", "box-shadow"]),
+    padding: '10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
+      '-apple-system',
+      'BlinkMacSystemFont',
       '"Segoe UI"',
-      "Roboto",
+      'Roboto',
       '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
+      'Arial',
+      'sans-serif',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(","),
-    "&:focus": {
-      borderColor: "#80bdff",
-      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)"
-    }
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
   },
   bootstrapFormLabel: {
-    fontSize: 18
-  }
+    fontSize: 18,
+  },
 });
 
 const theme = createMuiTheme({
@@ -173,22 +169,45 @@ const theme = createMuiTheme({
 
 class Forgotpassword extends Component {
   state = {
-    open: false
+    open: false,
+    email:"",
+    password:""
   };
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id] : e.target.value
+    });
+    console.log(this.state);
+  }
 
   handleClick = () => {
     this.setState({ open: true });
   };
 
+  login = () => {
+    this.props.loginFunction();
+  }
+
+  handleSubmit = (e) => {
+    if(this.state.email === "admin" || this.state.password === "admin"){
+      this.login();
+      } else {
+        alert("ERROR Authentication");
+      }
+  }
+
   handleClose = () => {
     this.setState({ open: false });
   };
 
-  //   handleKeyPress = (e) => {
-  //     if(e.key === "Enter"){
-  //       this.props.loginFunction();
-  //     }
-  //   }
+  handleKeyPress = (e) => {
+    if(e.key === "Enter"){
+      this.handleSubmit();
+    } 
+  }
+
+  
 
   render() {
     const { classes } = this.props;
@@ -196,81 +215,90 @@ class Forgotpassword extends Component {
       <div className="home">
         <div className="container">
           <img
-            href="/"
             src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
             srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
             width="171"
             height="50"
             alt="Moretrash Logo"
             retina_logo_url=""
-            class="fusion-standard-logo"
-            style={{ marginTop: "100px" }}
+            className="moretrash-logo"  
           />
           <div style={{ textAlign: "center" }}>
             <p style={{ color: "white", fontWeight: 400 }}>
               Drop Your Trash and get benefit!
             </p>
-            <div style={{ textAlign: "center" }}>
-              <Grid container spacing={24}>
-                <Grid item xs={12} s={12}>
-                  <FormControl className={classes.marginForm}>
-                    <InputLabel
-                      htmlFor="custom-css-input"
-                      FormLabelClasses={{
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused
-                      }}
-                    >
-                      Kata Sandi Baru
-                    </InputLabel>
-                    <Input
-                      id="custom-css-input"
-                      classes={{
-                        underline: classes.cssUnderline
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} s={12}>
-                  <FormControl className={classes.marginForm}>
-                    <InputLabel
-                      htmlFor="custom-css-input"
-                      FormLabelClasses={{
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused
-                      }}
-                    >
-                      Konfirmasi Kata Sandi Baru
-                    </InputLabel>
-                    <Input
-                      id="custom-css-input"
-                      classes={{
-                        underline: classes.cssUnderline
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-              </Grid>
-            </div>
-          </div>
-          <div style={{ marginTop: "25px", marginBottom: "25px" }}>
+            <div style={{textAlign : "center"}}>
+           
             <Grid container spacing={24}>
-              <Grid item xs={12} s={12}>
-                <MuiThemeProvider theme={theme}>
+            <Grid item xs={12} s={12}>
+            <FormControl className="margin-form">
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+        >
+          Kata Sandi Baru
+        </InputLabel>
+        <Input
+          classes={{
+            underline: classes.cssUnderline,
+          }}
+          onKeyPress={this.handleKeyPress}
+          id="email"
+          type="email"
+          onChange={this.handleChange}   
+        />
+      </FormControl>
+              </Grid>
+               <Grid item xs={12} s={12}>
+      <FormControl className="margin-form">
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+          
+        >
+        Konfirmasi Kata Sandi Baru
+        </InputLabel>
+        <Input
+          classes={{
+            underline: classes.cssUnderline,
+          }}
+          onKeyPress={this.handleKeyPress}         
+          id="password"
+          type="password"
+          onChange={this.handleChange}
+        />
+      </FormControl>
+              </Grid>
+            </Grid>
+           
+
+<div className="login-button">
+              <MuiThemeProvider theme={theme}>
                   <Button
                     variant="extendedFab"
                     color="primary"
                     className={classes.margin}
                     size="large"
+                    onClick={this.handleSubmit}
                   >
                     Perbarui Sandi
                   </Button>
-                </MuiThemeProvider>
-              </Grid>
-            </Grid>
+              </MuiThemeProvider>
           </div>
+</div>
+            
+
+            
+           
+</div>
           <Tooltip>
-            <Button variant="fab" color="#00c43e" className={classes.absolute}>
+            <Button variant="fab" id="tooltip" color="#00c43e" className={classes.absolute}>
               <ChatBubble className={classes.iconchat} />
             </Button>
           </Tooltip>

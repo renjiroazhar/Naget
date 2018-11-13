@@ -12,7 +12,7 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 import Choose from './Choose';
-import Header from '../../../components/Header';
+import Header from '../../../Components/Header';
 
 const styles = theme => ({
   appBar: {

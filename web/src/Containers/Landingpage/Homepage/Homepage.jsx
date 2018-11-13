@@ -39,6 +39,7 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     maxWidth: "350px",
     width: "100%",
+    borderRadius : 0,
     fontWeight: 400,
     color: "white",
     backgroundColor: "#00c43e",
