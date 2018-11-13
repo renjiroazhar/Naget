@@ -13,13 +13,22 @@ const styles = {
     textAlign: "left",
     backgroundColor: "#fff",
     height: "100%",
-    margin: "15px",
-    padding: "15px"
+    marginTop: "15px",
+    padding: "15px",
   },
 };
 
 
 class AccountContainer extends Component {
+
+  state = {
+    redirect : false
+  }
+
+  logout = () => {
+    this.props.FunctionLogout();
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -43,13 +52,12 @@ class AccountContainer extends Component {
           <h5>Rate Gambar</h5>
         </div>
 
-        <div style={{ textAlign: 'center', marginTop: '20px' }}>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <Button variant="contained" color="secondary" style={{ height: '20px', width: '150px' }}>
+        <div style={{ textAlign: 'center', marginTop: '20px' }}> 
+            <Button component={Link} to="/" onClick={()=>{this.logout();}} variant="contained" color="secondary" style={{ height: '20px', width: '150px' }}>
               Logout
             </Button>
-          </Link>
         </div>
+       
       </div>
     )
   }
