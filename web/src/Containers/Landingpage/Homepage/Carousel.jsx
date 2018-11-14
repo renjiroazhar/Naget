@@ -10,6 +10,7 @@ import Recycling from './image/svg/011-recycling.svg';
 import Totebag from './image/svg/004-tote-bag.svg';
 import RecycleBin from './image/svg/012-recycle-bin.svg';
 import Green from './image/svg/025-green.svg';
+import './style/carousel.css';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -94,7 +95,7 @@ class Carousel extends React.Component {
                     {tutorialSteps.map((step, index) => (
                         <div key={step.label}>
                             {Math.abs(activeStep - index) <= 2 ? (
-                                <img className={classes.img} src={step.imgPath} alt={step.label} />
+                                <img id="image-carousel" className={classes.img} src={step.imgPath} alt={step.label} />
                             ) : null}
                         </div>
                     ))}

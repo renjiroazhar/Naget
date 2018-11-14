@@ -10,13 +10,16 @@
     font-weight: 600;
     min-width: 380px;
     min-height: 100vh;
+    width: 100%;
+    margin: 0 ;
+    padding: 0;
     background-color: #282c34;
   }
   
   
   .formInput input {
     width: 13.8em;
-    margin: 0 auto;
+    margin: 0;
     padding-top: 15px;
     display: block;
     background: 0;

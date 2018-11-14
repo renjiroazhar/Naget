@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../Homepage/style/home.css";
+import "./style/signup.css";
 import {
   withStyles,
   MuiThemeProvider,
@@ -43,7 +43,8 @@ const styles = theme => ({
     fontWeight: 400,
     color: "white",
     backgroundColor: "#00c43e",
-    textDecoration: "none"
+    textDecoration: "none",
+    borderRadius : 0
   },
   marginForm: {
     maxWidth: "350px",
@@ -71,8 +72,8 @@ const styles = theme => ({
   cssFocused: {},
   cssUnderline: {
     width: "100%",
-    color : "#fff",
     maxWidth: "345px",
+    color : "#fff",
     borderColor: "#fff",
     borderBottomColor: "white",
     "&:before": {
@@ -171,9 +172,15 @@ const theme = createMuiTheme({
   }
 });
 
-class Forgotpassword extends Component {
+class Signuppage extends Component {
   state = {
-    open: false
+    open: false,
+    name: '',
+    username: '',
+    password: '',
+    telephone: '',
+    address: '',
+    email: ''
   };
 
   handleClick = () => {
@@ -183,6 +190,31 @@ class Forgotpassword extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+ 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id] : e.target.value
+    });
+    console.log(this.state);
+  }
+
+  handleSubmit = () => {
+    let { name ,username, password, address, email, telephone } = this.state;
+    for(let i = this.state;i > null;i++){
+      this.setState({
+        name: name,
+        username: username,
+        password: password,
+        email: email,
+        address: address,
+        telephone: telephone
+      });
+      console.log(this.state);
+    }
+    if(this.state === null){
+      alert("Are you kidding me!??");
+    }
+  }
 
   //   handleKeyPress = (e) => {
   //     if(e.key === "Enter"){
@@ -196,15 +228,15 @@ class Forgotpassword extends Component {
       <div className="home">
         <div className="container">
           <img
-            href="/"
             src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
             srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
             width="171"
             height="50"
+            href="/"
             alt="Moretrash Logo"
             retina_logo_url=""
             class="fusion-standard-logo"
-            style={{ marginTop: "100px" }}
+            style={{ marginTop: "25px" }}
           />
           <div style={{ textAlign: "center" }}>
             <p style={{ color: "white", fontWeight: 400 }}>
@@ -221,10 +253,11 @@ class Forgotpassword extends Component {
                         focused: classes.cssFocused
                       }}
                     >
-                      Kata Sandi Baru
+                      Nama Lengkap
                     </InputLabel>
                     <Input
-                      id="custom-css-input"
+                      id="name"
+                      onChange={this.handleChange}
                       classes={{
                         underline: classes.cssUnderline
                       }}
@@ -240,13 +273,99 @@ class Forgotpassword extends Component {
                         focused: classes.cssFocused
                       }}
                     >
-                      Konfirmasi Kata Sandi Baru
+                      Username
                     </InputLabel>
                     <Input
-                      id="custom-css-input"
+                      id="username"
+                      onChange={this.handleChange}
                       classes={{
                         underline: classes.cssUnderline
                       }}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} s={12}>
+                  <FormControl className={classes.marginForm}>
+                    <InputLabel
+                      htmlFor="custom-css-input"
+                      FormLabelClasses={{
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused
+                      }}
+                    >
+                      Alamat
+                    </InputLabel>
+                    <Input
+                      id="address"
+                      onChange={this.handleChange}
+                      classes={{
+                        underline: classes.cssUnderline
+                      }}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} s={12}>
+                  <FormControl className={classes.marginForm}>
+                    <InputLabel
+                      htmlFor="custom-css-input"
+                      FormLabelClasses={{
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused
+                      }}
+                    >
+                      Nomor Handphone
+                    </InputLabel>
+                    <Input
+                      id="telephone"
+                      style={{textDecoration: 'none'}}
+                      type="number"
+                      onChange={this.handleChange}
+                      classes={{
+                        underline: classes.cssUnderline
+                      }}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} s={12}>
+                  <FormControl className={classes.marginForm}>
+                    <InputLabel
+                      htmlFor="custom-css-input"
+                      FormLabelClasses={{
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused
+                      }}
+                    >
+                      Email
+                    </InputLabel>
+                    <Input
+                      id="email"
+                      classes={{
+                        underline: classes.cssUnderline
+                      }}
+                      type="email"
+                      onChange={this.handleChange}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} s={12}>
+                  <FormControl className={classes.marginForm}>
+                    <InputLabel
+                      htmlFor="custom-css-input"
+                      FormLabelClasses={{
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused
+                      }}
+                    >
+                      Password
+                    </InputLabel>
+
+                    <Input
+                      id="password"
+                      classes={{
+                        underline: classes.cssUnderline
+                      }}
+                      type="password"
+                      onChange={this.handleChange}
                     />
                   </FormControl>
                 </Grid>
@@ -258,16 +377,25 @@ class Forgotpassword extends Component {
               <Grid item xs={12} s={12}>
                 <MuiThemeProvider theme={theme}>
                   <Button
+                    onClick={this.handleSubmit}
                     variant="extendedFab"
                     color="primary"
                     className={classes.margin}
                     size="large"
                   >
-                    Perbarui Sandi
+                    Sign Up
                   </Button>
                 </MuiThemeProvider>
               </Grid>
             </Grid>
+          </div>
+          <div style={{ textAlign: "center", marginBottom : "25px" }}>
+            <p style={{ color: "#999" }}>
+              Sudah Punya Akun?{" "}
+              <a href="/login" style={{ color: "white" }}>
+                Sign In
+              </a>
+            </p>
           </div>
           <Tooltip>
             <Button variant="fab" color="#00c43e" className={classes.absolute}>
@@ -280,8 +408,8 @@ class Forgotpassword extends Component {
   }
 }
 
-Forgotpassword.propTypes = {
+Signuppage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Forgotpassword);
+export default withStyles(styles)(Signuppage);

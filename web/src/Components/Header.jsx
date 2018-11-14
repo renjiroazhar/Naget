@@ -21,22 +21,20 @@ class Header extends Component {
     return (
       <div>
         <div className={classes.root}>
-          <AppBar position="static" color="default" style={{ backgroundColor: "#16a085" }}>
-            <Toolbar>
-              <div style={{
-                display: "block",
-                margin: "0 auto"
-              }} >
-                <img src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png" srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x" width="171" height="50" alt="Moretrash Logo" retina_logo_url="" className="fusion-standard-logo" style={{
-                  display: "block",
-                  margin: "0 auto", padding: "12px"
-                }} />
-              </div>
-            </Toolbar>
-          </AppBar>
-        </div>
-        <br />
-        <br />
+      <AppBar position="static" color="default" style={{ backgroundColor : "#559351",paddingBottom: '7px'}}>
+        <Toolbar>
+        <div style={{display: "block",
+    margin: "0 auto"}} >
+          <img src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png" srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x" width="120" height="35" alt="Moretrash Logo" retina_logo_url="" className="fusion-standard-logo" style={{display: "block",
+    margin: "0 auto"}}   />
+          </div>
+        </Toolbar>
+      </AppBar>
+    </div>
+    <br/>
+    <br/> 
+    <br/> 
+    <br/> 
       </div>
     )
   }
