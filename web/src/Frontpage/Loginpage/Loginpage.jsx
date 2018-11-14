@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../Homepage/style/home.css";
+import "./style/login.css";
 import {
   withStyles,
   MuiThemeProvider,
@@ -32,13 +32,11 @@ const styles = theme => ({
     margin: theme.spacing.unit * 2
   },
   absolute: {
-    position: "fixed",
-    bottom: theme.spacing.unit * 5,
-    right: theme.spacing.unit * 5,
-    color: "#00c43e",
-    backgroundColor: "#00c43e"
-
-  },
+    position: "absolute",
+     backgroundColor: "#00c43e",
+     bottom: theme.spacing.unit * 5,
+     right: theme.spacing.unit * 5,
+   },
   margin: {
     margin: theme.spacing.unit,
     maxWidth: "350px",
@@ -46,14 +44,12 @@ const styles = theme => ({
     fontWeight: 400,
     color: "white",
     backgroundColor: "#00c43e",
-    textDecoration: "none"
-  },
-  marginForm: {
-    maxWidth: "350px",
-    width: "100%",
-    fontWeight: 400,
-    color: "white",
-    textDecoration: "none"
+    textDecoration: "none",
+    borderRadius: 0,
+    "&:hover": {
+      backgroundColor: "#f7f7f7",
+      color: "#00c43e",
+    }
   },
   cssRoot: {
     color: "black",
@@ -63,21 +59,21 @@ const styles = theme => ({
     fontWeight: 400,
     "&:hover": {
       backgroundColor: "white"
-    }
+        }
   },
-  cssLabel: {
-    color: "#999",
+   cssLabel: {
+     color : "#999",
     '&$cssFocused': {
       color: "white",
     },
   },
   cssFocused: {},
   cssUnderline: {
-    width: "100%",
-    maxWidth: "345px",
-    borderColor: "#fff",
-    color: "#fff",
-    borderBottomColor: "white",
+    width : "100%",
+    maxWidth : "345px",
+    borderColor : "#fff",
+    color : "#fff",
+    borderBottomColor : "white",
     '&:before': {
       borderBottomColor: "white",
     },
@@ -88,7 +84,7 @@ const styles = theme => ({
   iconchat: {
     color: "#fff",
     "&:hover": {
-      color: "#00c43e"
+      color : "#00c43e"
     }
   },
   bootstrapRoot: {
@@ -177,13 +173,13 @@ const theme = createMuiTheme({
 class Loginpage extends Component {
   state = {
     open: false,
-    email: "",
-    password: ""
+    email:"",
+    password:""
   };
 
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.id] : e.target.value
     });
     console.log(this.state);
   }
@@ -196,12 +192,12 @@ class Loginpage extends Component {
     this.props.loginFunction();
   }
 
-  handleSubmit = () => {
-    if (this.state.email === "admin" || this.state.password === "admin") {
+  handleSubmit = (e) => {
+    if(this.state.email === "admin" && this.state.password === "admin"){
       this.login();
-    } else {
-      alert("ERROR Authentication");
-    }
+      } else {
+        alert("ERROR Authentication");
+      }
   }
 
   handleClose = () => {
@@ -209,12 +205,12 @@ class Loginpage extends Component {
   };
 
   handleKeyPress = (e) => {
-    if (e.key === "Enter") {
+    if(e.key === "Enter"){
       this.handleSubmit();
-    }
+    } 
   }
 
-
+  
 
   render() {
     const { classes } = this.props;
@@ -228,106 +224,99 @@ class Loginpage extends Component {
             height="50"
             alt="Moretrash Logo"
             retina_logo_url=""
-            class="fusion-standard-logo"
-            style={{ marginTop: "100px" }}
+            className="moretrash-logo"  
           />
           <div style={{ textAlign: "center" }}>
             <p style={{ color: "white", fontWeight: 400 }}>
               Drop Your Trash and get benefit!
             </p>
-            <div style={{ textAlign: "center" }}>
-              <Grid container spacing={24}>
-                <Grid item xs={12} s={12}>
-                  <FormControl className={classes.marginForm}>
-                    <InputLabel
-                      htmlFor="custom-css-input"
-                      FormLabelClasses={{
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused,
-                      }}
-                    >
-                      Email
+            <div style={{textAlign : "center"}}>
+           
+            <Grid container spacing={24}>
+            <Grid item xs={12} s={12}>
+            <FormControl className="margin-form">
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+        >
+          Email
         </InputLabel>
-                    <Input
-                      id="custom-css-input"
-                      classes={{
-                        underline: classes.cssUnderline,
-                      }}
-                      onKeyPress={this.handleKeyPress}
-                      name="email"
-                      value={this.state.email}
-                      onChange={this.handleChange}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} s={12}>
-                  <FormControl className={classes.marginForm}>
-                    <InputLabel
-                      htmlFor="custom-css-input"
-                      FormLabelClasses={{
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused,
-                      }}
-                    >
-                      Password
-        </InputLabel>
-                    <Input
-                      id="custom-css-input"
-                      classes={{
-                        underline: classes.cssUnderline,
-                      }}
-                      onKeyPress={this.handleKeyPress}
-                      name="password"
-                      value={this.state.password}
-                      onChange={this.handleChange}
-                      type="password"
-                    />
-                  </FormControl>
-                </Grid>
+        <Input
+          classes={{
+            underline: classes.cssUnderline,
+          }}
+          onKeyPress={this.handleKeyPress}
+          id="email"
+          type="email"
+          onChange={this.handleChange}   
+        />
+      </FormControl>
               </Grid>
+               <Grid item xs={12} s={12}>
+      <FormControl className="margin-form">
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+          
+        >
+          Password
+        </InputLabel>
+        <Input
+          classes={{
+            underline: classes.cssUnderline,
+          }}
+          onKeyPress={this.handleKeyPress}         
+          id="password"
+          type="password"
+          onChange={this.handleChange}
+        />
+      </FormControl>
+              </Grid>
+            </Grid>
+           
 
-
-              <Grid container spacing={24}>
-                <Grid item xs={12} s={12}>
-                  <Link to="/forgot_password" style={{ textDecoration: "none" }}><p style={{ color: "#fff", marginTop: "25px", marginBottom: "25px" }}>
-                    Lupa Password ?
+<Grid container spacing={24}>
+            <Grid item xs={12} s={12}>
+       <Link to="/forgot_password" style={{textDecoration : "none"}}><p style={{ color: "#fff", marginTop : "25px", marginBottom : "25px"}}>
+             Lupa Password ?
             </p>
-                  </Link>
-                </Grid>
-              </Grid>
-            </div>
+            </Link>
+            </Grid>
+            </Grid>
+         </div>
           </div>
-
+<div className="login-button">
           <Grid container spacing={24}>
             <Grid item xs={12} s={12}>
               <MuiThemeProvider theme={theme}>
-                <Button
-                  variant="extendedFab"
-                  color="primary"
-                  className={classes.margin}
-                  size="large"
-                  onClick={() => { this.handleSubmit() }}
-                >
-                  Masuk
+                  <Button
+                    variant="extendedFab"
+                    color="primary"
+                    className={classes.margin}
+                    size="large"
+                    onClick={this.handleSubmit}
+                  >
+                    Masuk
                   </Button>
               </MuiThemeProvider>
             </Grid>
           </Grid>
-
-          <div style={{ textAlign: "center" }}>
-            <p style={{ color: "#999" }}>
-              Belum Punya Akun? <a href="/signup" style={{ color: "white" }}>
-                Sign Up
-            </a>
-            </p>
-
-
-
-
-
           </div>
+<div style={{textAlign : "center"}}>
+            <p style={{ color: "#999" }}>
+             Belum Punya Akun? <a href="/signup" style={{ color: "white" }}>
+              Sign Up
+            </a>
+            </p>     
+</div>
           <Tooltip>
-            <Button variant="fab" color="#00c43e" className={classes.absolute}>
+            <Button variant="fab" id="tooltip" color="#00c43e" className={classes.absolute}>
               <ChatBubble className={classes.iconchat} />
             </Button>
           </Tooltip>
