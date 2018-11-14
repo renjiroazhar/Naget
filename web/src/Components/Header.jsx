@@ -21,7 +21,7 @@ class Header extends Component {
     return (
       <div>
         <div className={classes.root}>
-          <AppBar position="static" color="default" style={{ backgroundColor: "#559351" }}>
+          <AppBar position="static" color="default" style={{ backgroundColor: "#16a085" }}>
             <Toolbar>
               <div style={{
                 display: "block",
