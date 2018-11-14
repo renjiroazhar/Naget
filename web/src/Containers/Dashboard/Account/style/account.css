@@ -1,0 +1,152 @@
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) and (device-width: 1440px) and (orientation: portrait) {
+
+  .login-button {
+    width: 250;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+}
+
+@media (device-height : 568px) and (device-width : 320px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .login-button {
+    width: 250;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+}
+
+
+@media (min-height : 600px) and (device-width : 375px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .login-button {
+    width: 375px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+}
+
+
+@media (min-height : 600px) and (device-width : 425px) and (-webkit-min-device-pixel-ratio: 2) {
+  .login-button {
+    width: 425px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+}
+
+
+@media (min-height : 600px) and (device-width : 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+  .login-button {
+    width: 1024px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+}
+
+@media (min-height : 600px) and (device-width : 414px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .login-button {
+    width: 414px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+}
+
+
+@media (device-height : 1024px) and (device-width : 768px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .login-button {
+    width: 768px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+}
+
+@media (device-height : 1024px) and (device-width : 768px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .login-button {
+    width: 768px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+}
+
+@media (min-height : 600px) and (device-width : 411px) and (-webkit-min-device-pixel-ratio: 2) {
+
+
+  .login-button {
+    width: 411px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+}
+
+
+@media (min-height : 600px) and (device-width : 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .login-button {
+    width: 1024px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+}
+
+@media (min-height : 600px) and (device-width : 1440px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .login-button {
+    width: 1440px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+}
+
+@media (min-height : 600px) and (device-width : 2560px) and (-webkit-min-device-pixel-ratio: 2) {
+
+  .login-button {
+    width: 2560px;
+    margin: 0 auto;
+    margin-right: 15px;
+    text-align: center;
+    justify-content: center;
+    display: block;
+  }
+
+}

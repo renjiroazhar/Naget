@@ -15,8 +15,11 @@ const styles = {
     position: "fixed",
     bottom: "0",
     borderStyle: "solid",
-    borderWidth: "1px 0px 0px 0px",
-    borderColor: "#e7e7e7"
+    border: "2px 0px 0px 0px",
+    borderColor: "#e7e7e7",
+    webkitBoxShadow: "0px 0px 2px 0px rgba(0,0,0,0.75)",
+    mozBoxShadow: "0px 0px 2px 0px rgba(0,0,0,0.75)",
+    boxShadow: "0px 0px 2px 0px rgba(0,0,0,0.75)",
   }
 };
 

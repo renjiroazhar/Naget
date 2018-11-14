@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Loadable from "react-loadable";
-import PageNotFound from "./PageNotFound";
+import PageNotFound from "../PageNotFound";
 
 const loading = () => (
   <div className="loading-bro">
@@ -13,31 +13,31 @@ const loading = () => (
 );
 
 const Homepage = Loadable({
-  loader: () => import("../Frontpage/Homepage"),
+  loader: () => import("../../Containers/Landingpage/Homepage"),
   loading: loading
 });
 
 const Loginpage = Loadable({
-  loader: () => import("../Frontpage/Loginpage"),
+  loader: () => import("../../Containers/Landingpage/Loginpage"),
   loading: loading
 });
 
 const Signuppage = Loadable({
-  loader: () => import("../Frontpage/Signuppage"),
+  loader: () => import("../../Containers/Landingpage/Signuppage"),
   loading: loading
 });
 
 const Forgotpassword = Loadable({
-    loader: () => import("../Frontpage/Forgotpassword"),
+    loader: () => import("../../Containers/Landingpage/Forgotpassword"),
     loading: loading
   });
   
 const Checkout = Loadable({
-    loader: () => import("../Containers/Step/Checkout"),
+    loader: () => import("../../Containers/Dashboard/Step/Checkout"),
     loading: loading
   });
 
-export default class NewRoutes extends Component {
+export default class SecondRoutes extends Component {
   
   state = {
     searchItem: "",

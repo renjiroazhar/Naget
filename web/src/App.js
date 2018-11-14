@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import NewRoutes from './Routes/NewRoutes';
-import Routes from './Routes';
+import SecondRoute from './Routes/LandingpageRoute';
+import Routes from './Routes/DashboardRoute';
 import { Redirect } from "react-router-dom";
 
 
 class App extends Component {
    
   state = {
-    redirect : false,
-    login : null
+    redirect : false
   }
 
   changeToLogin = () => {
@@ -17,30 +16,25 @@ class App extends Component {
     sessionStorage.setItem("accessToken", aksesToken);
     this.setState({
       redirect : true,
-      login : true
     })
   }
 
   changeToLogout = () => {
     sessionStorage.clear();
-    this.setState({
-      login: false
-    });
   }
 
   render() {
     let aksesToken = sessionStorage.getItem("accessToken");
    
     if(!aksesToken){
-      return <NewRoutes loginFunc={this.changeToLogin} />;
-    }
-    return (<div className="App">
-    
-          
+      return (<div style={{width : "100%",margin: 0, pading: 0}}><SecondRoute loginFunc={this.changeToLogin} /></div>);
+    } else {
+      return (<div className="App">     
       <Routes logoutFunc={this.changeToLogout}/>
       {this.state.redirect ? (<Redirect to="/home"/>):("")}
       </div>
       )
+    }
   }
   
 }

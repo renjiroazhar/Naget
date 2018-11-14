@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./style/login.css";
+import "./style/lupasandipage.css";
 import {
   withStyles,
   MuiThemeProvider,
@@ -9,7 +9,6 @@ import Button from "@material-ui/core/Button";
 import green from "@material-ui/core/colors/green";
 import Tooltip from "@material-ui/core/Tooltip";
 import ChatBubble from '@material-ui/icons/Chat';
-import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from 'prop-types';
 import Input from '@material-ui/core/Input';
@@ -33,6 +32,7 @@ const styles = theme => ({
   },
   absolute: {
     position: "absolute",
+     color: "#00c43e",
      backgroundColor: "#00c43e",
      bottom: theme.spacing.unit * 5,
      right: theme.spacing.unit * 5,
@@ -45,12 +45,9 @@ const styles = theme => ({
     color: "white",
     backgroundColor: "#00c43e",
     textDecoration: "none",
-    borderRadius: 0,
-    "&:hover": {
-      backgroundColor: "#f7f7f7",
-      color: "#00c43e",
-    }
+    borderRadius : 0
   },
+  
   cssRoot: {
     color: "black",
     backgroundColor: "white",
@@ -170,7 +167,7 @@ const theme = createMuiTheme({
   }
 });
 
-class Loginpage extends Component {
+class Forgotpassword extends Component {
   state = {
     open: false,
     email:"",
@@ -193,7 +190,7 @@ class Loginpage extends Component {
   }
 
   handleSubmit = (e) => {
-    if(this.state.email === "admin" && this.state.password === "admin"){
+    if(this.state.email === "admin" || this.state.password === "admin"){
       this.login();
       } else {
         alert("ERROR Authentication");
@@ -242,7 +239,7 @@ class Loginpage extends Component {
             focused: classes.cssFocused,
           }}
         >
-          Email
+          Kata Sandi Baru
         </InputLabel>
         <Input
           classes={{
@@ -265,7 +262,7 @@ class Loginpage extends Component {
           }}
           
         >
-          Password
+        Konfirmasi Kata Sandi Baru
         </InputLabel>
         <Input
           classes={{
@@ -281,19 +278,7 @@ class Loginpage extends Component {
             </Grid>
            
 
-<Grid container spacing={24}>
-            <Grid item xs={12} s={12}>
-       <Link to="/forgot_password" style={{textDecoration : "none"}}><p style={{ color: "#fff", marginTop : "25px", marginBottom : "25px"}}>
-             Lupa Password ?
-            </p>
-            </Link>
-            </Grid>
-            </Grid>
-         </div>
-          </div>
 <div className="login-button">
-          <Grid container spacing={24}>
-            <Grid item xs={12} s={12}>
               <MuiThemeProvider theme={theme}>
                   <Button
                     variant="extendedFab"
@@ -302,18 +287,15 @@ class Loginpage extends Component {
                     size="large"
                     onClick={this.handleSubmit}
                   >
-                    Masuk
+                    Perbarui Sandi
                   </Button>
               </MuiThemeProvider>
-            </Grid>
-          </Grid>
           </div>
-<div style={{textAlign : "center"}}>
-            <p style={{ color: "#999" }}>
-             Belum Punya Akun? <a href="/signup" style={{ color: "white" }}>
-              Sign Up
-            </a>
-            </p>     
+</div>
+            
+
+            
+           
 </div>
           <Tooltip>
             <Button variant="fab" id="tooltip" color="#00c43e" className={classes.absolute}>
@@ -326,8 +308,8 @@ class Loginpage extends Component {
   }
 }
 
-Loginpage.propTypes = {
+Forgotpassword.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Loginpage);
+export default withStyles(styles)(Forgotpassword);
