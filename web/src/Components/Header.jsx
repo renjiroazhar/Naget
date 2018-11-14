@@ -8,14 +8,14 @@ const styles = {
   root: {
     flexGrow: 1,
     position: "fixed", /* Safari */
-    width : "100%",
+    width: "100%",
     top: 0,
-    zIndex: 100
+    zIndex: 100,
   },
 };
 
 class Header extends Component {
-  
+
   render() {
     const { classes } = this.props;
     return (

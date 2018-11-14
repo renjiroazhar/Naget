@@ -46,7 +46,11 @@ const styles = theme => ({
     color: "white",
     backgroundColor: "#00c43e",
     textDecoration: "none",
-    borderRadius : 0
+    borderRadius: 0,
+    "&:hover": {
+      backgroundColor: "#f7f7f7",
+      color: "#00c43e",
+    }
   },
   
   cssRoot: {
@@ -191,7 +195,7 @@ class Loginpage extends Component {
   }
 
   handleSubmit = (e) => {
-    if(this.state.email === "admin" || this.state.password === "admin"){
+    if(this.state.email === "admin" && this.state.password === "admin"){
       this.login();
       } else {
         alert("ERROR Authentication");
@@ -311,12 +315,7 @@ class Loginpage extends Component {
              Belum Punya Akun? <a href="/signup" style={{ color: "white" }}>
               Sign Up
             </a>
-            </p>
-
-            
-
-            
-           
+            </p>     
 </div>
           <Tooltip>
             <Button variant="fab" id="tooltip" color="#00c43e" className={classes.absolute}>
