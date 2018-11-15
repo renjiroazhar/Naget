@@ -8,14 +8,14 @@ const styles = {
   root: {
     flexGrow: 1,
     position: "fixed", /* Safari */
-    width: "100%",
+    width : "100%",
     top: 0,
-    zIndex: 100,
+    zIndex: 100
   },
 };
 
-class Header extends Component {
-
+class HeaderTestimoni extends Component {
+  
   render() {
     const { classes } = this.props;
     return (
@@ -33,14 +33,13 @@ class Header extends Component {
     </div>
     <br/>
     <br/> 
-    <br/> 
-    <br/> 
+    <br/>
       </div>
     )
   }
 }
 
-Header.propTypes = {
+HeaderTestimoni.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(Header);
+export default withStyles(styles)(HeaderTestimoni);

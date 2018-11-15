@@ -28,12 +28,12 @@ const styles = theme => ({
   margin: {
     margin: theme.spacing.unit,
     maxWidth: "350px",
-    width: "100%",
+    width: "65%",
     borderRadius : 0,
-    fontWeight: 400,
     color: "white",
     backgroundColor: "#e74c3c",
-    textDecoration: "none"
+    textDecoration: "none",
+    fontWeight : 'bold'
   },
   demo: {
     width: '90%',
@@ -82,7 +82,7 @@ const styles = theme => ({
   card2: {
     width: "90%",
     border : 0,
-    borderBottom : '1px solid #40000000',
+    borderBottom : '2px solid #999',
     justifyContent: 'center',
     marginBottom : '3px'
   },
@@ -124,93 +124,99 @@ class AccountContainer extends Component {
     return (
       <React.Fragment>
         <CssBaseline />
-         <div>
+{/* First Card */}
+         <div style={{marginTop : "75px"}}>
           <center>
             <Card className={classes.card} style={{paddingBottom: '35px'}}>
-          <CardContent>
-        <div>
-        <Typography style={{float:'right',fontWeight: 'bold', textAlign: "right", color: '#1abc9c'}} component="p">
-          Edit
-        </Typography>
-        </div>
-        
-    </CardContent>
-        <CardContent>
-        <div>
-        <Typography style={{float: 'left'}} component="p">
-          Username
-        </Typography>
-        <Typography style={{float:'right', textAlign: "right", color: '#777777'}} component="p">
-          Fulan Bin Fulan
-        </Typography>
-        </div>
-        
-    </CardContent>
-    <CardContent>
-        <div>
-        <Typography style={{float: 'left'}} component="p">
-          Email
-        </Typography>
-        <Typography style={{float:'right', textAlign: "right", color: '#777777'}} component="p">
-          fulanbinfulan@gmail.com
-        </Typography>
-        </div>
-        
-    </CardContent>
-    </Card></center>
-    </div>
+              <CardContent>
+                <div>
+                  <Typography style={{float:'right',fontWeight: 'bold', textAlign: "right", color: '#1abc9c'}} component="p">
+                    Edit
+                  </Typography>
+                </div>
+              </CardContent>
 
-    <center> 
-    <div className={classes.demo}>
- <List>     
-                  <ListItem>
-                  <ListItemText
-                      primary="FAQ"
-                    />
+              <CardContent>
+                <div>
+                  <Typography style={{float: 'left'}} component="p">
+                    Username
+                  </Typography>
+                  
+                  <Typography style={{float:'right', textAlign: "right", color: '#777777'}} component="p">
+                    Fulan Bin Fulan
+                  </Typography>
+                </div>
+              </CardContent>
+ 
+              <CardContent>
+                <div>
+                  <Typography style={{float: 'left'}} component="p">
+                    Email
+                  </Typography>
+                  
+                  <Typography style={{float:'right', textAlign: "right", color: '#777777'}} component="p">
+                    fulanbinfulan@gmail.com
+                  </Typography>
+                </div>
+              </CardContent>
+            </Card>
+          </center>
+        </div>
+{/* End Of First Card */}
+
+{/* Second Card */}
+          <center> 
+            <div className={classes.demo}>
+              <List>     
+                <ListItem>
+                  <ListItemText primary="FAQ" />
                     <ListItemSecondaryAction>
-                      <IconButton aria-label="Delete">
-                        <Add style={{fontSize: '40px', color: '#1abc9c'}}/>                      </IconButton>
+                      <IconButton aria-label="Add">
+                        <Add style={{fontSize: '40px', color: '#1abc9c'}}/>                     
+                      </IconButton>
+                    </ListItemSecondaryAction>
+                </ListItem>
+              </List>
+            </div>
+          </center>
+{/* End Of Second Card */}
+
+{/* Third Card */}
+          <center> 
+            <div className={classes.demo}>
+              <List>     
+                <ListItem>
+                  <ListItemText primary="Rate GMB" />
+                    <ListItemSecondaryAction>
+                      <IconButton aria-label="Add">
+                        <Add style={{fontSize: '40px', color: '#1abc9c'}}/>              
+                      </IconButton>
                     </ListItemSecondaryAction>
                   </ListItem>
-              
               </List>
-    </div></center>
-    <center> 
-    <div className={classes.demo}>
- <List>     
-                  <ListItem>
-                  <ListItemText
-                      primary="Rate GMB"
-                    />
-                    <ListItemSecondaryAction>
-                      <IconButton aria-label="Delete">
-                        <Add style={{fontSize: '40px', color: '#1abc9c'}}/>                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-              
-              </List>
-    </div></center>
-    <br/>
+            </div>
+          </center>
+{/* End Of Third Card */}    
 
-    <br/>
+<br/>
+<br/>
+<br/>
 
-    <br/>
-
-<div className="login-button">
-    <MuiThemeProvider theme={theme}>
-                  <Button
-                    variant="extendedFab"
-                    color="primary"
-                    className={classes.margin}
-                    size="large"
-                    onClick={this.logout}
-                  >
-                    Keluar
-                  </Button>
+            <div className="login-button">
+              <MuiThemeProvider theme={theme}>
+                <Button
+                  variant="extendedFab"
+                  color="primary"
+                  className={classes.margin}
+                  size="large"
+                  onClick={this.logout}
+                >
+                  Keluar
+                </Button>
               </MuiThemeProvider>
-              </div>
+            </div>
              {this.state.redirect ? (<Redirect to="/" />):("")} 
-</React.Fragment>
+  </React.Fragment>
     );
   }
 }

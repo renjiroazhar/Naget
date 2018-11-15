@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Loadable from "react-loadable";
-import BottomNavbar from '../../Components';
+import BottomNavbar from '../../Components/BottomNavbar';
 import Header from '../../Components/Header';
 
 
