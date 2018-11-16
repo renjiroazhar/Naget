@@ -17,7 +17,12 @@ const loading = () => (
 const HomeContainer = Loadable({
   loader: () => import("../../Containers/Dashboard/Home"),
   loading: loading
-});
+}); 
+
+const Checkout = Loadable({
+    loader: () => import("../../Containers/Dashboard/StepLogin/Checkout"),
+    loading: loading
+  });
 
 const FaqContainer = Loadable({
   loader: () => import("../../Containers/Dashboard/Faq"),
@@ -51,6 +56,7 @@ class Routes extends Component {
   render() {
     return (
             <div>
+              <Route path="/pick-thrash" component={Checkout} />
               <Header />
               <Route exact path="/home" component={HomeContainer} />
               <Route path="/history" component={HistoryContainer} />

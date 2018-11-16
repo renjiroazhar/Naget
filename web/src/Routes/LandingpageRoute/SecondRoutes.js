@@ -33,7 +33,7 @@ const Forgotpassword = Loadable({
   });
   
 const Checkout = Loadable({
-    loader: () => import("../../Containers/Dashboard/Step/Checkout"),
+    loader: () => import("../../Containers/Landingpage/Step/Checkout"),
     loading: loading
   });
 

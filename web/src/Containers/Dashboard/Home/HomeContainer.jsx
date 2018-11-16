@@ -1,34 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import FolderIcon from '@material-ui/icons/Folder';
-import DeleteIcon from '@material-ui/icons/Delete';
 import CarouselHome from './CarouselHome';
+import Tooltip from "@material-ui/core/Tooltip";
+import ChatBubble from '@material-ui/icons/Chat';
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
     width: "100%",
   },
-  demo: {
-    backgroundColor: theme.palette.background.paper,
-  },
   title: {
     margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
-    color: "#fff",
-  },
-  card: {
-    maxWidth: 400,
-    textAlign : "center"
+    color: "#000",
   },
   media: {
     height: 0,
@@ -53,16 +43,53 @@ const styles = theme => ({
   avatar: {
     backgroundColor: red[500],
   },
+  card: {
+    maxWidth: "350px",
+    width: "100%",
+    margin: "90px 0 20px 0",
+    borderRadius: 0,
+    border: "1px solid #16a085",
+    backgroundColor: "#f7f7f7",
+  },
+  input: {
+    display: 'none',
+  },
+  absolute: {
+    position: "absolute",
+    backgroundColor: "#00c43e",
+    bottom: theme.spacing.unit * 10,
+    right: theme.spacing.unit * 5,
+  },
+  iconchat: {
+    color: "#fff",
+    "&:hover": {
+      color: "#00c43e"
+    }
+  },
+  margin: {
+    margin: theme.spacing.unit,
+    maxWidth: "350px",
+    width: "100%",
+    fontWeight: 400,
+    color: "white",
+    backgroundColor: "#00c43e",
+    textDecoration: "none",
+    borderRadius: 0,
+    "&:hover": {
+      backgroundColor: "#f7f7f7",
+      color: "#00c43e",
+    }
+  },
+  cardBar: {
+    backgroundColor: "#00c43e",
+    padding: "10px 20px 30px 20px",
+  },
+  text: {
+      fontSize: "35px",
+      textDecoration: "bold",
+      margin: "10px 0 0 0"
+  }
 });
-
-function generate(element) {
-  return [0, 1, 2, 3, 4, 5, 6 , 7 , 8 ,9 ,10, 11, 12, 13 ,14 ,15 ,16 ,17, 18 , 19, 20 ,21, 22, 23, 24, 25].map(value =>
-    React.cloneElement(element, {
-      key: value,
-    }),
-  );
-}
-
 
 class HomeContainer extends React.Component {
   state = { expanded: false };
@@ -73,41 +100,54 @@ class HomeContainer extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { dense, secondary } = this.state;
     return (
       <div className={classes.root}>
-      
-                 
-            <Typography variant="h6" className={classes.title}>
-              Home
-            </Typography>
-            <center>   
-             <CarouselHome />
-            </center>
+        <center>
+          <Card className={classes.card}>
+            <CardContent>
+              <div className={classes.cardBar}>
+                <Typography style={{ color: "#fff", float: "left" }}>
+                  User
+                </Typography>
+                <Typography style={{ color: "#fff", float: "right" }}>
+                  100
+                </Typography>
+              </div>
+              <div style={{ marginTop: "10px", }}>
+                <Typography>
+                  Telah menukarkan sampah kepada
+                </Typography>
+                <Typography>
+                  moretrash sejumlah:
+                </Typography>
+              </div>
+              <Typography className={classes.text}>
+                50 KG
+                </Typography>
+            </CardContent>
+          </Card>
+        </center>
 
-            <div className={classes.demo}>
-              <List dense={dense}>
-                {generate(
-                  <ListItem>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <FolderIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="Single-line item"
-                      secondary={secondary ? 'Secondary text' : null}
-                    />
-                    <ListItemSecondaryAction>
-                      <IconButton aria-label="Delete">
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>,
-                )}
-              </List>
-            </div>
-        
+        <center>
+          <CarouselHome />
+        </center>
+
+        <div style={{ textAlign: "center", }}>
+          <Button
+            variant="extendedFab"
+            color="primary"
+            className={classes.margin}
+            size="large"
+            component={Link}
+            to="/pick-thrash">
+            Pick Trash
+          </Button>
+        </div>
+        <Tooltip>
+          <Button variant="fab" id="tooltip" color="#00c43e" className={classes.absolute}>
+            <ChatBubble className={classes.iconchat} />
+          </Button>
+        </Tooltip>
       </div>
     );
   }
