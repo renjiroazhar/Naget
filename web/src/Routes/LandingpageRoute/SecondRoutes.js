@@ -37,15 +37,14 @@ const Checkout = Loadable({
     loading: loading
   });
 
+const TestimoniContainer = Loadable({
+    loader: () => import("../../Containers/Landingpage/Testimoni"),
+    loading: loading
+});
+
+
 export default class SecondRoutes extends Component {
   
-  state = {
-    searchItem: "",
-    data: [],
-    orderData : [],
-    visible: false
-  };
-
   login = () => {
       this.props.loginFunc();
   }
@@ -58,7 +57,8 @@ export default class SecondRoutes extends Component {
                 <Route path="/login" render={()=> <Loginpage loginFunction={this.login}/>} />
                 <Route path="/signup" component={Signuppage} />
                 <Route path="/form" component={Checkout} />
-                <Route exact path="/forgot_password" component={Forgotpassword} />    
+                <Route path="/forgot_password" component={Forgotpassword} />
+                <Route path="/testimoni" component={TestimoniContainer} />    
                 <Route component={PageNotFound} />  
             </Switch>
             </div>
