@@ -34,7 +34,6 @@ class HeaderTestimoni extends Component {
     <br/>
     <br/> 
     <br/>
-    
       </div>
     )
   }

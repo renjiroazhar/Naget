@@ -8,20 +8,20 @@ const styles = {
   root: {
     flexGrow: 1,
     position: "fixed", /* Safari */
-    width : "100%",
+    width: "100%",
     top: 0,
-    zIndex: 100
+    zIndex: 100,
   },
 };
 
-class HeaderTestimoni extends Component {
-  
+class Header extends Component {
+
   render() {
     const { classes } = this.props;
     return (
       <div>
         <div className={classes.root}>
-      <AppBar position="static" color="default" style={{ backgroundColor : "#559351",paddingBottom: '7px'}}>
+      <AppBar position="static" color="default" style={{ backgroundColor : "#559351",paddingBottom: '27px'}}>
         <Toolbar>
         <div style={{display: "block",
     margin: "0 auto"}} >
@@ -31,16 +31,12 @@ class HeaderTestimoni extends Component {
         </Toolbar>
       </AppBar>
     </div>
-    <br/>
-    <br/> 
-    <br/>
-    
       </div>
     )
   }
 }
 
-HeaderTestimoni.propTypes = {
+Header.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(HeaderTestimoni);
+export default withStyles(styles)(Header);

@@ -42,6 +42,11 @@ const TestimoniContainer = Loadable({
     loading: loading
 });
 
+const PencapaianContainer = Loadable({
+  loader: () => import("../../Containers/Landingpage/Pencapaian"),
+  loading: loading
+});
+
 
 export default class SecondRoutes extends Component {
   
@@ -58,7 +63,8 @@ export default class SecondRoutes extends Component {
                 <Route path="/signup" component={Signuppage} />
                 <Route path="/form" component={Checkout} />
                 <Route path="/forgot_password" component={Forgotpassword} />
-                <Route path="/testimoni" component={TestimoniContainer} />    
+                <Route path="/testimoni" component={TestimoniContainer} />
+                <Route path="/pencapaian" component={PencapaianContainer} />        
                 <Route component={PageNotFound} />  
             </Switch>
             </div>

@@ -25,7 +25,6 @@ class App extends Component {
 
   render() {
     let aksesToken = sessionStorage.getItem("accessToken");
-   
     if(!aksesToken){
       return (<div style={{width : "100%",margin: 0, pading: 0}}><SecondRoute loginFunc={this.changeToLogin} /></div>);
     } else {
