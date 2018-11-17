@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Add from '@material-ui/icons/Add';
 import { Redirect } from 'react-router-dom';
 import Header from './Header';
+import Socmed from './Socmed/Socmed';
 
 const styles = theme => ({
   text: {
@@ -75,11 +76,15 @@ class TampilanAwal extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div style={{marginTop: "170px"}}>
+      <div style={{overflow: 'hidden'}}>
       <Header />
+      <div style={{marginTop  : '170px'}}>
+      <Socmed />
+      </div>
       <React.Fragment>
         <CssBaseline />
 {/* Second Card */}
+<div style={{marginTop: '78px'}}>
           <center> 
             <div className={classes.demo} style={{borderTop: '1px solid #999999'}}>
               <List>     
@@ -111,8 +116,14 @@ class TampilanAwal extends Component {
               </List>
             </div>
           </center>
-{/* End Of Third Card */}    
+{/* End Of Third Card */} 
+<div style={{margin: '20px', marginBottom: 0}}>
+<p style={{textAlign :"justify", fontWeight: 'lighter', color: "#353740", fontSize: '#353740' }}>
+        Moretrash merupakan jasa yang membantu penjualan sampah daur ulang dan sampah rumah tangga (platform pengelolaan sampah online)
+        </p>
+  </div>   
              {this.state.redirect ? (<Redirect to="/" />):("")} 
+             </div>
   </React.Fragment>
   </div>
     );

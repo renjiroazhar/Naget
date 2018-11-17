@@ -47,7 +47,10 @@ const PencapaianContainer = Loadable({
   loading: loading
 });
 
-
+const TampilanAwal = Loadable({
+  loader: () => import("../../Containers/Landingpage/TampilanAwal"),
+  loading: loading
+});
 export default class SecondRoutes extends Component {
   
   login = () => {
@@ -65,6 +68,7 @@ export default class SecondRoutes extends Component {
                 <Route path="/forgot_password" component={Forgotpassword} />
                 <Route path="/testimoni" component={TestimoniContainer} />
                 <Route path="/pencapaian" component={PencapaianContainer} />        
+                <Route path="/halaman_awal" component={TampilanAwal} />
                 <Route component={PageNotFound} />  
             </Switch>
             </div>
