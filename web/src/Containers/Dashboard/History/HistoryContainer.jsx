@@ -30,7 +30,8 @@ const styles = theme => ({
     display: 'flex',
   },
   content: {
-    fontSize: "12px"
+    fontSize: "12px",
+    textAlign: "left",
   },
   cover: {
     width: 151,
