@@ -29,11 +29,11 @@ function PaperSheet(props) {
   return (
     <div className={classes.all}>
       <Paper className={classes.root} elevation={1}>
-        <Typography variant="h5" component="h6" className={classes.text} style={{fontSize : '22px', textAlign :'left'}}>
-          Moretrash adalah "Ojek for Trash"
+        <Typography variant="h5" component="h6" className={classes.text} style={{fontSize : '22px', textAlign :'center'}}>
+          PENCAPAIAN
         </Typography>
         <p style={{textAlign :"justify", fontWeight: 'lighter', color: "#fff"}}>
-        Moretrash merupakan jasa yang membantu penjualan sampah daur ulang dan sampah rumah tangga (platform pengelolaan sampah online)
+        Bisnis ini sudah berjalan mulai 1 Januari 2018 menggunakan Line Account Official dan mendapatkan respon positif.
         </p>
       </Paper>
     </div>

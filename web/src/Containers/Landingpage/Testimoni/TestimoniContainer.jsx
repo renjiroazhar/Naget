@@ -60,7 +60,7 @@ class TestimoniContainer extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <div className={classes.root} style={{width: '100%', height: '100%', margin: 0, overflow : 'hidden' }}>
       <HeaderTestimoni />
                 <PaperSheet /> 
             <Typography variant="h6" className={classes.title}>
@@ -69,8 +69,6 @@ class TestimoniContainer extends React.Component {
             <center>   
              <CarouselTestimoni />
             </center>
-
-        
       </div>
     );
   }

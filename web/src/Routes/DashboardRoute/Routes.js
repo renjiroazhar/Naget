@@ -33,7 +33,6 @@ const AccountContainer = Loadable({
     loader: () => import("../../Containers/Dashboard/Account"),
     loading: loading
   });
-
  
 class Routes extends Component {
   
@@ -55,7 +54,7 @@ class Routes extends Component {
               <Route exact path="/home" component={HomeContainer} />
               <Route path="/history" component={HistoryContainer} />
               <Route path="/faq" component={FaqContainer} />
-              <Route exact path="/account" render={()=> <AccountContainer FunctionLogout={this.logout}/>}/>
+              <Route path="/account" render={()=> <AccountContainer FunctionLogout={this.logout}/>}/>
               <BottomNavbar />            
             </div>
          

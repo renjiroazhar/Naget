@@ -130,7 +130,7 @@ class AccountContainer extends Component {
             <Card className={classes.card} style={{paddingBottom: '35px'}}>
               <CardContent>
                 <div>
-                  <Typography style={{float:'right',fontWeight: 'bold', textAlign: "right", color: '#1abc9c'}} component="p">
+                  <Typography style={{float:'right',cursor: 'pointer' ,fontWeight: 'bold', textAlign: "right", color: '#1abc9c'}} component="p">
                     Edit
                   </Typography>
                 </div>
