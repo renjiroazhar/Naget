@@ -5,18 +5,24 @@
   "dependencies": {
     "@material-ui/core": "^3.3.0",
     "@material-ui/icons": "^3.0.1",
+    "firebase": "^5.5.8",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-loadable": "^5.5.0",
+    "react-redux": "^5.1.1",
+    "react-redux-firebase": "^2.2.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.5",
-    "react-swipeable-views": "^0.13.0"
+    "react-swipeable-views": "^0.13.0",
+    "redux": "^4.0.1",
+    "redux-firestore": "^0.5.8",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
     "build": "react-scripts build",
-    "build-staging" : "react-scripts build && rm -rf staging && mv build staging",
+    "build-staging": "react-scripts build && rm -rf staging && mv build staging",
     "deploy-master": "firebase deploy --only hosting:web",
     "deploy-staging": "firebase deploy --only hosting:staging",
     "eject": "react-scripts eject"

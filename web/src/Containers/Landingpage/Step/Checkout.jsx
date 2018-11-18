@@ -43,7 +43,7 @@ const styles = theme => ({
     padding: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 5}px`,
   },
   button: {
-    marginTop: theme.spacing.unit * -3,
+    marginTop: theme.spacing.unit * -7
   },
 });
 
@@ -92,7 +92,7 @@ class Checkout extends React.Component {
     const { activeStep } = this.state;
 
     return (
-        <div>
+        <div style={{marginTop: '100px', width: '-webkit-fill-available', height: '100%'}}>
       <React.Fragment>
         <CssBaseline />
         <Header />
