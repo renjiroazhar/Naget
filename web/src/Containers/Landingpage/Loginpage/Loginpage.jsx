@@ -15,7 +15,9 @@ import PropTypes from 'prop-types';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-
+import { RemoveRedEye } from '@material-ui/icons';
+import { InputAdornment } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   container: {
@@ -82,6 +84,9 @@ const styles = theme => ({
     '&:after': {
       borderBottomColor: "white",
     },
+    "&:hover": {
+      borderBottomColor: "white"
+    }
   },
   iconchat: {
     color: "#fff",
@@ -169,14 +174,18 @@ const theme = createMuiTheme({
   },
   typography: {
     useNextVariants: true
-  }
+  },
+   eye: {
+    cursor: 'pointer',
+},
 });
 
 class Loginpage extends Component {
   state = {
     open: false,
     email:"",
-    password:""
+    password:"",
+    passwordIsMasked: true
   };
 
   handleChange = (e) => {
@@ -212,10 +221,18 @@ class Loginpage extends Component {
     } 
   }
 
+  togglePasswordMask = () => {
+    this.setState(prevState => ({
+      passwordIsMasked: !prevState.passwordIsMasked,
+    }));
+};
+
   
 
   render() {
     const { classes } = this.props;
+    const { passwordIsMasked } = this.state;
+
     return (
       <div className="home">
         <div className="container">
@@ -259,25 +276,45 @@ class Loginpage extends Component {
               </Grid>
                <Grid item xs={12} s={12}>
       <FormControl className="margin-form">
-        <InputLabel
-          htmlFor="custom-css-input"
-          FormLabelClasses={{
-            root: classes.cssLabel,
-            focused: classes.cssFocused,
+        <TextField
+          label="Password"
+          InputLabelProps={{
+            classes: {
+              root: classes.cssLabel,
+              focused: classes.cssFocused,
+            },
           }}
-          
-        >
-          Password
-        </InputLabel>
-        <Input
           classes={{
             underline: classes.cssUnderline,
           }}
+          autoComplete="current-password"
+          margin="normal"
           onKeyPress={this.handleKeyPress}         
           id="password"
-          type="password"
+          type={passwordIsMasked ? 'text' : 'password'}
           onChange={this.handleChange}
+          {...this.props}
+          style={{width : "100%",
+          maxWidth : "345px",
+          borderColor : "#fff",
+          color : "#fff",
+          borderBottomColor : "white"}}
+          InputProps={{
+            classes: {
+              underline: classes.cssUnderline
+            },
+            endAdornment: (
+              <InputAdornment position="end">
+                <RemoveRedEye
+                  className={classes.eye}
+                  style={{cursor: 'pointer', color: '#ffffff'}}
+                  onClick={() =>{this.togglePasswordMask()}}
+                />
+              </InputAdornment>
+            ),
+          }}
         />
+        
       </FormControl>
               </Grid>
             </Grid>

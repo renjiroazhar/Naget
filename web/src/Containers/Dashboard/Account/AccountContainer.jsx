@@ -7,17 +7,13 @@ import {
 } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import green from "@material-ui/core/colors/green";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
-import Add from '@material-ui/icons/Add';
-import { Redirect } from 'react-router-dom';
+import Divider from '@material-ui/core/Divider';
+import ChatBubble from '@material-ui/icons/Chat';
+import Stars from '@material-ui/icons/Stars';
+import { Redirect, Link } from 'react-router-dom';
 
 const styles = theme => ({
   text: {
@@ -29,29 +25,24 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     maxWidth: "350px",
     width: "65%",
-    borderRadius : 0,
+    borderRadius: 0,
     color: "white",
     backgroundColor: "#e74c3c",
     textDecoration: "none",
-    fontWeight : 'bold'
+    fontWeight: 'bold'
   },
   demo: {
     width: '90%',
     backgroundColor: theme.palette.background.paper,
-    borderRadius : '4px',
-    paddingBottom :0,
-    borderBottom : '2px solid #999',
+    paddingBottom: 0,
     justifyContent: 'center',
-    marginBottom : '3px'
+    marginBottom: '3px'
   },
   title: {
     margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
   },
   paper: {
     paddingBottom: 50,
-  },
-  list: {
-    marginBottom: theme.spacing.unit * 2,
   },
   subHeader: {
     backgroundColor: theme.palette.background.paper,
@@ -73,26 +64,31 @@ const styles = theme => ({
     margin: '0 auto',
   },
   card: {
-    width: "90%",
-    border : 0,
-    borderBottom : '2px solid #999',
-    justifyContent: 'center',
-    marginBottom : '3px'
-  },
-  card2: {
-    width: "90%",
-    border : 0,
-    borderBottom : '2px solid #999',
-    justifyContent: 'center',
-    marginBottom : '3px'
+    width: "100%",
+    marginBottom: '20px',
+    border: 0,
+    borderRadius: 0,
   },
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
     transform: 'scale(0.8)',
   },
+  icon1: {
+    color: "#00c43e",
+  },
+  icon2: {
+    color: "yellow",
+  },
+  list: {
+    backgroundColor: "#ffff",
+    margin: "0 0 20px 0",
+  },
   pos: {
     marginBottom: 12,
+  },
+  textDeco: {
+    textDecoration: "none",
   },
 });
 
@@ -109,114 +105,98 @@ const theme = createMuiTheme({
 class AccountContainer extends Component {
 
   state = {
-    redirect : false
+    redirect: false
   }
 
   logout = () => {
-  this.setState({
-    redirect : true
-  });
-  this.props.FunctionLogout();
-}
+    this.setState({
+      redirect: true
+    });
+    this.props.FunctionLogout();
+  }
 
   render() {
     const { classes } = this.props;
     return (
-      <React.Fragment>
-        <CssBaseline />
-{/* First Card */}
-         <div style={{marginTop : "75px"}}>
+      <div>
+        {/* First Card */}
+        <div style={{ marginTop: "70px" }}>
           <center>
-            <Card className={classes.card} style={{paddingBottom: '35px'}}>
-              <CardContent>
+            
+            <List className={classes.list} style={{ paddingBottom: '20px' }}>
+              <ListItem>
                 <div>
-                  <Typography style={{float:'right',cursor: 'pointer' ,fontWeight: 'bold', textAlign: "right", color: '#1abc9c'}} component="p">
+                  <ListItemText style={{ float: 'right', cursor: 'pointer', fontWeight: 'bold', textAlign: "right", color: '#1abc9c' }} component="p">
                     Edit
-                  </Typography>
+                  </ListItemText>
                 </div>
-              </CardContent>
+              </ListItem>
 
-              <CardContent>
+              <ListItem>
                 <div>
-                  <Typography style={{float: 'left'}} component="p">
-                    Username
-                  </Typography>
-                  
-                  <Typography style={{float:'right', textAlign: "right", color: '#777777'}} component="p">
+                  <ListItemText style={{ float: 'left' }} component="p">
+                    Nama Lengkap
+                  </ListItemText>
+
+                  <ListItemText style={{ float: 'right', textAlign: "right", color: '#777777' }} component="p">
                     Fulan Bin Fulan
-                  </Typography>
+                  </ListItemText>
                 </div>
-              </CardContent>
- 
-              <CardContent>
+              </ListItem>
+
+              <ListItem>
                 <div>
-                  <Typography style={{float: 'left'}} component="p">
+                  <ListItemText style={{ float: 'left' }} component="p">
                     Email
-                  </Typography>
-                  
-                  <Typography style={{float:'right', textAlign: "right", color: '#777777'}} component="p">
+                  </ListItemText>
+
+                  <ListItemText style={{ float: 'right', textAlign: "right", color: '#777777' }} component="p">
                     fulanbinfulan@gmail.com
-                  </Typography>
+                  </ListItemText>
                 </div>
-              </CardContent>
-            </Card>
+              </ListItem>
+            </List>
           </center>
         </div>
-{/* End Of First Card */}
+        {/* End Of First Card */}
 
-{/* Second Card */}
-          <center> 
-            <div className={classes.demo}>
-              <List>     
-                <ListItem>
-                  <ListItemText primary="FAQ" />
-                    <ListItemSecondaryAction>
-                      <IconButton aria-label="Add">
-                        <Add style={{fontSize: '40px', color: '#1abc9c'}}/>                     
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                </ListItem>
-              </List>
-            </div>
-          </center>
-{/* End Of Second Card */}
+        {/* Second Card */}
+        <List className={classes.list}>
+          <Link to="/help" className={classes.textDeco} >
+            <ListItem>
+              <ChatBubble className={classes.icon1} />
+              <ListItemText primary="Help" />
+            </ListItem>
+          </Link>
+          <li>
+            <Divider inset />
+          </li>
+          <ListItem>
+            <Stars className={classes.icon2} />
+            <ListItemText primary="Rate Moretrash" />
+          </ListItem>
+        </List>
+        {/* End Of First Card */}
 
-{/* Third Card */}
-          <center> 
-            <div className={classes.demo}>
-              <List>     
-                <ListItem>
-                  <ListItemText primary="Rate GMB" />
-                    <ListItemSecondaryAction>
-                      <IconButton aria-label="Add">
-                        <Add style={{fontSize: '40px', color: '#1abc9c'}}/>              
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-              </List>
-            </div>
-          </center>
-{/* End Of Third Card */}    
+        <br />
+        <br />
+        <br />
 
-<br/>
-<br/>
-<br/>
-
-            <div className="login-button">
-              <MuiThemeProvider theme={theme}>
-                <Button
-                  variant="extendedFab"
-                  color="primary"
-                  className={classes.margin}
-                  size="large"
-                  onClick={this.logout}
-                >
-                  Keluar
+        <div className="login-button">
+          <MuiThemeProvider theme={theme}>
+            <Button
+              variant="extendedFab"
+              color="primary"
+              className={classes.margin}
+              size="large"
+              onClick={this.logout}
+            >
+              Keluar
                 </Button>
-              </MuiThemeProvider>
-            </div>
-             {this.state.redirect ? (<Redirect to="/" />):("")} 
-  </React.Fragment>
+          </MuiThemeProvider>
+        </div>
+        {this.state.redirect ? (<Redirect to="/" />) : ("")}
+        </div>
     );
   }
 }

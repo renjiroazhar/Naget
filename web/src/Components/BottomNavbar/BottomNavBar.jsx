@@ -15,11 +15,8 @@ const styles = {
     position: "fixed",
     bottom: "0",
     borderStyle: "solid",
-    border: "2px 0px 0px 0px",
-    borderColor: "#e7e7e7",
-    webkitBoxShadow: "0px 0px 2px 0px rgba(0,0,0,0.75)",
-    mozBoxShadow: "0px 0px 2px 0px rgba(0,0,0,0.75)",
-    boxShadow: "0px 0px 2px 0px rgba(0,0,0,0.75)",
+    border: "1px 0px 0px 0px",
+    borderColor: "#f7f7f7",
   }
 };
 
@@ -37,10 +34,10 @@ class BottomNavBar extends React.Component {
     const { value } = this.state;
 
     return (
-      <BottomNavigation value={value} onChange={this.handleChange} className={classes.root}>
+      <BottomNavigation showLabels value={value} onChange={this.handleChange} className={classes.root}>
         <BottomNavigationAction label="Home" value="home" icon={<HomeIcon />} component={Link} to="/home" />
-        <BottomNavigationAction label="History" value="history" icon={<RestoreIcon />} component={Link} to="/history" />
-        <BottomNavigationAction label="FAQ" value="faq" icon={<ChatBubble />} component={Link} to="/faq" />
+        <BottomNavigationAction label="Orders" value="orders" icon={<RestoreIcon />} component={Link} to="/orders" />
+        <BottomNavigationAction label="Help" value="help" icon={<ChatBubble />} component={Link} to="/help" />
         <BottomNavigationAction label="Account" value="account" icon={<AccountIcon />} component={Link} to="/account" />
       </BottomNavigation>
     );
