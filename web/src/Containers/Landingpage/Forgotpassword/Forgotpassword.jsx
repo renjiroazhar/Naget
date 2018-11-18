@@ -32,11 +32,11 @@ const styles = theme => ({
   },
   absolute: {
     position: "absolute",
-     color: "#00c43e",
-     backgroundColor: "#00c43e",
-     bottom: theme.spacing.unit * 5,
-     right: theme.spacing.unit * 5,
-   },
+    color: "#00c43e",
+    backgroundColor: "#00c43e",
+    bottom: theme.spacing.unit * 5,
+    right: theme.spacing.unit * 5,
+  },
   margin: {
     margin: theme.spacing.unit,
     maxWidth: "350px",
@@ -45,9 +45,9 @@ const styles = theme => ({
     color: "white",
     backgroundColor: "#00c43e",
     textDecoration: "none",
-    borderRadius : 0
+    borderRadius: 0,
   },
-  
+
   cssRoot: {
     color: "black",
     backgroundColor: "white",
@@ -56,21 +56,21 @@ const styles = theme => ({
     fontWeight: 400,
     "&:hover": {
       backgroundColor: "white"
-        }
+    }
   },
-   cssLabel: {
-     color : "#999",
+  cssLabel: {
+    color: "#999",
     '&$cssFocused': {
       color: "white",
     },
   },
   cssFocused: {},
   cssUnderline: {
-    width : "100%",
-    maxWidth : "345px",
-    borderColor : "#fff",
-    color : "#fff",
-    borderBottomColor : "white",
+    width: "100%",
+    maxWidth: "345px",
+    borderColor: "#fff",
+    color: "#fff",
+    borderBottomColor: "white",
     '&:before': {
       borderBottomColor: "white",
     },
@@ -81,7 +81,7 @@ const styles = theme => ({
   iconchat: {
     color: "#fff",
     "&:hover": {
-      color : "#00c43e"
+      color: "#00c43e"
     }
   },
   bootstrapRoot: {
@@ -170,13 +170,13 @@ const theme = createMuiTheme({
 class Forgotpassword extends Component {
   state = {
     open: false,
-    email:"",
-    password:""
+    email: "",
+    password: ""
   };
 
   handleChange = (e) => {
     this.setState({
-      [e.target.id] : e.target.value
+      [e.target.id]: e.target.value
     });
     console.log(this.state);
   }
@@ -190,11 +190,11 @@ class Forgotpassword extends Component {
   }
 
   handleSubmit = (e) => {
-    if(this.state.email === "admin" || this.state.password === "admin"){
+    if (this.state.email === "admin" || this.state.password === "admin") {
       this.login();
-      } else {
-        alert("ERROR Authentication");
-      }
+    } else {
+      alert("ERROR Authentication");
+    }
   }
 
   handleClose = () => {
@@ -202,12 +202,12 @@ class Forgotpassword extends Component {
   };
 
   handleKeyPress = (e) => {
-    if(e.key === "Enter"){
+    if (e.key === "Enter") {
       this.handleSubmit();
-    } 
+    }
   }
 
-  
+
 
   render() {
     const { classes } = this.props;
@@ -221,65 +221,41 @@ class Forgotpassword extends Component {
             height="50"
             alt="Moretrash Logo"
             retina_logo_url=""
-            className="moretrash-logo"  
+            className="moretrash-logo"
           />
           <div style={{ textAlign: "center" }}>
             <p style={{ color: "white", fontWeight: 400 }}>
               Drop Your Trash and get benefit!
             </p>
-            <div style={{textAlign : "center"}}>
-           
-            <Grid container spacing={24}>
-            <Grid item xs={12} s={12}>
-            <FormControl className="margin-form">
-        <InputLabel
-          htmlFor="custom-css-input"
-          FormLabelClasses={{
-            root: classes.cssLabel,
-            focused: classes.cssFocused,
-          }}
-        >
-          Kata Sandi Baru
-        </InputLabel>
-        <Input
-          classes={{
-            underline: classes.cssUnderline,
-          }}
-          onKeyPress={this.handleKeyPress}
-          id="email"
-          type="email"
-          onChange={this.handleChange}   
-        />
-      </FormControl>
-              </Grid>
-               <Grid item xs={12} s={12}>
-      <FormControl className="margin-form">
-        <InputLabel
-          htmlFor="custom-css-input"
-          FormLabelClasses={{
-            root: classes.cssLabel,
-            focused: classes.cssFocused,
-          }}
-          
-        >
-        Konfirmasi Kata Sandi Baru
-        </InputLabel>
-        <Input
-          classes={{
-            underline: classes.cssUnderline,
-          }}
-          onKeyPress={this.handleKeyPress}         
-          id="password"
-          type="password"
-          onChange={this.handleChange}
-        />
-      </FormControl>
-              </Grid>
-            </Grid>
-           
+            <div style={{ textAlign: "center" }}>
 
-<div className="login-button">
-              <MuiThemeProvider theme={theme}>
+              <Grid container spacing={24}>
+                <Grid item xs={12} s={12}>
+                  <FormControl className="margin-form">
+                    <InputLabel
+                      htmlFor="custom-css-input"
+                      FormLabelClasses={{
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused,
+                      }}
+                    >
+                      Email Anda
+        </InputLabel>
+                    <Input
+                      classes={{
+                        underline: classes.cssUnderline,
+                      }}
+                      onKeyPress={this.handleKeyPress}
+                      id="email"
+                      type="email"
+                      onChange={this.handleChange}
+                    />
+                  </FormControl>
+                </Grid>
+              </Grid>
+
+              <div className="login-button">
+                <MuiThemeProvider theme={theme}>
                   <Button
                     variant="extendedFab"
                     color="primary"
@@ -289,14 +265,14 @@ class Forgotpassword extends Component {
                   >
                     Perbarui Sandi
                   </Button>
-              </MuiThemeProvider>
-          </div>
-</div>
-            
+                </MuiThemeProvider>
+              </div>
+            </div>
 
-            
-           
-</div>
+
+
+
+          </div>
           <Tooltip>
             <Button variant="fab" id="tooltip" color="#00c43e" className={classes.absolute}>
               <ChatBubble className={classes.iconchat} />

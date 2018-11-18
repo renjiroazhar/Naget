@@ -19,20 +19,25 @@ const HomeContainer = Loadable({
   loading: loading
 });
 
-const FaqContainer = Loadable({
-  loader: () => import("../../Containers/Dashboard/Faq"),
+const HelpContainer = Loadable({
+  loader: () => import("../../Containers/Dashboard/Help"),
   loading: loading
 });
 
-const HistoryContainer = Loadable({
-  loader: () => import("../../Containers/Dashboard/History"),
+const OrdersContainer = Loadable({
+  loader: () => import("../../Containers/Dashboard/Orders"),
   loading: loading
 });
 
 const AccountContainer = Loadable({
     loader: () => import("../../Containers/Dashboard/Account"),
     loading: loading
-  });
+});
+
+const StepLogin = Loadable({
+    loader: () => import("../../Containers/Dashboard/StepLogin/Checkout"),
+    loading: loading
+});
  
 class Routes extends Component {
   
@@ -50,10 +55,11 @@ class Routes extends Component {
   render() {
     return (
             <div>
+              <Route exact path="/pick-trash" component={StepLogin} />
               <Header />
               <Route exact path="/home" component={HomeContainer} />
-              <Route path="/history" component={HistoryContainer} />
-              <Route path="/faq" component={FaqContainer} />
+              <Route path="/orders" component={OrdersContainer} />
+              <Route path="/help" component={HelpContainer} />
               <Route path="/account" render={()=> <AccountContainer FunctionLogout={this.logout}/>}/>
               <BottomNavbar />            
             </div>
