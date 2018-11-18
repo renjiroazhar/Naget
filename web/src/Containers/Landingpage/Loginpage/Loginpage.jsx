@@ -7,7 +7,6 @@ import {
 } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import green from "@material-ui/core/colors/green";
-import Tooltip from "@material-ui/core/Tooltip";
 import ChatBubble from '@material-ui/icons/Chat';
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
@@ -34,12 +33,14 @@ const styles = theme => ({
     margin: theme.spacing.unit * 2
   },
   absolute: {
-    position: "absolute",
-     color: "#00c43e",
-     backgroundColor: "#00c43e",
-     bottom: theme.spacing.unit * 5,
-     right: theme.spacing.unit * 5,
-   },
+    color: "#00c43e",
+    backgroundColor: "#00c43e",
+    position: 'fixed',
+    right: '0px',
+    bottom: '0px',
+    marginBottom: '40px',
+    marginRight: '24px'
+  },
   margin: {
     margin: theme.spacing.unit,
     maxWidth: "350px",
@@ -185,7 +186,7 @@ class Loginpage extends Component {
     open: false,
     email:"",
     password:"",
-    passwordIsMasked: true
+    passwordIsMasked: false
   };
 
   handleChange = (e) => {
@@ -354,11 +355,11 @@ class Loginpage extends Component {
             </a>
             </p>     
 </div>
-          <Tooltip>
-            <Button variant="fab" id="tooltip" color="#00c43e" className={classes.absolute}>
+         
+            <Button variant="fab" id="button-daftar" color="#00c43e" className={classes.absolute}>
               <ChatBubble className={classes.iconchat} />
             </Button>
-          </Tooltip>
+          
         </div>
       </div>
     );

@@ -28,7 +28,7 @@ class Header extends Component {
                 display: "block",
                 margin: "0 auto"
               }} >
-                <Link to="/home" >
+                <Link to="/" >
                   <img src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png" srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x" width="120" height="35" alt="Moretrash Logo" retina_logo_url="" className="fusion-standard-logo" style={{
                     display: "block",
                     margin: "0 auto",

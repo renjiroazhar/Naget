@@ -7,17 +7,11 @@ import {
 } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import green from "@material-ui/core/colors/green";
-import Tooltip from "@material-ui/core/Tooltip";
-import ChatBubble from "@material-ui/icons/Chat";
-import Grid from "@material-ui/core/Grid";
-import PropTypes from "prop-types";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import { RemoveRedEye } from '@material-ui/icons';
-import { InputAdornment } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-
+import ChatBubble from '@material-ui/icons/Chat';
+import PropTypes from 'prop-types';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
   container: {
@@ -25,20 +19,22 @@ const styles = theme => ({
     flexWrap: "wrap"
   },
   dense: {
-    marginTop: 19
+    marginTop: 19,
   },
   menu: {
-    width: 200
+    width: 200,
   },
   fab: {
     margin: theme.spacing.unit * 2
   },
   absolute: {
-    position: "fixed",
-    bottom: theme.spacing.unit * 5,
-    right: theme.spacing.unit * 5,
     color: "#00c43e",
-    backgroundColor: "#00c43e"
+    backgroundColor: "#00c43e",
+    position: 'fixed',
+    right: '0px',
+    bottom: '0px',
+    marginBottom: '40px',
+    marginRight: '24px'
   },
   margin: {
     margin: theme.spacing.unit,
@@ -48,15 +44,13 @@ const styles = theme => ({
     color: "white",
     backgroundColor: "#00c43e",
     textDecoration: "none",
-    borderRadius : 0
+    borderRadius: 0,
+    "&:hover": {
+      backgroundColor: "#f7f7f7",
+      color: "#00c43e",
+    }
   },
-  marginForm: {
-    maxWidth: "350px",
-    width: "100%",
-    fontWeight: 400,
-    color: "white",
-    textDecoration: "none"
-  },
+  
   cssRoot: {
     color: "black",
     backgroundColor: "white",
@@ -65,32 +59,35 @@ const styles = theme => ({
     fontWeight: 400,
     "&:hover": {
       backgroundColor: "white"
-    }
+        }
   },
-  cssLabel: {
-    color: "#999",
-    "&$cssFocused": {
-      color: "white"
-    }
+   cssLabel: {
+     color : "#999",
+    '&$cssFocused': {
+      color: "white",
+    },
   },
   cssFocused: {},
   cssUnderline: {
-    width: "100%",
-    maxWidth: "345px",
+    width : "100%",
+    maxWidth : "345px",
+    borderColor : "#fff",
     color : "#fff",
-    borderColor: "#fff",
-    borderBottomColor: "white",
-    "&:before": {
-      borderBottomColor: "white"
+    borderBottomColor : "white",
+    '&:before': {
+      borderBottomColor: "white",
     },
-    "&:after": {
+    '&:after': {
+      borderBottomColor: "white",
+    },
+    "&:hover": {
       borderBottomColor: "white"
     }
   },
   iconchat: {
     color: "#fff",
     "&:hover": {
-      color: "#00c43e"
+      color : "#00c43e"
     }
   },
   bootstrapRoot: {
@@ -140,31 +137,31 @@ const styles = theme => ({
   bootstrapInput: {
     borderRadius: 4,
     backgroundColor: theme.palette.common.white,
-    border: "1px solid #ced4da",
+    border: '1px solid #ced4da',
     fontSize: 16,
-    padding: "10px 12px",
-    transition: theme.transitions.create(["border-color", "box-shadow"]),
+    padding: '10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
+      '-apple-system',
+      'BlinkMacSystemFont',
       '"Segoe UI"',
-      "Roboto",
+      'Roboto',
       '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
+      'Arial',
+      'sans-serif',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(","),
-    "&:focus": {
-      borderColor: "#80bdff",
-      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)"
-    }
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
   },
   bootstrapFormLabel: {
-    fontSize: 18
-  }
+    fontSize: 18,
+  },
 });
 
 const theme = createMuiTheme({
@@ -173,29 +170,20 @@ const theme = createMuiTheme({
   },
   typography: {
     useNextVariants: true
-  }
+  },
+   eye: {
+    cursor: 'pointer',
+},
 });
 
 class Signuppage extends Component {
   state = {
     open: false,
-    name: '',
-    username: '',
-    password: '',
-    telephone: '',
-    address: '',
-    email: '',
-    passwordIsMasked: true,
+    email:"",
+    password:"",
+    passwordIsMasked: true
   };
 
-  handleClick = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
- 
   handleChange = (e) => {
     this.setState({
       [e.target.id] : e.target.value
@@ -203,22 +191,30 @@ class Signuppage extends Component {
     console.log(this.state);
   }
 
-  handleSubmit = () => {
-    let { name ,username, password, address, email, telephone } = this.state;
-    for(let i = this.state;i > null;i++){
-      this.setState({
-        name: name,
-        username: username,
-        password: password,
-        email: email,
-        address: address,
-        telephone: telephone
-      });
-      console.log(this.state);
-    }
-    if(this.state === null){
-      alert("Are you kidding me!??");
-    }
+  handleClick = () => {
+    this.setState({ open: true });
+  };
+
+  login = () => {
+    this.props.loginFunction();
+  }
+
+  handleSubmit = (e) => {
+    if(this.state.email === "admin" && this.state.password === "admin"){
+      this.login();
+      } else {
+        alert("ERROR Authentication");
+      }
+  }
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  handleKeyPress = (e) => {
+    if(e.key === "Enter"){
+      this.handleSubmit();
+    } 
   }
 
   togglePasswordMask = () => {
@@ -227,17 +223,11 @@ class Signuppage extends Component {
     }));
 };
 
-
-  //   handleKeyPress = (e) => {
-  //     if(e.key === "Enter"){
-  //       this.props.loginFunction();
-  //     }
-  //   }
+  
 
   render() {
     const { classes } = this.props;
-    const { passwordIsMasked } = this.state;
-
+    
     return (
       <div className="home">
         <div className="container">
@@ -246,196 +236,175 @@ class Signuppage extends Component {
             srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
             width="171"
             height="50"
-            href="/"
             alt="Moretrash Logo"
             retina_logo_url=""
-            class="fusion-standard-logo"
-            style={{ marginTop: "25px" }}
+            className="moretrash-logo"  
           />
           <div style={{ textAlign: "center" }}>
             <p style={{ color: "white", fontWeight: 400 }}>
               Drop Your Trash and get benefit!
             </p>
-            <div style={{ textAlign: "center" }}>
-              <Grid container spacing={24}>
-                <Grid item xs={12} s={12}>
-                  <FormControl className={classes.marginForm}>
-                    <InputLabel
-                      htmlFor="custom-css-input"
-                      FormLabelClasses={{
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused
-                      }}
-                    >
-                      Nama Lengkap
-                    </InputLabel>
-                    <Input
-                      id="name"
-                      onChange={this.handleChange}
-                      classes={{
-                        underline: classes.cssUnderline
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} s={12}>
-                  <FormControl className={classes.marginForm}>
-                    <InputLabel
-                      htmlFor="custom-css-input"
-                      FormLabelClasses={{
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused
-                      }}
-                    >
-                      Username
-                    </InputLabel>
-                    <Input
-                      id="username"
-                      onChange={this.handleChange}
-                      classes={{
-                        underline: classes.cssUnderline
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} s={12}>
-                  <FormControl className={classes.marginForm}>
-                    <InputLabel
-                      htmlFor="custom-css-input"
-                      FormLabelClasses={{
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused
-                      }}
-                    >
-                      Alamat
-                    </InputLabel>
-                    <Input
-                      id="address"
-                      onChange={this.handleChange}
-                      classes={{
-                        underline: classes.cssUnderline
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} s={12}>
-                  <FormControl className={classes.marginForm}>
-                    <InputLabel
-                      htmlFor="custom-css-input"
-                      FormLabelClasses={{
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused
-                      }}
-                    >
-                      Nomor Handphone
-                    </InputLabel>
-                    <Input
-                      id="telephone"
-                      style={{textDecoration: 'none'}}
-                      type="number"
-                      onChange={this.handleChange}
-                      classes={{
-                        underline: classes.cssUnderline
-                      }}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} s={12}>
-                  <FormControl className={classes.marginForm}>
-                    <InputLabel
-                      htmlFor="custom-css-input"
-                      FormLabelClasses={{
-                        root: classes.cssLabel,
-                        focused: classes.cssFocused
-                      }}
-                    >
-                      Email
-                    </InputLabel>
-                    <Input
-                      id="email"
-                      classes={{
-                        underline: classes.cssUnderline
-                      }}
-                      type="email"
-                      onChange={this.handleChange}
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} s={12}>
-                  <FormControl className={classes.marginForm}>
-                  <TextField
-          label="Password"
-          InputLabelProps={{
-            classes: {
-              root: classes.cssLabel,
-              focused: classes.cssFocused,
-            },
+            <div style={{textAlign : "center"}}>
+           
+            
+            <FormControl className="margin-form">
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
           }}
+        >
+          Nama Lengkap
+        </InputLabel>
+        <Input
           classes={{
             underline: classes.cssUnderline,
           }}
-          autoComplete="current-password"
-          margin="normal"
-          onKeyPress={this.handleKeyPress}         
-          id="password"
-          type={passwordIsMasked ? 'text' : 'password'}
-          onChange={this.handleChange}
-          {...this.props}
-          style={{width : "100%",
-          maxWidth : "345px",
-          borderColor : "#fff",
-          color : "#fff",
-          borderBottomColor : "white"}}
-          InputProps={{
-            classes: {
-              underline: classes.cssUnderline
-            },
-            endAdornment: (
-              <InputAdornment position="end">
-                <RemoveRedEye
-                  className={classes.eye}
-                  style={{cursor: 'pointer', color: '#ffffff'}}
-                  onClick={() =>{this.togglePasswordMask()}}
-                />
-              </InputAdornment>
-            ),
-          }}
+          onKeyPress={this.handleKeyPress}
+          id="email"
+          type="email"
+          onChange={this.handleChange}   
         />
-                  </FormControl>
-                </Grid>
-              </Grid>
-            </div>
+      </FormControl>
+             
+            <FormControl className="margin-form">
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+        >
+          Email
+        </InputLabel>
+        <Input
+          classes={{
+            underline: classes.cssUnderline,
+          }}
+          onKeyPress={this.handleKeyPress}
+          id="email"
+          type="email"
+          onChange={this.handleChange}   
+        />
+      </FormControl>
+      
+      <FormControl className="margin-form">
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+        >
+         Nomor Handphone
+        </InputLabel>
+        <Input
+          classes={{
+            underline: classes.cssUnderline,
+          }}
+          onKeyPress={this.handleKeyPress}
+          id="telephone"
+          type="text"
+          onChange={this.handleChange}   
+        />
+      </FormControl>
+      
+      <FormControl className="margin-form">
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+        >
+          Alamat
+        </InputLabel>
+        <Input
+          classes={{
+            underline: classes.cssUnderline,
+          }}
+          onKeyPress={this.handleKeyPress}
+          id="email"
+          type="text"
+          onChange={this.handleChange}   
+        />
+      </FormControl>
+      
+      <FormControl className="margin-form">
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+        >
+         Kata Sandi
+        </InputLabel>
+        <Input
+          classes={{
+            underline: classes.cssUnderline,
+          }}
+          onKeyPress={this.handleKeyPress}
+          id="email"
+          type="password"
+          onChange={this.handleChange}   
+        />
+      </FormControl>
+      <FormControl className="margin-form">
+        <InputLabel
+          htmlFor="custom-css-input"
+          FormLabelClasses={{
+            root: classes.cssLabel,
+            focused: classes.cssFocused,
+          }}
+        >
+          Konfirmasi Kata Sandi
+        </InputLabel>
+        <Input
+          classes={{
+            underline: classes.cssUnderline,
+          }}
+          onKeyPress={this.handleKeyPress}
+          id="email"
+          type="password"
+          onChange={this.handleChange}   
+        />
+      </FormControl>
+
+      
+             
+
+         </div>
           </div>
-          <div style={{ marginTop: "25px", marginBottom: "25px" }}>
-            <Grid container spacing={24}>
-              <Grid item xs={12} s={12}>
-                <MuiThemeProvider theme={theme}>
+          
+          <br/>
+<div className="login-button">
+         
+              <MuiThemeProvider theme={theme}>
                   <Button
-                    onClick={this.handleSubmit}
                     variant="extendedFab"
                     color="primary"
                     className={classes.margin}
                     size="large"
                   >
-                    Sign Up
+                    DAFTAR
                   </Button>
-                </MuiThemeProvider>
-              </Grid>
-            </Grid>
+              </MuiThemeProvider>
+            
           </div>
-          <div style={{ textAlign: "center", marginBottom : "25px" }}>
+<div style={{textAlign : "center"}}>
             <p style={{ color: "#999" }}>
-              Sudah Punya Akun?{" "}
-              <a href="/login" style={{ color: "white" }}>
-                Sign In
-              </a>
-            </p>
-          </div>
-          <Tooltip>
-            <Button variant="fab" color="#00c43e" className={classes.absolute}>
+             Sudah Punya Akun? <a href="/login" style={{ color: "white" }}>
+              Sign In
+            </a>
+            </p>     
+</div>
+
+<Button variant="fab" color="#00c43e" className={classes.absolute}>
               <ChatBubble className={classes.iconchat} />
             </Button>
-          </Tooltip>
+         
         </div>
       </div>
     );

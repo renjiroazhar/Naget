@@ -3,7 +3,7 @@
     display: block;
     max-width: 400;
     overflow: hidden;
-    width: 100%;
+    width: -webkit-fill-available;
 }
 
 @media (device-height : 568px) 
