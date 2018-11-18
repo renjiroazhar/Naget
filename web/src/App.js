@@ -3,7 +3,21 @@ import './App.css';
 import SecondRoute from './Routes/LandingpageRoute';
 import Routes from './Routes/DashboardRoute';
 import { Redirect } from "react-router-dom";
+import firebase from 'firebase';
 
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyCOSCJRqiVBlknPm5MT99eHXkLhVAHHQWs",
+  authDomain: "more-thrash.firebaseapp.com",
+  databaseURL: "https://more-thrash.firebaseio.com",
+  projectId: "more-thrash",
+  storageBucket: "more-thrash.appspot.com",
+  messagingSenderId: "884093458579"
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+}
 
 class App extends Component {
    
