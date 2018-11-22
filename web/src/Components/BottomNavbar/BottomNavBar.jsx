@@ -8,10 +8,12 @@ import RestoreIcon from '@material-ui/icons/Restore';
 import HomeIcon from '@material-ui/icons/Home';
 import ChatBubble from '@material-ui/icons/Chat';
 import { Link } from 'react-router-dom';
+import './style/navbar.css';
 
 const styles = {
   root: {
-    width: "100%",
+    width: '100%',
+    minWidth: '250px',
     position: "fixed",
     bottom: "0",
     borderStyle: "solid",
@@ -34,7 +36,7 @@ class BottomNavBar extends React.Component {
     const { value } = this.state;
 
     return (
-      <BottomNavigation showLabels value={value} onChange={this.handleChange} className={classes.root}>
+      <BottomNavigation showLabels value={value} onChange={this.handleChange} className={classes.root} id="bottom-navbar">
         <BottomNavigationAction label="Home" value="home" icon={<HomeIcon />} component={Link} to="/home" />
         <BottomNavigationAction label="Orders" value="orders" icon={<RestoreIcon />} component={Link} to="/orders" />
         <BottomNavigationAction label="Help" value="help" icon={<ChatBubble />} component={Link} to="/help" />

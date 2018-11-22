@@ -1,2 +1,2 @@
-import SecondRoutes from './SecondRoutes';
-export default SecondRoutes;
+import LandingpageRoutes from './LandingpageRoutes';
+export default LandingpageRoutes;
