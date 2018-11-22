@@ -1,30 +1,28 @@
-import React, { Component } from 'react';
-import {
-  withStyles
-} from "@material-ui/core/styles";
+import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import imageFaq from './svg/help.svg';
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import imageFaq from "./svg/help.svg";
 
 const styles = theme => ({
   root: {
-    width: '100%',
-    marginTop: "10px",
+    width: "100%",
+    marginTop: "10px"
   },
   content: {
-    textAlign: "left",
+    textAlign: "left"
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
-    textAlign: 'left'
+    textAlign: "left"
   },
   image: {
-    margin: "90px 0 10px 0",
+    margin: "90px 0 10px 0"
   }
 });
 
@@ -33,33 +31,48 @@ class FaqContainer extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <img src={imageFaq} width="200" height="200" alt="FAQ Logo" retina_logo_url="" className={classes.image} />
+        <div style={{ textAlign: "center" }}>
+          <img
+            src={imageFaq}
+            width="200"
+            height="200"
+            alt="FAQ Logo"
+            retina_logo_url=""
+            className={classes.image}
+          />
+        </div>
         <div className={classes.root}>
           <ExpansionPanel>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>Apakah MoreTrash itu?</Typography>
+              <Typography className={classes.heading}>
+                Apakah MoreTrash itu?
+              </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography className={classes.content}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                sit amet blandit leo lobortis eget.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
           <ExpansionPanel>
             <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography className={classes.heading}>Bagaimana cara saya menukarkan sampah?</Typography>
+              <Typography className={classes.heading}>
+                Bagaimana cara saya menukarkan sampah?
+              </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Typography className={classes.content}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                sit amet blandit leo lobortis eget.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                eget.
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </div>
       </div>
-    )
+    );
   }
 }
 

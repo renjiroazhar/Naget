@@ -28,18 +28,18 @@ const Signuppage = Loadable({
 });
 
 const Forgotpassword = Loadable({
-    loader: () => import("../../Containers/Landingpage/Forgotpassword"),
-    loading: loading
-  });
-  
+  loader: () => import("../../Containers/Landingpage/Forgotpassword"),
+  loading: loading
+});
+
 const Checkout = Loadable({
-    loader: () => import("../../Containers/Landingpage/Step/Checkout"),
-    loading: loading
-  });
+  loader: () => import("../../Containers/Landingpage/Step/Checkout"),
+  loading: loading
+});
 
 const TestimoniContainer = Loadable({
-    loader: () => import("../../Containers/Landingpage/Testimoni"),
-    loading: loading
+  loader: () => import("../../Containers/Landingpage/Testimoni"),
+  loading: loading
 });
 
 const PencapaianContainer = Loadable({
@@ -51,28 +51,22 @@ const TampilanAwal = Loadable({
   loader: () => import("../../Containers/Landingpage/TampilanAwal"),
   loading: loading
 });
-export default class SecondRoutes extends Component {
-  
-  login = () => {
-      this.props.loginFunc();
-  }
-
+export default class LandingpageRoutes extends Component {
   render() {
     return (
-            <div>
-            <Switch>
-                <Route exact path="/" component={Homepage} />
-                <Route path="/login" render={()=> <Loginpage loginFunction={this.login}/>} />
-                <Route path="/signup" component={Signuppage} />
-                <Route path="/form" component={Checkout} />
-                <Route path="/forgot_password" component={Forgotpassword} />
-                <Route path="/testimoni" component={TestimoniContainer} />
-                <Route path="/pencapaian" component={PencapaianContainer} />        
-                <Route path="/halaman_awal" component={TampilanAwal} />
-                <Route component={PageNotFound} />  
-            </Switch>
-            </div>
-         
+      <div>
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route path="/login" component={Loginpage} />
+          <Route path="/signup" component={Signuppage} />
+          <Route path="/form" component={Checkout} />
+          <Route path="/forgot_password" component={Forgotpassword} />
+          <Route path="/testimoni" component={TestimoniContainer} />
+          <Route path="/pencapaian" component={PencapaianContainer} />
+          <Route path="/halaman_awal" component={TampilanAwal} />
+          <Route component={PageNotFound} />
+        </Switch>
+      </div>
     );
   }
 }

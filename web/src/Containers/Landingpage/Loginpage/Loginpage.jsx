@@ -7,16 +7,19 @@ import {
 } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import green from "@material-ui/core/colors/green";
-import ChatBubble from '@material-ui/icons/Chat';
+import ChatBubble from "@material-ui/icons/Chat";
 import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
-import PropTypes from 'prop-types';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import { RemoveRedEye } from '@material-ui/icons';
-import { InputAdornment } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
+import PropTypes from "prop-types";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import { RemoveRedEye } from "@material-ui/icons";
+import { InputAdornment } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import { connect } from "react-redux";
+import { signIn } from "../../../store/actions/authActions";
+import Socmed from "./Socmed/Socmed";
 
 const styles = theme => ({
   container: {
@@ -24,10 +27,10 @@ const styles = theme => ({
     flexWrap: "wrap"
   },
   dense: {
-    marginTop: 19,
+    marginTop: 19
   },
   menu: {
-    width: 200,
+    width: 200
   },
   fab: {
     margin: theme.spacing.unit * 2
@@ -35,11 +38,11 @@ const styles = theme => ({
   absolute: {
     color: "#00c43e",
     backgroundColor: "#00c43e",
-    position: 'fixed',
-    right: '0px',
-    bottom: '0px',
-    marginBottom: '40px',
-    marginRight: '24px'
+    position: "fixed",
+    right: "0px",
+    bottom: "0px",
+    marginBottom: "40px",
+    marginRight: "24px"
   },
   margin: {
     margin: theme.spacing.unit,
@@ -52,10 +55,10 @@ const styles = theme => ({
     borderRadius: 0,
     "&:hover": {
       backgroundColor: "#f7f7f7",
-      color: "#00c43e",
+      color: "#00c43e"
     }
   },
-  
+
   cssRoot: {
     color: "black",
     backgroundColor: "white",
@@ -64,26 +67,26 @@ const styles = theme => ({
     fontWeight: 400,
     "&:hover": {
       backgroundColor: "white"
-        }
+    }
   },
-   cssLabel: {
-     color : "#999",
-    '&$cssFocused': {
-      color: "white",
-    },
+  cssLabel: {
+    color: "#999",
+    "&$cssFocused": {
+      color: "white"
+    }
   },
   cssFocused: {},
   cssUnderline: {
-    width : "100%",
-    maxWidth : "345px",
-    borderColor : "#fff",
-    color : "#fff",
-    borderBottomColor : "white",
-    '&:before': {
-      borderBottomColor: "white",
+    width: "100%",
+    maxWidth: "345px",
+    borderColor: "#fff",
+    color: "#fff",
+    borderBottomColor: "white",
+    "&:before": {
+      borderBottomColor: "white"
     },
-    '&:after': {
-      borderBottomColor: "white",
+    "&:after": {
+      borderBottomColor: "white"
     },
     "&:hover": {
       borderBottomColor: "white"
@@ -92,7 +95,7 @@ const styles = theme => ({
   iconchat: {
     color: "#fff",
     "&:hover": {
-      color : "#00c43e"
+      color: "#00c43e"
     }
   },
   bootstrapRoot: {
@@ -142,31 +145,31 @@ const styles = theme => ({
   bootstrapInput: {
     borderRadius: 4,
     backgroundColor: theme.palette.common.white,
-    border: '1px solid #ced4da',
+    border: "1px solid #ced4da",
     fontSize: 16,
-    padding: '10px 12px',
-    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    padding: "10px 12px",
+    transition: theme.transitions.create(["border-color", "box-shadow"]),
     // Use the system font instead of the default Roboto font.
     fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
+      "-apple-system",
+      "BlinkMacSystemFont",
       '"Segoe UI"',
-      'Roboto',
+      "Roboto",
       '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
+      "Arial",
+      "sans-serif",
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:focus': {
-      borderColor: '#80bdff',
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-    },
+      '"Segoe UI Symbol"'
+    ].join(","),
+    "&:focus": {
+      borderColor: "#80bdff",
+      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)"
+    }
   },
   bootstrapFormLabel: {
-    fontSize: 18,
-  },
+    fontSize: 18
+  }
 });
 
 const theme = createMuiTheme({
@@ -176,64 +179,59 @@ const theme = createMuiTheme({
   typography: {
     useNextVariants: true
   },
-   eye: {
-    cursor: 'pointer',
-},
+  eye: {
+    cursor: "pointer"
+  }
 });
 
 class Loginpage extends Component {
   state = {
     open: false,
-    email:"",
-    password:"",
+    redirect: false,
+    email: "",
+    password: "",
     passwordIsMasked: false
   };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
-      [e.target.id] : e.target.value
+      [e.target.id]: e.target.value
     });
     console.log(this.state);
-  }
+  };
 
   handleClick = () => {
     this.setState({ open: true });
   };
 
-  login = () => {
-    this.props.loginFunction();
-  }
+  loginEmailPassword = e => {
+    this.props.signIn(this.state);
+  };
 
-  handleSubmit = (e) => {
-    if(this.state.email === "admin" && this.state.password === "admin"){
-      this.login();
-      } else {
-        alert("ERROR Authentication");
-      }
-  }
+  loginGoogle = e => {
+    this.props.signInWithGoogle();
+  };
 
   handleClose = () => {
     this.setState({ open: false });
   };
 
-  handleKeyPress = (e) => {
-    if(e.key === "Enter"){
-      this.handleSubmit();
-    } 
-  }
+  handleKeyPress = e => {
+    if (e.key === "Enter") {
+      this.loginEmailPassword();
+    }
+  };
 
   togglePasswordMask = () => {
     this.setState(prevState => ({
-      passwordIsMasked: !prevState.passwordIsMasked,
+      passwordIsMasked: !prevState.passwordIsMasked
     }));
-};
-
-  
+  };
 
   render() {
     const { classes } = this.props;
     const { passwordIsMasked } = this.state;
-
+    const { authError } = this.props;
     return (
       <div className="home">
         <div className="container">
@@ -244,122 +242,160 @@ class Loginpage extends Component {
             height="50"
             alt="Moretrash Logo"
             retina_logo_url=""
-            className="moretrash-logo"  
+            className="moretrash-logo"
           />
           <div style={{ textAlign: "center" }}>
             <p style={{ color: "white", fontWeight: 400 }}>
               Drop Your Trash and get benefit!
             </p>
-            <div style={{textAlign : "center"}}>
-           
-            <Grid container spacing={24}>
-            <Grid item xs={12} s={12}>
-            <FormControl className="margin-form">
-        <InputLabel
-          htmlFor="custom-css-input"
-          FormLabelClasses={{
-            root: classes.cssLabel,
-            focused: classes.cssFocused,
-          }}
-        >
-          Email
-        </InputLabel>
-        <Input
-          classes={{
-            underline: classes.cssUnderline,
-          }}
-          onKeyPress={this.handleKeyPress}
-          id="email"
-          type="email"
-          onChange={this.handleChange}   
-        />
-      </FormControl>
+            <div style={{ textAlign: "center" }}>
+              <Grid container spacing={24}>
+                <Grid item xs={12} s={12}>
+                  <FormControl className="margin-form">
+                    <InputLabel
+                      htmlFor="custom-css-input"
+                      FormLabelClasses={{
+                        root: classes.cssLabel,
+                        focused: classes.cssFocused
+                      }}
+                    >
+                      Email
+                    </InputLabel>
+                    <Input
+                      classes={{
+                        underline: classes.cssUnderline
+                      }}
+                      onKeyPress={this.handleKeyPress}
+                      id="email"
+                      type="email"
+                      onChange={this.handleChange}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} s={12}>
+                  <FormControl className="margin-form">
+                    <TextField
+                      label="Password"
+                      InputLabelProps={{
+                        classes: {
+                          root: classes.cssLabel,
+                          focused: classes.cssFocused
+                        }
+                      }}
+                      classes={{
+                        underline: classes.cssUnderline
+                      }}
+                      autoComplete="current-password"
+                      margin="normal"
+                      onKeyPress={this.handleKeyPress}
+                      id="password"
+                      type={passwordIsMasked ? "text" : "password"}
+                      onChange={this.handleChange}
+                      {...this.props}
+                      style={{
+                        width: "100%",
+                        maxWidth: "345px",
+                        borderColor: "#fff",
+                        color: "#fff",
+                        borderBottomColor: "white"
+                      }}
+                      InputProps={{
+                        classes: {
+                          underline: classes.cssUnderline
+                        },
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <RemoveRedEye
+                              className={classes.eye}
+                              style={{ cursor: "pointer", color: "#ffffff" }}
+                              onClick={() => {
+                                this.togglePasswordMask();
+                              }}
+                            />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                    <div className="red-text center">
+                      {authError ? <p>{authError}</p> : ""}
+                    </div>
+                  </FormControl>
+                </Grid>
               </Grid>
-               <Grid item xs={12} s={12}>
-      <FormControl className="margin-form">
-        <TextField
-          label="Password"
-          InputLabelProps={{
-            classes: {
-              root: classes.cssLabel,
-              focused: classes.cssFocused,
-            },
-          }}
-          classes={{
-            underline: classes.cssUnderline,
-          }}
-          autoComplete="current-password"
-          margin="normal"
-          onKeyPress={this.handleKeyPress}         
-          id="password"
-          type={passwordIsMasked ? 'text' : 'password'}
-          onChange={this.handleChange}
-          {...this.props}
-          style={{width : "100%",
-          maxWidth : "345px",
-          borderColor : "#fff",
-          color : "#fff",
-          borderBottomColor : "white"}}
-          InputProps={{
-            classes: {
-              underline: classes.cssUnderline
-            },
-            endAdornment: (
-              <InputAdornment position="end">
-                <RemoveRedEye
-                  className={classes.eye}
-                  style={{cursor: 'pointer', color: '#ffffff'}}
-                  onClick={() =>{this.togglePasswordMask()}}
-                />
-              </InputAdornment>
-            ),
-          }}
-        />
-        
-      </FormControl>
-              </Grid>
-            </Grid>
-           
 
-<Grid container spacing={24}>
-            <Grid item xs={12} s={12}>
-       <Link to="/forgot_password" style={{textDecoration : "none"}}><p style={{ color: "#fff", marginTop : "25px", marginBottom : "25px"}}>
-             Lupa Password ?
-            </p>
-            </Link>
-            </Grid>
-            </Grid>
-         </div>
+              <Grid container spacing={24}>
+                <Grid item xs={12} s={12}>
+                  <Link
+                    to="/forgot_password"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <h4
+                      style={{
+                        color: "#fff",
+                        marginTop: "25px",
+                        marginBottom: "25px"
+                      }}
+                    >
+                      Lupa Password ?
+                    </h4>
+                  </Link>
+                </Grid>
+              </Grid>
+            </div>
           </div>
-<div className="login-button">
-          <Grid container spacing={24}>
-            <Grid item xs={12} s={12}>
-              <MuiThemeProvider theme={theme}>
+          <div className="login-button">
+            <Grid container spacing={24}>
+              <Grid item xs={12} s={12}>
+                <MuiThemeProvider theme={theme}>
                   <Button
                     variant="extendedFab"
                     color="primary"
                     className={classes.margin}
                     size="large"
-                    onClick={this.handleSubmit}
+                    onClick={e => {
+                      e.preventDefault();
+                      this.loginEmailPassword();
+                    }}
                   >
                     Masuk
                   </Button>
-              </MuiThemeProvider>
+                </MuiThemeProvider>
+              </Grid>
             </Grid>
-          </Grid>
           </div>
-<div style={{textAlign : "center"}}>
-            <p style={{ color: "#999" }}>
-             Belum Punya Akun? <a href="/signup" style={{ color: "white" }}>
-              Sign Up
-            </a>
-            </p>     
-</div>
-         
-            <Button variant="fab" id="button-daftar" color="#00c43e" className={classes.absolute}>
-              <ChatBubble className={classes.iconchat} />
-            </Button>
-          
+ 
+          <div style={{ textAlign: "center" }}>
+            <h4 style={{ color: "#999" }}>
+              Belum Punya Akun?{" "}
+              <a href="/signup" style={{ color: "white", fontSize: '19px' }}>
+                Sign Up
+              </a>
+            </h4>
+          </div>
+
+          <div style={{ textAlign: "center" }}>
+            <h4 href="" style={{ color: "white" }}>
+              Atau masuk menggunakan
+            </h4>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              textAlign: "center"
+            }}
+          >
+            <Socmed />
+          </div>
+
+          <Button
+            variant="fab"
+            id="button-daftar"
+            color="#00c43e"
+            className={classes.absolute}
+          >
+            <ChatBubble className={classes.iconchat} />
+          </Button>
         </div>
       </div>
     );
@@ -370,4 +406,23 @@ Loginpage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Loginpage);
+const mapDispatchToProps = (dispatch, props) => {
+  console.log(props);
+  return {
+    signIn: creds => dispatch(signIn(creds)),
+  };
+};
+
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    authError: state.auth.authError,
+    redirectLogin: state.auth.redirect,
+    auth: state.firebase.auth
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(Loginpage));

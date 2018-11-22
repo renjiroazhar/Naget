@@ -1,3 +1,3 @@
-import Routes from "./Routes";
+import DashboardRoutes from "./DashboardRoutes";
 
-export default Routes;
+export default DashboardRoutes;

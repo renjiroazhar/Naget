@@ -1,123 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#000000">
-  <!--
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <!--
       manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-  <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-  <!--
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link
+      rel="shortcut icon"
+      href="https://png.icons8.com/material-two-tone/50/000000/shopping-cart.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Merienda"
+      rel="stylesheet"
+    />
+    <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
-
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>React App</title>
-</head>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <title>Purchasing App Ngrembel</title>
+  </head>
 
-<body>
-  <style>
-    body > #root > div {
-      height: 100vh;
-    }
-    body {
-      margin: 0 auto;
-      width: -webkit-fill-available;
-    }
-
-    .loading-bro {
-      margin: 50px auto;
-      width: 150px;
-      margin-top: 150px;
-    }
-
-    .loading-bro>h1 {
-      text-align: center;
-      font-size: 2.5em;
-      margin-bottom: 1em;
-      font-weight: 300;
-      color: #8E8E8E;
-    }
-
-    #load {
-      width: 150px;
-      animation: loading 3s linear infinite;
-    }
-
-    #load #loading-inner {
-      stroke-dashoffset: 0;
-      stroke-dasharray: 300;
-      stroke-width: 10;
-      stroke-miterlimit: 10;
-      stroke-linecap: round;
-      animation: loading-circle 2s linear infinite;
-      stroke: #0099FF;
-      fill: transparent;
-    }
-
-    #root {
-      text-align: center;
-      height: 100%;
-      margin : 0 ;
-      align-items: center;
-      justify-content: center;
-      width: -webkit-fill-available
-    }
-
-    @keyframes loading {
-      0% {
-        transform: rotate(0);
+  <body>
+    <style>
+      body {
+        width: 100%;
+        width: -moz-available; /* WebKit-based browsers will ignore this. */
+        width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+        width: fill-available;
       }
-
-      100% {
-        transform: rotate(360deg);
+      .loading-bro {
+        margin: 150px auto;
+        width: 150px;
       }
-    }
-
-    @keyframes loading-circle {
-      0% {
+      .loading-bro > h1 {
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 1em;
+        font-weight: 300;
+        color: #8e8e8e;
+      }
+      #load {
+        width: 150px;
+        animation: loading 3s linear infinite;
+      }
+      #load #loading-inner {
         stroke-dashoffset: 0;
+        stroke-dasharray: 300;
+        stroke-width: 10;
+        stroke-miterlimit: 10;
+        stroke-linecap: round;
+        animation: loading-circle 2s linear infinite;
+        stroke: #0099ff;
+        fill: transparent;
       }
-
-      100% {
-        stroke-dashoffset: -600;
+      @keyframes loading {
+        0% {
+          transform: rotate(0);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
-    }
-
-
-    @import url('https://fonts.googleapis.com/css?family=Merienda');
-  </style>
-  <noscript>
-    You need to enable JavaScript to run this app.
-  </noscript>
-  <div id="root" style="width :100%;height: 100%">
-    <div style="text-align: center" class="loading-bro">
-      <h1>Loading</h1>
-      <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
-        <circle id="loading-inner" cx="75" cy="75" r="60" />
-      </svg>
+      @keyframes loading-circle {
+        0% {
+          stroke-dashoffset: 0;
+        }
+        100% {
+          stroke-dashoffset: -600;
+        }
+      }
+    </style>
+    <noscript> You need to enable JavaScript to run this app. </noscript>
+    <div id="root">
+      <div class="loading-bro">
+        <h1>Loading</h1>
+        <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
+          <circle id="loading-inner" cx="75" cy="75" r="60" />
+        </svg>
+      </div>
+      ;
     </div>
-  </div>
-  <!--
+    <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
-
       You can add webfonts, meta tags, or analytics to this file.
       The build step will place the bundled scripts into the <body> tag.
-
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-</body>
-
+  </body>
 </html>

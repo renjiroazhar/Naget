@@ -1,13 +1,10 @@
 .App {
   text-align: center;
-  background-color : #f7f7f7;
-  min-height: 100vh;
-  height : 100%;
-  margin: 0;
   align-items: center;
   justify-content: center;
   width: -webkit-fill-available;
   padding: 0;
+  display: flex;
 }
 
 .App-logo {

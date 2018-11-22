@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import Loadable from "react-loadable";
-import BottomNavbar from '../../Components/BottomNavbar';
-import Header from '../../Components/Header';
-
+import BottomNavbar from "../../Components/BottomNavbar";
+import Header from "../../Components/Header";
 
 const loading = () => (
   <div className="loading-bro">
@@ -30,44 +29,40 @@ const OrdersContainer = Loadable({
 });
 
 const AccountContainer = Loadable({
-    loader: () => import("../../Containers/Dashboard/Account"),
-    loading: loading
+  loader: () => import("../../Containers/Dashboard/Account"),
+  loading: loading
 });
 
 const StepLogin = Loadable({
-    loader: () => import("../../Containers/Dashboard/StepLogin/Checkout"),
-    loading: loading
+  loader: () => import("../../Containers/Dashboard/StepLogin/Checkout"),
+  loading: loading
 });
- 
-class Routes extends Component {
-  
+
+class DashboardRoutes extends Component {
   state = {
     searchItem: "",
     data: [],
-    orderData : [],
+    orderData: [],
     visible: false
   };
 
   logout = () => {
     this.props.logoutFunc();
-}
+  };
 
   render() {
     return (
-            <div>
-              <Route exact path="/pick-trash" component={StepLogin} />
-              <Header />
-              <Route exact path="/home" component={HomeContainer} />
-              <Route path="/orders" component={OrdersContainer} />
-              <Route path="/help" component={HelpContainer} />
-              <Route path="/account" render={()=> <AccountContainer FunctionLogout={this.logout}/>}/>
-              <BottomNavbar />            
-            </div>
-         
+      <div>
+        <Route exact path="/pick-trash" component={StepLogin} />
+        <Header />
+        <Route exact path="/home" component={HomeContainer} />
+        <Route path="/orders" component={OrdersContainer} />
+        <Route path="/help" component={HelpContainer} />
+        <Route path="/account" component={AccountContainer} />
+        <BottomNavbar />
+      </div>
     );
   }
 }
 
-
-
-export default Routes;
+export default DashboardRoutes;

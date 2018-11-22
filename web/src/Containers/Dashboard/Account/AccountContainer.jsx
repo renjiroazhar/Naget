@@ -14,6 +14,8 @@ import Divider from '@material-ui/core/Divider';
 import ChatBubble from '@material-ui/icons/Chat';
 import Stars from '@material-ui/icons/Stars';
 import { Redirect, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signOut } from '../../../store/actions/authActions';
 
 const styles = theme => ({
   text: {
@@ -109,10 +111,11 @@ class AccountContainer extends Component {
   }
 
   logout = () => {
+    this.props.signOut();
+    sessionStorage.clear();
     this.setState({
       redirect: true
     });
-    this.props.FunctionLogout();
   }
 
   render() {
@@ -182,7 +185,7 @@ class AccountContainer extends Component {
         <br />
         <br />
 
-        <div className="login-button">
+        <div className="logout-button" style={{justifyContent: 'center',textAlign: 'center'}}>
           <MuiThemeProvider theme={theme}>
             <Button
               variant="extendedFab"
@@ -206,4 +209,10 @@ AccountContainer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AccountContainer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signOut: () => dispatch(signOut())
+  }
+}
+
+export default connect(null,mapDispatchToProps)(withStyles(styles)(AccountContainer));
