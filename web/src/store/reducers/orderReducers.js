@@ -1,24 +1,24 @@
 const initState = {
-    projects: [
+    orders: [
         {id: '1', title: 'Yahoooo', content: 'Wadidaw'},
         {id: '2', title: 'Judul Kedua', content: 'PPPPPPP'},
         {id: '3', title: 'Judul Ketiga', content: 'HMMMMM'}
     ]
 }
 
-const projectReducers = (state = initState, action) => {
+const orderReducers = (state = initState, action) => {
    switch (action.type) {
-       case 'CREATE_PROJECT':
-           console.log('Created Project', action.project)
+       case 'CREATE_ORDER':
+           console.log('Created Order', action.order)
            return state;
-        case 'CREATE_PROJECT_ERROR':
-           console.log('Create Project Error', action.err);
+        case 'CREATE_ORDER_ERROR':
+           console.log('Create Order Error', action.err);
             break;
-        case 'REMOVE_PROJECT':
-            console.log('Deleting Project Success', action.id);
+        case 'REMOVE_ORDER':
+            console.log('Deleting Order Success', action.id);
             return state;
         case 'REMOVE_ERROR':
-            console.log('Deleting Project Error', action.err);
+            console.log('Deleting Order Error', action.err);
         //    return state.filter(({ id }) => id !== action.id);
             break;
         default:
@@ -26,6 +26,6 @@ const projectReducers = (state = initState, action) => {
    }
 }
 
-export default projectReducers;
+export default orderReducers;
 
 

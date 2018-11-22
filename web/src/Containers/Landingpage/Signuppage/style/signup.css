@@ -1,10 +1,11 @@
 .home {
   text-align: center;
   height: -webkit-fill-available;
-  min-height: 100vh;
   background-color: #282c34;
   width: -webkit-fill-available;
   margin: 0 auto;
+  display: flex;
+  flex-grow: 1;
   padding: 0;
 }
 
@@ -33,6 +34,11 @@
   min-height: 100vh;
   background-color: #282c34;
 }
+
+.moretrash-logo {
+  margin-top: 50px;
+}
+
 
 @media (max-width: 425px) {
   .login-button {

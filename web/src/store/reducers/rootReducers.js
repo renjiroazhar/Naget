@@ -1,12 +1,12 @@
 import authReducers from './authReducers';
-import projectReducers from './projectReducers';
+import orderReducers from './orderReducers';
 import { combineReducers } from 'redux';
 import { firestoreReducer } from 'redux-firestore';
 import { firebaseReducer } from 'react-redux-firebase';
 
 const rootReducers = combineReducers({
     auth: authReducers,
-    project: projectReducers,
+    order: orderReducers,
     firestore: firestoreReducer,
     firebase: firebaseReducer
 });
