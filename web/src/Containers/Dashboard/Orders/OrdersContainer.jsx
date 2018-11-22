@@ -1,82 +1,82 @@
-import React, { Component } from 'react';
-import {
-  withStyles
-} from "@material-ui/core/styles";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import SwipeableViews from 'react-swipeable-views';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+
+function TabContainer({ children, dir }) {
+  return (
+    <Typography component="div" dir={dir} style={{ padding: 8 * 3 }}>
+      {children}
+    </Typography>
+  );
+}
+
+TabContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+  dir: PropTypes.string.isRequired,
+};
 
 const styles = theme => ({
   root: {
-    width: '100%',
     backgroundColor: theme.palette.background.paper,
-    marginTop: "10px",
+    width: '100%',
+    flexGrow: 1
   },
-  card: {
-    display: 'flex',
-  },
-  content: {
-    fontSize: "12px",
-    textAlign: "left",
-  },
-  cover: {
-    width: 151,
-  },
-  details: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  title: {
-    margin: "70px 0 10px 0",
-    textAlign: "center",
-    color: "#00c43e",
-  }
 });
 
-
-class HistoryContainer extends Component {
-
+class OrdersContainer extends React.Component {
   state = {
-    historyList: [],
-    trashPic: [],
-    trashDesc: '',
-    trashTitle: '',
-  }
+    value: 0,
+  };
+
+  handleChange = (event, value) => {
+    this.setState({ value });
+  };
+
+  handleChangeIndex = index => {
+    this.setState({ value: index });
+  };
 
   render() {
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
+
     return (
-      <div>
-        <div className={classes.root}>
-          {this.state.historyList.map(() => (
-            <Card className={classes.card}>
-              <CardMedia
-                className={classes.cover}
-                image={this.state.trashPic}
-                alt="Trash Picture"
-              />
-              <div className={classes.details}>
-                <CardContent className={classes.content}>
-                  <Typography component="h6" variant="h6">
-                    {this.state.trashTitle}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {this.state.trashDesc}
-                  </Typography>
-                </CardContent>
-              </div>
-            </Card>
-          ))}
-        </div>
+      <div className={classes.root}>
+      <br/>
+      <br/>
+      <br/>
+        <AppBar position="relative" color="default" style={{marginTop: '6px'}}>
+          <Tabs
+            value={this.state.value}
+            onChange={this.handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            fullWidth
+          >
+            <Tab label="Diproses" />
+            <Tab label="Berhasil" />
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={this.state.value}
+          onChangeIndex={this.handleChangeIndex}
+        >
+          <TabContainer dir={theme.direction}>Item One</TabContainer>
+          <TabContainer dir={theme.direction}>Item Two</TabContainer>
+        </SwipeableViews>
       </div>
-    )
+    );
   }
 }
 
-HistoryContainer.propTypes = {
+OrdersContainer.propTypes = {
   classes: PropTypes.object.isRequired,
-}
+  theme: PropTypes.object.isRequired,
+};
 
-export default withStyles(styles)(HistoryContainer);
+export default withStyles(styles, { withTheme: true })(OrdersContainer);

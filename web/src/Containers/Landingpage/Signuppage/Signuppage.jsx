@@ -264,7 +264,7 @@ class Signuppage extends Component {
                   onChange={this.handleChange}
                 />
               </FormControl>
-
+                  <br/>
               <FormControl className="margin-form">
                 <InputLabel
                   htmlFor="custom-css-input"
@@ -285,7 +285,7 @@ class Signuppage extends Component {
                   onChange={this.handleChange}
                 />
               </FormControl>
-
+              <br/>
               <FormControl className="margin-form">
                 <InputLabel
                   htmlFor="custom-css-input"
@@ -306,7 +306,7 @@ class Signuppage extends Component {
                   onChange={this.handleChange}
                 />
               </FormControl>
-
+              <br/>
               <FormControl className="margin-form">
                 <InputLabel
                   htmlFor="custom-css-input"
@@ -327,7 +327,7 @@ class Signuppage extends Component {
                   onChange={this.handleChange}
                 />
               </FormControl>
-
+              <br/>
               <FormControl className="margin-form">
                 <InputLabel
                   htmlFor="custom-css-input"
@@ -348,6 +348,7 @@ class Signuppage extends Component {
                   onChange={this.handleChange}
                 />
               </FormControl>
+              <br/>
               <FormControl className="margin-form">
                 <InputLabel
                   htmlFor="custom-css-input"
