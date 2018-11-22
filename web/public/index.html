@@ -46,58 +46,14 @@
         width: -moz-available; /* WebKit-based browsers will ignore this. */
         width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
         width: fill-available;
-      }
-      .loading-bro {
-        margin: 150px auto;
-        width: 150px;
-      }
-      .loading-bro > h1 {
-        text-align: center;
-        font-size: 2.5em;
-        margin-bottom: 1em;
-        font-weight: 300;
-        color: #8e8e8e;
-      }
-      #load {
-        width: 150px;
-        animation: loading 3s linear infinite;
-      }
-      #load #loading-inner {
-        stroke-dashoffset: 0;
-        stroke-dasharray: 300;
-        stroke-width: 10;
-        stroke-miterlimit: 10;
-        stroke-linecap: round;
-        animation: loading-circle 2s linear infinite;
-        stroke: #0099ff;
-        fill: transparent;
-      }
-      @keyframes loading {
-        0% {
-          transform: rotate(0);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-      @keyframes loading-circle {
-        0% {
-          stroke-dashoffset: 0;
-        }
-        100% {
-          stroke-dashoffset: -600;
-        }
+        background-color: #282c34;
       }
     </style>
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <div id="root">
-      <div class="loading-bro">
-        <h1>Loading</h1>
-        <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
-          <circle id="loading-inner" cx="75" cy="75" r="60" />
-        </svg>
-      </div>
-      
+      <div id="bm"></div>
+      <script src="scripts/bodymovin.js"></script>
+      <script src="scripts/index.js"></script>
     </div>
     <!--
       This HTML file is a template.
