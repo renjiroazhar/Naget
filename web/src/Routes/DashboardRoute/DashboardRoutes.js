@@ -3,13 +3,18 @@ import { Route } from "react-router-dom";
 import Loadable from "react-loadable";
 import BottomNavbar from "../../Components/BottomNavbar";
 import Header from "../../Components/Header";
+import Lottie from 'lottie-react-web';
+import Planet from './json/planet_rotating.json';
 
 const loading = () => (
-  <div className="loading-bro">
-    <h1>Loading</h1>
-    <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
-      <circle id="loading-inner" cx="75" cy="75" r="60" />
-    </svg>
+  <div style={{ marginTop: "200px" }}>
+    <Lottie 
+    width="200px" 
+    height="200px"
+        options={{
+          animationData: Planet
+        }}
+      />
   </div>
 );
 
