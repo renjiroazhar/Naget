@@ -46,10 +46,10 @@ class OrdersContainer extends React.Component {
 
     return (
       <div className={classes.root}>
-      <br/>
-      <br/>
-      <br/>
-        <AppBar position="relative" color="default" style={{marginTop: '6px'}}>
+        <br />
+        <br />
+        <br />
+        <AppBar position="relative" color="default" style={{ marginTop: '6px' }}>
           <Tabs
             value={this.state.value}
             onChange={this.handleChange}
@@ -57,8 +57,8 @@ class OrdersContainer extends React.Component {
             textColor="primary"
             fullWidth
           >
-            <Tab label="Diproses" />
-            <Tab label="Berhasil" />
+            <Tab label="On Process" />
+            <Tab label="Done" />
           </Tabs>
         </AppBar>
         <SwipeableViews
