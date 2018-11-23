@@ -1,26 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <meta name="theme-color" content="#000000" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link
-      rel="shortcut icon"
-      href="leaf-icon.jpg"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Merienda"
-      rel="stylesheet"
-    />
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="shortcut icon" href="leaf-icon.jpg" />
+  <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -28,34 +20,98 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    <title>Moretrash</title>
-  </head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <title>Moretrash</title>
+</head>
 
-  <body>
-    <style>
-      body {
-        width: 100%;
-        width: -moz-available; /* WebKit-based browsers will ignore this. */
-        width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-        width: fill-available;
-        background-color: #282c34;
+<body>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+    h1 {
+      font-size: 25pt;
+      font-weight: bold;
+      text-align: center;
+      line-height: 120pt;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 4px;
+      color: #00c43e;
+      text-shadow: 2px 2px 0 #16a085;
+
+      span {
+        position: relative;
+        display: inline-block;
       }
-    </style>
-    <noscript> You need to enable JavaScript to run this app. </noscript>
-    <div id="root">
-      <div id="bm"></div>
-      <script src="scripts/bodymovin.js"></script>
-      <script src="scripts/index.js"></script>
-    </div>
-    <!--
+    }
+
+    h2 {
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      color: #16a085;
+      font-size: 15pt;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      10%,
+      30%,
+      50%,
+      70%,
+      90% {
+        transform: translateX(-10px);
+      }
+
+      20%,
+      40%,
+      60%,
+      80% {
+        transform: translateX(10px);
+      }
+    }
+
+    .shake {
+      animation: shake 5s;
+    }
+  </style>
+  <script>
+    (function ($) {
+      "use strict";
+
+      $('h1, h2').lettering();
+
+      TweenMax.staggerFrom($('h1 span'), 0.5, {
+        opacity: 0,
+        bottom: 100
+      }, 0.5);
+
+      $('h1 span').hover(function () {
+        $(this).addClass('shake');
+      }, function () {});
+
+      TweenMax.staggerTo($('h2 span'), 3, {
+        textShadow: "0 0 20px white",
+        color: "none",
+        repeat: -1,
+        delay: 1
+      }, 0.5);
+
+    })(jQuery);
+  </script>
+  <noscript> You need to enable JavaScript to run this app. </noscript>
+  <div id="root">
+    <h1>MORETRASH</h1>
+
+    <h2>LOADING</h2>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.11.1/TweenMax.min.js"></script>
+  </div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
       You can add webfonts, meta tags, or analytics to this file.
@@ -63,5 +119,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>
