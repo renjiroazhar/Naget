@@ -38,11 +38,6 @@
       letter-spacing: 4px;
       color: #00c43e;
       text-shadow: 2px 2px 0 #16a085;
-
-      span {
-        position: relative;
-        display: inline-block;
-      }
     }
 
     h2 {
@@ -79,30 +74,7 @@
       animation: shake 5s;
     }
   </style>
-  <script>
-    (function ($) {
-      "use strict";
 
-      $('h1, h2').lettering();
-
-      TweenMax.staggerFrom($('h1 span'), 0.5, {
-        opacity: 0,
-        bottom: 100
-      }, 0.5);
-
-      $('h1 span').hover(function () {
-        $(this).addClass('shake');
-      }, function () {});
-
-      TweenMax.staggerTo($('h2 span'), 3, {
-        textShadow: "0 0 20px white",
-        color: "none",
-        repeat: -1,
-        delay: 1
-      }, 0.5);
-
-    })(jQuery);
-  </script>
   <noscript> You need to enable JavaScript to run this app. </noscript>
   <div id="root">
     <h1>MORETRASH</h1>
