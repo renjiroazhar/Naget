@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -17,7 +16,7 @@ import Header from '../../../Components/Header';
 const styles = theme => ({
   appBar: {
     position: 'relative',
-    backgroundColor : "#559351"
+    backgroundColor: "#559351"
   },
   layout: {
     width: 'auto',
@@ -43,7 +42,7 @@ const styles = theme => ({
     padding: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 5}px`,
   },
   button: {
-    marginTop: theme.spacing.unit * -3,
+    marginTop: theme.spacing.unit * -5,
   },
 });
 
@@ -92,13 +91,11 @@ class Checkout extends React.Component {
     const { activeStep } = this.state;
 
     return (
-        <div>
-      <React.Fragment>
-        <CssBaseline />
+      <div style={{ marginTop: '100px', width: '-webkit-fill-available', height: '100%' }}>
         <Header />
         <main className={classes.layout}>
           <Paper className={classes.paper}>
-         
+
             <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map(label => (
                 <Step key={label}>
@@ -118,31 +115,30 @@ class Checkout extends React.Component {
                   </Typography>
                 </React.Fragment>
               ) : (
-                <React.Fragment>
-                  {getStepContent(activeStep)}
-                  <div>
-                    {activeStep !== 0 && (
-                      <Button 
-                      style={{float :"left", backgroundColor : "red", color : "white"}} onClick={this.handleBack} className={classes.button}>
-                        Kembali
+                  <React.Fragment>
+                    {getStepContent(activeStep)}
+                    <div>
+                      {activeStep !== 0 && (
+                        <Button
+                          style={{ float: "left", backgroundColor: "red", color: "white" }} onClick={this.handleBack} className={classes.button}>
+                          Kembali
                       </Button>
-                    )}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleNext}
-                      className={classes.button}
-                      style={{float : "right"}}
-                    >
-                      {activeStep === steps.length - 1 ? 'Place order' : 'Selanjutnya'}
-                    </Button>
-                  </div>
-                </React.Fragment>
-              )}
+                      )}
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.handleNext}
+                        className={classes.button}
+                        style={{ float: "right" }}
+                      >
+                        {activeStep === steps.length - 1 ? 'Place order' : 'Selanjutnya'}
+                      </Button>
+                    </div>
+                  </React.Fragment>
+                )}
             </React.Fragment>
           </Paper>
         </main>
-      </React.Fragment>
       </div>
     );
   }
