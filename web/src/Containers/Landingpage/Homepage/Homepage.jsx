@@ -194,7 +194,7 @@ class Homepage extends Component {
         <div className="container">
           <img
             src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
-            srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
+            srcSet="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
             width="171"
             height="50"
             alt="Moretrash Logo"

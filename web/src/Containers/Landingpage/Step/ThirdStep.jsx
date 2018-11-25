@@ -6,9 +6,10 @@ import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
+import Avatar from '@material-ui/core/Avatar';
+import ImageIcon from '@material-ui/icons/Image';
+import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 
 const styles = theme => ({
     root: {
@@ -41,14 +42,13 @@ const styles = theme => ({
     },
 });
 
-class PaymentForm extends React.Component {
+class ThirdStep extends React.Component {
 
     state = {
         secondary: false
     }
 
     render() {
-        const { secondary } = this.state;
         const { classes } = this.props;
 
         return (
@@ -57,15 +57,10 @@ class PaymentForm extends React.Component {
                     <Grid item xs={12} >
                         <List>
                             <ListItem>
-                                <ListItemText
-                                    primary="Tanggal"
-                                    secondary={secondary ? 'Secondary text' : null}
-                                />
-                                <ListItemSecondaryAction>
-                                    <IconButton aria-label="Add">
-                                        <AddIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
+                                <Avatar>
+                                    <ImageIcon />
+                                </Avatar>
+                                <ListItemText primary="Photos" secondary="Jan 9, 2014" />
                             </ListItem>
 
                             <hr />
@@ -74,15 +69,10 @@ class PaymentForm extends React.Component {
                     <Grid item xs={12} >
                         <List>
                             <ListItem>
-                                <ListItemText
-                                    primary="Jam"
-                                    secondary={secondary ? 'Secondary text' : null}
-                                />
-                                <ListItemSecondaryAction>
-                                    <IconButton aria-label="Add">
-                                        <AddIcon />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
+                                <Avatar>
+                                    <BeachAccessIcon />
+                                </Avatar>
+                                <ListItemText primary="Vacation" secondary="July 20, 2014" />
                             </ListItem>
                             <hr />
 
@@ -102,8 +92,8 @@ class PaymentForm extends React.Component {
 }
 
 
-PaymentForm.propTypes = {
+ThirdStep.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PaymentForm);
+export default withStyles(styles)(ThirdStep);

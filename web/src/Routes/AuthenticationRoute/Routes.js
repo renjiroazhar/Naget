@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import DashboardRoutes from "../DashboardRoute";
 import LandingpageRoutes from "../LandingpageRoute";
-import { BrowserRouter, Redirect } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const Routes = props => {
   const { auth } = props;
@@ -11,7 +11,6 @@ const Routes = props => {
       <BrowserRouter>
         <div>
           <DashboardRoutes />
-          <Redirect to="/home" />
         </div>
       </BrowserRouter>
     </div>
