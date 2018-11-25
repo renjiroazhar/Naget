@@ -7,6 +7,11 @@
   display: flex;
   flex-grow: 1;
   padding: 0;
+  position:absolute;
+  top: 0 ;
+  bottom: 0 ;
+  left: 0 ;
+  right: 0;
 }
 
 .home p {
@@ -29,9 +34,9 @@
   justify-content: center;
   text-align: center;
   color: white;
+  min-height: 100vh;
   font-weight: 600;
   width: -webkit-fill-available;
-  min-height: 100vh;
   background-color: #282c34;
 }
 
@@ -75,7 +80,7 @@
 
 @media (max-width: 320px) {
   .margin-form {
-    max-width: 270px;
+    max-width: 300px;
     width: -webkit-fill-available;
     font-weight: 400;
     color: white;
@@ -85,13 +90,13 @@
 }
 
 @media (max-width: 420px) {
-  .margin-form {
+  /* .margin-form {
     max-width: 310px;
     width: -webkit-fill-available;
     font-weight: 400;
     color: white;
     text-decoration: none
-  }
+  } */
   
 }
 

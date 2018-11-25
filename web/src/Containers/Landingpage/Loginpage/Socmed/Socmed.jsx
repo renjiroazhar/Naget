@@ -7,7 +7,7 @@ import Google from '../images/gogle-circle.png';
 import Whatsapp from '../images/whatsapp.png';
 import './style/socmed.css';
 import { connect } from 'react-redux';
-import { signInWithGoogle } from '../../../../store/actions/authActions';
+import { signInWithGoogle, signInWithFacebook } from '../../../../store/actions/authActions';
 
 const styles = theme => ({
   root: {
@@ -44,7 +44,7 @@ class Socmed extends React.Component {
           <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
             
               <Grid key={0} item>
-                <img src={Facebook} alt='' className={classes.paper} id="socmed-image" />
+                <img src={Facebook} alt='' onClick={this.props.signInWithFacebook} className={classes.paper} id="socmed-image" />
               </Grid>
               
               <Grid key={1} item>
@@ -69,7 +69,8 @@ Socmed.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signInWithGoogle: () => dispatch(signInWithGoogle())
+    signInWithGoogle: () => dispatch(signInWithGoogle()),
+    signInWithFacebook: () => dispatch(signInWithFacebook())
   }
 }
 

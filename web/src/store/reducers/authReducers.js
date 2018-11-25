@@ -6,10 +6,10 @@ const initState = {
 const authReducers = (state = initState, action) => {
   switch (action.type) {
     case "LOGIN_ERROR":
-      console.log("Login Error");
+      console.log("Login Error", action.err.message);
       return {
         ...state,
-        authError: "Login Failed"
+        authError: action.err.message
       };
     case "LOGIN_SUCCESS": {
       console.log("Login Success");
@@ -26,6 +26,20 @@ const authReducers = (state = initState, action) => {
         authError: "Login Failed"
       };
     case "GOOGLE_LOGIN_SUCCESS": {
+      console.log("Login Success");
+      return {
+        ...state,
+        authError: null,
+        redirect: true
+      };
+    }
+    case "FACEBOOK_LOGIN_ERROR":
+      console.log("Login Error");
+      return {
+        ...state,
+        authError: "Login Failed"
+      };
+    case "FACEBOOK_LOGIN_SUCCESS": {
       console.log("Login Success");
       return {
         ...state,

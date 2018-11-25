@@ -132,7 +132,9 @@ class AccountContainer extends Component {
               <ListItem>
                 <div style={{ paddingBottom: '20px', color: "#1abc9c"}}>
                   
+                
                   <ListItemSecondaryAction>
+                   <Link to="/edit">
                     <p
                       style={{
                         margin: '20px',
@@ -144,6 +146,7 @@ class AccountContainer extends Component {
                     >
                       Edit
                     </p>
+                    </Link>
                   </ListItemSecondaryAction>
                 </div>
               </ListItem>
