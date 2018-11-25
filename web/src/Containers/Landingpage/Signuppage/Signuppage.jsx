@@ -7,7 +7,6 @@ import {
 } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import green from "@material-ui/core/colors/green";
-import ChatBubble from "@material-ui/icons/Chat";
 import PropTypes from "prop-types";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -15,12 +14,11 @@ import FormControl from "@material-ui/core/FormControl";
 import { connect } from "react-redux";
 import { signUp } from "../../../store/actions/authActions";
 import { Redirect } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import { RemoveRedEye } from "@material-ui/icons";
+import { InputAdornment } from "@material-ui/core";
 
 const styles = theme => ({
-  container: {
-    display: "flex",
-    flexWrap: "wrap"
-  },
   dense: {
     marginTop: 19
   },
@@ -187,7 +185,7 @@ class Signuppage extends Component {
     address: "",
     email: "",
     password: "",
-    passwordIsMasked: true
+    passwordIsMasked: false
   };
 
   handleChange = e => {
@@ -224,7 +222,7 @@ class Signuppage extends Component {
 
   render() {
     const { classes, auth, authError } = this.props;
-
+    const { passwordIsMasked } = this.state;
     return (
       <div className="home">
         <div className="container">
@@ -327,42 +325,47 @@ class Signuppage extends Component {
               </FormControl>
               <br />
               <FormControl className="margin-form">
-                <InputLabel
-                  htmlFor="custom-css-input"
-                  FormLabelClasses={{
-                    root: classes.cssLabel,
-                    focused: classes.cssFocused
+                <TextField
+                  label="Password"
+                  InputLabelProps={{
+                    classes: {
+                      root: classes.cssLabel,
+                      focused: classes.cssFocused
+                    }
                   }}
-                >
-                  Kata Sandi
-                </InputLabel>
-                <Input
                   classes={{
                     underline: classes.cssUnderline
                   }}
+                  autoComplete="current-password"
+                  margin="normal"
                   onKeyPress={this.handleKeyPress}
                   id="password"
-                  type="password"
+                  type={passwordIsMasked ? "text" : "password"}
                   onChange={this.handleChange}
-                />
-              </FormControl>
-              <br />
-              <FormControl className="margin-form">
-                <InputLabel
-                  htmlFor="custom-css-input"
-                  FormLabelClasses={{
-                    root: classes.cssLabel,
-                    focused: classes.cssFocused
+                  {...this.props}
+                  style={{
+                    width: "100%",
+                    maxWidth: "345px",
+                    borderColor: "#fff",
+                    color: "#fff",
+                    borderBottomColor: "white"
                   }}
-                >
-                  Konfirmasi Kata Sandi
-                </InputLabel>
-                <Input
-                  classes={{
-                    underline: classes.cssUnderline
+                  InputProps={{
+                    classes: {
+                      underline: classes.cssUnderline
+                    },
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <RemoveRedEye
+                          className={classes.eye}
+                          style={{ cursor: "pointer", color: "#ffffff" }}
+                          onClick={() => {
+                            this.togglePasswordMask();
+                          }}
+                        />
+                      </InputAdornment>
+                    )
                   }}
-                  onKeyPress={this.handleKeyPress}
-                  type="password"
                 />
               </FormControl>
             </div>
@@ -393,10 +396,6 @@ class Signuppage extends Component {
               </a>
             </p>
           </div>
-
-          <Button variant="fab" color="#00c43e" className={classes.absolute}>
-            <ChatBubble className={classes.iconchat} />
-          </Button>
         </div>
         {auth.redirect ? <Redirect to="/home" /> : ""}
       </div>
