@@ -14,7 +14,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import { connect } from "react-redux";
 import { signUp } from "../../../store/actions/authActions";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 
 const styles = theme => ({
   container: {
@@ -200,8 +200,7 @@ class Signuppage extends Component {
     this.setState({ open: true });
   };
 
-
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);
     this.props.signUp(this.state);
@@ -225,14 +224,13 @@ class Signuppage extends Component {
 
   render() {
     const { classes, auth, authError } = this.props;
-    if (auth.uid) return <Redirect to="/home" />
 
     return (
       <div className="home">
         <div className="container">
           <img
             src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
-            srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
+            srcSet="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
             width="171"
             height="50"
             alt="Moretrash Logo"
@@ -264,7 +262,7 @@ class Signuppage extends Component {
                   onChange={this.handleChange}
                 />
               </FormControl>
-                  <br/>
+              <br />
               <FormControl className="margin-form">
                 <InputLabel
                   htmlFor="custom-css-input"
@@ -285,7 +283,7 @@ class Signuppage extends Component {
                   onChange={this.handleChange}
                 />
               </FormControl>
-              <br/>
+              <br />
               <FormControl className="margin-form">
                 <InputLabel
                   htmlFor="custom-css-input"
@@ -306,7 +304,7 @@ class Signuppage extends Component {
                   onChange={this.handleChange}
                 />
               </FormControl>
-              <br/>
+              <br />
               <FormControl className="margin-form">
                 <InputLabel
                   htmlFor="custom-css-input"
@@ -327,7 +325,7 @@ class Signuppage extends Component {
                   onChange={this.handleChange}
                 />
               </FormControl>
-              <br/>
+              <br />
               <FormControl className="margin-form">
                 <InputLabel
                   htmlFor="custom-css-input"
@@ -348,7 +346,7 @@ class Signuppage extends Component {
                   onChange={this.handleChange}
                 />
               </FormControl>
-              <br/>
+              <br />
               <FormControl className="margin-form">
                 <InputLabel
                   htmlFor="custom-css-input"
@@ -369,7 +367,7 @@ class Signuppage extends Component {
               </FormControl>
             </div>
             <div>
-             { authError ? <p style={{color: "white"}}>{authError}</p> : null }  
+              {authError ? <p style={{ color: "white" }}>{authError}</p> : null}
             </div>
           </div>
 
@@ -400,6 +398,7 @@ class Signuppage extends Component {
             <ChatBubble className={classes.iconchat} />
           </Button>
         </div>
+        {auth.redirect ? <Redirect to="/home" /> : ""}
       </div>
     );
   }
@@ -416,9 +415,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    signUp: (newUser) => dispatch(signUp(newUser))
+    signUp: newUser => dispatch(signUp(newUser))
   };
 };
 

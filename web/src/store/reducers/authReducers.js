@@ -37,7 +37,8 @@ const authReducers = (state = initState, action) => {
       console.log("Sign Up Success");
       return {
         ...state,
-        authError: null
+        authError: null,
+        redirect: true
       };
     case "SIGNUP_ERROR":
       console.log("Sign Up Error");

@@ -20,17 +20,12 @@ import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { signIn } from "../../../store/actions/authActions";
 import Socmed from "./Socmed/Socmed";
+import { Redirect } from "react-router-dom";
 
 const styles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
-  },
-  dense: {
-    marginTop: 19
-  },
-  menu: {
-    width: 200
   },
   fab: {
     margin: theme.spacing.unit * 2
@@ -231,13 +226,13 @@ class Loginpage extends Component {
   render() {
     const { classes } = this.props;
     const { passwordIsMasked } = this.state;
-    const { authError } = this.props;
+    const { authError, redirect } = this.props;
     return (
       <div className="home">
         <div className="container">
           <img
             src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
-            srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
+            srcSet="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
             width="171"
             height="50"
             alt="Moretrash Logo"
@@ -363,11 +358,11 @@ class Loginpage extends Component {
               </Grid>
             </Grid>
           </div>
- 
+
           <div style={{ textAlign: "center" }}>
             <h4 style={{ color: "#999" }}>
               Belum Punya Akun?{" "}
-              <a href="/signup" style={{ color: "white", fontSize: '19px' }}>
+              <a href="/signup" style={{ color: "white", fontSize: "19px" }}>
                 Sign Up
               </a>
             </h4>
@@ -391,12 +386,14 @@ class Loginpage extends Component {
           <Button
             variant="fab"
             id="button-daftar"
-            color="#00c43e"
+            color="primary"
+            
             className={classes.absolute}
           >
             <ChatBubble className={classes.iconchat} />
           </Button>
         </div>
+        {redirect ? <Redirect to="/home" /> : ""}
       </div>
     );
   }
@@ -409,7 +406,7 @@ Loginpage.propTypes = {
 const mapDispatchToProps = (dispatch, props) => {
   console.log(props);
   return {
-    signIn: creds => dispatch(signIn(creds)),
+    signIn: creds => dispatch(signIn(creds))
   };
 };
 
@@ -417,7 +414,7 @@ const mapStateToProps = state => {
   console.log(state);
   return {
     authError: state.auth.authError,
-    redirectLogin: state.auth.redirect,
+    redirect: state.auth.redirect,
     auth: state.firebase.auth
   };
 };

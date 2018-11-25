@@ -25,7 +25,7 @@ class Header extends Component {
       <AppBar position="static" color="default" style={{ backgroundColor : "#559351",paddingBottom: '13px'}}>
         <Toolbar>
         <div>
-          <img src={Logomoretrash} srcset={Logomoretrash} width="245" height="61" alt="Moretrash Logo" retina_logo_url="" className="fusion-standard-logo" style={{display: "block",
+          <img src={Logomoretrash} srcSet={Logomoretrash} width="245" height="61" alt="Moretrash Logo" retina_logo_url="" className="fusion-standard-logo" style={{display: "block",
     margin: "0 auto", marginTop: '11px'}}   />
           </div>
         </Toolbar>

@@ -12,6 +12,18 @@ export const removeOrder = (id) => {
     }
 };
 
+export const keepDataInLocalState = (order) => {
+    return (dispatch, getState) => {
+        dispatch({ type: 'ADD_DATA', order })
+    }
+}
+
+
+export const DeleteDataStep = (order) => {
+    return (dispatch, getState) => {
+        dispatch({ type: 'DELETE_DATA', order })
+    }
+  };
 
 export const createOrder = (order) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
