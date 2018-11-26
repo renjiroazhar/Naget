@@ -1,10 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  withStyles,
-  MuiThemeProvider,
-  createMuiTheme
-} from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -17,13 +13,13 @@ import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import ArrowRightSharp from "@material-ui/icons/ArrowRightSharp";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import "./style/style.css";
-import green from "@material-ui/core/colors/green";
+import { connect } from "react-redux";
+import firebase from "../../../../../../services/firebaseConfig";
+import { editProfile } from '../../../../../../store/actions/profileActions';
 
 const styles = theme => ({
   appBar: {
@@ -72,18 +68,6 @@ const styles = theme => ({
   }
 });
 
-const theme = createMuiTheme({
-  palette: {
-    primary: green
-  },
-  typography: {
-    useNextVariants: true
-  },
-  eye: {
-    cursor: "pointer"
-  }
-});
-
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
@@ -93,7 +77,7 @@ class EditProfil extends React.Component {
     open: false,
     name: "",
     address: "",
-    phone: 0,
+    phone: 0
   };
 
   handleClickOpen = () => {
@@ -110,19 +94,61 @@ class EditProfil extends React.Component {
     this.setState({ open: false });
   };
 
+  editProfile = () => {
+    const { auth } = this.props;
+    this.props.editProfile(this.state, auth.uid)
+  }
+
+  handleSave = () => {
+    this.editProfile();
+    this.handleClose();
+  }
+
+  componentDidMount() {
+    const { auth } = this.props;
+    const ref = firebase
+      .firestore()
+      .collection("users")
+      .doc(auth.uid);
+    ref.get().then(doc => {
+      if (doc.exists) {
+        const userData = doc.data();
+        this.setState({
+          key: doc.id,
+          name: userData.name,
+          address: userData.address,
+          phone: userData.phone
+        });
+      } else {
+        console.log("No such document!");
+      }
+    });
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes, profile, auth } = this.props;
     return (
       <div>
         <List className={classes.list} style={{ paddingBottom: "20px" }}>
           <ListItem button onClick={this.handleClickOpen}>
-            <ListItemText style={{ float: "left" }} component="p">
-              Edit Profil
-            </ListItemText>
+            <ListItemText
+              style={{ float: "left" }}
+              primary={profile.name ? profile.name : auth.displayName}
+              secondary={auth.email}
+            />
             <ListItemSecondaryAction>
-              <ListItemIcon>
-                <ArrowRightSharp />
-              </ListItemIcon>
+              <p
+                style={{
+                  margin: "20px",
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                  color: "#1abc9c"
+                }}
+                className={classes.editText}
+                onClick={this.handleClickOpen}
+              >
+                Edit
+              </p>
             </ListItemSecondaryAction>
           </ListItem>
         </List>
@@ -144,6 +170,9 @@ class EditProfil extends React.Component {
               <Typography variant="h6" color="inherit" className={classes.flex}>
                 Edit Profil
               </Typography>
+              <Button color="inherit" onClick={this.handleSave}>
+                Save
+              </Button>
             </Toolbar>
           </AppBar>
           <div style={{ textAlign: "center", marginTop: "20px" }}>
@@ -165,10 +194,11 @@ class EditProfil extends React.Component {
                 id="name"
                 type="text"
                 onChange={this.handleChange}
+                value={this.state.name}
               />
             </FormControl>
             <br />
-            
+
             <FormControl className="margin-form">
               <InputLabel
                 htmlFor="custom-css-input"
@@ -187,6 +217,7 @@ class EditProfil extends React.Component {
                 id="phone"
                 type="text"
                 onChange={this.handleChange}
+                value={this.state.phone}
               />
             </FormControl>
             <br />
@@ -208,24 +239,9 @@ class EditProfil extends React.Component {
                 id="address"
                 type="text"
                 onChange={this.handleChange}
+                value={this.state.address}
               />
             </FormControl>
-            <br />
-            <br />
-            <br />
-            <div className="login-button">
-              <MuiThemeProvider theme={theme}>
-                <Button
-                  variant="extendedFab"
-                  color="primary"
-                  className={classes.margin}
-                  size="large"
-                  onClick={this.handleSubmit}
-                >
-                  Edit Profil
-                </Button>
-              </MuiThemeProvider>
-            </div>
           </div>
         </Dialog>
       </div>
@@ -237,4 +253,21 @@ EditProfil.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(EditProfil);
+const mapStateToProps = state => {
+  const id = state.firebase.auth.uid;
+  const users = state.firestore.data.users;
+  const user = users ? users[id] : null;
+  return {
+    auth: state.firebase.auth,
+    profile: state.firebase.profile,
+    userdata: user
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    editProfile: (userdata, id) => dispatch(editProfile(userdata, id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(EditProfil));

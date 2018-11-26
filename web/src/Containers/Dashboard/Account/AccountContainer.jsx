@@ -16,7 +16,7 @@ import Stars from "@material-ui/icons/Stars";
 import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { signOut } from "../../../store/actions/authActions";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import EditProfil from "./AccountEdit/Dialog/EditProfil";
 
 const styles = theme => ({
   text: {
@@ -107,9 +107,28 @@ const theme = createMuiTheme({
   }
 });
 
+
 class AccountContainer extends Component {
   state = {
+    open: false,
+    name: "",
+    address: "",
+    phone: 0,
     redirect: false
+  };
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
   };
 
   logout = () => {
@@ -121,75 +140,13 @@ class AccountContainer extends Component {
   };
 
   render() {
-    const { classes, profile, auth } = this.props;
+    const { classes } = this.props;
 
     return (
       <div>
         {/* First Card */}
         <div style={{ marginTop: "70px" }}>
-          <center>
-            <List className={classes.list} style={{ paddingBottom: "20px" }}>
-              <ListItem>
-                <div style={{ paddingBottom: '20px', color: "#1abc9c"}}>
-                  
-                
-                  <ListItemSecondaryAction>
-                   <Link to="/edit">
-                    <p
-                      style={{
-                        margin: '20px',
-                        cursor: "pointer",
-                        fontWeight: "bold",
-                        color: "#1abc9c"
-                      }}
-                      className={classes.editText}
-                    >
-                      Edit
-                    </p>
-                    </Link>
-                  </ListItemSecondaryAction>
-                </div>
-              </ListItem>
-              <div style={{ clear: "both" }}>
-                <ListItem>
-                  <ListItemText style={{ float: "left" }} component="p">
-                    Nama Lengkap
-                  </ListItemText>
-                  <ListItemSecondaryAction>
-                    <ListItemText
-                      style={{
-                        float: "right",
-                        textAlign: "right",
-                        color: "#777777"
-                      }}
-                      component="p"
-                    >
-                      {profile.name ? (profile.name): (auth.displayName)}
-                    </ListItemText>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              </div>
-              <div>
-                <ListItem>
-                  <ListItemText style={{ float: "left" }} component="p">
-                    Email
-                  </ListItemText>
-                  <ListItemSecondaryAction>
-                    <ListItemText
-                      style={{
-                        float: "right",
-                        color: "#777777",
-                        textAlign: "right"
-                      }}
-                      component="p"
-                    >
-                      {auth.email}
-                    </ListItemText>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              </div>
-            </List>
-          </center>
+          <EditProfil />
         </div>
         {/* End Of First Card */}
 
@@ -244,7 +201,7 @@ AccountContainer.propTypes = {
 const mapStateToProps = state => {
   return {
     profile: state.firebase.profile,
-    auth: state.firebase.auth,
+    auth: state.firebase.auth
   };
 };
 
