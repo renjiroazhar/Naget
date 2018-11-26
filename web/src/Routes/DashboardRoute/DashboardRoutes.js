@@ -38,11 +38,6 @@ const AccountContainer = Loadable({
   loading: loading
 });
 
-const AccountEdit = Loadable({
-  loader: () => import("../../Containers/Dashboard/Account/AccountEdit"),
-  loading: loading
-});
-
 const StepLogin = Loadable({
   loader: () => import("../../Containers/Dashboard/StepLogin/Checkout"),
   loading: loading
@@ -64,7 +59,6 @@ class DashboardRoutes extends Component {
     return (
       <div>
         <div>
-          <Route path="/edit" component={AccountEdit} />
           <Route path="/pick-trash" component={StepLogin} />
           <Header />
           <Route exact path="/home" component={HomeContainer} />
