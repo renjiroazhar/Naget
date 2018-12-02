@@ -38,7 +38,6 @@ const styles = theme => ({
   cssFocused: {},
   cssUnderline: {
     width: "100%",
-    maxWidth: "345px",
     borderColor: "#fff",
     color: "#000",
     borderBottomColor: "#000000",
@@ -65,6 +64,9 @@ const styles = theme => ({
       backgroundColor: "#f7f7f7",
       color: "#00c43e"
     }
+  },
+  form : {
+    textAlign: "center"
   }
 });
 
@@ -77,7 +79,7 @@ class EditProfil extends React.Component {
     open: false,
     name: "",
     address: "",
-    phone: 0
+    phone: ""
   };
 
   handleClickOpen = () => {
@@ -176,7 +178,7 @@ class EditProfil extends React.Component {
             </Toolbar>
           </AppBar>
           <div style={{ textAlign: "center", marginTop: "20px" }}>
-            <FormControl className="margin-form">
+            <FormControl style={{width: "90%"}}>
               <InputLabel
                 htmlFor="custom-css-input"
                 FormLabelClasses={{
@@ -199,7 +201,7 @@ class EditProfil extends React.Component {
             </FormControl>
             <br />
 
-            <FormControl className="margin-form">
+            <FormControl style={{width: "90%"}}>
               <InputLabel
                 htmlFor="custom-css-input"
                 FormLabelClasses={{
@@ -221,7 +223,7 @@ class EditProfil extends React.Component {
               />
             </FormControl>
             <br />
-            <FormControl className="margin-form">
+            <FormControl style={{width: "90%"}}>
               <InputLabel
                 htmlFor="custom-css-input"
                 FormLabelClasses={{

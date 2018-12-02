@@ -2,9 +2,7 @@
   text-align: center;
   overflow: hidden;
   height: 100%;
-  flex-grow: 1;
   display: flex;
-  flex: 1;
   background-color: #282c34;
   width: -webkit-fill-available;
   margin: 0 auto;
@@ -108,14 +106,14 @@
 @media (-webkit-min-device-pixel-ratio: 2),
 (min-resolution: 192dpi) and (device-width: 1440px) and (orientation: portrait) {
   .container {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     top: 0;
     text-align: center;
   }
 
   .home {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     text-align: center;
   }
@@ -152,14 +150,14 @@
 @media (-webkit-min-device-pixel-ratio: 2),
 (min-resolution: 192dpi) and (device-width: 1440px) and (orientation: portrait) {
   .container {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     top: 0;
     text-align: center;
   }
 
   .home {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     text-align: center;
   }
@@ -185,14 +183,14 @@
 @media (min-height : 570px) and (min-width : 320px) and (-webkit-min-device-pixel-ratio: 2) {
 
   .container {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     top: 0;
     text-align: center;
   }
 
   .home {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     text-align: center;
   }
@@ -229,14 +227,14 @@
 @media (min-height : 600px) and (device-width : 375px) and (-webkit-min-device-pixel-ratio: 2) {
 
   .container {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     top: 0;
     text-align: center;
   }
 
   .home {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     text-align: center;
   }
@@ -263,14 +261,14 @@
 @media (min-height : 600px) and (device-width : 425px) and (-webkit-min-device-pixel-ratio: 2) {
 
   .container {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     top: 0;
     text-align: center;
   }
 
   .home {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     text-align: center;
   }
@@ -297,14 +295,14 @@
 @media (min-height : 600px) and (device-width : 1024px) and (-webkit-min-device-pixel-ratio: 2) {
 
   .container {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     top: 0;
     text-align: center;
   }
 
   .home {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     text-align: center;
   }
@@ -330,14 +328,14 @@
 @media (min-height : 600px) and (device-width : 1440px) and (-webkit-min-device-pixel-ratio: 2) {
 
   .container {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     top: 0;
     text-align: center;
   }
 
   .home {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     text-align: center;
   }
@@ -363,14 +361,14 @@
 @media (min-height : 600px) and (device-width : 2560px) and (-webkit-min-device-pixel-ratio: 2) {
 
   .container {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     top: 0;
     text-align: center;
   }
 
   .home {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     text-align: center;
   }
@@ -399,14 +397,14 @@
 @media (min-height : 600px) and (device-width : 411px) and (-webkit-min-device-pixel-ratio: 2) {
 
   .container {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     top: 0;
     text-align: center;
   }
 
   .home {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     text-align: center;
   }
@@ -432,14 +430,14 @@
 @media (min-height : 600px) and (device-width : 414px) and (-webkit-min-device-pixel-ratio: 2) {
 
   .container {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     top: 0;
     text-align: center;
   }
 
   .home {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     text-align: center;
   }
@@ -515,14 +513,14 @@
 @media (min-height : 600px) and (device-width : 768px) and (-webkit-min-device-pixel-ratio: 2) {
 
   .container {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     top: 0;
     text-align: center;
   }
 
   .home {
-    height: 100px;
+    height: 100%;
     width: -webkit-fill-available;
     text-align: center;
   }
