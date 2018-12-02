@@ -1,0 +1,8 @@
+{
+    "emmet.showAbbreviationSuggestions": true,
+    "prettier.eslintIntegration": true,
+    "prettier.stylelintIntegration": true,
+    "prettier.singleQuote": true,
+    "prettier.useTabs": true,
+    "editor.formatOnSave": true
+}
