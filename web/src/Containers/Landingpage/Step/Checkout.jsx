@@ -151,27 +151,27 @@ class Checkout extends React.Component {
 										</Typography>
 									</React.Fragment>
 								) : (
-									<React.Fragment>
-										{getStepContent(activeStep)}
-										<div>
-											{activeStep === steps.length - 1 ? (
-												<div>
-													<Button
-														variant="contained"
-														color="primary"
-														onClick={this.handleNext}
-														className={classes.button}
-														style={{ float: 'right' }}
-													>
-														Place order
+										<React.Fragment>
+											{getStepContent(activeStep)}
+											<div>
+												{activeStep === steps.length - 1 ? (
+													<div>
+														<Button
+															variant="contained"
+															color="primary"
+															onClick={this.handleNext}
+															className={classes.button}
+															style={{ float: 'right', marginTop: '30px' }}
+														>
+															Proses Sekarang
 													</Button>
-												</div>
-											) : (
-												''
-											)}
-										</div>
-									</React.Fragment>
-								)}
+													</div>
+												) : (
+														''
+													)}
+											</div>
+										</React.Fragment>
+									)}
 							</React.Fragment>
 						</Paper>
 					</main>

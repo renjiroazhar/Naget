@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import Camera from 'react-camera';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -45,7 +46,33 @@ const styles = theme => ({
 	}
 });
 
+const style = {
+	preview: {
+		position: 'relative',
+	},
+	captureContainer: {
+		display: 'flex',
+		position: 'absolute',
+		justifyContent: 'center',
+		zIndex: 1,
+		bottom: 0,
+		width: '100%'
+	},
+	captureButton: {
+		backgroundColor: '#fff',
+		borderRadius: '50%',
+		height: 56,
+		width: 56,
+		color: '#000',
+		margin: 20
+	},
+	captureImage: {
+		width: '100%',
+	}
+};
+
 class SecondStep extends React.Component {
+
 	state = {
 		time: '',
 		filenames: [],
@@ -53,6 +80,19 @@ class SecondStep extends React.Component {
 		isUploading: false,
 		uploadProgress: 0
 	};
+
+	constructor(props) {
+		super(props);
+		this.takePicture = this.takePicture.bind(this);
+	}
+
+	takePicture() {
+		this.camera.capture()
+			.then(blob => {
+				this.img.src = URL.createObjectURL(blob);
+				this.img.onload = () => { URL.revokeObjectURL(this.src); }
+			})
+	}
 
 	handleChange = value => {
 		this.setState({
@@ -109,6 +149,29 @@ class SecondStep extends React.Component {
 		console.log(this.state);
 	};
 
+	displayPicture = e => {
+		const files = e.target.files;
+
+		for (var i = 0; i < files.length; i++) {
+			var file = files[i];
+			//Only pics
+			if (!file.type.match("image")) continue;
+
+			var picReader = new FileReader();
+			picReader.addEventListener("load", e => {
+				var picFile = e.target;
+				this.setState({
+					pictureURLs: picReader.result,
+					pictures: picFile
+				});
+			});
+			//Read the image
+			picReader.readAsDataURL(file);
+		}
+
+		console.log(file);
+	};
+
 	render() {
 		const { secondary, time } = this.state;
 		const { classes } = this.props;
@@ -163,7 +226,7 @@ class SecondStep extends React.Component {
 										color: 'white',
 										padding: 10,
 										borderRadius: 4,
-										pointer: 'cursor'
+										pointer: 'cursor',
 									}}
 								>
 									Silakan Masukkan Gambar
@@ -177,6 +240,27 @@ class SecondStep extends React.Component {
 										onProgress={this.handleProgress}
 									/>
 								</label>
+
+								<div style={style.container}>
+									<Camera
+										style={style.preview}
+										ref={(cam) => {
+											this.camera = cam;
+										}}
+									>
+										<div style={style.captureContainer} onClick={this.takePicture}>
+											<div style={style.captureButton} onClick={this.state.downloadURLs} />
+										</div>
+									</Camera>
+									<img
+										style={style.captureImage}
+										ref={(img) => {
+											this.img = img;
+										}}
+										alt=""
+									/>
+								</div>
+
 								<p>Progress: {`${this.state.uploadProgress} %`}</p>
 
 								<p>Filenames: {this.state.filenames.join(', ')}</p>
@@ -238,15 +322,10 @@ class SecondStep extends React.Component {
 	}
 }
 
+
+
 SecondStep.propTypes = {
-	classes: PropTypes.object.isRequired
+	classes: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => {
-	console.log(state);
-	return {
-		order: state.order
-	};
-};
-
-export default connect(mapStateToProps)(withStyles(styles)(SecondStep));
+export default withStyles(styles)(SecondStep);
