@@ -218,6 +218,20 @@ class PaymentForm extends React.Component {
                     </Grid>
 
                     <Grid item xs={12}>
+                        <List>
+                            <ListItem>
+                                <ListItemText
+                                    type="textArea"
+                                    primary="Catatan"
+                                    secondary={secondary ? 'Secondary text' : null}
+                                />
+                            </ListItem>
+
+                            <hr />
+                        </List>
+                    </Grid>
+
+                    <Grid item xs={12}>
                         <div>
                             <div style={{ textAlign: 'center' }}>
                                 <label
