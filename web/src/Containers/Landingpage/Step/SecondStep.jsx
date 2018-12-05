@@ -48,7 +48,7 @@ const styles = theme => ({
 
 const style = {
 	preview: {
-		position: 'relative',
+		position: 'relative'
 	},
 	captureContainer: {
 		display: 'flex',
@@ -67,12 +67,11 @@ const style = {
 		margin: 20
 	},
 	captureImage: {
-		width: '100%',
+		width: '100%'
 	}
 };
 
 class SecondStep extends React.Component {
-
 	state = {
 		time: '',
 		filenames: [],
@@ -84,14 +83,16 @@ class SecondStep extends React.Component {
 	constructor(props) {
 		super(props);
 		this.takePicture = this.takePicture.bind(this);
+		this.basePath = 'images';
 	}
 
 	takePicture() {
-		this.camera.capture()
-			.then(blob => {
-				this.img.src = URL.createObjectURL(blob);
-				this.img.onload = () => { URL.revokeObjectURL(this.src); }
-			})
+		this.camera.capture().then(blob => {
+			this.img.src = URL.createObjectURL(blob);
+			this.img.onload = () => {
+				URL.revokeObjectURL(this.src);
+			};
+		});
 	}
 
 	handleChange = value => {
@@ -149,28 +150,33 @@ class SecondStep extends React.Component {
 		console.log(this.state);
 	};
 
-	displayPicture = e => {
-		const files = e.target.files;
-
-		for (var i = 0; i < files.length; i++) {
-			var file = files[i];
-			//Only pics
-			if (!file.type.match("image")) continue;
-
-			var picReader = new FileReader();
-			picReader.addEventListener("load", e => {
-				var picFile = e.target;
-				this.setState({
-					pictureURLs: picReader.result,
-					pictures: picFile
-				});
-			});
-			//Read the image
-			picReader.readAsDataURL(file);
-		}
-
-		console.log(file);
+	deleteImage = name => {
+		const storageRef = firebase.storage().ref();
+		storageRef.child(`${this.basePath}/${name}`).delete();
 	};
+
+	// displayPicture = e => {
+	// 	const files = e.target.files;
+
+	// 	for (var i = 0; i < files.length; i++) {
+	// 		var file = files[i];
+	// 		//Only pics
+	// 		if (!file.type.match("image")) continue;
+
+	// 		var picReader = new FileReader();
+	// 		picReader.addEventListener("load", e => {
+	// 			var picFile = e.target;
+	// 			this.setState({
+	// 				pictureURLs: picReader.result,
+	// 				pictures: picFile
+	// 			});
+	// 		});
+	// 		//Read the image
+	// 		picReader.readAsDataURL(file);
+	// 	}
+
+	// 	console.log(file);
+	// };
 
 	render() {
 		const { secondary, time } = this.state;
@@ -226,7 +232,7 @@ class SecondStep extends React.Component {
 										color: 'white',
 										padding: 10,
 										borderRadius: 4,
-										pointer: 'cursor',
+										pointer: 'cursor'
 									}}
 								>
 									Silakan Masukkan Gambar
@@ -244,17 +250,23 @@ class SecondStep extends React.Component {
 								<div style={style.container}>
 									<Camera
 										style={style.preview}
-										ref={(cam) => {
+										ref={cam => {
 											this.camera = cam;
 										}}
 									>
-										<div style={style.captureContainer} onClick={this.takePicture}>
-											<div style={style.captureButton} onClick={this.state.downloadURLs} />
+										<div
+											style={style.captureContainer}
+											onClick={this.takePicture}
+										>
+											<div
+												style={style.captureButton}
+												onClick={this.state.downloadURLs}
+											/>
 										</div>
 									</Camera>
 									<img
 										style={style.captureImage}
-										ref={(img) => {
+										ref={img => {
 											this.img = img;
 										}}
 										alt=""
@@ -268,14 +280,17 @@ class SecondStep extends React.Component {
 							<div>
 								{this.state.downloadURLs.map((downloadURL, i) => {
 									return (
-										<img
-											key={i}
-											alt=""
-											style={{ padding: '15px' }}
-											height="150px"
-											width="150px"
-											src={downloadURL}
-										/>
+										<div>
+											{/* <button onClick={()=>{this.deleteImage(this.)}}>Hapus</button> */}
+											<img
+												key={i}
+												alt=""
+												style={{ padding: '15px' }}
+												height="150px"
+												width="150px"
+												src={downloadURL}
+											/>
+										</div>
 									);
 								})}
 							</div>
@@ -322,10 +337,11 @@ class SecondStep extends React.Component {
 	}
 }
 
-
-
 SecondStep.propTypes = {
-	classes: PropTypes.object.isRequired,
+	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SecondStep);
+export default connect(
+	null,
+	null
+)(withStyles(styles)(SecondStep));
