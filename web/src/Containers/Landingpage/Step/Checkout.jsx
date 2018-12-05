@@ -13,6 +13,8 @@ import SecondStep from './SecondStep';
 import Review from './Review';
 import ThirdStep from './ThirdStep';
 import Header from '../../../Components/Header';
+import { connect } from 'react-redux';
+import { createOrder } from '../../../store/actions/orderActions';
 
 const styles = theme => ({
 	appBar: {
@@ -32,7 +34,8 @@ const styles = theme => ({
 	paper: {
 		marginTop: theme.spacing.unit * 3,
 		marginBottom: theme.spacing.unit * 3,
-		padding: theme.spacing.unit * 2,
+		padding: theme.spacing.unit * 5,
+		width: '100%',
 		[theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
 			marginTop: theme.spacing.unit * 6,
 			marginBottom: theme.spacing.unit * 6,
@@ -43,7 +46,7 @@ const styles = theme => ({
 		padding: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 5}px`
 	},
 	button: {
-		marginTop: theme.spacing.unit * -7
+		marginTop: theme.spacing.unit * -4
 	}
 });
 
@@ -151,27 +154,27 @@ class Checkout extends React.Component {
 										</Typography>
 									</React.Fragment>
 								) : (
-										<React.Fragment>
-											{getStepContent(activeStep)}
-											<div>
-												{activeStep === steps.length - 1 ? (
-													<div>
-														<Button
-															variant="contained"
-															color="primary"
-															onClick={this.handleNext}
-															className={classes.button}
-															style={{ float: 'right', marginTop: '30px' }}
-														>
-															Proses Sekarang
+									<React.Fragment>
+										{getStepContent(activeStep)}
+										<div>
+											{activeStep === steps.length - 1 ? (
+												<div>
+													<Button
+														variant="contained"
+														color="primary"
+														onClick={this.handleNext}
+														className={classes.button}
+														style={{ float: 'right' }}
+													>
+														Proses Sekarang
 													</Button>
-													</div>
-												) : (
-														''
-													)}
-											</div>
-										</React.Fragment>
-									)}
+												</div>
+											) : (
+												''
+											)}
+										</div>
+									</React.Fragment>
+								)}
 							</React.Fragment>
 						</Paper>
 					</main>
@@ -185,4 +188,15 @@ Checkout.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Checkout);
+const mapDispatchToProps = dispatch => {
+	return {
+		createOrder: order => {
+			dispatch(createOrder(order));
+		}
+	};
+};
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(withStyles(styles)(Checkout));
