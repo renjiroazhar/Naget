@@ -1,34 +1,24 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import './App.css';
-import Loadable from "react-loadable";
-import Lottie from 'lottie-react-web';
-import Planet from './planet_rotating.json';
-
-const loading = () => (
-  <div style={{ marginTop: "200px" }}>
-    <Lottie 
-    width="200px" 
-    height="200px"
-        options={{
-          animationData: Planet
-        }}
-      />
-  </div>
-);
-
-const Routes = Loadable({
-  loader: () => import("./Routes/AuthenticationRoute"),
-  loading: loading
-});
+import DashboardRoutes from './routes';
+import WrappedNormalLoginForm from './containers/Landingpage/LoginContainer';
+import { connect } from 'react-redux';
 
 class App extends Component {
-  render() {
-    return (
-      <div>
-        <Routes />
-      </div>
-    );
-  }
+	render() {
+		const { auth } = this.props;
+		return auth.uid ? (
+			<DashboardRoutes updateLogout={this.updateLogoutState} />
+		) : (
+			<WrappedNormalLoginForm updateLogin={this.updateLoginState} />
+		);
+	}
 }
 
-export default App;
+const mapStateToProps = state => {
+	console.log(state);
+	return {
+		auth: state.firebase.auth
+	};
+};
+export default connect(mapStateToProps)(App);

@@ -30,14 +30,10 @@ const styles = theme => ({
 });
 
 class OrdersContainer extends React.Component {
-	constructor(props) {
-		super(props);
-		this.ref = firebase.firestore().collection('orders');
-		this.unsubscribe = null;
-	}
 	state = {
 		value: 0,
-		boards: []
+		orders: [],
+		ref: firebase.firestore().collection('orders')
 	};
 
 	handleChange = (event, value) => {
@@ -49,25 +45,17 @@ class OrdersContainer extends React.Component {
 	};
 
 	onCollectionUpdate = querySnapshot => {
-		const boards = [];
 		querySnapshot.forEach(doc => {
-			const { title, description, author } = doc.data();
-			boards.push({
-				key: doc.id,
-				doc, // DocumentSnapshot
-				title,
-				description,
-				author
+			const data = doc.data();
+			this.setState({
+				orders: data
 			});
-		});
-		this.setState({
-			boards
 		});
 		console.log(this.state);
 	};
 
-	componentDidMount() {
-		this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+	async componentDidMount() {
+		await this.state.ref.onSnapshot(this.onCollectionUpdate);
 	}
 
 	render() {
