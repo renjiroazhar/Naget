@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import BottomNavbar from '../components/BottomNavbar';
-import AccountContainer from '../containers/Dashboard/Account/AccountContainer';
+import BottomNavbar from '../../components/BottomNavbar';
+import AccountContainer from '../../containers/Dashboard/Account/AccountContainer';
 import Loadable from 'react-loadable';
 import { Route, Switch } from 'react-router';
 import Lottie from 'lottie-react-web';
-import Planet from './json/planet_rotating.json';
+import Planet from '../json/planet_rotating.json';
 
 const loading = () => (
 	<div style={{ marginTop: '200px' }}>
@@ -19,22 +19,17 @@ const loading = () => (
 );
 
 const Home = Loadable({
-	loader: () => import('../containers/Dashboard/Home'),
+	loader: () => import('../../containers/Dashboard/Home'),
 	loading: loading
 });
 
 const History = Loadable({
-	loader: () => import('../containers/Dashboard/History'),
-	loading: loading
-});
-
-const ResetPassword = Loadable({
-	loader: () => import('../containers/Dashboard/Account/ResetPassword'),
+	loader: () => import('../../containers/Dashboard/History'),
 	loading: loading
 });
 
 const InputAnggaran = Loadable({
-	loader: () => import('../containers/Dashboard/Account/InputAnggaran'),
+	loader: () => import('../../containers/Dashboard/Account/InputAnggaran'),
 	loading: loading
 });
 
@@ -95,11 +90,7 @@ class DashboardRoutes extends Component {
 								path="/account"
 								render={() => <AccountContainer updateLogout={this.logout} />}
 							/>
-							<Route
-								exact
-								path="/account/reset_password"
-								component={ResetPassword}
-							/>
+
 							<Route
 								exact
 								path="/account/input_anggaran"

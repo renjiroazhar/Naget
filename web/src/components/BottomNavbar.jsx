@@ -49,7 +49,7 @@ const BottomNavbar = props => {
 					// badge={"new"}
 					selected={props.selectedTab === 'help'}
 					onPress={() => {
-						props.history.push('/add_order');
+						props.history.push('/help');
 						props.onChangeTab('help');
 					}}
 				/>
