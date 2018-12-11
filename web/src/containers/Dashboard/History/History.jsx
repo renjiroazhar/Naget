@@ -13,7 +13,9 @@ class History extends Component {
 				}}
 			>
 				<Navbar style={{ display: 'block', position: 'fixed' }} />
-
+				<br />
+				<br />
+				<br />
 				<MonthlyContainer />
 			</div>
 		);

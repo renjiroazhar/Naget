@@ -100,7 +100,7 @@ class Signuppage extends Component {
 	};
 
 	render() {
-		const { signupError, redirect, classes } = this.props;
+		const { signupError, auth, classes } = this.props;
 		return (
 			<div>
 				<div className="background" />
@@ -313,7 +313,7 @@ class Signuppage extends Component {
 					</div>
 				</div>
 
-				{redirect ? <Redirect to="/home" /> : null}
+				{auth.redirect ? <Redirect to="/home" /> : null}
 			</div>
 		);
 	}
@@ -322,8 +322,9 @@ class Signuppage extends Component {
 const mapStateToProps = state => {
 	console.log(state);
 	return {
-		signupError: state.auth.signupError,
-		redirect: state.auth.redirect
+		auth: state.firebase.auth,
+		authError: state.auth.authError,
+		signupError: state.auth.signupError
 	};
 };
 

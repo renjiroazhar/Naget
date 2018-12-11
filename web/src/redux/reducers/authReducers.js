@@ -1,6 +1,7 @@
 const initState = {
 	authError: null,
 	redirect: null,
+	redirectSignup: null,
 	errMessage: null,
 	signupError: null
 };
@@ -53,8 +54,9 @@ const authReducers = (state = initState, action) => {
 			console.log('Sign Up Success');
 			return {
 				...state,
-				signupError: null,
-				redirect: true
+				authError: null,
+				redirect: true,
+				redirectSignup: true
 			};
 		case 'SIGNUP_ERROR':
 			console.log('Sign Up Error');
@@ -66,7 +68,7 @@ const authReducers = (state = initState, action) => {
 			console.log('Logout Success');
 			return {
 				...state,
-				redirect: false
+				redirect: null
 			};
 
 		default:

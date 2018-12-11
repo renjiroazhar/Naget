@@ -28,8 +28,8 @@ const History = Loadable({
 	loading: loading
 });
 
-const InputAnggaran = Loadable({
-	loader: () => import('../../containers/Dashboard/Account/InputAnggaran'),
+const Checkout = Loadable({
+	loader: () => import('../../containers/Dashboard/StepLogin/Checkout'),
 	loading: loading
 });
 
@@ -72,11 +72,6 @@ class DashboardRoutes extends Component {
 		});
 	};
 
-	logout = () => {
-		//client.logout();
-		this.props.updateLogout();
-	};
-
 	render() {
 		return (
 			<div>
@@ -85,17 +80,8 @@ class DashboardRoutes extends Component {
 						<Switch location={location}>
 							<Route exact path="/home" component={Home} />
 							<Route exact path="/history" component={History} />
-							<Route
-								exact
-								path="/account"
-								render={() => <AccountContainer updateLogout={this.logout} />}
-							/>
-
-							<Route
-								exact
-								path="/account/input_anggaran"
-								component={InputAnggaran}
-							/>
+							<Route path="/account" component={AccountContainer} />
+							<Route path="/form_login" component={Checkout} />
 						</Switch>
 					)}
 				/>

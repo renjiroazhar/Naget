@@ -21,7 +21,8 @@ class Navbar extends Component {
 						height: '60px',
 						position: 'fixed',
 						zIndex: '100',
-						width: '100%'
+						width: '100%',
+						top: 0
 					}}
 				>
 					<img
@@ -34,9 +35,6 @@ class Navbar extends Component {
 						className="fusion-standard-logo"
 					/>
 				</NavBar>
-				<br />
-				<br />
-				<br />
 			</div>
 		);
 	}

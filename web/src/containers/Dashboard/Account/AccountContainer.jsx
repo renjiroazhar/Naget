@@ -38,8 +38,14 @@ class AccountContainer extends Component {
 			<div>
 				<div style={{ backgroundColor: '#e7e7e7', minHeight: '100vh' }}>
 					<Navbar />
+					<br />
+					<br />
+					<br />
 					<EditProfil />
 					<Divider />
+					<br />
+					<Divider />
+
 					<GantiPassword />
 					<Divider />
 					<List>
@@ -53,6 +59,7 @@ class AccountContainer extends Component {
 						</Item>
 					</List>
 					<Divider />
+
 					<List>
 						<Item
 							thumb={<Icon type="star" theme="outlined" />}

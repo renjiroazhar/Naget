@@ -16,6 +16,11 @@ const loading = () => (
 	</div>
 );
 
+const Homepage = Loadable({
+	loader: () => import('../../containers/Landingpage/Homepage'),
+	loading: loading
+});
+
 const Loginpage = Loadable({
 	loader: () => import('../../containers/Landingpage/Loginpage'),
 	loading: loading
@@ -31,13 +36,20 @@ const Forgotpassword = Loadable({
 	loading: loading
 });
 
+const Checkout = Loadable({
+	loader: () => import('../../containers/Landingpage/Step/Checkout'),
+	loading: loading
+});
+
 class DashboardRoutes extends Component {
 	render() {
 		return (
 			<div>
-				<Route exact path="/" component={Loginpage} />
+				<Route exact path="/" component={Homepage} />
+				<Route exact path="/login" component={Loginpage} />
 				<Route exact path="/signup" component={Signuppage} />
 				<Route exact path="/forgot_password" component={Forgotpassword} />
+				<Route path="/form" component={Checkout} />
 			</div>
 		);
 	}

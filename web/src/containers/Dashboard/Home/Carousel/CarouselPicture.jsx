@@ -1,54 +1,136 @@
-import React, { Component } from 'react';
-import { Carousel } from 'antd-mobile';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import MobileStepper from '@material-ui/core/MobileStepper';
+import Button from '@material-ui/core/Button';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
+import Recycle from './image/svg/009-recycle.svg';
+import Recycling from './image/svg/011-recycling.svg';
+import Totebag from './image/svg/004-tote-bag.svg';
+import RecycleBin from './image/svg/012-recycle-bin.svg';
+import Green from './image/svg/025-green.svg';
+import './style/style.css';
 
-export default class CarouselPicture extends Component {
-	state = {
-		data: ['1', '2', '3'],
-		imgHeight: 176
-	};
-	componentDidMount() {
-		// simulate img loading
-		setTimeout(() => {
-			this.setState({
-				data: [
-					'AiyWuByWklrrUDlFignR',
-					'TekJlZRVCjLFexlOCuWn',
-					'IJOtIlfsYdTyaDTRVrLI'
-				]
-			});
-		}, 100);
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
+const tutorialSteps = [
+	{
+		imgPath: `${RecycleBin}`
+	},
+	{
+		imgPath: `${Recycling}`
+	},
+	{
+		imgPath: `${Green}`
+	},
+	{
+		imgPath: `${Recycle}`
+	},
+	{
+		imgPath: `${Totebag}`
 	}
+];
+
+const styles = theme => ({
+	root: {
+		maxWidth: 400,
+		flexGrow: 1
+	},
+	header: {
+		display: 'flex',
+		alignItems: 'center',
+		height: 50,
+		paddingLeft: theme.spacing.unit * 4,
+		backgroundColor: theme.palette.background.default
+	},
+	img: {
+		height: 150,
+		display: 'block',
+		maxWidth: 400,
+		overflow: 'hidden',
+		width: '100%'
+	}
+});
+
+class CarouselPicture extends React.Component {
+	state = {
+		activeStep: 0
+	};
+
+	handleNext = () => {
+		this.setState(prevState => ({
+			activeStep: prevState.activeStep + 1
+		}));
+	};
+
+	handleBack = () => {
+		this.setState(prevState => ({
+			activeStep: prevState.activeStep - 1
+		}));
+	};
+
+	handleStepChange = activeStep => {
+		this.setState({ activeStep });
+	};
+
 	render() {
+		const { classes, theme } = this.props;
+		const { activeStep } = this.state;
+		const maxSteps = tutorialSteps.length;
+
 		return (
-			<Carousel
-				autoplay
-				infinite
-				beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-				afterChange={index => console.log('slide to', index)}
-			>
-				{this.state.data.map(val => (
-					<a
-						key={val}
-						href="http://www.alipay.com"
-						style={{
-							display: 'inline-block',
-							width: '100%',
-							height: this.state.imgHeight
-						}}
-					>
-						<img
-							src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
-							alt=""
-							style={{ width: '100%', verticalAlign: 'top' }}
-							onLoad={() => {
-								// fire window resize event to change height
-								window.dispatchEvent(new Event('resize'));
-								this.setState({ imgHeight: 'auto' });
-							}}
+			<div className={classes.root}>
+				<AutoPlaySwipeableViews
+					axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+					index={activeStep}
+					onChangeIndex={this.handleStepChange}
+					enableMouseEvents
+				>
+					{tutorialSteps.map((step, index) => (
+						<div key={step.label}>
+							{Math.abs(activeStep - index) <= 2 ? (
+								<center>
+									<img
+										id="image-carousel"
+										className={classes.img}
+										src={step.imgPath}
+										alt={step.label}
+									/>
+								</center>
+							) : null}
+						</div>
+					))}
+				</AutoPlaySwipeableViews>
+				<MobileStepper
+					steps={maxSteps}
+					position="static"
+					activeStep={activeStep}
+					className={classes.mobileStepper}
+					style={{ backgroundColor: 'transparent' }}
+					nextButton={
+						<Button
+							size="small"
+							onClick={this.handleNext}
+							disabled={activeStep === maxSteps - 1}
 						/>
-					</a>
-				))}
-			</Carousel>
+					}
+					backButton={
+						<Button
+							size="small"
+							onClick={this.handleBack}
+							disabled={activeStep === 0}
+						/>
+					}
+				/>
+			</div>
 		);
 	}
 }
+
+CarouselPicture.propTypes = {
+	classes: PropTypes.object.isRequired,
+	theme: PropTypes.object.isRequired
+};
+
+export default withStyles(styles, { withTheme: true })(CarouselPicture);

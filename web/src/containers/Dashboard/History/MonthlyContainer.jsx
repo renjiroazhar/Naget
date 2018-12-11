@@ -34,6 +34,7 @@ export default class MonthlyContainer extends Component {
 	}
 
 	render() {
+		const { orders } = this.state;
 		return (
 			<div>
 				<div>
@@ -41,237 +42,30 @@ export default class MonthlyContainer extends Component {
 						HISTORY
 					</h2>
 				</div>
-				<List className="my-list">
-					<Item
-						arrow="horizontal"
-						thumb={
-							<img
-								src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-								alt=""
-								style={{
-									width: '50px',
-									height: '50px'
-								}}
-								width="50px"
-								height="50px"
-							/>
-						}
-						multipleLine
-						onClick={() => {}}
-					>
-						Title <Brief>subtitle</Brief>
-					</Item>
-				</List>
-				<List className="my-list">
-					<Item
-						arrow="horizontal"
-						thumb={
-							<img
-								src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-								alt=""
-								style={{
-									width: '50px',
-									height: '50px'
-								}}
-								width="50px"
-								height="50px"
-							/>
-						}
-						multipleLine
-						onClick={() => {}}
-					>
-						Title <Brief>subtitle</Brief>
-					</Item>
-				</List>
-				<List className="my-list">
-					<Item
-						arrow="horizontal"
-						thumb={
-							<img
-								src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-								alt=""
-								style={{
-									width: '50px',
-									height: '50px'
-								}}
-								width="50px"
-								height="50px"
-							/>
-						}
-						multipleLine
-						onClick={() => {}}
-					>
-						Title <Brief>subtitle</Brief>
-					</Item>
-				</List>
-				<List className="my-list">
-					<Item
-						arrow="horizontal"
-						thumb={
-							<img
-								src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-								alt=""
-								style={{
-									width: '50px',
-									height: '50px'
-								}}
-								width="50px"
-								height="50px"
-							/>
-						}
-						multipleLine
-						onClick={() => {}}
-					>
-						Title <Brief>subtitle</Brief>
-					</Item>
-				</List>
-				<List className="my-list">
-					<Item
-						arrow="horizontal"
-						thumb={
-							<img
-								src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-								alt=""
-								style={{
-									width: '50px',
-									height: '50px'
-								}}
-								width="50px"
-								height="50px"
-							/>
-						}
-						multipleLine
-						onClick={() => {}}
-					>
-						Title <Brief>subtitle</Brief>
-					</Item>
-				</List>
-				<List className="my-list">
-					<Item
-						arrow="horizontal"
-						thumb={
-							<img
-								src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-								alt=""
-								style={{
-									width: '50px',
-									height: '50px'
-								}}
-								width="50px"
-								height="50px"
-							/>
-						}
-						multipleLine
-						onClick={() => {}}
-					>
-						Title <Brief>subtitle</Brief>
-					</Item>
-				</List>
-				<List className="my-list">
-					<Item
-						arrow="horizontal"
-						thumb={
-							<img
-								src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-								alt=""
-								style={{
-									width: '50px',
-									height: '50px'
-								}}
-								width="50px"
-								height="50px"
-							/>
-						}
-						multipleLine
-						onClick={() => {}}
-					>
-						Title <Brief>subtitle</Brief>
-					</Item>
-				</List>
-				<List className="my-list">
-					<Item
-						arrow="horizontal"
-						thumb={
-							<img
-								src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-								alt=""
-								style={{
-									width: '50px',
-									height: '50px'
-								}}
-								width="50px"
-								height="50px"
-							/>
-						}
-						multipleLine
-						onClick={() => {}}
-					>
-						Title <Brief>subtitle</Brief>
-					</Item>
-				</List>
-				<List className="my-list">
-					<Item
-						arrow="horizontal"
-						thumb={
-							<img
-								src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-								alt=""
-								style={{
-									width: '50px',
-									height: '50px'
-								}}
-								width="50px"
-								height="50px"
-							/>
-						}
-						multipleLine
-						onClick={() => {}}
-					>
-						Title <Brief>subtitle</Brief>
-					</Item>
-				</List>
-				<List className="my-list">
-					<Item
-						arrow="horizontal"
-						thumb={
-							<img
-								src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-								alt=""
-								style={{
-									width: '50px',
-									height: '50px'
-								}}
-								width="50px"
-								height="50px"
-							/>
-						}
-						multipleLine
-						onClick={() => {}}
-					>
-						Title <Brief>subtitle</Brief>
-					</Item>
-				</List>
-				<List className="my-list">
-					<Item
-						arrow="horizontal"
-						thumb={
-							<img
-								src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-								alt=""
-								style={{
-									width: '50px',
-									height: '50px'
-								}}
-								width="50px"
-								height="50px"
-							/>
-						}
-						multipleLine
-						onClick={() => {}}
-					>
-						Title <Brief>subtitle</Brief>
-					</Item>
-				</List>
+				<div>
+					<List className="my-list">
+						<Item
+							arrow="horizontal"
+							thumb={
+								<img
+									src={orders.foto}
+									alt=""
+									style={{
+										width: '50px',
+										height: '50px'
+									}}
+									width="50px"
+									height="50px"
+								/>
+							}
+							multipleLine
+							onClick={() => {}}
+						>
+							{orders.nama} <Brief>{orders.status}</Brief>
+						</Item>
+					</List>
+				</div>
+
 				<List className="my-list">
 					<Item
 						arrow="horizontal"
