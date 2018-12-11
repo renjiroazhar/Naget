@@ -59,6 +59,7 @@ export const resetPassword = emailAddress => {
 			.sendPasswordResetEmail(emailAddress)
 			.then(() => {
 				dispatch({ type: 'RESET_PASSWORD_SUCCESS' });
+				console.log('email sending');
 			})
 			.catch(error => {
 				dispatch({ type: 'RESET_PASSWORD_ERROR', error });

@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import './style/style.css';
 import { connect } from 'react-redux';
 import { resetPassword } from '../../../redux/actions/profileActions';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
 	root: {
@@ -65,23 +62,28 @@ class Forgotpassword extends Component {
 					</hgroup>
 					<form onSubmit={this.handleSubmit}>
 						<div className="group">
-							<FormControl
-								className={classNames(classes.margin, classes.textField)}
-							>
-								<InputLabel htmlFor="adornment-password">Email</InputLabel>
+							<FormControl style={{ width: '90%' }}>
+								<InputLabel
+									htmlFor="custom-css-input"
+									FormLabelClasses={{
+										root: classes.cssLabel,
+										focused: classes.cssFocused
+									}}
+								>
+									Email
+								</InputLabel>
 								<Input
-									fullWidth
+									classes={{
+										underline: classes.cssUnderline
+									}}
 									id="email"
-									value={this.state.email}
+									type="email"
 									onChange={this.handleChange}
-									endAdornment={
-										<InputAdornment position="end">
-											<IconButton aria-label="Toggle password visibility" />
-										</InputAdornment>
-									}
+									value={this.state.email}
 								/>
 							</FormControl>
 						</div>
+						<br />
 						<button
 							type="button"
 							className="buttonui"
@@ -99,7 +101,7 @@ class Forgotpassword extends Component {
 								<p
 									style={{
 										textAlign: 'center',
-										color: '#000000',
+										color: 'red',
 										marginTop: '10px'
 									}}
 								>
@@ -107,7 +109,6 @@ class Forgotpassword extends Component {
 								</p>
 							) : null}
 						</div>
-
 						<br />
 					</form>
 
@@ -122,7 +123,6 @@ class Forgotpassword extends Component {
 }
 
 const mapStateToProps = state => {
-	console.log(state);
 	return {
 		resetErr: state.userprofile.resetErr
 	};

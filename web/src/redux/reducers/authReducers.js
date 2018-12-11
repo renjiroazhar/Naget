@@ -1,7 +1,8 @@
 const initState = {
 	authError: null,
 	redirect: null,
-	errMessage: null
+	errMessage: null,
+	signupError: null
 };
 
 const authReducers = (state = initState, action) => {
@@ -52,14 +53,14 @@ const authReducers = (state = initState, action) => {
 			console.log('Sign Up Success');
 			return {
 				...state,
-				authError: null,
+				signupError: null,
 				redirect: true
 			};
 		case 'SIGNUP_ERROR':
 			console.log('Sign Up Error');
 			return {
 				...state,
-				authError: action.err.message
+				signupError: action.err.message
 			};
 		case 'SIGNOUT_SUCCESS':
 			console.log('Logout Success');

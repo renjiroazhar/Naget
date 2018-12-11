@@ -1,3 +1,3 @@
-import DashboardRoutes from './DashboardRoutes';
+import DashboardRoutes from './DashboardRoutes/DashboardRoutes';
 
 export default DashboardRoutes;

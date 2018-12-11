@@ -3,30 +3,50 @@ import './style/style.css';
 import { connect } from 'react-redux';
 import { signIn } from '../../../redux/actions/authActions';
 import { Redirect, Link } from 'react-router-dom';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
-	root: {
-		display: 'flex',
-		flexWrap: 'wrap'
+	cssLabel: {
+		color: '#999',
+		'&$cssFocused': {
+			color: '#000000'
+		}
+	},
+	cssFocused: {},
+	cssUnderline: {
+		width: '100%',
+		borderColor: '#fff',
+		color: '#000',
+		borderBottomColor: '#000000',
+		'&:before': {
+			borderBottomColor: '#000000'
+		},
+		'&:after': {
+			borderBottomColor: '#000000'
+		},
+		'&:hover': {
+			borderBottomColor: '#000000'
+		}
 	},
 	margin: {
-		margin: theme.spacing.unit
+		margin: theme.spacing.unit,
+		width: '100%',
+		fontWeight: 400,
+		color: 'white',
+		backgroundColor: '#00c43e',
+		textDecoration: 'none',
+		borderRadius: 0,
+		'&:hover': {
+			backgroundColor: '#f7f7f7',
+			color: '#00c43e'
+		}
 	},
-	withoutLabel: {
-		marginTop: theme.spacing.unit * 3
-	},
-	textField: {
-		flexBasis: 200
+	form: {
+		textAlign: 'center'
 	}
 });
 
@@ -80,69 +100,68 @@ class Loginpage extends Component {
 					</hgroup>
 					<form onSubmit={this.handleSubmit}>
 						<div className="group">
-							<FormControl
-								className={classNames(classes.margin, classes.textField)}
-							>
-								<InputLabel htmlFor="adornment-password">Email</InputLabel>
+							<FormControl style={{ width: '90%' }}>
+								<InputLabel
+									htmlFor="custom-css-input"
+									FormLabelClasses={{
+										root: classes.cssLabel,
+										focused: classes.cssFocused
+									}}
+								>
+									Email
+								</InputLabel>
 								<Input
-									fullWidth
+									classes={{
+										underline: classes.cssUnderline
+									}}
 									id="email"
-									value={this.state.email}
+									type="email"
 									onChange={this.handleChange}
-									endAdornment={
-										<InputAdornment position="end">
-											<IconButton aria-label="Toggle password visibility" />
-										</InputAdornment>
-									}
+									value={this.state.email}
 								/>
 							</FormControl>
 						</div>
 						<div className="group">
-							<FormControl
-								className={classNames(classes.margin, classes.textField)}
-							>
-								<InputLabel htmlFor="adornment-password">Password</InputLabel>
+							<FormControl style={{ width: '90%' }}>
+								<InputLabel
+									htmlFor="custom-css-input"
+									FormLabelClasses={{
+										root: classes.cssLabel,
+										focused: classes.cssFocused
+									}}
+								>
+									Password
+								</InputLabel>
 								<Input
-									fullWidth
+									classes={{
+										underline: classes.cssUnderline
+									}}
 									id="password"
-									type={this.state.showPassword ? 'text' : 'password'}
-									value={this.state.password}
+									type="password"
 									onChange={this.handleChange}
-									endAdornment={
-										<InputAdornment position="end">
-											<IconButton
-												aria-label="Toggle password visibility"
-												onClick={this.handleClickShowPassword}
-											>
-												{this.state.showPassword ? (
-													<Visibility />
-												) : (
-													<VisibilityOff />
-												)}
-											</IconButton>
-										</InputAdornment>
-									}
+									value={this.state.password}
 								/>
 							</FormControl>
 						</div>
+						<br />
 						<button
 							type="button"
 							className="buttonui"
 							onClick={this.handleSubmit}
 						>
 							{' '}
-							<span> Login </span>
+							<span> Masuk </span>
 							<div className="ripples buttonRipples">
 								<span className="ripplesCircle" />
 							</div>
-						</button>
+						</button>{' '}
 						<br />
 						<div>
 							{authError ? (
 								<p
 									style={{
 										textAlign: 'center',
-										color: '#000000',
+										color: 'red',
 										marginTop: '10px'
 									}}
 								>
@@ -159,7 +178,7 @@ class Loginpage extends Component {
 						<br />
 						<div>
 							<p style={{ textAlign: 'center', color: 'black' }}>
-								Belum punya akun? <a href="">Registrasi sekarang!</a>
+								Belum punya akun? <Link to="/signup">Registrasi sekarang!</Link>
 							</p>
 						</div>
 					</form>

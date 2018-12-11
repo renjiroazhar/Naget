@@ -21,6 +21,11 @@ const Loginpage = Loadable({
 	loading: loading
 });
 
+const Signuppage = Loadable({
+	loader: () => import('../../containers/Landingpage/Signuppage'),
+	loading: loading
+});
+
 const Forgotpassword = Loadable({
 	loader: () => import('../../containers/Landingpage/Forgotpassword'),
 	loading: loading
@@ -31,6 +36,7 @@ class DashboardRoutes extends Component {
 		return (
 			<div>
 				<Route exact path="/" component={Loginpage} />
+				<Route exact path="/signup" component={Signuppage} />
 				<Route exact path="/forgot_password" component={Forgotpassword} />
 			</div>
 		);

@@ -1,6 +1,6 @@
 hgroup {   text-align:center;    opacity: 0.9;  padding: 30px;  background: #4CAF50;}
 h1, h3 { font-weight: 300; }
-h1 { color: #fff; }
+h1 { color: #fff;margin: 0.3em }
 form {      padding: 30px;    padding-top: 60px;    background: #fff;}
 .powered{    padding: 10px;    margin-top: -16px;    line-height: 25px;    background: #4CAF50;}
 .powered a {    color: #ddd;    text-decoration: none;}

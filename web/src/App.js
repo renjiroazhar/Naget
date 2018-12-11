@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import DashboardRoutes from './routes/DashboardRoutes';
 import LandingpageRoutes from './routes/LandingpageRoutes';
-import firebase from 'firebase';
+import firebase from './services/firebaseConfig';
 
 class App extends Component {
 	state = {
