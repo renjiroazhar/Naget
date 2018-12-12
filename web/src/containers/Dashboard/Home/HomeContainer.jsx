@@ -44,6 +44,8 @@ class HomeContainer extends Component {
 						<WhiteSpace />
 					</div>
 				</center>
+				<br />
+				<br />
 			</div>
 		);
 	}

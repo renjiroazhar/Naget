@@ -3,6 +3,7 @@ import { NavBar, Card, List, Button } from 'antd-mobile';
 import Cancel from './svg/cancel.svg';
 import { Link, withRouter } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
+import 'antd/dist/antd.css';
 
 class InputAnggaran extends Component {
 	state = {

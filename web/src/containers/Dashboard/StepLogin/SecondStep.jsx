@@ -150,9 +150,12 @@ class SecondStep extends React.Component {
 		console.log(this.state);
 	};
 
-	deleteImage = name => {
-		const storageRef = firebase.storage().ref();
-		storageRef.child(`${this.basePath}/${name}`).delete();
+	deleteImage = params => {
+		const { downloadURLs } = this.state;
+		downloadURLs.splice(params, 1);
+		this.setState({
+			downloadURLs
+		});
 	};
 
 	// displayPicture = e => {
@@ -274,8 +277,6 @@ class SecondStep extends React.Component {
 								</div>
 
 								<p>Progress: {`${this.state.uploadProgress} %`}</p>
-
-								<p>Filenames: {this.state.filenames.join(', ')}</p>
 							</div>
 							<div>
 								{this.state.downloadURLs.map((downloadURL, i) => {
@@ -290,6 +291,11 @@ class SecondStep extends React.Component {
 												width="150px"
 												src={downloadURL}
 											/>
+											<div>
+												<button onClick={() => this.deleteImage(i)}>
+													Delete Image
+												</button>
+											</div>
 										</div>
 									);
 								})}

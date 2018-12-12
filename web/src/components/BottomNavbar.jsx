@@ -2,6 +2,7 @@ import React from 'react';
 import { TabBar } from 'antd-mobile';
 import { Icon } from 'antd';
 import { withRouter } from 'react-router-dom';
+import 'antd/dist/antd.css';
 
 const BottomNavbar = props => {
 	return (

@@ -8,6 +8,7 @@ import Navbar from '../../../components/Navbar';
 import EditProfil from './AccountEdit/Dialog/EditProfil';
 import GantiPassword from './AccountEdit/Dialog/GantiPassword';
 import Divider from '@material-ui/core/Divider';
+import 'antd/dist/antd.css';
 
 const Item = List.Item;
 const alert = Modal.alert;

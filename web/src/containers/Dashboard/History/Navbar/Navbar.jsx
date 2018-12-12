@@ -1,43 +1,56 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from 'antd';
-import { NavBar } from 'antd-mobile';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import ArrowBack from '@material-ui/icons/ArrowBack';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
-const Navbar = () => {
+const styles = () => ({
+	appBar: {
+		position: 'relative',
+		backgroundColor: '#16a085',
+		height: '60px'
+	},
+	toolBar: {
+		height: '60px'
+	},
+	flex: {
+		flex: 1,
+		fontSize: '17px'
+	}
+});
+
+const Navbar = props => {
+	const { classes } = props;
 	return (
 		<div>
 			<div>
 				{' '}
-				<NavBar
-					mode="dark"
-					style={{
-						backgroundColor: '#16a085',
-						height: '60px',
-						position: 'fixed',
-						zIndex: '100',
-						width: '100%',
-						top: 0
-					}}
-					leftContent={[
-						<Link
+				<AppBar className={classes.appBar}>
+					<Toolbar className={classes.toolBar}>
+						<IconButton
+							component={Link}
 							to="/history"
-							style={{ textDecoration: 'none', color: '#ffffff' }}
+							color="inherit"
+							aria-label="Close"
 						>
-							<Icon type="left" />
-						</Link>
-					]}
-					rightContent={[
-						<Icon key="0" type="form" style={{ marginRight: '16px' }} />
-					]}
-				>
-					Detail
-				</NavBar>
+							<ArrowBack />
+						</IconButton>
+						<Typography variant="h6" color="inherit" className={classes.flex}>
+							Detail Pemesanan
+						</Typography>
+					</Toolbar>
+				</AppBar>
 			</div>
-			<br />
-			<br />
-			<br />
 		</div>
 	);
 };
 
-export default Navbar;
+Navbar.propTypes = {
+	classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Navbar);

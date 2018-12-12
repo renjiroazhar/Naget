@@ -23,8 +23,7 @@ const profileReducers = (state = initState, action) => {
 			console.log('Change Password Success');
 			return {
 				...state,
-				changePassErr: null,
-				changePassErrMessage: 'Change Password Success'
+				changePassErr: null
 			};
 		case 'CHANGE_PASSWORD_ERROR':
 			console.log(action.err.message);

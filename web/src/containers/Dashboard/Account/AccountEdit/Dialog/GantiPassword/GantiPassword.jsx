@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import { changePassword } from '../../../../../../redux/actions/profileActions';
 import { List } from 'antd-mobile';
 import { Icon } from 'antd';
+import 'antd/dist/antd.css';
 
 const Item = List.Item;
 
@@ -138,7 +139,7 @@ class GantiPassword extends React.Component {
 	};
 
 	render() {
-		const { classes } = this.props;
+		const { classes, userprofile } = this.props;
 		return (
 			<div>
 				<List>
@@ -219,6 +220,13 @@ class GantiPassword extends React.Component {
 								value={this.state.newPassword}
 							/>
 						</FormControl>
+						{userprofile.changePassErr ? (
+							userprofile.changePassErrMessage ? (
+								<p style={{ color: 'red', textAlign: 'center' }}>
+									{userprofile.changePassErrMessage}
+								</p>
+							) : null
+						) : null}
 					</div>
 				</Dialog>
 			</div>

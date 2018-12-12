@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import Navbar from '../../../../components/Navbar';
-import { List } from 'antd-mobile';
 import HistoryList from '../HistoryList';
-
-const Item = List.Item;
-const Brief = Item.Brief;
 
 class HistoryContainer extends Component {
 	render() {
@@ -32,27 +28,6 @@ class HistoryContainer extends Component {
 							HISTORY
 						</h2>
 					</div>
-					<List className="my-list">
-						<Item
-							arrow="horizontal"
-							thumb={
-								<img
-									src="https://s.republika.co.id/uploads/images/inpicture_slide/sampah-plastik-ilustrasi-_140624142449-730.jpg"
-									alt=""
-									style={{
-										width: '50px',
-										height: '50px'
-									}}
-									width="50px"
-									height="50px"
-								/>
-							}
-							multipleLine
-							onClick={() => {}}
-						>
-							Title <Brief>subtitle</Brief>
-						</Item>
-					</List>
 				</div>
 
 				<HistoryList orders={orders} />

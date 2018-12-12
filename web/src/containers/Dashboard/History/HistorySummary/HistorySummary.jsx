@@ -13,7 +13,7 @@ const HistorySummary = ({ order }) => {
 					thumb={
 						order.foto ? (
 							<img
-								src={`${order.foto.downloadUrl[0]}`}
+								src={`${order.foto.downloadURLs[0]}`}
 								alt=""
 								style={{
 									width: '50px',
