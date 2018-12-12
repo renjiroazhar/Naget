@@ -28,6 +28,11 @@ const History = Loadable({
 	loading: loading
 });
 
+const Help = Loadable({
+	loader: () => import('../../containers/Dashboard/Help'),
+	loading: loading
+});
+
 const Checkout = Loadable({
 	loader: () => import('../../containers/Dashboard/StepLogin/Checkout'),
 	loading: loading
@@ -81,6 +86,7 @@ class DashboardRoutes extends Component {
 							<Route exact path="/home" component={Home} />
 							<Route exact path="/history" component={History} />
 							<Route path="/account" component={AccountContainer} />
+							<Route path="/help" component={Help} />
 							<Route path="/form_login" component={Checkout} />
 						</Switch>
 					)}
