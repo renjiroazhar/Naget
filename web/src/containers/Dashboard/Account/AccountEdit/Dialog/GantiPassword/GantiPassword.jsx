@@ -128,8 +128,13 @@ class GantiPassword extends React.Component {
 	// };
 
 	handleSave = () => {
+		const { userprofile } = this.props;
 		this.changePassword();
-		this.handleClose();
+		if (!userprofile.changePassErr) {
+			console.log('Error');
+		} else {
+			this.handleClose();
+		}
 	};
 
 	render() {
@@ -229,10 +234,12 @@ const mapStateToProps = state => {
 	const id = state.firebase.auth.uid;
 	const users = state.firestore.data.users;
 	const user = users ? users[id] : null;
+	console.log(state);
 	return {
 		auth: state.firebase.auth,
 		profile: state.firebase.profile,
-		userdata: user
+		userdata: user,
+		userprofile: state.userprofile
 	};
 };
 

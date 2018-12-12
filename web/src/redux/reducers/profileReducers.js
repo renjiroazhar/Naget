@@ -1,7 +1,8 @@
 const initState = {
 	editError: null,
 	resetErr: null,
-	changePassErr: null
+	changePassErr: null,
+	changePassErrMessage: null
 };
 
 const profileReducers = (state = initState, action) => {
@@ -22,13 +23,15 @@ const profileReducers = (state = initState, action) => {
 			console.log('Change Password Success');
 			return {
 				...state,
-				changePassErr: null
+				changePassErr: null,
+				changePassErrMessage: 'Change Password Success'
 			};
 		case 'CHANGE_PASSWORD_ERROR':
-			console.log('Change Password Error');
+			console.log(action.err.message);
 			return {
 				...state,
-				changePassErr: 'Change Password Error'
+				changePassErr: true,
+				changePassErrMessage: action.err.message
 			};
 		case 'RESET_PASSWORD_SUCCESS':
 			console.log('Change Password Success');
