@@ -5,7 +5,6 @@ import Loadable from 'react-loadable';
 import { Route, Switch } from 'react-router';
 import Lottie from 'lottie-react-web';
 import Planet from '../json/planet_rotating.json';
-import HistoryContainer from '../../containers/Dashboard/History/HistoryContainer';
 
 const loading = () => (
 	<div style={{ marginTop: '200px' }}>
@@ -24,10 +23,16 @@ const Home = Loadable({
 	loading: loading
 });
 
-// const History = Loadable({
-// 	loader: () => import('../../containers/Dashboard/History'),
-// 	loading: loading
-// });
+const HistoryContainer = Loadable({
+	loader: () => import('../../containers/Dashboard/History/'),
+	loading: loading
+});
+
+const HistoryDetail = Loadable({
+	loader: () =>
+		import('../../containers/Dashboard/History/HistoryDetail/HistoryDetail'),
+	loading: loading
+});
 
 const Checkout = Loadable({
 	loader: () => import('../../containers/Dashboard/StepLogin/Checkout'),
@@ -54,6 +59,7 @@ class DashboardRoutes extends Component {
 						<Switch location={location}>
 							<Route exact path="/home" component={Home} />
 							<Route exact path="/history" component={HistoryContainer} />
+							<Route exact path="/history/:id" component={HistoryDetail} />
 							<Route path="/account" component={AccountContainer} />
 							<Route path="/form_login" component={Checkout} />
 						</Switch>
