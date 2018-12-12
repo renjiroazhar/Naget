@@ -51,12 +51,11 @@ const authReducers = (state = initState, action) => {
 			};
 		}
 		case 'SIGNUP_SUCCESS':
-			console.log('Sign Up Success');
+			console.log('SignUp Success');
 			return {
 				...state,
 				authError: null,
-				redirect: true,
-				redirectSignup: true
+				redirect: true
 			};
 		case 'SIGNUP_ERROR':
 			console.log('Sign Up Error');

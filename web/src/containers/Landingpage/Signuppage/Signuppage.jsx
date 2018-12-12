@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './style/style.css';
-import { connect } from 'react-redux';
-import { signUp } from '../../../redux/actions/authActions';
-import { Redirect, Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import firebase from 'firebase/app';
+import '@firebase/firestore';
 
 const styles = theme => ({
 	cssLabel: {
@@ -70,37 +70,53 @@ class Signuppage extends Component {
 	};
 
 	handleSubmit = () => {
-		const { password, passwordConfirmation } = this.state;
-
-		if (password !== passwordConfirmation) {
-			this.setState({
-				errorSignup: true,
-				errorMessage: 'Password dan Password Konfirmasi harus sama'
-			});
-		}
-
 		this.signUp();
 	};
 
 	signUp = () => {
 		const { name, phone, address, email, password } = this.state;
-		var credential = {
-			name,
-			phone,
-			address,
-			email,
-			password
-		};
-
-		this.props.signUp(credential);
+		const firestore = firebase.firestore();
+		firebase
+			.auth()
+			.createUserWithEmailAndPassword(email, password)
+			.then(resp => {
+				return firestore
+					.collection('users')
+					.doc(resp.user.uid)
+					.set({
+						name: name,
+						phone: phone,
+						address: address
+					});
+			})
+			.then(() => {
+				this.setState({
+					errorSignup: null
+				});
+				this.props.history.push('/home');
+			})
+			.catch(err => {
+				this.setState({
+					errorSignup: true,
+					errorMessage: err.message
+				});
+			});
 	};
 
 	handleClickShowPassword = () => {
 		this.setState(state => ({ showPassword: !state.showPassword }));
 	};
 
+	componentWillUpdate() {
+		setTimeout(() => {
+			this.setState({ errorMessage: null });
+		}, 5000);
+	}
+
 	render() {
-		const { signupError, auth, classes } = this.props;
+		const { classes } = this.props;
+		const { password, passwordConfirmation } = this.state;
+		const isInvalid = password !== passwordConfirmation;
 		return (
 			<div>
 				<div className="background" />
@@ -261,7 +277,8 @@ class Signuppage extends Component {
 							className="buttonui"
 							onClick={e => {
 								this.setState({
-									errorSignup: null
+									errorSignup: null,
+									errorMessage: null
 								});
 								e.preventDefault();
 								this.handleSubmit();
@@ -275,28 +292,29 @@ class Signuppage extends Component {
 						</button>
 						<br />
 						<div>
-							{signupError ? (
-								this.state.errorSignup ? (
-									<p
-										style={{
-											textAlign: 'center',
-											color: 'red',
-											marginTop: '10px'
-										}}
-									>
-										{this.state.errorMessage}
-									</p>
-								) : (
-									<p
-										style={{
-											textAlign: 'center',
-											color: 'red',
-											marginTop: '10px'
-										}}
-									>
-										{signupError}
-									</p>
-								)
+							{isInvalid ? (
+								<p
+									style={{
+										textAlign: 'center',
+										color: 'red',
+										marginTop: '10px'
+									}}
+								>
+									Kata Sandi dan Kata Sandi Konfirmasi harus sama
+								</p>
+							) : null}
+						</div>
+						<div>
+							{this.state.errorSignup ? (
+								<p
+									style={{
+										textAlign: 'center',
+										color: 'red',
+										marginTop: '10px'
+									}}
+								>
+									{this.state.errorMessage}
+								</p>
 							) : null}
 						</div>
 						<br />
@@ -312,33 +330,13 @@ class Signuppage extends Component {
 						<a href="http://https://www.moretrash.id/"> Moretrash </a>
 					</div>
 				</div>
-
-				{auth.redirect ? <Redirect to="/home" /> : null}
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => {
-	console.log(state);
-	return {
-		auth: state.firebase.auth,
-		authError: state.auth.authError,
-		signupError: state.auth.signupError
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		signUp: creds => dispatch(signUp(creds))
-	};
-};
-
 Signuppage.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(withStyles(styles)(Signuppage));
+export default withStyles(styles)(withRouter(Signuppage));

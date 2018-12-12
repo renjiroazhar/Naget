@@ -5,6 +5,7 @@ import Loadable from 'react-loadable';
 import { Route, Switch } from 'react-router';
 import Lottie from 'lottie-react-web';
 import Planet from '../json/planet_rotating.json';
+import HistoryContainer from '../../containers/Dashboard/History/HistoryContainer';
 
 const loading = () => (
 	<div style={{ marginTop: '200px' }}>
@@ -23,10 +24,10 @@ const Home = Loadable({
 	loading: loading
 });
 
-const History = Loadable({
-	loader: () => import('../../containers/Dashboard/History'),
-	loading: loading
-});
+// const History = Loadable({
+// 	loader: () => import('../../containers/Dashboard/History'),
+// 	loading: loading
+// });
 
 const Checkout = Loadable({
 	loader: () => import('../../containers/Dashboard/StepLogin/Checkout'),
@@ -34,34 +35,7 @@ const Checkout = Loadable({
 });
 
 class DashboardRoutes extends Component {
-	// state = {
-	//   selectedTab: "list"
-	// }
-
 	state = {
-		openKeys: ['sub1'],
-		status: 0,
-		data: [],
-		name: '',
-		merk: '',
-		spec: '',
-		lastPurchaser: '',
-		store: '',
-		address: '',
-		telephone: '',
-		web: '',
-		description: '',
-		note: '',
-		lastPrice: 0,
-		total: 0,
-		count: 0,
-		unitPrice: 0,
-		purchasePrice: 0,
-
-		id: '',
-		HistoryId: '',
-		loading: false,
-
 		selectedTab: 'list'
 	};
 
@@ -79,7 +53,7 @@ class DashboardRoutes extends Component {
 					render={({ location }) => (
 						<Switch location={location}>
 							<Route exact path="/home" component={Home} />
-							<Route exact path="/history" component={History} />
+							<Route exact path="/history" component={HistoryContainer} />
 							<Route path="/account" component={AccountContainer} />
 							<Route path="/form_login" component={Checkout} />
 						</Switch>
