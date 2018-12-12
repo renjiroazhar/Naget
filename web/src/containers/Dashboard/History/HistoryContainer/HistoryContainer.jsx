@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import Navbar from '../../../components/Navbar';
+import Navbar from '../../../../components/Navbar';
 import { List } from 'antd-mobile';
-import HistoryList from './HistoryList';
+import HistoryList from '../HistoryList';
 
 const Item = List.Item;
 const Brief = Item.Brief;

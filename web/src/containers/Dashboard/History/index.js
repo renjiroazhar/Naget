@@ -1,3 +1,3 @@
-import History from './History';
+import HistoryContainer from './HistoryContainer';
 
-export default History;
+export default HistoryContainer;
