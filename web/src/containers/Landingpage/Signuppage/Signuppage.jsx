@@ -94,7 +94,7 @@ class Signuppage extends Component {
 				this.setState({
 					errorSignup: null
 				});
-				this.props.history.push('/home');
+				this.props.history.push('/');
 			})
 			.catch(err => {
 				this.setState({

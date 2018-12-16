@@ -19,8 +19,8 @@ export default class NotFound extends Component {
 							removed. name changed or is temporarily unavailable
 						</p>
 
-						<Link to="/home">
-							<a href="/home">Back to homepage</a>
+						<Link to="/">
+							<a href="/">Back to homepage</a>
 						</Link>
 					</div>
 				</div>

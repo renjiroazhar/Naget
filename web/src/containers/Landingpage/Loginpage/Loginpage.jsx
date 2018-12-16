@@ -190,7 +190,7 @@ class Loginpage extends Component {
 					</div>
 				</div>
 				<Tooltip />
-				{redirect ? <Redirect to="/home" /> : null}
+				{redirect ? <Redirect to="/" /> : null}
 			</div>
 		);
 	}
