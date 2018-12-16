@@ -9,21 +9,27 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { connect } from 'react-redux';
 import { changePassword } from '../../../../../../redux/actions/profileActions';
-import { List } from 'antd-mobile';
-import { Icon } from 'antd';
 import 'antd/dist/antd.css';
+import { LockOutline } from '@ant-design/icons';
+import AntdIcon from '@ant-design/icons-react';
+import List from '@material-ui/core/List';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Lock from '@material-ui/icons/Lock';
 
-const Item = List.Item;
+AntdIcon.add(LockOutline);
 
 const styles = theme => ({
 	appBar: {
 		position: 'relative',
-		backgroundColor: '#16a085'
+		backgroundColor: '#333c4e'
 	},
 	flex: {
 		flex: 1
@@ -77,7 +83,8 @@ class GantiPassword extends React.Component {
 	state = {
 		open: false,
 		currentPassword: '',
-		newPassword: ''
+		newPassword: '',
+		passwordConfirmation: ''
 	};
 
 	handleClickOpen = () => {
@@ -140,16 +147,27 @@ class GantiPassword extends React.Component {
 
 	render() {
 		const { classes, userprofile } = this.props;
+		const { newPassword, passwordConfirmation } = this.state;
+		const isInvalid = newPassword !== passwordConfirmation;
 		return (
-			<div>
-				<List>
-					<Item
-						thumb={<Icon type="lock" theme="outlined" />}
-						key="reset_password"
-						onClick={this.handleClickOpen}
-					>
-						Ganti Kata Sandi
-					</Item>
+			<div style={{ backgroundColor: 'white' }}>
+				<List
+					onClick={this.handleClickOpen}
+					className={classes.list}
+					style={{ paddingBottom: '10px' }}
+				>
+					<ListItem button onClick={this.handleClickOpen}>
+						<ListItemIcon>
+							<Lock style={{ fontSize: '24px', color: 'orange' }} />
+						</ListItemIcon>
+						<ListItemSecondaryAction>
+							<ListItemText
+								style={{ fontSize: '24px' }}
+								inset
+								primary="Ubah Kata Sandi"
+							/>
+						</ListItemSecondaryAction>
+					</ListItem>
 				</List>
 				<Dialog
 					fullScreen
@@ -183,7 +201,7 @@ class GantiPassword extends React.Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Password Saat Ini
+								Kata sandi saat ini
 							</InputLabel>
 							<Input
 								classes={{
@@ -199,6 +217,20 @@ class GantiPassword extends React.Component {
 
 						<br />
 						<br />
+						<div>
+							<h5 style={{ fontSize: '16px', margin: 0 }}>
+								Mohon isi kata sandi Anda di bawah ini
+							</h5>
+							<p
+								style={{
+									color: '#9e9e9e',
+									padding: 0,
+									margin: 0
+								}}
+							>
+								Minimal 6 karakter terdiri dari huruf dan angka
+							</p>
+						</div>
 						<FormControl style={{ width: '90%' }}>
 							<InputLabel
 								htmlFor="custom-css-input"
@@ -207,7 +239,7 @@ class GantiPassword extends React.Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Password Baru
+								Kata sandi baru
 							</InputLabel>
 							<Input
 								classes={{
@@ -220,6 +252,42 @@ class GantiPassword extends React.Component {
 								value={this.state.newPassword}
 							/>
 						</FormControl>
+						<br />
+						<br />
+						<FormControl style={{ width: '90%' }}>
+							<InputLabel
+								htmlFor="custom-css-input"
+								FormLabelClasses={{
+									root: classes.cssLabel,
+									focused: classes.cssFocused
+								}}
+							>
+								Konfirmasi Kata sandi baru
+							</InputLabel>
+							<Input
+								classes={{
+									underline: classes.cssUnderline
+								}}
+								onKeyPress={this.handleKeyPress}
+								id="passwordConfirmation"
+								type="password"
+								onChange={this.handleChange}
+								value={this.state.passwordConfirmation}
+							/>
+						</FormControl>
+						<div>
+							{isInvalid ? (
+								<p
+									style={{
+										textAlign: 'center',
+										color: 'red',
+										marginTop: '10px'
+									}}
+								>
+									Kata Sandi yang Anda masukkan tidak sama
+								</p>
+							) : null}
+						</div>
 						{userprofile.changePassErr ? (
 							userprofile.changePassErrMessage ? (
 								<p style={{ color: 'red', textAlign: 'center' }}>
@@ -242,7 +310,6 @@ const mapStateToProps = state => {
 	const id = state.firebase.auth.uid;
 	const users = state.firestore.data.users;
 	const user = users ? users[id] : null;
-	console.log(state);
 	return {
 		auth: state.firebase.auth,
 		profile: state.firebase.profile,

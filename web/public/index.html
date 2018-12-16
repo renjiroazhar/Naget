@@ -2,14 +2,15 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
 		<meta
 			name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
 		/>
 		<meta name="theme-color" content="#000000" />
 		<!--
 			manifest.json provides metadata used when your web app is added to the
-			homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+			homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
 		-->
 		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 		<link rel="shortcut icon" href="leaf-icon.jpg" />
@@ -33,6 +34,13 @@
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/icon?family=Material+Icons"
 		/>
+
+		<!-- Import materialize.css -->
+		<link href="./materialize/css/materialize.min.css" rel="stylesheet" />
+		<!-- Import jQuery before materialize.js -->
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+
 		<script src="https://maps.googleapis.com/maps/api/js?&v=3.exp&libraries=geometry,drawing,places"></script>
 		<script
 			type="text/javascript"
@@ -40,71 +48,16 @@
 		></script>
 		<title>Moretrash</title>
 	</head>
-
 	<body>
-		<style>
-			@import url(https://fonts.googleapis.com/css?family=Montserrat);
-			html {
-				height: 100%;
-			}
-			.text {
-				font-size: 25pt;
-				font-weight: bold;
-				text-align: center;
-				line-height: 120pt;
-				font-family: 'Montserrat', sans-serif;
-				letter-spacing: 4px;
-				color: #00c43e;
-				text-shadow: 2px 2px 0 #16a085;
-			}
-
-			.text2 {
-				text-align: center;
-				font-family: 'Montserrat', sans-serif;
-				color: #16a085;
-				font-size: 15pt;
-			}
-
-			@keyframes shake {
-				0%,
-				100% {
-					transform: translateX(0);
-				}
-
-				10%,
-				30%,
-				50%,
-				70%,
-				90% {
-					transform: translateX(-10px);
-				}
-
-				20%,
-				40%,
-				60%,
-				80% {
-					transform: translateX(10px);
-				}
-			}
-
-			.shake {
-				animation: shake 5s;
-			}
-		</style>
-
 		<noscript> You need to enable JavaScript to run this app. </noscript>
-		<div id="root">
-			<h1 class="text">MORETRASH</h1>
-
-			<h2 class="text2">LOADING</h2>
-
-			<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.11.1/TweenMax.min.js"></script>
-		</div>
+		<div id="root"></div>
 		<!--
 			This HTML file is a template.
 			If you open it directly in the browser, you will see an empty page.
+
 			You can add webfonts, meta tags, or analytics to this file.
 			The build step will place the bundled scripts into the <body> tag.
+
 			To begin the development, run `npm start` or `yarn start`.
 			To create a production bundle, use `npm run build` or `yarn build`.
 		-->

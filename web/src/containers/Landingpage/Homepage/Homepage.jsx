@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import '../Homepage/style/home.css';
-import {
-	withStyles,
-	MuiThemeProvider,
-	createMuiTheme
-} from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import green from '@material-ui/core/colors/green';
-import ChatBubble from '@material-ui/icons/Chat';
+import './style/home.css';
+import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import Carousel from './Carousel';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
 	container: {
@@ -34,14 +27,10 @@ const styles = theme => ({
 		marginRight: '24px'
 	},
 	margin: {
-		margin: theme.spacing.unit,
-		maxWidth: '350px',
-		width: '100%',
-		borderRadius: 0,
-		fontWeight: 400,
-		color: 'white',
-		backgroundColor: '#00c43e',
-		textDecoration: 'none'
+		width: '90%',
+		maxWidth: '380px',
+		minWidth: '300px',
+		backgroundColor: '#00c43e'
 	},
 	marginForm: {
 		maxWidth: '350px',
@@ -51,13 +40,14 @@ const styles = theme => ({
 		textDecoration: 'none'
 	},
 	cssRoot: {
-		color: 'black',
-		backgroundColor: 'white',
-		maxWidth: '350px',
-		width: '100%',
+		color: '#FFFFFF',
+		backgroundColor: '#00c43e',
+		maxWidth: '380px',
+		width: '90%',
+		height: '',
 		fontWeight: 400,
 		'&:hover': {
-			backgroundColor: 'white'
+			backgroundColor: '#00c43e'
 		}
 	},
 	cssLabel: {
@@ -162,15 +152,6 @@ const styles = theme => ({
 	}
 });
 
-const theme = createMuiTheme({
-	palette: {
-		primary: green
-	},
-	typography: {
-		useNextVariants: true
-	}
-});
-
 class Homepage extends Component {
 	state = {
 		open: false
@@ -198,6 +179,8 @@ class Homepage extends Component {
 						retina_logo_url=""
 						className="moretrash-logo"
 					/>
+					<br />
+					<br />
 					<div style={{ textAlign: 'center' }}>
 						<p style={{ color: 'white', fontWeight: 400 }}>
 							Drop Your Trash and get benefit!
@@ -208,41 +191,26 @@ class Homepage extends Component {
 							</div>
 						</div>
 					</div>
-					<div className="login-button">
-						<Grid container spacing={24}>
-							<Grid item xs={12} s={12}>
-								<MuiThemeProvider theme={theme}>
-									<Button
-										variant="extendedFab"
-										color="primary"
-										className={classes.margin}
-										size="large"
-										onClick={() => this.props.history.push('/form')}
-									>
-										Pick Trash
-									</Button>
-								</MuiThemeProvider>
-							</Grid>
-						</Grid>
 
-						<Grid container spacing={24}>
-							<Grid item xs={12} s={12}>
-								<MuiThemeProvider theme={theme}>
-									<Button
-										variant="extendedFab"
-										color="primary"
-										className={classes.margin}
-										size="large"
-										onClick={() => this.props.history.push('/login')}
-									>
-										Masuk
-									</Button>
-								</MuiThemeProvider>
-							</Grid>
-						</Grid>
-					</div>
-					<Button variant="fab" color="#00c43e" className={classes.absolute}>
-						<ChatBubble className={classes.iconchat} />
+					<Button
+						variant="contained"
+						color="primary"
+						className={classes.cssRoot}
+						onClick={() => this.props.history.push('/form')}
+						size="large"
+					>
+						PICK TRASH
+					</Button>
+					<br />
+					<br />
+					<Button
+						variant="contained"
+						color="primary"
+						className={classes.cssRoot}
+						onClick={() => this.props.history.push('/login')}
+						size="large"
+					>
+						MASUK
 					</Button>
 				</div>
 			</div>

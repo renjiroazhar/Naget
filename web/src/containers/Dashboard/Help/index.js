@@ -1,3 +1,2 @@
-import Help from './HelpContainer';
-
+import Help from './Help';
 export default Help;

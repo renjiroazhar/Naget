@@ -9,6 +9,31 @@ form {      padding: 30px;    padding-top: 60px;    background: #fff;}
 
 input {  font-size: 18px;  padding: 10px 10px 10px 5px;  -webkit-appearance: none;  display: block;  background: transparent;  color: #000000;  width: 100%;  border: none;  border-radius: 0;  border-bottom: 1px solid #ddd;}
 
+.input-form label {
+left: 0 !important
+}
+
+input:focus ~ label, input.used ~ label {
+top: -15px !important;
+}
+
+.input-field label{
+  left: 0 !important
+}
+
+.input-field label.active{
+  top: 10px !important
+}
+
+
+.input-field label::after{
+  top: 30px !important
+}
+
+.input-form label::after{
+  top: 30px !important
+}
+
 input:focus { outline: none; }
 
 /* Label */

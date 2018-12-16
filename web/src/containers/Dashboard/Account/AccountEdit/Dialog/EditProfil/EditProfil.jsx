@@ -15,6 +15,7 @@ import Slide from '@material-ui/core/Slide';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+
 import FormControl from '@material-ui/core/FormControl';
 import { connect } from 'react-redux';
 import firebase from '../../../../../../services/firebaseConfig';
@@ -22,7 +23,7 @@ import { editProfile } from '../../../../../../redux/actions/profileActions';
 const styles = theme => ({
 	appBar: {
 		position: 'relative',
-		backgroundColor: '#16a085'
+		backgroundColor: '#333c4e'
 	},
 	flex: {
 		flex: 1
@@ -113,11 +114,15 @@ class EditProfil extends React.Component {
 		try {
 			const getData = await ref.onSnapshot(doc => {
 				var dataSnapshot = doc.data();
-				this.setState({
-					name: dataSnapshot.name,
-					address: dataSnapshot.address,
-					phone: dataSnapshot.phone
-				});
+				if (dataSnapshot) {
+					this.setState({
+						name: dataSnapshot.name,
+						address: dataSnapshot.address,
+						phone: dataSnapshot.phone
+					});
+				} else {
+					console.log('Kosong? , Astaughfirullah');
+				}
 			});
 			console.log(getData);
 		} catch (error) {
@@ -129,11 +134,21 @@ class EditProfil extends React.Component {
 		const { classes, profile, auth } = this.props;
 		return (
 			<div style={{ backgroundColor: 'white' }}>
-				<List className={classes.list} style={{ paddingBottom: '20px' }}>
+				<List
+					className={classes.list}
+					onClick={this.handleClickOpen}
+					style={{ paddingBottom: '15px' }}
+				>
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemText
 							style={{ float: 'left' }}
-							primary={profile.name ? profile.name : auth.displayName}
+							primary={
+								profile.name
+									? profile.name
+									: auth.displayName
+										? 'No Name'
+										: null
+							}
 							secondary={auth.email}
 						/>
 						<ListItemSecondaryAction>
@@ -142,7 +157,7 @@ class EditProfil extends React.Component {
 									margin: '20px',
 									cursor: 'pointer',
 									fontWeight: 'bold',
-									color: '#1abc9c'
+									color: '#1f1f21'
 								}}
 								className={classes.editText}
 								onClick={this.handleClickOpen}
@@ -168,7 +183,7 @@ class EditProfil extends React.Component {
 								<CloseIcon />
 							</IconButton>
 							<Typography variant="h6" color="inherit" className={classes.flex}>
-								Edit Profil
+								Profil
 							</Typography>
 							<Button color="inherit" onClick={this.handleSave}>
 								Simpan
@@ -198,7 +213,7 @@ class EditProfil extends React.Component {
 							/>
 						</FormControl>
 						<br />
-
+						<br />
 						<FormControl style={{ width: '90%' }}>
 							<InputLabel
 								htmlFor="custom-css-input"
@@ -220,6 +235,7 @@ class EditProfil extends React.Component {
 								value={this.state.phone}
 							/>
 						</FormControl>
+						<br />
 						<br />
 						<FormControl style={{ width: '90%' }}>
 							<InputLabel

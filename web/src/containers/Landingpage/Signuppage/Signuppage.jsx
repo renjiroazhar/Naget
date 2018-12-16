@@ -8,6 +8,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import firebase from 'firebase/app';
 import '@firebase/firestore';
+import Tooltip from '../../../components/Tooltip';
 
 const styles = theme => ({
 	cssLabel: {
@@ -140,7 +141,7 @@ class Signuppage extends Component {
 						}}
 					>
 						<div className="group">
-							<FormControl style={{ width: '90%' }}>
+							<FormControl style={{ width: '100%' }}>
 								<InputLabel
 									htmlFor="custom-css-input"
 									FormLabelClasses={{
@@ -162,7 +163,7 @@ class Signuppage extends Component {
 							</FormControl>
 						</div>
 						<div className="group">
-							<FormControl style={{ width: '90%' }}>
+							<FormControl style={{ width: '100%' }}>
 								<InputLabel
 									htmlFor="custom-css-input"
 									FormLabelClasses={{
@@ -184,7 +185,7 @@ class Signuppage extends Component {
 							</FormControl>
 						</div>
 						<div className="group">
-							<FormControl style={{ width: '90%' }}>
+							<FormControl style={{ width: '100%' }}>
 								<InputLabel
 									htmlFor="custom-css-input"
 									FormLabelClasses={{
@@ -206,7 +207,7 @@ class Signuppage extends Component {
 							</FormControl>
 						</div>
 						<div className="group">
-							<FormControl style={{ width: '90%' }}>
+							<FormControl style={{ width: '100%' }}>
 								<InputLabel
 									htmlFor="custom-css-input"
 									FormLabelClasses={{
@@ -228,7 +229,7 @@ class Signuppage extends Component {
 							</FormControl>
 						</div>
 						<div className="group">
-							<FormControl style={{ width: '90%' }}>
+							<FormControl style={{ width: '100%' }}>
 								<InputLabel
 									htmlFor="custom-css-input"
 									FormLabelClasses={{
@@ -250,7 +251,7 @@ class Signuppage extends Component {
 							</FormControl>
 						</div>
 						<div className="group">
-							<FormControl style={{ width: '90%' }}>
+							<FormControl style={{ width: '100%' }}>
 								<InputLabel
 									htmlFor="custom-css-input"
 									FormLabelClasses={{
@@ -330,6 +331,7 @@ class Signuppage extends Component {
 						<a href="http://https://www.moretrash.id/"> Moretrash </a>
 					</div>
 				</div>
+				<Tooltip />
 			</div>
 		);
 	}

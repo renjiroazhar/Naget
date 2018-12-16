@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
-import './App.css';
-import DashboardRoutes from './routes/DashboardRoutes';
-import LandingpageRoutes from './routes/LandingpageRoutes';
 import firebase from './services/firebaseConfig';
-
+import PrivateRoutes from './routes/PrivateRoutes';
+import Routes from './routes/Routes/Routes';
 class App extends Component {
 	state = {
-		authUser: null
+		isAuthenticated: null
 	};
 
 	authListener = () => {
 		firebase.auth().onAuthStateChanged(user => {
 			if (user) {
 				this.setState({
-					authUser: user
+					isAuthenticated: user
 				});
 			} else {
 				this.setState({
-					authUser: null
+					isAuthenticated: null
 				});
 			}
 		});
@@ -32,12 +30,9 @@ class App extends Component {
 	}
 
 	render() {
-		const { authUser } = this.state;
-		return authUser ? (
-			<DashboardRoutes updateLogout={this.updateLogoutState} />
-		) : (
-			<LandingpageRoutes />
-		);
+		const { isAuthenticated } = this.state;
+		return isAuthenticated ? <PrivateRoutes /> : <Routes />;
+		// return <AppNavigation />;
 	}
 }
 

@@ -6,10 +6,9 @@
     width: stretch;
 }
 
-@media (device-height : 568px) 
-   and (device-width : 320px) 
-   and (-webkit-min-device-pixel-ratio: 2){
+@media (max-height: 568px) {
     #image-carousel {
-        height: 120px;
-    }    
+      text-align: center !important;
+      height: 100
+    }
   }
