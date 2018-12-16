@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-materialize';
 import { Icon } from 'react-onsenui';
+import './style/style.css';
 
 export default class Tooltip extends Component {
 	render() {
@@ -17,9 +18,8 @@ export default class Tooltip extends Component {
 							style={{ verticalAlign: 'middle' }}
 						/>
 					}
-					className="green"
 					large
-					style={{ bottom: '45px', right: '24px' }}
+					style={{ bottom: '45px', right: '24px', backgroundColor: '#00c43e' }}
 				>
 					<Button floating icon="insert_chart" className="red" />
 					<Button floating icon="format_quote" className="yellow darken-1" />

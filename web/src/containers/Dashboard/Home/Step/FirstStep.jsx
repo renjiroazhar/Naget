@@ -134,9 +134,9 @@ class FirstStep extends React.Component {
 					</Grid>
 					<Grid item xs={12}>
 						<LocationSearchInput />
-						<br/>
-						<br/>
-						<br/>
+						<br />
+						<br />
+						<br />
 					</Grid>
 					<Grid item xs={12}>
 						<MapContainer />
@@ -145,7 +145,6 @@ class FirstStep extends React.Component {
 					<Grid item xs={12}>
 						<List>
 							<ListItem>
-							
 								<TextField
 									select
 									label="Select"

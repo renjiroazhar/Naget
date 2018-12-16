@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import { connect } from 'react-redux';
 import { signOut } from '../../../../../../redux/actions/authActions';
-import 'antd/dist/antd.css';
+
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ExitToApp from '@material-ui/icons/ExitToApp';

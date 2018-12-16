@@ -10,7 +10,7 @@ import Slide from '@material-ui/core/Slide';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import 'antd/dist/antd.css';
+
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import HelpIcon from '@material-ui/icons/Help';

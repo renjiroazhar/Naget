@@ -11,13 +11,13 @@ import {
 } from '@material-ui/core/styles';
 import CardPicture from '../Card/CardPicture';
 import CarouselPicture from '../Carousel/CarouselPicture';
-import Checkout from '../Step/Checkout';
+import UserForm from '../../Step/UserForm';
 import './style/style.css';
 import Grid from '@material-ui/core/Grid';
 // import TooltipButton from '../../../../components/TooltipButton';
 class HomeContainer extends React.Component {
 	pushPage() {
-		this.props.navigator.pushPage({ component: Checkout });
+		this.props.navigator.pushPage({ component: UserForm });
 	}
 
 	renderToolbar() {
@@ -55,7 +55,7 @@ class HomeContainer extends React.Component {
 
 		return (
 			<Page renderToolbar={this.renderToolbar}>
-				<div style={{ height: '100%', minHeight: '100vh' }}>
+				<div style={{ height: '100%' }}>
 					<br />
 					<div>
 						<Grid container alignItems="center" justify="center">
@@ -80,7 +80,7 @@ class HomeContainer extends React.Component {
 								size="large"
 								onClick={() =>
 									this.props.navigator.pushPage({
-										component: Checkout
+										component: UserForm
 										// props: { idItem: order.id }
 									})
 								}

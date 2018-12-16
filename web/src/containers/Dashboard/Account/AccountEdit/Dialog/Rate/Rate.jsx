@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import 'antd/dist/antd.css';
+
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Star from '@material-ui/icons/Star';

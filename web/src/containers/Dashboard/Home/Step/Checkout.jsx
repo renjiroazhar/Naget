@@ -75,6 +75,10 @@ class Checkout extends React.Component {
 		console.log(this.state.database);
 	};
 
+	getChildState(childrenName, childrenState) {
+		this.setState({ childrenName: childrenState }); //with click Save button in FirstChildren you will get state of this component
+	}
+
 	handleNext = () => {
 		this.setState(state => ({
 			activeStep: state.activeStep + 1

@@ -17,7 +17,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { connect } from 'react-redux';
 import { changePassword } from '../../../../../../redux/actions/profileActions';
-import 'antd/dist/antd.css';
+
 import { LockOutline } from '@ant-design/icons';
 import AntdIcon from '@ant-design/icons-react';
 import List from '@material-ui/core/List';

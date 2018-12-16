@@ -43,7 +43,6 @@ const styles = theme => ({
 });
 
 class ThirdStep extends React.Component {
-
 	state = {
 		secondary: false
 	};
@@ -51,15 +50,12 @@ class ThirdStep extends React.Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		console.log(this.state);
-		this.props.saveData(this.state);
+		this.props.getChildState(this.state);
 		this.props.nextStep();
 	};
 	handleBack = () => {
-        const { order, DeleteDataStep } = this.props;
-        this.props.previousStep();
-        DeleteDataStep(order.name, order.address, order.area, order.phone);
-        console.log(order);
-    };
+		this.props.previousStep();
+	};
 
 	render() {
 		const { classes } = this.props;
