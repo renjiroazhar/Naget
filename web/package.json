@@ -91,7 +91,7 @@
 		"start": "node scripts/start.js",
 		"build": "node scripts/build.js",
 		"test": "node scripts/test.js",
-		"build-staging": "react-scripts build && rm -rf staging && mv build staging",
+		"build-staging": "node scripts/build.js && rm -rf staging && mv build staging",
 		"deploy-master": "firebase deploy --only hosting:web",
 		"deploy-staging": "firebase deploy --only hosting:staging"
 	},
