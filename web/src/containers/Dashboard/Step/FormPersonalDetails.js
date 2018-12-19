@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Dropzone from 'react-dropzone';
+import TimeInput from 'material-ui-time-picker';
 
 export class FormPersonalDetails extends Component {
 	continue = e => {
@@ -17,7 +18,8 @@ export class FormPersonalDetails extends Component {
 	state = {
 		files: [],
 		previewGeneralPhotos: [],
-		generalPhotos: []
+		generalPhotos: [],
+		time: ''
 	};
 
 	back = e => {
@@ -57,6 +59,10 @@ export class FormPersonalDetails extends Component {
 
 	render() {
 		const { values, handleChange } = this.props;
+
+		if (values.loading) {
+			return <p>Loading...</p>;
+		}
 		return (
 			<MuiThemeProvider>
 				<React.Fragment>
@@ -75,12 +81,19 @@ export class FormPersonalDetails extends Component {
 						</Toolbar>
 					</AppBar>
 
-					<TextField
+					{/* <TextField
 						hintText="Enter Your Occupation"
 						floatingLabelText="Occupation"
 						onChange={handleChange('occupation')}
 						defaultValue={values.occupation}
 						style={styles.textArea}
+					/> */}
+					<br />
+					<TimeInput
+						mode="24h"
+						onChange={time => this.props.handleChangeTime(time)}
+						style={styles.textArea}
+						autoOk
 					/>
 					<br />
 					<TextField
@@ -108,9 +121,14 @@ export class FormPersonalDetails extends Component {
 								onDrop={this.props.onDropGeneral.bind(this)}
 							>
 								{({ getRootProps, getInputProps }) => (
-									<div {...getRootProps()}>
-										<input {...getInputProps()} />
-										<p>Masukkan Foto</p>
+									<div {...getRootProps()} style={{ textAlign: 'center' }}>
+										<RaisedButton
+											label="Masukkan Foto"
+											primary={true}
+											style={styles.button}
+										>
+											<input {...getInputProps()} />
+										</RaisedButton>
 									</div>
 								)}
 							</Dropzone>
@@ -128,9 +146,13 @@ export class FormPersonalDetails extends Component {
 													height="200px"
 													style={{ display: 'block', margin: '20px' }}
 												/>
-												<button onClick={() => this.props.deleteImage(i)}>
-													Delete
-												</button>
+
+												<RaisedButton
+													label="Hapus Gambar"
+													primary={true}
+													style={styles.button}
+													onClick={() => this.props.deleteImage(i)}
+												/>
 											</div>
 										))}
 									</div>
@@ -138,6 +160,14 @@ export class FormPersonalDetails extends Component {
 							) : null}
 						</section>
 					</div>
+					{/* <div style={{ textAlign: 'center' }}>
+						<RaisedButton
+							label="Upload"
+							primary={true}
+							style={styles.button}
+							onClick={this.props.handleUpload.bind(this)}
+						/>
+					</div> */}
 					{/* <ul>{files}</ul> */}
 					{/* <p>Progress: {`${this.state.uploadProgress} %`}</p> */}
 					<br />

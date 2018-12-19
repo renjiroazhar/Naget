@@ -6,8 +6,23 @@ import Help from '../../containers/Dashboard/Help/';
 import Account from '../../containers/Dashboard/Account/';
 import OrderNavigation from '../../containers/Dashboard/Order/OrderNavigation';
 
-export default class AppExample extends Component {
+export default class MainApp extends Component {
 	//	navigator;
+	state = {
+		visibility: true
+	};
+
+	changeVisibilityFalse = () => {
+		this.setState({
+			visibility: false
+		});
+	};
+
+	changeVisibilityTrue = () => {
+		this.setState({
+			visibility: true
+		});
+	};
 
 	renderTabs() {
 		return [
@@ -16,7 +31,12 @@ export default class AppExample extends Component {
 				tab: <Tab label="Home" icon="md-home" />
 			},
 			{
-				content: <OrderNavigation />,
+				content: (
+					<OrderNavigation
+						changeVisibilityFalse={this.changeVisibilityFalse}
+						changeVisibilityTrue={this.changeVisibilityTrue}
+					/>
+				),
 				tab: <Tab label="Order" icon="md-assignment" />
 			},
 			{
@@ -35,6 +55,8 @@ export default class AppExample extends Component {
 			<Tabbar
 				initialRoute={{ component: HomeNavigation }}
 				renderTabs={this.renderTabs.bind(this)} //<-- *** I changed here.
+				position="bottom"
+				visible={this.state.visibility}
 			/>
 		);
 	}

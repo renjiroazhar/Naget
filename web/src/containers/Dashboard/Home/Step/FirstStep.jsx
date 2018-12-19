@@ -211,7 +211,7 @@ FirstStep.propTypes = {
 };
 
 const mapStateToProps = state => {
-	console.log(state);
+	
 	return {
 		order: state.order.orders
 	};

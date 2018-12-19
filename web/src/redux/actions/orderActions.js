@@ -1,4 +1,4 @@
-import storage from '../../services/firebaseConfig';
+// import storage from '../../services/firebaseConfig';
 
 export const removeOrder = id => {
 	return (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -7,12 +7,13 @@ export const removeOrder = id => {
 
 		dataAll
 			.delete()
-			.then(() => {
-				dispatch({ type: 'REMOVE_ORDER', id });
+			.then(res => {
 				firestore.onSnapshot('orders');
+				dispatch({ type: 'REMOVE_ORDER', id });
 			})
 			.catch(error => {
 				console.error('Error removing document: ', error);
+				dispatch({ type: 'REMOVE_ERROR', error });
 			});
 	};
 };
@@ -33,30 +34,37 @@ export const createOrder = (order, picture) => {
 	return (dispatch, getState, { getFirebase, getFirestore }) => {
 		// Make async call to database
 		const firestore = getFirestore();
-		const profile = getState().firebase.profile;
+		// const profile = getState().firebase.profile;
 		const userId = getState().firebase.auth.uid;
-		const date = new Date();
+		const lokasi = {
+			alamat: order.address,
+			catatan: 'catatan',
+			latLng: 123131
+		};
+		const logs = {
+			data: {
+				createdAt: new Date()
+			},
+			name: order.name,
+			phone: order.phone,
+			userId: userId,
+			status: 'WAITING_CONFIRMATION'
+		};
 
-		storage
-			.child(`images/${picture.name}`)
-			.put(order.image)
-			.then(snapshot => {
-				firestore
-					.collection('orders')
-					.add({
-						...order,
-						name: profile.name,
-						phone: profile.phone,
-						userId: userId,
-						createdAt: date,
-						picture: snapshot.metadata.downloadURLs
-					})
-					.then(() => {
-						dispatch({ type: 'CREATE_ORDER', order });
-					})
-					.catch(err => {
-						dispatch({ type: 'CREATE_ORDER_ERROR', err });
-					});
+		console.log(order.downloadURLs, logs, lokasi);
+
+		firestore
+			.collection('orders')
+			.add({
+				location: lokasi,
+				foto: order.downloadURLs,
+				logs: logs
+			})
+			.then(() => {
+				dispatch({ type: 'CREATE_ORDER', order });
+			})
+			.catch(err => {
+				dispatch({ type: 'CREATE_ORDER_ERROR', err });
 			});
 	};
 };

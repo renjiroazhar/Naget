@@ -29,7 +29,7 @@ class Help extends React.Component {
 						<div
 							className="center"
 							style={{
-								lineHeight: '56px',
+								lineHeight: '76px',
 								display: 'block',
 								textAlign: 'center',
 								marign: 'auto'

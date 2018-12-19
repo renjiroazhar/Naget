@@ -1,107 +1,231 @@
 import React, { Component } from 'react';
-import './style/style.css';
-import { connect } from 'react-redux';
-import { signIn } from '../../../redux/actions/authActions';
-import { Redirect, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import './style/dummy.css';
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import {
+	signIn,
+	signInWithFacebook,
+	signInWithGoogle
+} from '../../../redux/actions/authActions';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+
 import FormControl from '@material-ui/core/FormControl';
-import Tooltip from '../../../components/Tooltip';
 
 const styles = theme => ({
+	container: {
+		display: 'flex',
+		flexWrap: 'wrap'
+	},
+	dense: {
+		marginTop: 19
+	},
+	menu: {
+		width: 200
+	},
+	absolute: {
+		color: '#00c43e',
+		backgroundColor: '#00c43e',
+		position: 'fixed',
+		right: '0px',
+		bottom: '0px',
+		marginBottom: '40px',
+		marginRight: '24px'
+	},
+	textField: {
+		color: '#ffffff'
+	},
+	margin: {
+		width: '90%',
+		maxWidth: '380px',
+		minWidth: '300px',
+		backgroundColor: '#00c43e'
+	},
+	marginForm: {
+		maxWidth: '350px',
+		width: '100%',
+		fontWeight: 400,
+		color: 'white',
+		textDecoration: 'none'
+	},
+	cssRoot: {
+		color: '#FFFFFF',
+		backgroundColor: '#00c43e',
+		maxWidth: '380px',
+		width: '90%',
+		height: '',
+		fontWeight: 400,
+		'&:hover': {
+			backgroundColor: '#00c43e'
+		}
+	},
+	cssFoot: {
+		color: '#ffffff',
+		maxWidth: '380px',
+		width: '90%',
+		height: '',
+		fontWeight: 400,
+		margin: '5px',
+		'&:hover': {
+			backgroundColor: '#f7f7f7'
+		}
+	},
 	cssLabel: {
 		color: '#999',
 		'&$cssFocused': {
-			color: '#000000'
+			color: 'white'
 		}
 	},
 	cssFocused: {},
 	cssUnderline: {
-		width: '100%',
+		width: '90%',
+		maxWidth: '380px',
+		minWidth: '300px',
 		borderColor: '#fff',
-		color: '#000',
-		borderBottomColor: '#000000',
+		color: '#fff',
+		borderBottomColor: 'white',
 		'&:before': {
-			borderBottomColor: '#000000'
+			borderBottomColor: 'white'
 		},
 		'&:after': {
-			borderBottomColor: '#000000'
-		},
-		'&:hover': {
-			borderBottomColor: '#000000'
+			borderBottomColor: 'white'
 		}
 	},
-	margin: {
-		margin: theme.spacing.unit,
-		width: '100%',
-		fontWeight: 400,
-		color: 'white',
-		backgroundColor: '#00c43e',
-		textDecoration: 'none',
-		borderRadius: 0,
+	iconchat: {
+		color: '#fff',
 		'&:hover': {
-			backgroundColor: '#f7f7f7',
 			color: '#00c43e'
 		}
 	},
-	form: {
-		textAlign: 'center'
+	bootstrapRoot: {
+		boxShadow: 'none',
+		textTransform: 'none',
+		maxWidth: '350px',
+		width: '100%',
+		fontSize: 16,
+		fontWeight: 400,
+		padding: '6px 12px',
+		border: '1px solid',
+		backgroundColor: '#007bff',
+		borderColor: '#007bff',
+		color: 'white',
+		fontFamily: [
+			'-apple-system',
+			'BlinkMacSystemFont',
+			'"Segoe UI"',
+			'Roboto',
+			'"Helvetica Neue"',
+			'Arial',
+			'sans-serif',
+			'"Apple Color Emoji"',
+			'"Segoe UI Emoji"',
+			'"Segoe UI Symbol"'
+		].join(','),
+		'&:hover': {
+			backgroundColor: '#0069d9',
+			borderColor: '#0062cc',
+			color: 'white'
+		},
+		'&:active': {
+			boxShadow: 'none',
+			backgroundColor: '#0062cc',
+			borderColor: '#005cbf'
+		},
+		'&:focus': {
+			boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
+		}
+	},
+	snackbar: {
+		position: 'absolute',
+		bottom: theme.spacing.unit * 5,
+		right: theme.spacing.unit * 5
+	},
+	snackbarContent: {
+		width: 360
+	},
+	bootstrapInput: {
+		borderRadius: 4,
+		backgroundColor: theme.palette.common.white,
+		border: '1px solid #ced4da',
+		fontSize: 16,
+		padding: '10px 12px',
+		transition: theme.transitions.create(['border-color', 'box-shadow']),
+		// Use the system font instead of the default Roboto font.
+		fontFamily: [
+			'-apple-system',
+			'BlinkMacSystemFont',
+			'"Segoe UI"',
+			'Roboto',
+			'"Helvetica Neue"',
+			'Arial',
+			'sans-serif',
+			'"Apple Color Emoji"',
+			'"Segoe UI Emoji"',
+			'"Segoe UI Symbol"'
+		].join(','),
+		'&:focus': {
+			borderColor: '#80bdff',
+			boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)'
+		}
+	},
+	bootstrapFormLabel: {
+		fontSize: 18
 	}
 });
-
 class Loginpage extends Component {
 	state = {
 		email: '',
-		password: '',
-		showPassword: false
+		password: ''
+	};
+
+	signIn = () => {
+		const { email, password } = this.state;
+		var creds = {
+			email,
+			password
+		};
+		this.props.signIn(creds);
+	};
+
+	signInWithFacebook = () => {
+		this.props.signInWithFacebook();
+	};
+
+	signInWithGoogle = () => {
+		this.props.signInWithGoogle();
 	};
 
 	handleChange = e => {
 		this.setState({
-			[e.target.id]: e.target.value
+			[e.target.name]: e.target.value
 		});
 	};
 
-	handleSubmit = e => {
-		e.preventDefault();
-
-		this.login();
-	};
-
-	login = () => {
-		const { email, password } = this.state;
-		var credential = {
-			email,
-			password
-		};
-
-		this.props.signIn(credential);
-	};
-
-	handleClickShowPassword = () => {
-		this.setState(state => ({ showPassword: !state.showPassword }));
-	};
-
 	render() {
-		const { authError, redirect, classes } = this.props;
+		const { classes, redirect, authError } = this.props;
+
 		return (
-			<div>
-				<div className="background" />
-				<div className="background2" />
-				<div className="loginForm">
-					<hgroup>
-						<h1>
-							<img
-								src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
-								alt="logo"
-							/>
-						</h1>
-					</hgroup>
-					<form onSubmit={this.handleSubmit}>
-						<div className="group">
-							<FormControl style={{ width: '100%' }}>
+			<div className="home">
+				<div className="container">
+					<img
+						src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
+						srcSet="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
+						width="171"
+						height="50"
+						alt="Moretrash Logo"
+						retina_logo_url=""
+						className="moretrash-logo"
+					/>
+
+					<div style={{ textAlign: 'center' }}>
+						<p style={{ color: 'white', fontWeight: 400 }}>
+							Drop Your Trash and get benefit!
+						</p>
+						<div style={{ textAlign: 'center', color: 'white' }}>
+							<FormControl className="margin-form">
 								<InputLabel
 									htmlFor="custom-css-input"
 									FormLabelClasses={{
@@ -115,15 +239,17 @@ class Loginpage extends Component {
 									classes={{
 										underline: classes.cssUnderline
 									}}
+									onKeyPress={this.handleKeyPress}
 									id="email"
+									value={this.state.email}
+									name="email"
 									type="email"
 									onChange={this.handleChange}
-									value={this.state.email}
 								/>
 							</FormControl>
-						</div>
-						<div className="group">
-							<FormControl style={{ width: '100%' }}>
+							<br />
+							<br />
+							<FormControl className="margin-form">
 								<InputLabel
 									htmlFor="custom-css-input"
 									FormLabelClasses={{
@@ -137,64 +263,133 @@ class Loginpage extends Component {
 									classes={{
 										underline: classes.cssUnderline
 									}}
+									onKeyPress={this.handleKeyPress}
 									id="password"
+									name="password"
+									value={this.state.password}
 									type="password"
 									onChange={this.handleChange}
-									value={this.state.password}
 								/>
 							</FormControl>
-						</div>
-						<br />
-						<button
-							type="button"
-							className="buttonui"
-							onClick={this.handleSubmit}
-						>
-							{' '}
-							<span> Masuk </span>
-							<div className="ripples buttonRipples">
-								<span className="ripplesCircle" />
-							</div>
-						</button>{' '}
-						<br />
-						<div>
+
+							<br />
+							<br />
 							{authError ? (
 								<p
 									style={{
 										textAlign: 'center',
-										color: 'red',
-										marginTop: '10px'
+										color: 'white',
+										fontFamily: 'unset',
+										fontSize: '13px',
+										margin: 0,
+										padding: 0
 									}}
 								>
 									{authError}
 								</p>
 							) : null}
-						</div>
-						<br />
-						<div>
-							<p style={{ textAlign: 'center', color: 'black' }}>
-								<Link to="/forgot_password">Lupa Password?</Link>
-							</p>
-						</div>
-						<br />
-						<div>
-							<p style={{ textAlign: 'center', color: 'black' }}>
-								Belum punya akun? <Link to="/signup">Registrasi sekarang!</Link>
-							</p>
-						</div>
-					</form>
+							<br />
+							<Button
+								variant="extended"
+								color="primary"
+								className={classes.cssRoot}
+								onClick={this.signIn}
+								size="large"
+							>
+								MASUK
+							</Button>
+							<div style={{ textAlign: 'center' }}>
+								<p
+									style={{
+										textAlign: 'center',
+										color: 'white',
+										marginTop: '5%',
+										padding: 0,
+										fontFamily: 'arial',
+										fontWeight: 'initial'
+									}}
+								>
+									ATAU
+								</p>
+							</div>
 
-					<div className="powered">
-						Powered by{' '}
-						<a href="http://https://www.moretrash.id/"> Moretrash </a>
+							<div style={{ width: '100%', marginTop: '5%' }}>
+								<Button
+									id="forgetBtn"
+									onClick={this.signInWithGoogle}
+									className={classes.cssFoot}
+									style={{ backgroundColor: 'red' }}
+								>
+									LOGIN DENGAN GOOGLE
+								</Button>
+
+								<br />
+								<Button
+									id="forgetBtn"
+									onClick={this.signInWithFacebook}
+									className={classes.cssFoot}
+									style={{ backgroundColor: 'blue' }}
+								>
+									LOGIN DENGAN FACEBOOK
+								</Button>
+							</div>
+							<br />
+							<div
+								style={{
+									bottom: 20,
+									position: 'fixed',
+									textAlign: 'center',
+									width: '100%'
+								}}
+							>
+								<p
+									id="forgetBtn"
+									style={{
+										float: 'left',
+										margin: '5%',
+										color: 'white',
+										fontFamily: 'arial',
+										fontWeight: 'initial'
+									}}
+									onClick={this.forgotPassword}
+								>
+									REGISTER
+								</p>
+
+								<p
+									id="forgetBtn"
+									style={{
+										float: 'right',
+										margin: '5%',
+										color: 'white',
+										fontFamily: 'arial',
+										fontWeight: 'initial'
+									}}
+									onClick={this.forgotPassword}
+								>
+									FORGOT PASSWORD?
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
-				<Tooltip />
 				{redirect ? <Redirect to="/" /> : null}
 			</div>
 		);
 	}
 }
+
+Loginpage.propTypes = {
+	classes: PropTypes.object.isRequired
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		signIn: creds => dispatch(signIn(creds)),
+		signInWithFacebook: () => dispatch(signInWithFacebook()),
+		signInWithGoogle: () => dispatch(signInWithGoogle())
+	};
+};
 
 const mapStateToProps = state => {
 	console.log(state);
@@ -204,17 +399,7 @@ const mapStateToProps = state => {
 	};
 };
 
-const mapDispatchToProps = dispatch => {
-	return {
-		signIn: creds => dispatch(signIn(creds))
-	};
-};
-
-Loginpage.propTypes = {
-	classes: PropTypes.object.isRequired
-};
-
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withStyles(styles)(Loginpage));
+)(withStyles(styles)(withRouter(Loginpage)));

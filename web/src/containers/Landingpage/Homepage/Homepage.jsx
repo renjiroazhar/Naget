@@ -180,8 +180,7 @@ class Homepage extends Component {
 						retina_logo_url=""
 						className="moretrash-logo"
 					/>
-					<br />
-					<br />
+
 					<div style={{ textAlign: 'center' }}>
 						<p style={{ color: 'white', fontWeight: 400 }}>
 							Drop Your Trash and get benefit!
@@ -192,9 +191,9 @@ class Homepage extends Component {
 							</div>
 						</div>
 					</div>
-
+					<br />
 					<Button
-						variant="contained"
+						variant="extended"
 						color="primary"
 						className={classes.cssRoot}
 						onClick={() => this.props.history.push('/form')}
@@ -205,7 +204,7 @@ class Homepage extends Component {
 					<br />
 					<br />
 					<Button
-						variant="contained"
+						variant="extended"
 						color="primary"
 						className={classes.cssRoot}
 						onClick={() => this.props.history.push('/login')}

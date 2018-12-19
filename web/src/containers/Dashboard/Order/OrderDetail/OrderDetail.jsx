@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toolbar, Page, BackButton, Icon } from 'react-onsenui';
+import { Page, Icon } from 'react-onsenui';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -10,6 +10,13 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowLeft from '@material-ui/icons/ArrowBack';
+import { removeOrder } from '../../../../redux/actions/orderActions';
 
 const styles = theme => ({
 	root: {
@@ -40,24 +47,20 @@ class OrderDetail extends React.Component {
 		this.props.navigator.pushPage({ component: OrderContainer });
 	}
 
-	popPage() {
+	popPage = () => {
 		this.props.navigator.popPage();
-	}
+	};
 
-	renderToolbar() {
-		return (
-			<Toolbar
-				transparent
-				noshadow
-				style={{ height: '56px', backgroundColor: '#333c4e' }}
-			>
-				<div className="left" style={{ lineHeight: '56px', color: 'white' }}>
-					<BackButton onClick={this.popPage}>Back</BackButton>
-					Detail
-				</div>
-			</Toolbar>
-		);
-	}
+	changeVisibilityTrue = () => {
+		this.props.changeVisibilityTrue();
+	};
+
+	deleteOrder = () => {
+		const { idItem } = this.props;
+		this.props.removeOrder(idItem);
+		this.popPage();
+		this.props.changeVisibilityTrue();
+	};
 
 	render() {
 		const { order, classes } = this.props;
@@ -66,7 +69,34 @@ class OrderDetail extends React.Component {
 			return (
 				console.log(order),
 				(
-					<Page renderToolbar={this.renderToolbar}>
+					<Page>
+						<div style={{ flex: 1 }}>
+							<AppBar
+								style={{ width: '100%', backgroundColor: '#333c4e' }}
+								position="static"
+							>
+								<Toolbar>
+									<IconButton
+										onClick={() => {
+											this.popPage();
+											this.props.changeVisibilityTrue();
+										}}
+										className={classes.menuButton}
+										color="inherit"
+										aria-label="Menu"
+									>
+										<ArrowLeft />
+									</IconButton>
+									<Typography
+										variant="h6"
+										color="inherit"
+										className={classes.grow}
+									>
+										Detail
+									</Typography>
+								</Toolbar>
+							</AppBar>
+						</div>
 						<div
 							style={{
 								height: '100%',
@@ -86,7 +116,7 @@ class OrderDetail extends React.Component {
 									<ListItem style={{ paddingTop: 0 }}>
 										<ListItemText
 											style={{ float: 'left' }}
-											primary={order.logs.name}
+											primary={order.logs.name ? order.logs.name : ''}
 										/>
 									</ListItem>
 								</List>
@@ -100,7 +130,9 @@ class OrderDetail extends React.Component {
 									<ListItem style={{ paddingTop: 0 }}>
 										<ListItemText
 											style={{ float: 'left' }}
-											primary={order.location.alamat}
+											primary={
+												order.location.alamat ? order.location.alamat : ''
+											}
 										/>
 									</ListItem>
 								</List>
@@ -114,7 +146,7 @@ class OrderDetail extends React.Component {
 									<ListItem style={{ paddingTop: 0 }}>
 										<ListItemText
 											style={{ float: 'left' }}
-											primary={order.logs.phone}
+											primary={order.logs.phone ? order.logs.phone : ''}
 										/>
 									</ListItem>
 								</List>
@@ -130,7 +162,7 @@ class OrderDetail extends React.Component {
 										<ListItemText
 											style={{ float: 'left' }}
 											primary={
-												order.location.catatan ? order.location.catatan : null
+												order.location.catatan ? order.location.catatan : ''
 											}
 										/>
 									</ListItem>
@@ -143,33 +175,57 @@ class OrderDetail extends React.Component {
 										/>
 									</ListItem>
 									<div>
-										{order.foto.downloadURLs ? (
-											<Grid container spacing={16}>
-												<Grid item xs={12}>
-													<Grid
-														container
-														className={classes.demo}
-														justify="center"
-														spacing={8}
-													>
-														<Grid item>
-															<img
-																key={order.foto.downloadURLs}
-																src={order.foto.downloadURLs}
-																width="100px"
-																height="100px"
-																alt=""
-															/>
+										{order.foto ? (
+											order.foto.map(foto => {
+												return (
+													<Grid container spacing={16}>
+														<Grid item xs={12}>
+															<Grid
+																container
+																className={classes.demo}
+																justify="center"
+																spacing={8}
+															>
+																<Grid item>
+																	<img
+																		key={foto}
+																		src={foto}
+																		width="100px"
+																		height="100px"
+																		alt=""
+																	/>
+																</Grid>
+															</Grid>
 														</Grid>
 													</Grid>
-												</Grid>
-											</Grid>
+												);
+											})
 										) : (
 											<div>a</div>
 										)}
 									</div>
 								</List>
 							</List>
+							<div
+								style={{
+									textAlign: 'center',
+									bottom: 10,
+									position: 'fixed',
+									width: '100%'
+								}}
+							>
+								<Button
+									style={{
+										backgroundColor: '#f43c3c',
+										width: '90%',
+										textAlign: 'center',
+										color: '#ffffff'
+									}}
+									onClick={this.deleteOrder}
+								>
+									Batalkan Pemesanan
+								</Button>
+							</div>
 						</div>
 					</Page>
 				)
@@ -207,7 +263,16 @@ const mapStateToProps = (state, ownProps) => {
 	};
 };
 
+const mapDispatchToProps = dispatch => {
+	return {
+		removeOrder: id => dispatch(removeOrder(id))
+	};
+};
+
 export default compose(
-	connect(mapStateToProps),
+	connect(
+		mapStateToProps,
+		mapDispatchToProps
+	),
 	firestoreConnect([{ collection: 'orders' }])
 )(withStyles(styles)(OrderDetail));

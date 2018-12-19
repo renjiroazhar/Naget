@@ -7,7 +7,6 @@ import Slide from '@material-ui/core/Slide';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import InfoIcon from '@material-ui/icons/Info';
@@ -37,7 +36,7 @@ const styles = theme => ({
 		paddingBottom: 50
 	},
 	list: {
-		marginBottom: theme.spacing.unit * 2
+		marginBottom: 0
 	},
 	subHeader: {
 		backgroundColor: theme.palette.background.paper
@@ -97,11 +96,7 @@ class Tentang extends React.Component {
 		const { classes } = this.props;
 		return (
 			<div style={{ backgroundColor: 'white' }}>
-				<List
-					onClick={this.handleClickOpen}
-					className={classes.list}
-					style={{ paddingBottom: '10px' }}
-				>
+				<List onClick={this.handleClickOpen} className={classes.list}>
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemIcon>
 							<InfoIcon style={{ fontSize: '24px' }} />
@@ -121,20 +116,6 @@ class Tentang extends React.Component {
 					onClose={this.handleClose}
 					TransitionComponent={Transition}
 				>
-					{/* <AppBar className={classes.appBar}>
-						<Toolbar>
-							<IconButton
-								color="inherit"
-								onClick={this.handleClose}
-								aria-label="Close"
-							>
-								<CloseIcon />
-							</IconButton>
-							<Typography variant="h6" color="inherit" className={classes.flex}>
-								Tentang Kami
-							</Typography>
-						</Toolbar>
-					</AppBar> */}
 					<div>
 						<Header />
 						<div style={{ marginTop: '170px' }}>

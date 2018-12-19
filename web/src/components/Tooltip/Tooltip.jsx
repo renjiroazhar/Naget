@@ -19,7 +19,7 @@ export default class Tooltip extends Component {
 						/>
 					}
 					large
-					style={{ bottom: '45px', right: '24px', backgroundColor: '#00c43e' }}
+					style={{ bottom: '45px', right: '24px' }}
 				>
 					<Button floating icon="insert_chart" className="red" />
 					<Button floating icon="format_quote" className="yellow darken-1" />

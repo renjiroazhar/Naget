@@ -4,19 +4,31 @@ import FormPersonalDetails from './FormPersonalDetails';
 import Confirm from './Confirm';
 import Success from './Success';
 import { Page } from 'react-onsenui';
+import { storage } from '../../../services/firebaseConfig';
+import { createOrder } from '../../../redux/actions/orderActions';
+import { connect } from 'react-redux';
 
 export class UserForm extends Component {
 	state = {
 		step: 1,
-		firstName: '',
-		lastName: '',
+		name: '',
+		phone: '',
 		email: '',
+		time: '',
 		occupation: '',
 		city: '',
 		bio: '',
+		address: '',
 		foto: [],
 		previewGeneralPhotos: [],
-		generalPhotos: []
+		generalPhotos: [],
+		downloadURLs: [],
+		uploadProgress: 0,
+		filenames: [],
+
+		isUploading: false,
+
+		loading: false
 	};
 
 	// Proceed to next step
@@ -82,29 +94,95 @@ export class UserForm extends Component {
 		}
 	};
 
+	handleUpload = () => {
+		const { previewGeneralPhotos } = this.state;
+		if (previewGeneralPhotos) {
+			const promises = [];
+			previewGeneralPhotos.forEach(file => {
+				const uploadTask = storage
+					.ref(`images/${previewGeneralPhotos.name}`)
+					.put(file);
+				promises.push(uploadTask);
+
+				uploadTask.on(
+					'state_changed',
+					snapshot => {
+						const progress =
+							(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+						console.log(progress);
+						this.setState({
+							loading: true
+						});
+					},
+					error => {
+						console.log(error);
+					},
+					() => {
+						uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+							console.log(downloadURL);
+							this.setState(oldState => ({
+								downloadURLs: [...oldState.downloadURLs, downloadURL]
+							}));
+							console.log(this.state.downloadURLs);
+						});
+					}
+				);
+			});
+
+			Promise.all(promises).then(tasks => {
+				console.log('all uploads complete', tasks);
+				this.setState({
+					loading: false
+				});
+			});
+		} else {
+			this.props.createOrder(this.state);
+			this.nextStep();
+		}
+	};
+
+	handleCreateOrder = () => {
+		this.props.createOrder(this.state);
+		this.nextStep();
+	};
+
+	handleChangeTime = time => {
+		this.setState({
+			time: time
+		});
+	};
+
 	render() {
 		const { step } = this.state;
 		const {
-			firstName,
-			lastName,
+			name,
+			phone,
 			email,
+			time,
 			occupation,
 			city,
 			bio,
+			address,
 			foto,
 			generalPhotos,
-			previewGeneralPhotos
+			previewGeneralPhotos,
+			downloadURLs,
+			loading
 		} = this.state;
 		const values = {
-			firstName,
-			lastName,
+			name,
+			phone,
+			time,
 			email,
+			address,
 			occupation,
 			city,
 			bio,
 			foto,
+			loading,
 			generalPhotos,
-			previewGeneralPhotos
+			previewGeneralPhotos,
+			downloadURLs
 		};
 
 		switch (step) {
@@ -131,6 +209,7 @@ export class UserForm extends Component {
 							values={values}
 							onDropGeneral={this.onDropGeneral}
 							deleteImage={this.deleteImage}
+							handleChangeTime={this.handleChangeTime}
 						/>
 					</Page>
 				);
@@ -142,13 +221,17 @@ export class UserForm extends Component {
 							nextStep={this.nextStep}
 							prevStep={this.prevStep}
 							values={values}
+							handleUpload={this.handleUpload}
 						/>
 					</Page>
 				);
 			case 4:
 				return (
 					<Page>
-						<Success />
+						<Success
+							handleCreateOrder={this.handleCreateOrder}
+							values={values}
+						/>
 					</Page>
 				);
 			default:
@@ -157,4 +240,13 @@ export class UserForm extends Component {
 	}
 }
 
-export default UserForm;
+const mapDispatchToProps = dispatch => {
+	return {
+		createOrder: data => dispatch(createOrder(data))
+	};
+};
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(UserForm);

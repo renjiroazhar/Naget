@@ -15,7 +15,7 @@ export default class TooltipButton extends Component {
 			>
 				<SpeedDial
 					disabled={false}
-					direction="left"
+					direction="up"
 					onClick={() => console.log('test1')}
 					position="right bottom"
 					style={{ position: 'absolute !important' }}

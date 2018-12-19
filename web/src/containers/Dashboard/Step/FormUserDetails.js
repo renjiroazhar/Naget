@@ -34,29 +34,36 @@ export class FormUserDetails extends Component {
 						</Toolbar>
 					</AppBar>
 					<TextField
-						hintText="Enter Your First Name"
-						floatingLabelText="First Name"
+						hintText="Masukkan Nama Lengkap Anda"
+						floatingLabelText="Nama Lengkap"
 						style={styles.textArea}
-						onChange={handleChange('firstName')}
-						defaultValue={values.firstName}
+						onChange={handleChange('name')}
+						defaultValue={values.name}
 					/>
 					<br />
 					<TextField
-						hintText="Enter Your Last Name"
-						floatingLabelText="Last Name"
+						hintText="Masukkan Nomor Telepon Anda"
+						floatingLabelText="Nomor Telepon"
 						style={styles.textArea}
-						onChange={handleChange('lastName')}
-						defaultValue={values.lastName}
+						onChange={handleChange('phone')}
+						defaultValue={values.phone}
 					/>
 					<br />
 					<TextField
-						hintText="Enter Your Email"
+						hintText="Masukkan Email Anda"
 						floatingLabelText="Email"
 						onChange={handleChange('email')}
 						defaultValue={values.email}
 						style={styles.textArea}
 					/>
 					<br />
+					<TextField
+						hintText="Masukkan Alamat Anda"
+						floatingLabelText="Alamat"
+						onChange={handleChange('address')}
+						defaultValue={values.address}
+						style={styles.textArea}
+					/>
 					<RaisedButton
 						label="Selanjutnya"
 						primary={true}
@@ -76,7 +83,16 @@ const styles = {
 	textArea: {
 		marginRight: 15,
 		marginLeft: 15,
-		width: '90%'
+		width: '90%',
+		borderBottomColor: 'red',
+		'&:active': {
+			borderColor: '#005cbf',
+			borderBottomColor: 'red'
+		},
+		'&:focus': {
+			borderColor: '#005cbf',
+			borderBottomColor: 'red'
+		}
 	},
 	appBar: {
 		height: '56px',
