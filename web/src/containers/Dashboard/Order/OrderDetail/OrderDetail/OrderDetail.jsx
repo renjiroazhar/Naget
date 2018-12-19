@@ -127,18 +127,20 @@ class OrderDetail extends React.Component {
 								marginBottom: '20%'
 							}}
 						>
-							<Button
-								style={{
-									backgroundColor: '#f43c3c',
-									width: '90%',
-									textAlign: 'center',
-									color: '#ffffff'
-								}}
-								onClick={this.props.pushPage}
-							>
-								Edit
-							</Button>
-
+							<div style={{ textAlign: 'center' }}>
+								<Button
+									style={{
+										backgroundColor: '#f43c3c',
+										width: '90%',
+										textAlign: 'center',
+										color: '#ffffff',
+										marginTop: '5%'
+									}}
+									onClick={this.props.pushPage}
+								>
+									Edit
+								</Button>
+							</div>
 							<List style={{ overflow: 'hidden' }}>
 								<List className={classes.list} onClick={this.handleClickOpen}>
 									<ListItem button onClick={this.handleClickOpen}>

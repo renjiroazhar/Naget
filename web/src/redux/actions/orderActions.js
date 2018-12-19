@@ -48,6 +48,7 @@ export const createOrder = (order, picture) => {
 			name: order.name,
 			phone: order.phone,
 			userId: userId,
+			email: order.email,
 			status: 'WAITING_CONFIRMATION'
 		};
 
