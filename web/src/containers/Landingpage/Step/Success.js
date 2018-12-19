@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
+import AppBar from '@material-ui/core/AppBar';
 import { Icon } from 'react-onsenui';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { withRouter } from 'react-router-dom';
 
 export class Success extends Component {
 	continue = e => {
@@ -15,6 +16,10 @@ export class Success extends Component {
 	back = e => {
 		e.preventDefault();
 		this.props.prevStep();
+	};
+
+	backPage = () => {
+		this.props.history.push('/');
 	};
 
 	render() {
@@ -39,42 +44,52 @@ export class Success extends Component {
 		return (
 			<MuiThemeProvider>
 				<React.Fragment>
-					<AppBar style={styles.appBar}>
+					<AppBar
+						position="static"
+						color="default"
+						style={{ backgroundColor: '#333c4e' }}
+					>
 						<Toolbar>
-							<Typography variant="h6" color="inherit" style={{ flex: 1 }}>
-								Finish
-							</Typography>
+							<div
+								className="center"
+								style={{
+									display: 'block',
+									textAlign: 'center',
+									margin: 'auto'
+								}}
+							>
+								<img
+									src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
+									srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
+									width="120px"
+									height="35px"
+									alt="Moretrash Logo"
+									retina_logo_url=""
+									class="fusion-standard-logo"
+								/>
+							</div>
 						</Toolbar>
 					</AppBar>
+
+					<div style={{ textAlign: 'center' }}>
+						<h3 style={{ textAlign: 'center' }}>Pick Trash Berhasil</h3>
+						<p style={{ textAlign: 'center' }}>
+							Terimakasih telah berkontribusi
+						</p>
+					</div>
+
+					<div style={{ textAlign: 'center' }}>
+						<Button
+							style={{ margin: 15, backgroundColor: 'lime', color: 'white' }}
+							onClick={this.backPage}
+						>
+							Kembali Ke Beranda
+						</Button>
+					</div>
 				</React.Fragment>
 			</MuiThemeProvider>
 		);
 	}
 }
 
-const styles = {
-	button: {
-		margin: 15
-	},
-	textArea: {
-		marginRight: 15,
-		marginLeft: 15,
-		width: '90%',
-		borderBottomColor: 'red',
-		'&:active': {
-			borderColor: '#005cbf',
-			borderBottomColor: 'red'
-		},
-		'&:focus': {
-			borderColor: '#005cbf',
-			borderBottomColor: 'red'
-		}
-	},
-	appBar: {
-		height: '56px',
-		position: 'relative',
-		backgroundColor: '#333c4e'
-	}
-};
-
-export default Success;
+export default withRouter(Success);

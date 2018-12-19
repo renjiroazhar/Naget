@@ -2,18 +2,44 @@ import React from 'react';
 import { Page, Toolbar } from 'react-onsenui';
 import EditProfil from './AccountEdit/Dialog/EditProfil';
 import GantiPassword from './AccountEdit/Dialog/GantiPassword';
-import Divider from '@material-ui/core/Divider';
-
 import Faq from './AccountEdit/Dialog/Faq';
 import Rate from './AccountEdit/Dialog/Rate';
 import Tentang from './AccountEdit/Dialog/Tentang';
 import Testimoni from './AccountEdit/Dialog/Testimoni';
 import Button from '@material-ui/core/Button';
+import { AlertDialog } from 'react-onsenui';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signOut } from '../../../redux/actions/authActions';
+import Divider from '@material-ui/core/Divider';
+class Account extends React.Component {
+	state = {
+		open: false,
+		currentPassword: '',
+		newPassword: '',
+		isOpen: false
+	};
 
-export default class Account extends React.Component {
+	logout = () => {
+		this.props.signOut();
+		this.props.history.push('/');
+	};
+
 	renderTab() {
 		this.props.renderTab();
 	}
+
+	handleOpen = () => {
+		this.setState({
+			isOpen: true
+		});
+	};
+
+	handleClose = () => {
+		this.setState({
+			isOpen: false
+		});
+	};
 	render() {
 		return (
 			<Page
@@ -94,12 +120,39 @@ export default class Account extends React.Component {
 							textAlign: 'center',
 							color: '#ffffff'
 						}}
+						onClick={this.handleOpen}
 					>
 						Keluar
 					</Button>
 				</div>
 				{/*Tooltip*/}
+				<AlertDialog
+					isOpen={this.state.isOpen}
+					onCancel={this.handleClose}
+					cancelable
+				>
+					<div className="alert-dialog-title">Keluar</div>
+					<div className="alert-dialog-content">Anda Yakin?</div>
+
+					<Divider />
+					<Button onClick={this.logout} className="alert-dialog-button">
+						Ya
+					</Button>
+					<Button onClick={this.handleClose} className="alert-dialog-button">
+						Tidak
+					</Button>
+				</AlertDialog>
 			</Page>
 		);
 	}
 }
+const mapDispatchToProps = dispatch => {
+	return {
+		signOut: () => dispatch(signOut())
+	};
+};
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(withRouter(Account));

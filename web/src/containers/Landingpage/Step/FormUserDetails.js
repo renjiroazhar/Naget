@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
 
 export class FormUserDetails extends Component {
@@ -69,12 +69,12 @@ export class FormUserDetails extends Component {
 						defaultValue={values.address}
 						style={styles.textArea}
 					/>
-					<RaisedButton
-						label="Selanjutnya"
-						primary={true}
-						style={styles.button}
+					<Button
+						style={{ margin: 15, backgroundColor: 'lime', color: 'white' }}
 						onClick={this.continue}
-					/>
+					>
+						Continue
+					</Button>
 				</React.Fragment>
 			</MuiThemeProvider>
 		);

@@ -24,6 +24,7 @@ export class UserForm extends Component {
 		downloadURLs: [],
 		uploadProgress: 0,
 		filenames: [],
+		allowSend: false,
 
 		isUploading: false,
 
@@ -46,14 +47,23 @@ export class UserForm extends Component {
 		});
 	};
 
-	pushPage() {
-		this.props.navigator.pushPage();
-	}
+	handleSendOrder = () => {
+		if (this.state.downloadURLs !== [] || this.state.downloadURLs.length > 0) {
+			this.setState({
+				allowSend: true
+			});
+		} else {
+			this.setState({
+				allowSend: false
+			});
+		}
+	};
 
-	popPage() {
-		this.props.navigator.popPage();
-	}
-
+	allowSend = () => {
+		this.setState({
+			allowSend: true
+		});
+	};
 	// Handle fields change
 	handleChange = input => e => {
 		this.setState({ [input]: e.target.value });
@@ -93,9 +103,21 @@ export class UserForm extends Component {
 		}
 	};
 
+	isLoading = () => {
+		this.setState({
+			loading: true
+		});
+	};
+
+	isLoaded = () => {
+		this.setState({
+			loading: false
+		});
+	};
+
 	handleUpload = () => {
 		const { previewGeneralPhotos } = this.state;
-		if (previewGeneralPhotos) {
+		if (previewGeneralPhotos !== [] || previewGeneralPhotos.length > 0) {
 			const promises = [];
 			previewGeneralPhotos.forEach(file => {
 				const uploadTask = storage
@@ -123,6 +145,13 @@ export class UserForm extends Component {
 								downloadURLs: [...oldState.downloadURLs, downloadURL]
 							}));
 							console.log(this.state.downloadURLs);
+							if (
+								this.state.downloadURLs.length ===
+								this.state.previewGeneralPhotos.length
+							) {
+								this.handleSendOrder();
+								this.isLoaded();
+							}
 						});
 					}
 				);
@@ -166,11 +195,13 @@ export class UserForm extends Component {
 			generalPhotos,
 			previewGeneralPhotos,
 			downloadURLs,
-			loading
+			loading,
+			allowSend
 		} = this.state;
 		const values = {
 			name,
 			phone,
+			allowSend,
 			time,
 			email,
 			address,
@@ -189,7 +220,6 @@ export class UserForm extends Component {
 			case 1:
 				return (
 					<FormUserDetails
-						popPage={this.popPage}
 						nextStep={this.nextStep}
 						handleChange={this.handleChange}
 						values={values}
@@ -199,7 +229,6 @@ export class UserForm extends Component {
 			case 2:
 				return (
 					<FormPersonalDetails
-						popPage={this.popPage}
 						nextStep={this.nextStep}
 						changeVisibilityTrue={changeVisibilityTrue}
 						prevStep={this.prevStep}
@@ -209,18 +238,19 @@ export class UserForm extends Component {
 						onDropGeneral={this.onDropGeneral}
 						deleteImage={this.deleteImage}
 						handleChangeTime={this.handleChangeTime}
+						allowSend={this.allowSendOrder}
 					/>
 				);
 			case 3:
 				return (
 					<Confirm
-						popPage={this.popPage}
 						nextStep={this.nextStep}
 						prevStep={this.prevStep}
 						changeVisibilityTrue={changeVisibilityTrue}
 						values={values}
 						handleUpload={this.handleUpload}
 						handleCreateOrder={this.handleCreateOrder}
+						isLoading={this.isLoading}
 					/>
 				);
 			case 4:
@@ -243,7 +273,15 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
+const mapStateToProps = state => {
+	console.log(state);
+	return {
+		profile: state.firebase.profile,
+		auth: state.firebase.auth
+	};
+};
+
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(UserForm);
