@@ -6,7 +6,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import TextField from 'material-ui/TextField';
-import Button from '@material-ui/core/Button';
+import RaisedButton from 'material-ui/RaisedButton';
+import { withRouter } from 'react-router-dom';
 
 export class FormUserDetails extends Component {
 	continue = e => {
@@ -15,8 +16,7 @@ export class FormUserDetails extends Component {
 	};
 
 	backPage = () => {
-		this.props.popPage();
-		this.props.changeVisibilityTrue();
+		this.props.history.push('/');
 	};
 
 	render() {
@@ -69,12 +69,12 @@ export class FormUserDetails extends Component {
 						defaultValue={values.address}
 						style={styles.textArea}
 					/>
-					<Button
-						style={{ margin: 15, backgroundColor: 'lime', color: 'white' }}
+					<RaisedButton
+						label="Selanjutnya"
+						primary={true}
+						style={styles.button}
 						onClick={this.continue}
-					>
-						Continue
-					</Button>
+					/>
 				</React.Fragment>
 			</MuiThemeProvider>
 		);
@@ -106,4 +106,4 @@ const styles = {
 	}
 };
 
-export default FormUserDetails;
+export default withRouter(FormUserDetails);

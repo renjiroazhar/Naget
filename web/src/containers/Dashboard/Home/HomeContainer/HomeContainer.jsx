@@ -10,7 +10,6 @@ import {
 	createMuiTheme
 } from '@material-ui/core/styles';
 import CardPicture from '../Card/CardPicture';
-import CarouselPicture from '../Carousel/CarouselPicture';
 import UserForm from '../../Step/UserForm';
 import './style/style.css';
 import Grid from '@material-ui/core/Grid';
@@ -51,7 +50,7 @@ class HomeContainer extends React.Component {
 	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes, changeVisibilityFalse } = this.props;
 
 		return (
 			<Page renderToolbar={this.renderToolbar}>
@@ -64,12 +63,6 @@ class HomeContainer extends React.Component {
 					</div>
 					<br />
 					<br />
-					<div style={{ textAlign: 'center' }}>
-						<center>
-							<CarouselPicture />
-						</center>
-					</div>
-					<br />
 					<br />
 					<div style={{ textAlign: 'center' }}>
 						<MuiThemeProvider theme={theme}>
@@ -78,12 +71,16 @@ class HomeContainer extends React.Component {
 								color="primary"
 								className={classes.margin}
 								size="large"
-								onClick={() =>
+								onClick={() => {
+									changeVisibilityFalse();
 									this.props.navigator.pushPage({
-										component: UserForm
-										// props: { idItem: order.id }
-									})
-								}
+										component: UserForm,
+										props: {
+											changeVisibilityTrue: () =>
+												this.props.changeVisibilityTrue()
+										}
+									});
+								}}
 							>
 								Pick Trash
 							</Button>

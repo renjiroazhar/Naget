@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { Page } from 'react-onsenui';
-export default class FirstTabbar extends Component {
+export default class EditOrder extends Component {
+	componentDidMount() {
+		console.log(this.props);
+	}
 	render() {
 		return (
 			<Page>
-				<div>Let's Say this is the first Page</div>
+				<p>Edit Page</p>
 			</Page>
 		);
 	}

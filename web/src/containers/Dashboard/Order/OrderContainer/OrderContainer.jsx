@@ -20,9 +20,9 @@ import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import SwipeableViews from 'react-swipeable-views';
 import './style/style.css';
+import EditOrder from '../EditOrder';
 
 import OrderDetail from '../OrderDetail/OrderDetail';
-import TooltipButton from '../../../../components/TooltipButton';
 import ons from 'onsenui';
 
 const styles = theme => ({
@@ -53,9 +53,13 @@ class OrderContainer extends React.Component {
 	state = {
 		value: 0
 	};
+
 	pushPage() {
-		this.props.navigator.pushPage({ component: OrderDetail });
-		this.props.changeTabbarVisibility();
+		this.props.navigator.pushPage({ component: EditOrder });
+	}
+
+	popPage() {
+		this.props.navigator.popPage();
 	}
 
 	componentDidMount() {
@@ -165,11 +169,7 @@ class OrderContainer extends React.Component {
 		}
 		if (isEmpty(orders)) {
 			return (
-				<Page
-					renderToolbar={this.renderToolbar}
-					renderFixed={() => <TooltipButton />}
-					style={{ overflow: 'hidden' }}
-				>
+				<Page renderToolbar={this.renderToolbar} style={{ overflow: 'hidden' }}>
 					<div
 						style={{
 							textAlign: 'center',
@@ -188,10 +188,7 @@ class OrderContainer extends React.Component {
 			);
 		} else {
 			return (
-				<Page
-					renderToolbar={this.renderToolbar}
-					renderFixed={() => <TooltipButton />}
-				>
+				<Page renderToolbar={this.renderToolbar}>
 					<div style={{ width: '100%' }}>
 						{tabBar()}
 						<SwipeableViews
@@ -216,7 +213,15 @@ class OrderContainer extends React.Component {
 																	props: {
 																		idItem: order.id,
 																		changeVisibilityTrue: () =>
-																			this.props.changeVisibilityTrue()
+																			this.props.changeVisibilityTrue(),
+																		popPage: () => this.popPage(),
+																		pushPage: () =>
+																			this.props.navigator.pushPage({
+																				component: EditOrder,
+																				props: {
+																					idItem: order.id
+																				}
+																			})
 																	}
 																});
 															}}
@@ -273,12 +278,25 @@ class OrderContainer extends React.Component {
 															/>
 															<ListItemSecondaryAction>
 																<IconButton
-																	onClick={() =>
+																	onClick={() => {
+																		changeVisibilityFalse();
 																		this.props.navigator.pushPage({
 																			component: OrderDetail,
-																			props: { idItem: order.id }
-																		})
-																	}
+																			props: {
+																				idItem: order.id,
+																				changeVisibilityTrue: () =>
+																					this.props.changeVisibilityTrue(),
+																				popPage: () => this.popPage(),
+																				pushPage: () =>
+																					this.props.navigator.pushPage({
+																						component: EditOrder,
+																						props: {
+																							idItem: order.id,
+																						}
+																					})
+																			}
+																		});
+																	}}
 																	aria-label="Comments"
 																>
 																	<InfoIcon />
@@ -306,14 +324,22 @@ class OrderContainer extends React.Component {
 																props: {
 																	idItem: order.id,
 																	changeVisibilityTrue: () =>
-																		this.props.changeVisibilityTrue()
+																		this.props.changeVisibilityTrue(),
+																	popPage: () => this.popPage(),
+																	pushPage: () =>
+																		this.props.navigator.pushPage({
+																			component: EditOrder,
+																			props: {
+																				idItem: order.id,
+																			}
+																		})
 																}
 															});
 														}}
 														alignItems="flex-start"
 													>
 														<ListItemAvatar>
-															{order.foto.downloadURLs ? (
+															{order.foto ? (
 																<Avatar
 																	style={{
 																		borderRadius: '5%',
@@ -321,11 +347,7 @@ class OrderContainer extends React.Component {
 																		height: '45px'
 																	}}
 																	alt="Remy Sharp"
-																	src={`${
-																		order.foto.downloadURLs[0].url
-																			? order.foto.downloadURLs[0].url
-																			: ''
-																	}`}
+																	src={`${order.foto[0] ? order.foto[0] : ''}`}
 																/>
 															) : (
 																<Avatar
@@ -352,23 +374,38 @@ class OrderContainer extends React.Component {
 																	</Typography>
 																	<br />
 
-																	{order.logs.status === 'SUCCESS'
-																		? 'Berhasil'
-																		: order.logs.status ===
-																		  'WAITING_CONFIRMATION'
-																			? 'Menunggu Konfirmasi'
-																			: ''}
+																	{order.logs.status
+																		? order.logs.status === 'SUCCESS'
+																			? 'Berhasil'
+																			: order.logs.status ===
+																			  'WAITING_CONFIRMATION'
+																				? 'Menunggu Konfirmasi'
+																				: ''
+																		: ''}
 																</React.Fragment>
 															}
 														/>
 														<ListItemSecondaryAction>
 															<IconButton
-																onClick={() =>
+																onClick={() => {
+																	changeVisibilityFalse();
 																	this.props.navigator.pushPage({
 																		component: OrderDetail,
-																		props: { idItem: order.id }
-																	})
-																}
+																		props: {
+																			idItem: order.id,
+																			changeVisibilityTrue: () =>
+																				this.props.changeVisibilityTrue(),
+																			popPage: () => this.popPage(),
+																			pushPage: () =>
+																				this.props.navigator.pushPage({
+																					component: EditOrder,
+																					props: {
+																						idItem: order.id,
+																					}
+																				})
+																		}
+																	});
+																}}
 																aria-label="Comments"
 															>
 																<InfoIcon />

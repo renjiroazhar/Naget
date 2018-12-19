@@ -5,6 +5,7 @@ import Signuppage from '../../containers/Landingpage/Signuppage';
 import Homepage from '../../containers/Landingpage/Homepage';
 import NotFound from '../../containers/Landingpage/NotFound';
 import { Route, Switch } from 'react-router-dom';
+import UserForm from '../../containers/Landingpage/Step/UserForm';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import './style/style.css';
 export default class Routes extends Component {
@@ -30,6 +31,7 @@ export default class Routes extends Component {
 										path="/forgot_pasword"
 										component={Forgotpassword}
 									/>
+									<Route exact path="/form" component={UserForm} />
 
 									<Route component={NotFound} />
 								</Switch>

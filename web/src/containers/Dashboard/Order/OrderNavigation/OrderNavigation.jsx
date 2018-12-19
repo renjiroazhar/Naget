@@ -17,6 +17,7 @@ export default class OrderNavigation extends React.Component {
 				initialRoute={{
 					component: OrderContainer,
 					props: {
+						idItem: this.props.idItem,
 						changeVisibilityFalse: () => this.props.changeVisibilityFalse(),
 						changeVisibilityTrue: () => this.props.changeVisibilityTrue()
 					}

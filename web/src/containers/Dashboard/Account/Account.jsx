@@ -1,14 +1,14 @@
 import React from 'react';
 import { Page, Toolbar } from 'react-onsenui';
-import TooltipButton from '../../../components/TooltipButton';
 import EditProfil from './AccountEdit/Dialog/EditProfil';
 import GantiPassword from './AccountEdit/Dialog/GantiPassword';
 import Divider from '@material-ui/core/Divider';
-import Logout from './AccountEdit/Dialog/Logout';
+
 import Faq from './AccountEdit/Dialog/Faq';
 import Rate from './AccountEdit/Dialog/Rate';
 import Tentang from './AccountEdit/Dialog/Tentang';
 import Testimoni from './AccountEdit/Dialog/Testimoni';
+import Button from '@material-ui/core/Button';
 
 export default class Account extends React.Component {
 	renderTab() {
@@ -52,7 +52,6 @@ export default class Account extends React.Component {
 				</div> */}
 					</Toolbar>
 				)}
-				renderFixed={() => <TooltipButton />}
 			>
 				<div style={{ marginTop: '10px' }}>
 					<EditProfil />
@@ -68,20 +67,38 @@ export default class Account extends React.Component {
 				<div>
 					<Testimoni />
 				</div>
-				<div>
-					<Faq renderTab={() => this.props.renderTab()} />
+				<div style={{ marginTop: '5%' }}>
+					<div>
+						<Faq renderTab={() => this.props.renderTab()} />
+					</div>
+					<div>
+						<Tentang />
+					</div>
 				</div>
-				<div>
-					<Tentang />
-				</div>
-
-				<div>
+				{/* <div>
 					<Logout />
+				</div> */}
+				<div
+					style={{
+						textAlign: 'center',
+
+						width: '100%'
+					}}
+				>
+					<Button
+						style={{
+							marginTop: '15%',
+							marginBottom: '5%',
+							backgroundColor: '#f43c3c',
+							width: '90%',
+							textAlign: 'center',
+							color: '#ffffff'
+						}}
+					>
+						Keluar
+					</Button>
 				</div>
 				{/*Tooltip*/}
-				<br />
-				<br />
-				<br />
 			</Page>
 		);
 	}

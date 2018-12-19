@@ -14,7 +14,13 @@ export default class HomeNavigation extends React.Component {
 	render() {
 		return (
 			<Navigator
-				initialRoute={{ component: HomeContainer }}
+				initialRoute={{
+					component: HomeContainer,
+					props: {
+						changeVisibilityFalse: () => this.props.changeVisibilityFalse(),
+						changeVisibilityTrue: () => this.props.changeVisibilityTrue()
+					}
+				}}
 				renderPage={this.renderPage}
 			/>
 		);

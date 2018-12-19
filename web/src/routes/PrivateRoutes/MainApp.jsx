@@ -5,7 +5,7 @@ import HomeNavigation from '../../containers/Dashboard/Home/HomeNavigation';
 import Help from '../../containers/Dashboard/Help/';
 import Account from '../../containers/Dashboard/Account/';
 import OrderNavigation from '../../containers/Dashboard/Order/OrderNavigation';
-
+import './style/style.css';
 export default class MainApp extends Component {
 	//	navigator;
 	state = {
@@ -27,8 +27,13 @@ export default class MainApp extends Component {
 	renderTabs() {
 		return [
 			{
-				content: <HomeNavigation />,
-				tab: <Tab label="Home" icon="md-home" />
+				content: (
+					<HomeNavigation
+						changeVisibilityFalse={this.changeVisibilityFalse}
+						changeVisibilityTrue={this.changeVisibilityTrue}
+					/>
+				),
+				tab: <Tab label="Home" active={true} icon="md-home" />
 			},
 			{
 				content: (
@@ -53,6 +58,8 @@ export default class MainApp extends Component {
 	render() {
 		return (
 			<Tabbar
+				onPostChange={() => console.log('postChange')}
+				onReactive={() => console.log('postChange')}
 				initialRoute={{ component: HomeNavigation }}
 				renderTabs={this.renderTabs.bind(this)} //<-- *** I changed here.
 				position="bottom"

@@ -9,39 +9,17 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import Dropzone from 'react-dropzone';
 import TimeInput from 'material-ui-time-picker';
-import Viewer from 'react-viewer';
-import 'react-viewer/dist/index.css';
-import Grid from '@material-ui/core/Grid';
-import Fab from '@material-ui/core/Fab';
-import Button from '@material-ui/core/Button';
-
+import { withRouter } from 'react-router-dom';
 export class FormPersonalDetails extends Component {
 	continue = e => {
-		const { values } = this.props;
-
 		e.preventDefault();
-		if(values.previewGeneralPhotos.length < 0 || values.previewGeneralPhotos === [] || values.previewGeneralPhotos === null){
-			this.props.allowSend()
-		}
 		this.props.nextStep();
 	};
 	state = {
 		files: [],
 		previewGeneralPhotos: [],
 		generalPhotos: [],
-		time: '',
-		visible: false
-	};
-
-	viewImage = () => {
-		this.setState({
-			visible: true
-		});
-	};
-	cancelViewImage = () => {
-		this.setState({
-			visible: false
-		});
+		time: ''
 	};
 
 	back = e => {
@@ -50,8 +28,7 @@ export class FormPersonalDetails extends Component {
 	};
 
 	backPage = () => {
-		this.props.popPage();
-		this.props.changeVisibilityTrue();
+		this.props.history.push('/');
 	};
 
 	deleteImage = params => {
@@ -162,41 +139,21 @@ export class FormPersonalDetails extends Component {
 									<div>
 										{values.previewGeneralPhotos.map((file, i) => (
 											<div style={{ textAlign: 'center' }}>
-												<Grid container spacing={24}>
-													<Grid item xs={12} align="center">
-														{' '}
-														<img
-															onClick={this.viewImage}
-															src={URL.createObjectURL(file)}
-															alt="preview failed"
-															key={file.base64}
-															width="250"
-															height="250"
-															style={{ display: 'block', margin: '20px' }}
-														/>
-													</Grid>
-												</Grid>
-
-												<Viewer
-													visible={this.state.visible}
-													onClose={this.cancelViewImage}
-													images={[
-														{
-															src: URL.createObjectURL(file),
-															alt: ''
-														}
-													]}
+												<img
+													src={URL.createObjectURL(file)}
+													alt="preview failed"
+													key={file.base64}
+													width="200px"
+													height="200px"
+													style={{ display: 'block', margin: '20px' }}
 												/>
 
-												<Fab
-													size="small"
-													color="secondary"
-													aria-label="Add"
+												<RaisedButton
+													label="Hapus Gambar"
+													primary={true}
+													style={styles.button}
 													onClick={() => this.props.deleteImage(i)}
-													style={{ backgroundColor: 'red' }}
-												>
-													<CloseIcon />
-												</Fab>
+												/>
 											</div>
 										))}
 									</div>
@@ -215,25 +172,18 @@ export class FormPersonalDetails extends Component {
 					{/* <ul>{files}</ul> */}
 					{/* <p>Progress: {`${this.state.uploadProgress} %`}</p> */}
 					<br />
-					<div>
-						<RaisedButton
-							label="Back"
-							primary={false}
-							style={{ margin: 15, float: 'left' }}
-							onClick={this.back}
-						/>
-						<Button
-							style={{
-								margin: 15,
-								float: 'right',
-								backgroundColor: 'lime',
-								color: 'white'
-							}}
-							onClick={this.continue}
-						>
-							continue
-						</Button>
-					</div>
+					<RaisedButton
+						label="Continue"
+						primary={true}
+						style={styles.button}
+						onClick={this.continue}
+					/>
+					<RaisedButton
+						label="Back"
+						primary={false}
+						style={styles.button}
+						onClick={this.back}
+					/>
 				</React.Fragment>
 			</MuiThemeProvider>
 		);
@@ -242,8 +192,7 @@ export class FormPersonalDetails extends Component {
 
 const styles = {
 	button: {
-		margin: 15,
-		backgroundColor: 'red'
+		margin: 15
 	},
 	appBar: {
 		height: '56px',
@@ -263,4 +212,4 @@ const dropzoneStyle = {
 	border: '1px solid black'
 };
 
-export default FormPersonalDetails;
+export default withRouter(FormPersonalDetails);

@@ -3,7 +3,7 @@ import { Page, Icon } from 'react-onsenui';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import OrderContainer from '../OrderContainer';
+import EditOrder from '../../EditOrder';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -16,7 +16,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowLeft from '@material-ui/icons/ArrowBack';
-import { removeOrder } from '../../../../redux/actions/orderActions';
+import Viewer from 'react-viewer';
+import 'react-viewer/dist/index.css';
+
+import { removeOrder } from '../../../../../redux/actions/orderActions';
 
 const styles = theme => ({
 	root: {
@@ -36,7 +39,19 @@ const styles = theme => ({
 
 class OrderDetail extends React.Component {
 	state = {
-		open: true
+		open: true,
+		visible: false
+	};
+
+	viewImage = () => {
+		this.setState({
+			visible: true
+		});
+	};
+	cancelViewImage = () => {
+		this.setState({
+			visible: false
+		});
 	};
 
 	handleClick = () => {
@@ -44,7 +59,7 @@ class OrderDetail extends React.Component {
 	};
 
 	pushPage() {
-		this.props.navigator.pushPage({ component: OrderContainer });
+		this.props.navigator.pushPage({ component: EditOrder });
 	}
 
 	popPage = () => {
@@ -62,6 +77,15 @@ class OrderDetail extends React.Component {
 		this.props.changeVisibilityTrue();
 	};
 
+	backPage = () => {
+		this.props.popPage();
+		this.props.changeVisibilityTrue();
+	};
+
+	componentDidMount() {
+		console.log(this.props);
+	}
+
 	render() {
 		const { order, classes } = this.props;
 
@@ -77,10 +101,7 @@ class OrderDetail extends React.Component {
 							>
 								<Toolbar>
 									<IconButton
-										onClick={() => {
-											this.popPage();
-											this.props.changeVisibilityTrue();
-										}}
+										onClick={this.backPage}
 										className={classes.menuButton}
 										color="inherit"
 										aria-label="Menu"
@@ -102,9 +123,22 @@ class OrderDetail extends React.Component {
 								height: '100%',
 								minHeight: '100vh',
 								backgroundColor: '#ffffff',
-								width: '100%'
+								width: '100%',
+								marginBottom: '20%'
 							}}
 						>
+							<Button
+								style={{
+									backgroundColor: '#f43c3c',
+									width: '90%',
+									textAlign: 'center',
+									color: '#ffffff'
+								}}
+								onClick={this.props.pushPage}
+							>
+								Edit
+							</Button>
+
 							<List style={{ overflow: 'hidden' }}>
 								<List className={classes.list} onClick={this.handleClickOpen}>
 									<ListItem button onClick={this.handleClickOpen}>
@@ -176,36 +210,43 @@ class OrderDetail extends React.Component {
 									</ListItem>
 									<div>
 										{order.foto ? (
-											order.foto.map(foto => {
+											order.foto.map((foto, i) => {
 												return (
-													<Grid container spacing={16}>
-														<Grid item xs={12}>
-															<Grid
-																container
-																className={classes.demo}
-																justify="center"
-																spacing={8}
-															>
-																<Grid item>
-																	<img
-																		key={foto}
-																		src={foto}
-																		width="100px"
-																		height="100px"
-																		alt=""
-																	/>
-																</Grid>
+													<div>
+														<Grid container spacing={24}>
+															<Grid item xs={12} align="center">
+																<img
+																	onClick={this.viewImage}
+																	src={foto}
+																	alt="preview failed"
+																	key={i}
+																	width="250"
+																	height="250"
+																	style={{ display: 'block', margin: '20px' }}
+																/>
 															</Grid>
 														</Grid>
-													</Grid>
+
+														<Viewer
+															visible={this.state.visible}
+															onClose={this.cancelViewImage}
+															images={[
+																{
+																	src: foto,
+																	alt: ''
+																}
+															]}
+														/>
+													</div>
 												);
 											})
 										) : (
-											<div>a</div>
+											<div style={{ textAlign: 'center' }}>Tidak Ada Foto</div>
 										)}
 									</div>
 								</List>
 							</List>
+
 							<div
 								style={{
 									textAlign: 'center',
