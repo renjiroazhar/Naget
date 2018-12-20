@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Toolbar, Page } from 'react-onsenui';
 import './style/style.css';
 import { connect } from 'react-redux';
 import { signIn } from '../../../redux/actions/authActions';
@@ -12,6 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import Navbar from '../../../component/Navbar';
 
 class Loginpage extends Component {
 	state = {
@@ -46,36 +46,6 @@ class Loginpage extends Component {
 		this.setState(state => ({ showPassword: !state.showPassword }));
 	};
 
-	renderToolbar() {
-		return (
-			<Toolbar
-				transparent
-				noshadow
-				style={{ height: '56px', backgroundColor: '#333c4e' }}
-			>
-				<div
-					className="center"
-					style={{
-						lineHeight: '76px',
-						display: 'block',
-						textAlign: 'center',
-						marign: 'auto'
-					}}
-				>
-					<img
-						src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
-						srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
-						width="120px"
-						height="35px"
-						alt="Moretrash Logo"
-						retina_logo_url=""
-						class="fusion-standard-logo"
-					/>
-				</div>
-			</Toolbar>
-		);
-	}
-
 	render() {
 		const { authError, redirect, classes } = this.props;
 		const uiConfig = {
@@ -93,7 +63,10 @@ class Loginpage extends Component {
 			}
 		};
 		return (
-			<Page renderToolbar={this.renderToolbar}>
+			<div>
+				<div>
+					<Navbar />
+				</div>
 				<div
 					style={{ height: '100%', backgroundColor: '#fff', padding: '40px' }}
 				>
@@ -198,7 +171,7 @@ class Loginpage extends Component {
 					</div>
 				</div>
 				{redirect ? <Redirect to="/" /> : null}
-			</Page>
+			</div>
 		);
 	}
 }

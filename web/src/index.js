@@ -12,8 +12,6 @@ import { reduxFirestore, getFirestore } from 'redux-firestore';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import firebaseConfig from './services/firebaseConfig';
 import { Router } from 'react-router-dom';
-import 'onsenui/css/onsenui.css';
-import 'onsenui/css/onsen-css-components.css';
 
 const store = createStore(
 	rootReducers,

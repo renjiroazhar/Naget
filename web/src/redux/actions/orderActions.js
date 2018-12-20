@@ -59,6 +59,45 @@ export const createOrder = (order, picture) => {
 			.add({
 				location: lokasi,
 				foto: order.downloadURLs,
+				logs: logs,
+				userId: userId
+			})
+			.then(() => {
+				dispatch({ type: 'CREATE_ORDER', order });
+			})
+			.catch(err => {
+				dispatch({ type: 'CREATE_ORDER_ERROR', err });
+			});
+	};
+};
+
+export const createOrderWithoutLogin = (order, picture) => {
+	return (dispatch, getState, { getFirebase, getFirestore }) => {
+		// Make async call to database
+		const firestore = getFirestore();
+		// const profile = getState().firebase.profile;
+
+		const lokasi = {
+			alamat: order.address,
+			catatan: 'catatan',
+			latLng: 123131
+		};
+		const logs = {
+			data: {
+				createdAt: new Date()
+			},
+			name: order.name,
+			phone: order.phone,
+
+			email: order.email,
+			status: 'WAITING_CONFIRMATION'
+		};
+
+		firestore
+			.collection('orders')
+			.add({
+				location: lokasi,
+				foto: order.downloadURLs,
 				logs: logs
 			})
 			.then(() => {

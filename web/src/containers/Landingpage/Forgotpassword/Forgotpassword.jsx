@@ -7,7 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import Tooltip from '../../../components/Tooltip';
 
 const styles = theme => ({
 	root: {
@@ -118,7 +117,6 @@ class Forgotpassword extends Component {
 						<a href="http://https://www.moretrash.id/"> Moretrash </a>
 					</div>
 				</div>
-				<Tooltip />
 			</div>
 		);
 	}

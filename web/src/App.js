@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import firebase from './services/firebaseConfig';
-import PrivateRoutes from './routes/PrivateRoutes';
-import Routes from './routes/Routes/Routes';
+import PrivateRoute from './routes/private';
+import PublicRoute from './routes/public';
 import Lottie from 'lottie-react-web';
-import Planet from './components/Loaders/json/planet_rotating.json';
+import Planet from './component/Loaders/json/planet_rotating.json';
 
 const Loading = () => (
 	<div style={{ marginTop: '200px' }}>
@@ -20,12 +20,12 @@ const Loading = () => (
 class App extends Component {
 	state = {
 		isAuthenticated: null,
-		loading: true
+		loading: false
 	};
 
 	authListener = () => {
-		firebase.auth().onAuthStateChanged(user => {
-			if (user) {
+		const auth = firebase.auth().onAuthStateChanged(user => {
+			if (user !== null || user !== []) {
 				this.setState({
 					isAuthenticated: user
 				});
@@ -35,10 +35,11 @@ class App extends Component {
 				});
 			}
 		});
+		return auth;
 	};
 
 	componentDidMount() {
-		setTimeout(() => this.setState({ loading: false }), 1000);
+		// setTimeout(() => this.setState({ loading: false }), 1000);
 		this.authListener();
 	}
 
@@ -51,8 +52,7 @@ class App extends Component {
 		if (loading) {
 			return <Loading />;
 		}
-		return isAuthenticated ? <PrivateRoutes /> : <Routes />;
-		// return <AppNavigation />;
+		return isAuthenticated ? <PrivateRoute /> : <PublicRoute />;
 	}
 }
 

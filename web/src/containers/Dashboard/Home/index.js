@@ -1,3 +1,3 @@
-import OrderContainer from './OrderContainer/OrderContainer';
+import HomeContainer from './HomeContainer';
 
-export default OrderContainer;
+export default HomeContainer;

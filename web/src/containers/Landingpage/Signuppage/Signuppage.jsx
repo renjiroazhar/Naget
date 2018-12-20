@@ -8,7 +8,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import firebase from 'firebase/app';
 import '@firebase/firestore';
-import Tooltip from '../../../components/Tooltip';
 
 const styles = theme => ({
 	cssLabel: {
@@ -331,7 +330,6 @@ class Signuppage extends Component {
 						<a href="http://https://www.moretrash.id/"> Moretrash </a>
 					</div>
 				</div>
-				<Tooltip />
 			</div>
 		);
 	}

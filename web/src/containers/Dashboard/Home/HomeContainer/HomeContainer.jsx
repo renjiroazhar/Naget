@@ -1,5 +1,4 @@
 import React from 'react';
-import { Toolbar, Page } from 'react-onsenui';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import green from '@material-ui/core/colors/green';
@@ -10,50 +9,18 @@ import {
 	createMuiTheme
 } from '@material-ui/core/styles';
 import CardPicture from '../Card/CardPicture';
-import UserForm from '../../Step/UserForm';
 import './style/style.css';
 import Grid from '@material-ui/core/Grid';
+import { withRouter } from 'react-router-dom';
+import Navbar from '../../../../component/Navbar';
 // import TooltipButton from '../../../../components/TooltipButton';
 class HomeContainer extends React.Component {
-	pushPage() {
-		this.props.navigator.pushPage({ component: UserForm });
-	}
-
-	renderToolbar() {
-		return (
-			<Toolbar
-				transparent
-				noshadow
-				style={{ height: '56px', backgroundColor: '#333c4e' }}
-			>
-				<div
-					className="center"
-					style={{
-						lineHeight: '76px',
-						display: 'block',
-						textAlign: 'center',
-						marign: 'auto'
-					}}
-				>
-					<img
-						src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
-						srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
-						width="120px"
-						height="35px"
-						alt="Moretrash Logo"
-						retina_logo_url=""
-						class="fusion-standard-logo"
-					/>
-				</div>
-			</Toolbar>
-		);
-	}
-
 	render() {
-		const { classes, changeVisibilityFalse } = this.props;
+		const { classes } = this.props;
 
 		return (
-			<Page renderToolbar={this.renderToolbar}>
+			<div style={{ backgroundColor: '#e7e7e7' }}>
+				<Navbar />
 				<div style={{ height: '100%' }}>
 					<br />
 					<div>
@@ -72,14 +39,7 @@ class HomeContainer extends React.Component {
 								className={classes.margin}
 								size="large"
 								onClick={() => {
-									changeVisibilityFalse();
-									this.props.navigator.pushPage({
-										component: UserForm,
-										props: {
-											changeVisibilityTrue: () =>
-												this.props.changeVisibilityTrue()
-										}
-									});
+									this.props.history.push('/form_login');
 								}}
 							>
 								Pick Trash
@@ -88,7 +48,7 @@ class HomeContainer extends React.Component {
 					</div>
 				</div>
 				{/* <TooltipButton /> */}
-			</Page>
+			</div>
 		);
 	}
 }
@@ -254,4 +214,4 @@ HomeContainer.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(HomeContainer);
+export default withStyles(styles)(withRouter(HomeContainer));

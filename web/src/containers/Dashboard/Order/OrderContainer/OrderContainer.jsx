@@ -1,29 +1,19 @@
 import React from 'react';
-import { Toolbar, Page, Icon } from 'react-onsenui';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
-import { withFirestore, isLoaded, isEmpty } from 'react-redux-firebase';
+import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import GarbageIcon from './image/garbage.svg';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import SwipeableViews from 'react-swipeable-views';
 import './style/style.css';
-import EditOrder from '../EditOrder';
-
-import OrderDetail from '../OrderDetail/OrderDetail';
-import ons from 'onsenui';
+import OrderList from './OrderList';
+import Navbar from '../../../../component/Navbar';
+import FixedNavbar from '../../../../component/FixedNavbar';
 
 const styles = theme => ({
 	root: {
@@ -51,20 +41,9 @@ TabContainer.propTypes = {
 
 class OrderContainer extends React.Component {
 	state = {
-		value: 0
+		value: 0,
+		orders: []
 	};
-
-	pushPage() {
-		this.props.navigator.pushPage({ component: EditOrder });
-	}
-
-	popPage() {
-		this.props.navigator.popPage();
-	}
-
-	componentDidMount() {
-		this.props.firestore.get('orders');
-	}
 
 	handleChange = (event, value) => {
 		this.setState({ value });
@@ -74,123 +53,73 @@ class OrderContainer extends React.Component {
 		this.setState({ value: index });
 	};
 
-	renderToolbar() {
-		return (
-			<Toolbar
-				transparent
-				noshadow
-				style={{ height: '56px', backgroundColor: '#333c4e' }}
-			>
-				{/* <div className="left">
-						<BackButton>Back</BackButton>
-					</div> */}
-				<div
-					className="center"
-					style={{
-						lineHeight: '76px',
-						display: 'block',
-						textAlign: 'center',
-						marign: 'auto'
-					}}
-				>
-					<img
-						src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
-						srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
-						width="120px"
-						height="35px"
-						alt="Moretrash Logo"
-						retina_logo_url=""
-						class="fusion-standard-logo"
-					/>
-				</div>
-				{/* <div className="right">
-						<ToolbarButton>
-							<Icon icon="md-menu" />
-						</ToolbarButton>
-					</div> */}
-			</Toolbar>
-		);
-	}
-
 	render() {
-		const { orders, classes, theme, changeVisibilityFalse } = this.props;
-
-		const tabBar = () => {
-			if (ons.platform.isIOS()) {
-				return (
-					<AppBar position="static" color="default">
-						<Tabs
-							style={{ marginTop: '10px' }}
-							value={this.state.value}
-							onChange={this.handleChange}
-							indicatorColor="primary"
-							textColor="primary"
-							fullWidth
-						>
-							<Tab label="Ordered" style={stylus.tab} />
-							<Tab label="Booked" style={stylus.tab} />
-						</Tabs>
-					</AppBar>
-				);
-			} else {
-				return (
-					<AppBar position="static" color="default">
-						<Tabs
-							value={this.state.value}
-							onChange={this.handleChange}
-							indicatorColor="primary"
-							textColor="primary"
-							fullWidth
-						>
-							<Tab label="Ordered" style={stylus.tab} />
-							<Tab label="Booked" style={stylus.tab} />
-						</Tabs>
-					</AppBar>
-				);
-			}
-		};
+		const { orders, theme } = this.props;
 
 		if (!isLoaded(orders)) {
 			return (
 				<div
 					style={{
-						textAlign: 'center',
-						justifyContent: 'center',
-						height: '100%',
-						position: 'relative',
-						top: 'calc(50% - 10px)'
+						backgroundColor: '#e7e7e7',
+						height: '100%'
 					}}
 				>
-					<Icon size={35} spin={true} icon="ion-load-d" />
-					<br />
-					Loading
+					<div
+						style={{
+							textAlign: 'center',
+							minHeight: '100vh',
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							overflow: 'hidden'
+						}}
+					>
+						<CircularProgress />
+					</div>
 				</div>
 			);
 		}
 		if (isEmpty(orders)) {
 			return (
-				<Page renderToolbar={this.renderToolbar} style={{ overflow: 'hidden' }}>
+				<div
+					style={{
+						backgroundColor: '#e7e7e7',
+						height: '100%'
+					}}
+				>
+					<FixedNavbar />
 					<div
 						style={{
 							textAlign: 'center',
+							minHeight: '100vh',
+							display: 'flex',
 							justifyContent: 'center',
-
-							position: 'relative',
-							top: 'calc(50% - 20px)',
+							alignItems: 'center',
 							overflow: 'hidden'
 						}}
 					>
-						<Icon size={35} icon="ion-sad" />
 						<br />
 						Belum Ada Order
 					</div>
-				</Page>
+				</div>
 			);
 		} else {
 			return (
-				<Page renderToolbar={this.renderToolbar}>
+				<div style={{ marginBottom: '20%' }}>
+					<Navbar />
+					<AppBar position="relative" color="default">
+						<Tabs
+							value={this.state.value}
+							onChange={this.handleChange}
+							indicatorColor="primary"
+							textColor="primary"
+							fullWidth
+						>
+							<Tab label="Ordered" style={stylus.tab} />
+							<Tab label="Booked" style={stylus.tab} />
+						</Tabs>
+					</AppBar>
 					<div style={{ width: '100%' }}>
-						{tabBar()}
 						<SwipeableViews
 							axis={theme === 'rtl' ? 'x-reverse' : 'x'}
 							index={this.state.value}
@@ -198,228 +127,17 @@ class OrderContainer extends React.Component {
 						>
 							<TabContainer>
 								<div>
-									{orders &&
-										orders.map(order => {
-											return (
-												console.log(order.logs.name),
-												(
-													<List style={{ width: '100%' }} key={order.id}>
-														<ListItem
-															button
-															onClick={() => {
-																changeVisibilityFalse();
-																this.props.navigator.pushPage({
-																	component: OrderDetail,
-																	props: {
-																		idItem: order.id,
-																		changeVisibilityTrue: () =>
-																			this.props.changeVisibilityTrue(),
-																		popPage: () => this.popPage(),
-																		pushPage: () =>
-																			this.props.navigator.pushPage({
-																				component: EditOrder,
-																				props: {
-																					idItem: order.id
-																				}
-																			})
-																	}
-																});
-															}}
-															alignItems="flex-start"
-														>
-															<ListItemAvatar>
-																{order.foto ? (
-																	<Avatar
-																		style={{
-																			borderRadius: '5%',
-																			width: '45px',
-																			height: '45px'
-																		}}
-																		alt="Remy Sharp"
-																		src={`${
-																			order.foto[0] ? order.foto[0] : ''
-																		}`}
-																	/>
-																) : (
-																	<Avatar
-																		style={{
-																			borderRadius: '5%',
-																			width: '45px',
-																			height: '45px'
-																		}}
-																		alt="Remy Sharp"
-																		src={<GarbageIcon />}
-																	/>
-																)}
-															</ListItemAvatar>
-															<ListItemText
-																primary={order.logs.name ? order.logs.name : ''}
-																secondary={
-																	<React.Fragment>
-																		<Typography
-																			component="span"
-																			className={classes.inline}
-																			color="textPrimary"
-																		>
-																			Telah menukarkan sampah sebanyak ...
-																		</Typography>
-																		<br />
-
-																		{order.logs.status
-																			? order.logs.status === 'SUCCESS'
-																				? 'Berhasil'
-																				: order.logs.status ===
-																				  'WAITING_CONFIRMATION'
-																					? 'Menunggu Konfirmasi'
-																					: ''
-																			: ''}
-																	</React.Fragment>
-																}
-															/>
-															<ListItemSecondaryAction>
-																<IconButton
-																	onClick={() => {
-																		changeVisibilityFalse();
-																		this.props.navigator.pushPage({
-																			component: OrderDetail,
-																			props: {
-																				idItem: order.id,
-																				changeVisibilityTrue: () =>
-																					this.props.changeVisibilityTrue(),
-																				popPage: () => this.popPage(),
-																				pushPage: () =>
-																					this.props.navigator.pushPage({
-																						component: EditOrder,
-																						props: {
-																							idItem: order.id,
-																						}
-																					})
-																			}
-																		});
-																	}}
-																	aria-label="Comments"
-																>
-																	<InfoIcon />
-																</IconButton>
-															</ListItemSecondaryAction>
-														</ListItem>
-													</List>
-												)
-											);
-										})}
+									<OrderList orders={orders} />
 								</div>
 							</TabContainer>
 							<TabContainer>
 								<div>
-									{orders &&
-										orders.map(order => {
-											return (
-												<List style={{ width: '100%' }} key={order.id}>
-													<ListItem
-														button
-														onClick={() => {
-															changeVisibilityFalse();
-															this.props.navigator.pushPage({
-																component: OrderDetail,
-																props: {
-																	idItem: order.id,
-																	changeVisibilityTrue: () =>
-																		this.props.changeVisibilityTrue(),
-																	popPage: () => this.popPage(),
-																	pushPage: () =>
-																		this.props.navigator.pushPage({
-																			component: EditOrder,
-																			props: {
-																				idItem: order.id,
-																			}
-																		})
-																}
-															});
-														}}
-														alignItems="flex-start"
-													>
-														<ListItemAvatar>
-															{order.foto ? (
-																<Avatar
-																	style={{
-																		borderRadius: '5%',
-																		width: '45px',
-																		height: '45px'
-																	}}
-																	alt="Remy Sharp"
-																	src={`${order.foto[0] ? order.foto[0] : ''}`}
-																/>
-															) : (
-																<Avatar
-																	style={{
-																		borderRadius: '5%',
-																		width: '45px',
-																		height: '45px'
-																	}}
-																	alt="Remy Sharp"
-																	src={<GarbageIcon />}
-																/>
-															)}
-														</ListItemAvatar>
-														<ListItemText
-															primary={order.logs.name ? order.logs.name : ''}
-															secondary={
-																<React.Fragment>
-																	<Typography
-																		component="span"
-																		className={classes.inline}
-																		color="textPrimary"
-																	>
-																		Telah menukarkan sampah sebanyak ...
-																	</Typography>
-																	<br />
-
-																	{order.logs.status
-																		? order.logs.status === 'SUCCESS'
-																			? 'Berhasil'
-																			: order.logs.status ===
-																			  'WAITING_CONFIRMATION'
-																				? 'Menunggu Konfirmasi'
-																				: ''
-																		: ''}
-																</React.Fragment>
-															}
-														/>
-														<ListItemSecondaryAction>
-															<IconButton
-																onClick={() => {
-																	changeVisibilityFalse();
-																	this.props.navigator.pushPage({
-																		component: OrderDetail,
-																		props: {
-																			idItem: order.id,
-																			changeVisibilityTrue: () =>
-																				this.props.changeVisibilityTrue(),
-																			popPage: () => this.popPage(),
-																			pushPage: () =>
-																				this.props.navigator.pushPage({
-																					component: EditOrder,
-																					props: {
-																						idItem: order.id,
-																					}
-																				})
-																		}
-																	});
-																}}
-																aria-label="Comments"
-															>
-																<InfoIcon />
-															</IconButton>
-														</ListItemSecondaryAction>
-													</ListItem>
-												</List>
-											);
-										})}
+									<OrderList orders={orders} />
 								</div>
 							</TabContainer>
 						</SwipeableViews>
 					</div>
-				</Page>
+				</div>
 			);
 		}
 	}
@@ -439,11 +157,22 @@ const stylus = {
 
 const mapStateToProps = state => {
 	return {
-		orders: state.firestore.ordered.orders
+		orders: state.firestore.ordered.orders,
+		auth: state.firebase.auth,
+		uid: state.firebase.auth.uid
 	};
 };
 
 export default compose(
-	withFirestore,
-	connect(mapStateToProps)
+	connect(mapStateToProps),
+	firestoreConnect(props => {
+		// console.log(props.uid);
+		if (!props.uid) return [];
+		return [
+			{
+				collection: 'orders',
+				where: [['userId', '==', props.uid]]
+			}
+		];
+	})
 )(withStyles(styles)(OrderContainer));

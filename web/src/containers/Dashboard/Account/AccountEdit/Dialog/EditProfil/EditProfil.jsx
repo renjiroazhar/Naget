@@ -114,7 +114,7 @@ class EditProfil extends React.Component {
 		try {
 			const getData = await ref.onSnapshot(doc => {
 				var dataSnapshot = doc.data();
-				if (dataSnapshot) {
+				if (dataSnapshot !== null || dataSnapshot !== []) {
 					this.setState({
 						name: dataSnapshot.name,
 						address: dataSnapshot.address,
@@ -124,7 +124,7 @@ class EditProfil extends React.Component {
 					console.log('Kosong? , Astaughfirullah');
 				}
 			});
-			console.log(getData);
+			return getData;
 		} catch (error) {
 			console.log(error);
 		}

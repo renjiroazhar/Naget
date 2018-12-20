@@ -1,6 +1,4 @@
 import React from 'react';
-import { Page, Toolbar } from 'react-onsenui';
-import TooltipButton from '../../../components/TooltipButton';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import imageFaq from './svg/help.svg';
@@ -9,50 +7,14 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import Navbar from '../../../component/Navbar';
 class Help extends React.Component {
 	render() {
 		const { classes } = this.props;
 
 		return (
-			<Page
-				renderFixed={() => <TooltipButton />}
-				renderToolbar={() => (
-					<Toolbar
-						transparent
-						noshadow
-						style={{ height: '56px', backgroundColor: '#333c4e' }}
-					>
-						{/* <div className="left">
-						<BackButton>Back</BackButton>
-					</div> */}
-						<div
-							className="center"
-							style={{
-								lineHeight: '76px',
-								display: 'block',
-								textAlign: 'center',
-								marign: 'auto'
-							}}
-						>
-							<img
-								src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
-								srcset="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
-								width="120px"
-								height="35px"
-								alt="Moretrash Logo"
-								retina_logo_url=""
-								class="fusion-standard-logo"
-							/>
-						</div>
-						{/* <div className="right">
-						<ToolbarButton>
-							<Icon icon="md-menu" />
-						</ToolbarButton>
-					</div> */}
-					</Toolbar>
-				)}
-			>
+			<div style={{ backgroundColor: '#e7e7e7' }}>
+				<Navbar />
 				<div style={{ textAlign: 'center' }}>
 					<img
 						src={imageFaq}
@@ -93,7 +55,7 @@ class Help extends React.Component {
 						</ExpansionPanelDetails>
 					</ExpansionPanel>
 				</div>
-			</Page>
+			</div>
 		);
 	}
 }
