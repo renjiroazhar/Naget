@@ -49,7 +49,8 @@ const themeMui = createMuiTheme({
 			'& $alternativeLabel': {
 				marginTop: 0
 			}
-		}
+		},
+		
 	}
 });
 
