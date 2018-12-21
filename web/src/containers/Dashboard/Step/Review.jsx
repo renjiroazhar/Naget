@@ -260,7 +260,7 @@ class Review extends React.Component {
 			(
 				<React.Fragment>
 					<Typography variant="h6" gutterBottom>
-						Order summary
+						Ringkasan Pemesanan
 					</Typography>
 					<List>
 						<List className={classes.list} onClick={this.handleClickOpen}>

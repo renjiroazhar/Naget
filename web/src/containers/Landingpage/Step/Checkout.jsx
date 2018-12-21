@@ -18,7 +18,7 @@ import { storage } from '../../../services/firebaseConfig';
 import { format } from 'date-fns/esm';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-import './style/style.css'
+import './style/style.css';
 
 import idLocale from 'date-fns/locale/id';
 
@@ -31,25 +31,26 @@ const themeMui = createMuiTheme({
 			}
 		},
 		step: {
-			"& $completed": {
-			  color: "lightgreen"
+			'& $completed': {
+				color: 'lightgreen'
 			},
-			"& $active": {
-			  color: "pink"
+			'& $active': {
+				color: 'pink'
 			},
-			"& $disabled": {
-			  color: "red"
+			'& $disabled': {
+				color: 'red'
 			}
-		  },
-		  alternativeLabel: {},
-		  active: {}, //needed so that the &$active tag works
-		  completed: {},
-		  disabled: {},
-		  labelContainer: {
-			"& $alternativeLabel": {
-			  marginTop: 0
+		},
+		alternativeLabel: {},
+		active: {}, //needed so that the &$active tag works
+		completed: {},
+		disabled: {},
+		labelContainer: {
+			'& $alternativeLabel': {
+				marginTop: 0
 			}
-		  },
+		},
+		
 	}
 });
 
@@ -59,25 +60,25 @@ const styles = theme => ({
 		backgroundColor: '#559351'
 	},
 	step: {
-		"& $completed": {
-		  color: "lightgreen"
+		'& $completed': {
+			color: 'lightgreen'
 		},
-		"& $active": {
-		  color: "pink"
+		'& $active': {
+			color: 'pink'
 		},
-		"& $disabled": {
-		  color: "red"
+		'& $disabled': {
+			color: 'red'
 		}
-	  },
-	  alternativeLabel: {},
-	  active: {}, //needed so that the &$active tag works
-	  completed: {},
-	  disabled: {},
-	  labelContainer: {
-		"& $alternativeLabel": {
-		  marginTop: 0
+	},
+	alternativeLabel: {},
+	active: {}, //needed so that the &$active tag works
+	completed: {},
+	disabled: {},
+	labelContainer: {
+		'& $alternativeLabel': {
+			marginTop: 0
 		}
-	  },
+	},
 	layout: {
 		width: 'auto',
 		marginLeft: theme.spacing.unit * 2,
@@ -104,8 +105,7 @@ const styles = theme => ({
 	},
 	button: {
 		marginTop: theme.spacing.unit * -4
-	},
-	
+	}
 });
 
 function validateName(name) {
@@ -127,14 +127,29 @@ function validateEmail(email) {
 	if (email.length < 5) {
 		errorsEmail.push('Email harus memiliki minimal 5 karakter');
 	}
-	if (email.split('').filter(x => x === '@').length !== 1) {
-		errorsEmail.push('Email harus berisikan @');
-	}
-	if (email.indexOf('.') === -1) {
-		errorsEmail.push('Email harus berisikan setidaknya 1 titik');
-	}
 	return errorsEmail;
 }
+
+function validateAtEmail(email) {
+	// we are going to store errors for all fields
+	// in a signle array
+	const errorsAtEmail = [];
+	if (email.split('').filter(x => x === '@').length !== 1) {
+		errorsAtEmail.push('Email harus berisikan @');
+	}
+	return errorsAtEmail;
+}
+
+function validateTitikEmail(email) {
+	// we are going to store errors for all fields
+	// in a signle array
+	const errorsTitikEmail = [];
+	if (email.indexOf('.') === -1) {
+		errorsTitikEmail.push('Email harus berisikan setidaknya 1 titik');
+	}
+	return errorsTitikEmail;
+}
+
 
 function validatePhone(phone) {
 	// we are going to store errors for all fields
@@ -198,6 +213,8 @@ class Checkout extends React.Component {
 		errorsAddress: false,
 		errorsPhone: false,
 		errorsEmail: false,
+		errorsAtEmail: false,
+		errorsTitikEmail: false,
 		errorAll: false
 	};
 
@@ -212,6 +229,8 @@ class Checkout extends React.Component {
 		const errorsAddress = validateAddress(address);
 		const errorsPhone = validatePhone(phone);
 		const errorsEmail = validateEmail(email);
+		const errorsAtEmail = validateAtEmail(email)
+		const errorsTitikEmail = validateTitikEmail(email)
 		if (
 			email.length === 0 &&
 			name.length === 0 &&
@@ -242,6 +261,24 @@ class Checkout extends React.Component {
 			setTimeout(() => {
 				this.setState({
 					errorsEmail: false
+				});
+			}, 5000);
+			return console.log(errorsEmail);
+		}
+		if (errorsAtEmail.length > 0) {
+			this.setState({ errorsAtEmail: true });
+			setTimeout(() => {
+				this.setState({
+					errorsAtEmail: false
+				});
+			}, 5000);
+			return console.log(errorsEmail);
+		}
+		if (errorsTitikEmail.length > 0) {
+			this.setState({ errorsTitikEmail: true });
+			setTimeout(() => {
+				this.setState({
+					errorsTitikEmail: false
 				});
 			}, 5000);
 			return console.log(errorsEmail);
@@ -479,7 +516,9 @@ class Checkout extends React.Component {
 			errorsName,
 			errorsPhone,
 			errorsAddress,
-			errorsEmail
+			errorsEmail,
+			errorsTitikEmail,
+			errorsAtEmail
 		} = this.state;
 		const values = {
 			name,
@@ -496,6 +535,8 @@ class Checkout extends React.Component {
 			errorsPhone,
 			errorsAddress,
 			errorsEmail,
+			errorsTitikEmail,
+			errorsAtEmail,
 			email,
 			catatan,
 			address,

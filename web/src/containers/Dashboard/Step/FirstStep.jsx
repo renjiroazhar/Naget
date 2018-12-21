@@ -111,6 +111,14 @@ class FirstStep extends React.Component {
 								<FormHelperText style={{ color: 'red' }}>
 									Wajib Diisi
 								</FormHelperText>
+							) : values.errorsTitikEmail ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Email setidaknya memiliki satu titik
+								</FormHelperText>
+							) : values.errorsAtEmail ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Email harus mengandung memiliki @
+								</FormHelperText>
 							) : null}
 						</FormControl>
 					</Grid>
