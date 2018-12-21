@@ -338,43 +338,51 @@ class Review extends React.Component {
 								<ListItemText style={{ float: 'left' }} primary={catatan} />
 							</ListItem>
 						</List>
-						<ListItem primary="Foto : " />
-						{previewGeneralPhotos.length > 0 ? (
-							<div>
-								<div>
-									{previewGeneralPhotos &&
-										previewGeneralPhotos.map((file, i) => (
-											<div style={{ textAlign: 'center' }}>
-												<Grid container spacing={24}>
-													<Grid item xs={12} align="center">
-														{' '}
-														<img
-															onClick={this.viewImage}
-															src={URL.createObjectURL(file)}
-															alt="preview failed"
-															key={file.base64}
-															width="200"
-															height="200"
-															style={{ display: 'block' }}
-														/>
-													</Grid>
-												</Grid>
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText
+									style={{ float: 'left' }}
+									secondary="Gambar Sampah"
+								/>
 
-												<Viewer
-													visible={this.state.visible}
-													onClose={this.cancelViewImage}
-													images={[
-														{
-															src: URL.createObjectURL(file),
-															alt: ''
-														}
-													]}
-												/>
-											</div>
-										))}
-								</div>
-							</div>
-						) : null}
+								{previewGeneralPhotos.length > 0 ? (
+									<div>
+										<div>
+											{previewGeneralPhotos &&
+												previewGeneralPhotos.map((file, i) => (
+													<div style={{ textAlign: 'center' }}>
+														<Grid container spacing={24}>
+															<Grid item xs={12} align="center">
+																{' '}
+																<img
+																	onClick={this.viewImage}
+																	src={URL.createObjectURL(file)}
+																	alt="preview failed"
+																	key={file.base64}
+																	width="200"
+																	height="200"
+																	style={{ display: 'block' }}
+																/>
+															</Grid>
+														</Grid>
+
+														<Viewer
+															visible={this.state.visible}
+															onClose={this.cancelViewImage}
+															images={[
+																{
+																	src: URL.createObjectURL(file),
+																	alt: ''
+																}
+															]}
+														/>
+													</div>
+												))}
+										</div>
+									</div>
+								) : null}
+							</ListItem>
+						</List>
 					</List>
 
 					<br />

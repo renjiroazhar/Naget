@@ -338,7 +338,7 @@ class Review extends React.Component {
 								<ListItemText style={{ float: 'left' }} primary={catatan} />
 							</ListItem>
 						</List>
-						<ListItem primary="Foto : " />
+						<ListItemText secondary="Gambar Sampah : " />
 						{previewGeneralPhotos.length > 0 ? (
 							<div>
 								<div>

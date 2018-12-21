@@ -128,7 +128,7 @@ function validateEmail(email) {
 	// we are going to store errors for all fields
 	// in a signle array
 	const errorsEmail = [];
-	if (email.length < 5) {
+	if (email.length === 0) {
 		errorsEmail.push('Email harus memiliki minimal 5 karakter');
 	}
 	return errorsEmail;

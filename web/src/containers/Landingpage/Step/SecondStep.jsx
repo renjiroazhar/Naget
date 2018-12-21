@@ -9,7 +9,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import Dropzone from 'react-dropzone';
 import Viewer from 'react-viewer';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
 import DateFnsUtils from '@date-io/date-fns';
 import { Icon, IconButton } from '@material-ui/core';
 import {
@@ -113,13 +112,12 @@ class SecondStep extends React.Component {
 						>
 							<div className="picker">
 								<FormControl style={{ width: '100%' }}>
-									<InputLabel htmlFor="name-multiple">
-										Tanggal Penjemputan
-									</InputLabel>
 									<DatePicker
 										style={{ width: '100%' }}
 										value={values.selectedDate}
+										label="Tanggal Penjemputan"
 										onChange={handleDateChange}
+										required
 										InputProps={{
 											endAdornment: (
 												<div>
@@ -145,13 +143,12 @@ class SecondStep extends React.Component {
 						>
 							<div className="picker">
 								<FormControl style={{ width: '100%' }}>
-									<InputLabel htmlFor="name-multiple">
-										Jam Penjemputan
-									</InputLabel>
 									<TimePicker
+										required
 										style={{ width: '100%' }}
 										value={values.selectedDate}
 										onChange={handleDateChange}
+										label="Jam Penjemputan"
 										InputProps={{
 											endAdornment: (
 												<div>
