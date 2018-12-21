@@ -71,7 +71,7 @@ class Review extends React.Component {
 				phone,
 				email,
 				address,
-				time,
+
 				selectedDate,
 				previewGeneralPhotos,
 
@@ -127,7 +127,8 @@ class Review extends React.Component {
 							style={{
 								width: '100%',
 								backgroundColor: 'grey',
-								color: 'white'
+								color: 'white',
+								height: '46px'
 							}}
 						>
 							Kembali
@@ -150,7 +151,8 @@ class Review extends React.Component {
 							style={{
 								width: '100%',
 								backgroundColor: 'red',
-								color: 'white'
+								color: 'white',
+								height: '46px'
 							}}
 						>
 							Kembali
@@ -176,7 +178,8 @@ class Review extends React.Component {
 							style={{
 								width: '100%',
 								backgroundColor: '#1ABC9C',
-								color: 'white'
+								color: 'white',
+								height: '46px'
 							}}
 						>
 							Selanjutnya
@@ -200,7 +203,8 @@ class Review extends React.Component {
 							style={{
 								width: '100%',
 								backgroundColor: '#1ABC9C',
-								color: 'white'
+								color: 'white',
+								height: '46px'
 							}}
 						>
 							Selanjutnya
@@ -222,7 +226,8 @@ class Review extends React.Component {
 							style={{
 								width: '100%',
 								backgroundColor: 'grey',
-								color: 'white'
+								color: 'white',
+								height: '46px'
 							}}
 							disabled
 						>
@@ -320,7 +325,7 @@ class Review extends React.Component {
 							<ListItem style={{ paddingTop: 0 }}>
 								<ListItemText
 									style={{ float: 'left' }}
-									primary={`${format(time, 'HH:mm')}`}
+									primary={`${format(selectedDate, 'HH:mm')}`}
 								/>
 							</ListItem>
 						</List>

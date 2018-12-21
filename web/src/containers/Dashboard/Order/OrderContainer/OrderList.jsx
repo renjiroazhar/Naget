@@ -7,7 +7,7 @@ const OrderList = ({ orders }) => {
 			{orders &&
 				orders.map(order => {
 					return (
-						<div>
+						<div key={order.id}>
 							<Link to={`/orderdetail/${order.id}`}>
 								<OrderSummary order={order} key={order.id} />
 							</Link>

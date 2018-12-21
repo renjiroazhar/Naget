@@ -53,6 +53,19 @@ class OrderContainer extends React.Component {
 		this.setState({ value: index });
 	};
 
+	getSafe = (fn, defaultVal) => {
+		try {
+			return fn();
+		} catch (e) {
+			return defaultVal;
+		}
+	};
+
+	componentDidMount() {
+		const { orders } = this.props;
+		this.getSafe(() => orders, 'nothing');
+	}
+
 	render() {
 		const { orders, theme } = this.props;
 

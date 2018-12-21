@@ -9566,6 +9566,20 @@ react-firebaseui@^3.1.2:
   dependencies:
     firebaseui "^3.2.0"
 
+react-form-validator-core@0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/react-form-validator-core/-/react-form-validator-core-0.5.1.tgz#45338782249a7801c688cee540bbe2c11a69031b"
+  integrity sha512-E+PO/F66q4LtvebzJo3R8zoW0il8yjS1cZGjRuV9WBNuTgBa00Ii+qH1EQcIZowhV9T/nkGT3XTp58TangDr3w==
+  dependencies:
+    react-lifecycles-compat "^3.0.2"
+
+react-form-with-constraints@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/react-form-with-constraints/-/react-form-with-constraints-0.10.0.tgz#71cc1a1739901d0f43aeab70e3bfcccb9fdd9e01"
+  integrity sha512-b3WGSWCaydSTSeDfyLcNaBpaccdoF+Mh/so9OA8ZqrjkBcNbHh9q+3Sy3MfGLlQAW/fv4mEIgT0ljHSIw4vK6g==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-geocode@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/react-geocode/-/react-geocode-0.1.2.tgz#9e7c8114fbd66550d32a417cf95d36fa4f1cd45f"
@@ -9635,6 +9649,13 @@ react-location-picker@^1.3.0:
   dependencies:
     prop-types "^15.6.1"
     react-google-maps "^9.4.5"
+
+react-material-ui-form-validator@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-material-ui-form-validator/-/react-material-ui-form-validator-2.0.3.tgz#24e3ab4d2ef45d1223877c5d62ee86586679b785"
+  integrity sha512-xXiY1wdlpu5UhDrJGaLwrDCNHl5jTykVJ4oEvc1daDh8hrEzt+ehaZqW6x9JZLH3DS86dHZg7cSZQJYiP7ZPZg==
+  dependencies:
+    react-form-validator-core "0.5.1"
 
 react-materialize@^2.5.1:
   version "2.6.0"

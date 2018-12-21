@@ -13,10 +13,12 @@ import Review from './Review';
 import ThirdStep from './ThirdStep';
 import NavbarPickTrash from '../../../component/NavbarPickTrash';
 import { connect } from 'react-redux';
-import { createOrder } from '../../../redux/actions/orderActions';
+import { createOrderWithoutLogin } from '../../../redux/actions/orderActions';
 import { storage } from '../../../services/firebaseConfig';
 import { format } from 'date-fns/esm';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+import './style/style.css'
 
 import idLocale from 'date-fns/locale/id';
 
@@ -27,7 +29,27 @@ const themeMui = createMuiTheme({
 			icon: {
 				color: 'green'
 			}
-		}
+		},
+		step: {
+			"& $completed": {
+			  color: "lightgreen"
+			},
+			"& $active": {
+			  color: "pink"
+			},
+			"& $disabled": {
+			  color: "red"
+			}
+		  },
+		  alternativeLabel: {},
+		  active: {}, //needed so that the &$active tag works
+		  completed: {},
+		  disabled: {},
+		  labelContainer: {
+			"& $alternativeLabel": {
+			  marginTop: 0
+			}
+		  },
 	}
 });
 
@@ -36,6 +58,26 @@ const styles = theme => ({
 		position: 'relative',
 		backgroundColor: '#559351'
 	},
+	step: {
+		"& $completed": {
+		  color: "lightgreen"
+		},
+		"& $active": {
+		  color: "pink"
+		},
+		"& $disabled": {
+		  color: "red"
+		}
+	  },
+	  alternativeLabel: {},
+	  active: {}, //needed so that the &$active tag works
+	  completed: {},
+	  disabled: {},
+	  labelContainer: {
+		"& $alternativeLabel": {
+		  marginTop: 0
+		}
+	  },
 	layout: {
 		width: 'auto',
 		marginLeft: theme.spacing.unit * 2,
@@ -62,8 +104,64 @@ const styles = theme => ({
 	},
 	button: {
 		marginTop: theme.spacing.unit * -4
-	}
+	},
+	
 });
+
+function validateName(name) {
+	// we are going to store errors for all fields
+	// in a signle array
+	const errorsName = [];
+
+	if (name.length === 0) {
+		errorsName.push('Nama tidak boleh kosong');
+	}
+
+	return errorsName;
+}
+
+function validateEmail(email) {
+	// we are going to store errors for all fields
+	// in a signle array
+	const errorsEmail = [];
+	if (email.length < 5) {
+		errorsEmail.push('Email harus memiliki minimal 5 karakter');
+	}
+	if (email.split('').filter(x => x === '@').length !== 1) {
+		errorsEmail.push('Email harus berisikan @');
+	}
+	if (email.indexOf('.') === -1) {
+		errorsEmail.push('Email harus berisikan setidaknya 1 titik');
+	}
+	return errorsEmail;
+}
+
+function validatePhone(phone) {
+	// we are going to store errors for all fields
+	// in a signle array
+	const errorsPhone = [];
+
+	if (phone.length === 0) {
+		errorsPhone.push('Nomor WhatsApp tidak boleh kosong');
+	}
+	if (phone.indexOf('+62') === 1) {
+		errorsPhone.push('Nomor WhatsApp harus diawali dengan +62');
+	}
+
+	return errorsPhone;
+}
+
+function validateAddress(address) {
+	// we are going to store errors for all fields
+	// in a signle array
+	const errorsAddress = [];
+
+	if (address.length === 0) {
+		errorsAddress.push('Alamat tidak boleh kosong');
+	}
+
+	return errorsAddress;
+}
 
 class Checkout extends React.Component {
 	state = {
@@ -93,17 +191,87 @@ class Checkout extends React.Component {
 
 		isUploading: false,
 
-		loading: false
+		loading: false,
+		isInvalid: false,
+
+		errorsName: false,
+		errorsAddress: false,
+		errorsPhone: false,
+		errorsEmail: false,
+		errorAll: false
 	};
+
 	handleChange = input => e => {
 		this.setState({ [input]: e.target.value });
+	};
+
+	handleSubmit = e => {
+		const { name, email, phone, address } = this.state;
+
+		const errorsName = validateName(name);
+		const errorsAddress = validateAddress(address);
+		const errorsPhone = validatePhone(phone);
+		const errorsEmail = validateEmail(email);
+		if (
+			email.length === 0 &&
+			name.length === 0 &&
+			phone.length === 0 &&
+			address.length === 0
+		) {
+			this.setState({
+				errorAll: true
+			});
+			setTimeout(() => {
+				this.setState({
+					errorAll: false
+				});
+			}, 5000);
+			console.log('Kosong Semua?? Tidakkk');
+		}
+		if (errorsName.length > 0) {
+			this.setState({ errorsName: true });
+			setTimeout(() => {
+				this.setState({
+					errorsName: false
+				});
+			}, 5000);
+			return console.log(errorsName);
+		}
+		if (errorsEmail.length > 0) {
+			this.setState({ errorsEmail: true });
+			setTimeout(() => {
+				this.setState({
+					errorsEmail: false
+				});
+			}, 5000);
+			return console.log(errorsEmail);
+		}
+		if (errorsPhone.length > 0) {
+			this.setState({ errorsPhone: true });
+			setTimeout(() => {
+				this.setState({
+					errorsPhone: false
+				});
+			}, 5000);
+			return console.log(errorsPhone);
+		}
+		if (errorsAddress.length > 0) {
+			this.setState({ errorsAddress: true });
+			setTimeout(() => {
+				this.setState({
+					errorsAddress: false
+				});
+			}, 5000);
+			return console.log(errorsAddress);
+		}
+
+		this.handleNext();
 	};
 
 	handleNext = () => {
 		this.setState(state => ({
 			activeStep: state.activeStep + 1
 		}));
-		console.log(this.state.database);
 	};
 
 	handleBack = () => {
@@ -138,13 +306,11 @@ class Checkout extends React.Component {
 	// Handle fields change
 	handleChange = input => e => {
 		this.setState({ [input]: e.target.value });
-		console.log(this.state);
 	};
 
 	handleChangeFoto = input => event => {
 		var dataPhotos = Array.from(event.target.files);
 		this.setState({ [input]: dataPhotos });
-		console.log(this.state.foto);
 	};
 
 	deleteImage = params => {
@@ -272,6 +438,14 @@ class Checkout extends React.Component {
 		});
 	};
 
+	getSafe = (fn, defaultVal) => {
+		try {
+			return fn();
+		} catch (e) {
+			return defaultVal;
+		}
+	};
+
 	render() {
 		const { classes } = this.props;
 		const { activeStep } = this.state;
@@ -299,7 +473,13 @@ class Checkout extends React.Component {
 			downloadURLs,
 			catatan,
 			loading,
-			allowSend
+			allowSend,
+			isInvalid,
+			errorAll,
+			errorsName,
+			errorsPhone,
+			errorsAddress,
+			errorsEmail
 		} = this.state;
 		const values = {
 			name,
@@ -309,10 +489,13 @@ class Checkout extends React.Component {
 			anchorEl,
 			currentLocale,
 			time,
-
+			isInvalid,
 			locale,
 			localeMap,
-
+			errorsName,
+			errorsPhone,
+			errorsAddress,
+			errorsEmail,
 			email,
 			catatan,
 			address,
@@ -323,7 +506,9 @@ class Checkout extends React.Component {
 			loading,
 			generalPhotos,
 			previewGeneralPhotos,
-			downloadURLs
+			downloadURLs,
+
+			errorAll
 		};
 
 		const getStepContent = step => {
@@ -331,7 +516,7 @@ class Checkout extends React.Component {
 				case 0:
 					return (
 						<FirstStep
-							nextStep={this.handleNext}
+							nextStep={this.handleSubmit}
 							handleChange={this.handleChange}
 							values={values}
 						/>
@@ -397,7 +582,22 @@ class Checkout extends React.Component {
 								<Stepper activeStep={activeStep} className={classes.stepper}>
 									{steps.map(label => (
 										<Step key={label}>
-											<StepLabel>{label}</StepLabel>
+											<StepLabel
+												classes={{
+													alternativeLabel: classes.alternativeLabel,
+													labelContainer: classes.labelContainer
+												}}
+												StepIconProps={{
+													classes: {
+														root: classes.step,
+														completed: classes.completed,
+														active: classes.active,
+														disabled: classes.disabled
+													}
+												}}
+											>
+												{label}
+											</StepLabel>
 										</Step>
 									))}
 								</Stepper>
@@ -436,7 +636,7 @@ Checkout.propTypes = {
 const mapDispatchToProps = dispatch => {
 	return {
 		createOrder: order => {
-			dispatch(createOrder(order));
+			dispatch(createOrderWithoutLogin(order));
 		}
 	};
 };

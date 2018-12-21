@@ -19,6 +19,7 @@ import 'react-viewer/dist/index.css';
 import { withRouter } from 'react-router-dom';
 import firebase from 'firebase';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import moment from 'moment';
 
 import { removeOrder } from '../../../../../redux/actions/orderActions';
 
@@ -92,6 +93,23 @@ class OrderDetail extends React.Component {
 	backPage = () => {
 		this.props.history.push('/order');
 	};
+	getSafe = (fn, defaultVal) => {
+		try {
+			return fn();
+		} catch (e) {
+			return defaultVal;
+		}
+	};
+
+	componentDidMount() {
+		const { order } = this.props;
+		this.getSafe(() => order, 'nothing');
+		this.getSafe(() => order.photos, 'nothing');
+		this.getSafe(() => order.user.name, 'nothing');
+		this.getSafe(() => order.location.alamat, 'nothing');
+		this.getSafe(() => order.user.phone, 'nothing');
+		this.getSafe(() => order.location.catatan, 'nothing');
+	}
 
 	render() {
 		const { order, classes } = this.props;
@@ -143,7 +161,7 @@ class OrderDetail extends React.Component {
 								<ListItem style={{ paddingTop: 0 }}>
 									<ListItemText
 										style={{ float: 'left' }}
-										primary={!order.logs.name ? '' : order.logs.name}
+										primary={!order.user.name ? '' : order.user.name}
 									/>
 								</ListItem>
 							</List>
@@ -170,7 +188,25 @@ class OrderDetail extends React.Component {
 								<ListItem style={{ paddingTop: 0 }}>
 									<ListItemText
 										style={{ float: 'left' }}
-										primary={!order.logs.phone ? '' : order.logs.phone}
+										primary={!order.user.phone ? '' : order.user.phone}
+									/>
+								</ListItem>
+							</List>
+							<List className={classes.list} onClick={this.handleClickOpen}>
+								<ListItem button onClick={this.handleClickOpen}>
+									<ListItemText
+										style={{ float: 'left' }}
+										secondary="Waktu Penjemputan"
+									/>
+								</ListItem>
+								<ListItem style={{ paddingTop: 0 }}>
+									<ListItemText
+										style={{ float: 'left' }}
+										primary={
+											!order.orderDate
+												? ''
+												:moment(order.orderDate.toDate()).format('MMMM Do YYYY, h:mm') 
+										}
 									/>
 								</ListItem>
 							</List>
@@ -193,11 +229,11 @@ class OrderDetail extends React.Component {
 									<ListItemText style={{ float: 'left' }} secondary="Foto :" />
 								</ListItem>
 								<div>
-									{order.foto !== null ||
-									order.foto !== [] ||
-									order.foto !== 'undefined' ? (
-										order.foto &&
-										order.foto.map((foto, i) => {
+									{order.photos !== null ||
+									order.photos !== [] ||
+									order.photos !== 'undefined' ? (
+										order.photos &&
+										order.photos.map((foto, i) => {
 											return (
 												<div>
 													<Grid container spacing={24}>
@@ -228,7 +264,9 @@ class OrderDetail extends React.Component {
 											);
 										})
 									) : (
-										<div style={{ textAlign: 'center' }}>Tidak Ada Foto</div>
+										<div style={{ textAlign: 'center' }}>
+											<p>Tidak Ada Foto</p>
+										</div>
 									)}
 									<br />
 									<br />
@@ -240,15 +278,17 @@ class OrderDetail extends React.Component {
 						<div
 							style={{
 								textAlign: 'center',
-								bottom: 10,
-
+								bottom: 0,
+								height: '40px',
+								backgroundColor: 'white',
+								position: 'fixed',
 								width: '100%'
 							}}
 						>
 							<Button
 								style={{
 									backgroundColor: '#f43c3c',
-									width: '90%',
+									width: '100%',
 									textAlign: 'center',
 									color: '#ffffff'
 								}}

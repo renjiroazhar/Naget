@@ -8,7 +8,8 @@ import Fab from '@material-ui/core/Fab';
 import CloseIcon from '@material-ui/icons/Close';
 import Dropzone from 'react-dropzone';
 import Viewer from 'react-viewer';
-
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import DateFnsUtils from '@date-io/date-fns';
 import { Icon, IconButton } from '@material-ui/core';
 import {
@@ -27,16 +28,16 @@ const styles = theme => ({
 		paddingLeft: theme.spacing.unit * 4
 	},
 	button: {
-		margin: theme.spacing.unit,
-		backgroundColor: '#00c43e',
+		backgroundColor: '#1ABC9C',
+		height: '46px',
 		'&:hover': {
-			backgroundColor: '#0069d9',
+			backgroundColor: '#1ABC9C',
 			borderColor: '#0062cc',
 			color: 'white'
 		},
 		'&:active': {
 			boxShadow: 'none',
-			backgroundColor: '#0062cc',
+			backgroundColor: '#1ABC9C',
 			borderColor: '#005cbf'
 		},
 		'&:focus': {
@@ -100,12 +101,7 @@ class SecondStep extends React.Component {
 	}
 
 	render() {
-		const {
-			values,
-			handleDateChange,
-			handleTimeChange,
-			handleMenuOpen
-		} = this.props;
+		const { classes, values, handleDateChange, handleMenuOpen } = this.props;
 
 		return (
 			<React.Fragment>
@@ -116,24 +112,29 @@ class SecondStep extends React.Component {
 							locale={values.locale}
 						>
 							<div className="picker">
-								<DatePicker
-									style={{ width: '100%' }}
-									value={values.selectedDate}
-									onChange={handleDateChange}
-									InputProps={{
-										startAdornment: (
-											<div>
-												<IconButton
-													aria-label="Select locale"
-													aria-owns={values.anchorEl ? 'locale-menu' : null}
-													onClick={handleMenuOpen}
-												>
-													<Icon> date_range </Icon>
-												</IconButton>
-											</div>
-										)
-									}}
-								/>
+								<FormControl style={{ width: '100%' }}>
+									<InputLabel htmlFor="name-multiple">
+										Tanggal Penjemputan
+									</InputLabel>
+									<DatePicker
+										style={{ width: '100%' }}
+										value={values.selectedDate}
+										onChange={handleDateChange}
+										InputProps={{
+											endAdornment: (
+												<div>
+													<IconButton
+														aria-label="Select locale"
+														aria-owns={values.anchorEl ? 'locale-menu' : null}
+														onClick={handleMenuOpen}
+													>
+														<Icon> date_range </Icon>
+													</IconButton>
+												</div>
+											)
+										}}
+									/>
+								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>
 					</Grid>
@@ -143,24 +144,29 @@ class SecondStep extends React.Component {
 							locale={values.locale}
 						>
 							<div className="picker">
-								<TimePicker
-									style={{ width: '100%' }}
-									value={values.time}
-									onChange={handleTimeChange}
-									InputProps={{
-										startAdornment: (
-											<div>
-												<IconButton
-													aria-label="Select locale"
-													aria-owns={values.anchorEl ? 'locale-menu' : null}
-													onClick={handleMenuOpen}
-												>
-													<Icon> schedule </Icon>
-												</IconButton>
-											</div>
-										)
-									}}
-								/>
+								<FormControl style={{ width: '100%' }}>
+									<InputLabel htmlFor="name-multiple">
+										Jam Penjemputan
+									</InputLabel>
+									<TimePicker
+										style={{ width: '100%' }}
+										value={values.selectedDate}
+										onChange={handleDateChange}
+										InputProps={{
+											endAdornment: (
+												<div>
+													<IconButton
+														aria-label="Select locale"
+														aria-owns={values.anchorEl ? 'locale-menu' : null}
+														onClick={handleMenuOpen}
+													>
+														<Icon> schedule </Icon>
+													</IconButton>
+												</div>
+											)
+										}}
+									/>
+								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>
 					</Grid>
@@ -255,7 +261,8 @@ class SecondStep extends React.Component {
 								style={{
 									width: '100%',
 									backgroundColor: 'red',
-									color: 'white'
+									color: 'white',
+									height: '46px'
 								}}
 							>
 								Kembali
@@ -274,6 +281,7 @@ class SecondStep extends React.Component {
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}
+								className={classes.button}
 								style={{
 									width: '100%',
 									backgroundColor: '#1ABC9C',

@@ -43,7 +43,9 @@ export const createOrder = (order, picture) => {
 			latLng: 123131
 		};
 		const logs = {
-			action: 'ORDER_CREATED'
+			action: 'ORDER_CREATED',
+			tanggalPenjemputan: format(order.selectedDate, 'dd/MM/yyyy'),
+			jamPenjemputan: format(order.selectedDate, 'HH:mm')
 		};
 		const user = {
 			name: order.name,
@@ -51,20 +53,18 @@ export const createOrder = (order, picture) => {
 			userId: userId,
 			email: order.email
 		};
-		const date = new Date();
 
 		firestore
 			.collection('orders')
 			.add({
-				createdAt: date,
+				createdAt: firestore.FieldValue.serverTimestamp(),
 				location: lokasi,
 				photos: order.downloadURLs,
 				logs: logs,
 				user: user,
 				status: 'WAITING_CONFIRMATION',
 				userId: userId,
-				tanggalPenjemputan: format(order.selectedDate, 'dd/MM/yyyy'),
-				jamPenjemputan: format(order.time, 'HH:mm')
+				orderDate: order.selectedDate
 			})
 			.then(() => {
 				dispatch({ type: 'CREATE_ORDER', order });
@@ -86,26 +86,26 @@ export const createOrderWithoutLogin = (order, picture) => {
 			latLng: 123131
 		};
 		const logs = {
-			action: 'ORDER_CREATED'
+			action: 'ORDER_CREATED',
+			tanggalPenjemputan: format(order.selectedDate, 'dd/MM/yyyy'),
+			jamPenjemputan: format(order.selectedDate, 'HH:mm')
 		};
 		const user = {
 			name: order.name,
 			phone: order.phone,
 			email: order.email
 		};
-		const date = new Date();
 
 		firestore
 			.collection('orders')
 			.add({
-				createdAt: date,
+				createdAt: firestore.FieldValue.serverTimestamp(),
 				location: lokasi,
 				photos: order.downloadURLs,
 				logs: logs,
 				user: user,
 				status: 'WAITING_CONFIRMATION',
-				tanggalPenjemputan: format(order.selectedDate, 'dd/MM/yyyy'),
-				jamPenjemputan: format(order.time, 'HH:mm')
+				orderDate: order.selectedDate
 			})
 			.then(() => {
 				dispatch({ type: 'CREATE_ORDER', order });

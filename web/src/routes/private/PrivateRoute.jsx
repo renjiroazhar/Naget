@@ -18,6 +18,8 @@ import EditOrder from '../../containers/Dashboard/Order/EditOrder';
 
 export default class PublicRoute extends Component {
 	render() {
+		const currentPath = window.location.pathname;
+
 		return (
 			<div>
 				<Route
@@ -33,7 +35,10 @@ export default class PublicRoute extends Component {
 						</Switch>
 					)}
 				/>
-				<BottomNavigationBar />
+				{!currentPath.includes('form_login') &&
+				!currentPath.includes('orderdetail') ? (
+					<BottomNavigationBar />
+				) : null}
 			</div>
 		);
 	}

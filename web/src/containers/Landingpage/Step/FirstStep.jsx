@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 // import LocationSearchInput from './AutoCompletePlaces/LocationSearchInput';
 
 const styles = theme => ({
@@ -18,14 +20,15 @@ const styles = theme => ({
 	},
 	button: {
 		backgroundColor: '#1ABC9C',
+		height: '46px',
 		'&:hover': {
-			backgroundColor: '#0069d9',
+			backgroundColor: '#1ABC9C',
 			borderColor: '#0062cc',
 			color: 'white'
 		},
 		'&:active': {
 			boxShadow: 'none',
-			backgroundColor: '#0062cc',
+			backgroundColor: '#1ABC9C',
 			borderColor: '#005cbf'
 		},
 		'&:focus': {
@@ -34,6 +37,9 @@ const styles = theme => ({
 	},
 	rightIcon: {
 		marginLeft: theme.spacing.unit
+	},
+	formControl: {
+		width: '100%'
 	}
 });
 
@@ -64,49 +70,93 @@ class FirstStep extends React.Component {
 			<React.Fragment>
 				<Grid container spacing={24}>
 					<Grid item xs={12}>
-						<TextField
-							required
-							label="Nama"
-							fullWidth
-							autoComplete="fname"
-							onChange={handleChange('name')}
-							defaultValue={values.name}
-							value={values.name}
-						/>
+						<FormControl className={classes.formControl}>
+							<TextField
+								required
+								label="Nama"
+								fullWidth
+								autoComplete="fname"
+								onChange={handleChange('name')}
+								defaultValue={values.name}
+								value={values.name}
+							/>
+							{values.errorAll ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Wajib Diisi
+								</FormHelperText>
+							) : values.errorsName ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Wajib Diisi
+								</FormHelperText>
+							) : null}
+						</FormControl>
 					</Grid>
 					<Grid item xs={12}>
-						<TextField
-							required
-							type="email"
-							label="Email"
-							fullWidth
-							value={values.email}
-							autoComplete="fname"
-							onChange={handleChange('email')}
-							defaultValue={values.email}
-						/>
+						<FormControl className={classes.formControl}>
+							<TextField
+								required
+								type="email"
+								label="Email"
+								fullWidth
+								value={values.email}
+								autoComplete="fname"
+								onChange={handleChange('email')}
+								defaultValue={values.email}
+							/>
+							{values.errorAll ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Wajib Diisi
+								</FormHelperText>
+							) : values.errorsEmail ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Wajib Diisi
+								</FormHelperText>
+							) : null}
+						</FormControl>
 					</Grid>
 					<Grid item xs={12}>
-						<TextField
-							required
-							label="Nomor WhatsApp"
-							fullWidth
-							autoComplete="fname"
-							value={values.phone}
-							onChange={handleChange('phone')}
-							defaultValue={values.phone}
-						/>
+						<FormControl className={classes.formControl}>
+							<TextField
+								required
+								label="Nomor WhatsApp"
+								fullWidth
+								autoComplete="fname"
+								value={values.phone}
+								onChange={handleChange('phone')}
+								defaultValue={values.phone}
+							/>
+							{values.errorAll ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Wajib Diisi
+								</FormHelperText>
+							) : values.errorsPhone ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Wajib Diisi
+								</FormHelperText>
+							) : null}
+						</FormControl>
 					</Grid>
 					<Grid item xs={12}>
-						<TextField
-							required
-							label="Alamat"
-							value={values.address}
-							fullWidth
-							autoComplete="billing address-line1"
-							onChange={handleChange('address')}
-							defaultValue={values.address}
-						/>
+						<FormControl className={classes.formControl}>
+							<TextField
+								required
+								label="Alamat"
+								value={values.address}
+								fullWidth
+								autoComplete="billing address-line1"
+								onChange={handleChange('address')}
+								defaultValue={values.address}
+							/>
+							{values.errorAll ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Wajib Diisi
+								</FormHelperText>
+							) : values.errorsAddress ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Wajib Diisi
+								</FormHelperText>
+							) : null}
+						</FormControl>
 					</Grid>
 					<Grid item xs={12}>
 						<TextField

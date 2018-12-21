@@ -20,16 +20,16 @@ const styles = theme => ({
 		paddingLeft: theme.spacing.unit * 4
 	},
 	button: {
-		margin: theme.spacing.unit,
-		backgroundColor: '#00c43e',
+		backgroundColor: '#1ABC9C',
+		height: '46px',
 		'&:hover': {
-			backgroundColor: '#0069d9',
+			backgroundColor: '#1ABC9C',
 			borderColor: '#0062cc',
 			color: 'white'
 		},
 		'&:active': {
 			boxShadow: 'none',
-			backgroundColor: '#0062cc',
+			backgroundColor: '#1ABC9C',
 			borderColor: '#005cbf'
 		},
 		'&:focus': {
@@ -56,6 +56,7 @@ class ThirdStep extends React.Component {
 	};
 
 	render() {
+		const { classes } = this.props;
 		return (
 			<React.Fragment>
 				<Grid container spacing={24}>
@@ -99,7 +100,8 @@ class ThirdStep extends React.Component {
 								style={{
 									width: '100%',
 									backgroundColor: 'red',
-									color: 'white'
+									color: 'white',
+									height: '46px'
 								}}
 							>
 								Kembali
@@ -118,6 +120,7 @@ class ThirdStep extends React.Component {
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}
+								className={classes.button}
 								style={{
 									width: '100%',
 									backgroundColor: '#1ABC9C',
