@@ -24,10 +24,14 @@ import idLocale from 'date-fns/locale/id';
 
 const themeMui = createMuiTheme({
 	overrides: {
-		Stepper: {
-			// Name of the component ⚛️ / style sheet
-			icon: {
-				color: 'green'
+		MuiStepIcon: {
+			root: {
+				'&$completed': {
+					color: '#1ABC9C'
+				},
+				'&$active': {
+					color: '#1ABC9C'
+				}
 			}
 		},
 		step: {
@@ -49,8 +53,7 @@ const themeMui = createMuiTheme({
 			'& $alternativeLabel': {
 				marginTop: 0
 			}
-		},
-		
+		}
 	}
 });
 
@@ -58,6 +61,9 @@ const styles = theme => ({
 	appBar: {
 		position: 'relative',
 		backgroundColor: '#559351'
+	},
+	stepIcon: {
+		color: 'red'
 	},
 	step: {
 		'& $completed': {
@@ -78,6 +84,9 @@ const styles = theme => ({
 		'& $alternativeLabel': {
 			marginTop: 0
 		}
+	},
+	completedStep: {
+		color: 'red'
 	},
 	layout: {
 		width: 'auto',
@@ -149,7 +158,6 @@ function validateTitikEmail(email) {
 	}
 	return errorsTitikEmail;
 }
-
 
 function validatePhone(phone) {
 	// we are going to store errors for all fields
@@ -229,8 +237,8 @@ class Checkout extends React.Component {
 		const errorsAddress = validateAddress(address);
 		const errorsPhone = validatePhone(phone);
 		const errorsEmail = validateEmail(email);
-		const errorsAtEmail = validateAtEmail(email)
-		const errorsTitikEmail = validateTitikEmail(email)
+		const errorsAtEmail = validateAtEmail(email);
+		const errorsTitikEmail = validateTitikEmail(email);
 		if (
 			email.length === 0 &&
 			name.length === 0 &&
@@ -624,16 +632,10 @@ class Checkout extends React.Component {
 									{steps.map(label => (
 										<Step key={label}>
 											<StepLabel
-												classes={{
-													alternativeLabel: classes.alternativeLabel,
-													labelContainer: classes.labelContainer
-												}}
 												StepIconProps={{
 													classes: {
-														root: classes.step,
-														completed: classes.completed,
-														active: classes.active,
-														disabled: classes.disabled
+														active: classes.stepIcon,
+														completed: classes.completedStep
 													}
 												}}
 											>

@@ -24,10 +24,14 @@ import idLocale from 'date-fns/locale/id';
 
 const themeMui = createMuiTheme({
 	overrides: {
-		Stepper: {
-			// Name of the component ⚛️ / style sheet
-			icon: {
-				color: 'green'
+		MuiStepIcon: {
+			root: {
+				'&$completed': {
+					color: '#1ABC9C'
+				},
+				'&$active': {
+					color: '#1ABC9C'
+				}
 			}
 		},
 		step: {
