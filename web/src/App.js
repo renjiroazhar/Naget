@@ -4,9 +4,19 @@ import PrivateRoute from './routes/private';
 import PublicRoute from './routes/public';
 import Lottie from 'lottie-react-web';
 import Planet from './component/Loaders/json/planet_rotating.json';
+// import Demo from './Demo';
 
 const Loading = () => (
-	<div style={{ marginTop: '200px' }}>
+	<div
+		style={{
+			textAlign: 'center',
+			minHeight: '100vh',
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			overflow: 'hidden'
+		}}
+	>
 		<Lottie
 			width="200px"
 			height="200px"
@@ -53,6 +63,7 @@ class App extends Component {
 			return <Loading />;
 		}
 		return isAuthenticated ? <PrivateRoute /> : <PublicRoute />;
+		// return <Demo />;
 	}
 }
 

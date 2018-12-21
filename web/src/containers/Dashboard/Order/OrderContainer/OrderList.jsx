@@ -7,14 +7,11 @@ const OrderList = ({ orders }) => {
 			{orders &&
 				orders.map(order => {
 					return (
-						console.log(order),
-						(
-							<div>
-								<Link to={`/orderdetail/${order.id}`}>
-									<OrderSummary order={order} />
-								</Link>
-							</div>
-						)
+						<div>
+							<Link to={`/orderdetail/${order.id}`}>
+								<OrderSummary order={order} key={order.id} />
+							</Link>
+						</div>
 					);
 				})}
 		</div>

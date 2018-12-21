@@ -3,18 +3,19 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import IconButton from '@material-ui/core/IconButton';
-import AddIcon from '@material-ui/icons/Add';
-import TimeInput from 'material-ui-time-picker';
 import { connect } from 'react-redux';
 import Fab from '@material-ui/core/Fab';
 import CloseIcon from '@material-ui/icons/Close';
 import Dropzone from 'react-dropzone';
 import Viewer from 'react-viewer';
+
+import DateFnsUtils from '@date-io/date-fns';
+import { Icon, IconButton } from '@material-ui/core';
+import {
+	DatePicker,
+	MuiPickersUtilsProvider,
+	TimePicker
+} from 'material-ui-pickers';
 
 const styles = theme => ({
 	root: {
@@ -99,50 +100,70 @@ class SecondStep extends React.Component {
 	}
 
 	render() {
-		const { secondary, time } = this.state;
-		const { classes, values } = this.props;
+		const {
+			values,
+			handleDateChange,
+			handleTimeChange,
+			handleMenuOpen
+		} = this.props;
 
 		return (
 			<React.Fragment>
 				<Grid container spacing={24}>
 					<Grid item xs={12}>
-						<List>
-							<ListItem>
-								<ListItemText
-									primary="Tanggal"
-									secondary={secondary ? 'Secondary text' : null}
-								/>
-								<ListItemSecondaryAction>
-									<IconButton aria-label="Add">
-										<AddIcon />
-									</IconButton>
-								</ListItemSecondaryAction>
-							</ListItem>
-
-							<hr />
-						</List>
-					</Grid>
-					<Grid item xs={12}>
-						<List>
-							<ListItem>
-								<ListItemText
-									primary="Jam"
-									secondary={secondary ? 'Secondary text' : null}
-								/>
-								<TimeInput
-									mode="24h"
-									id="time"
-									value={time}
-									onChange={time => {
-										this.handleChange(time);
-										console.log(time);
+						<MuiPickersUtilsProvider
+							utils={DateFnsUtils}
+							locale={values.locale}
+						>
+							<div className="picker">
+								<DatePicker
+									style={{ width: '100%' }}
+									value={values.selectedDate}
+									onChange={handleDateChange}
+									InputProps={{
+										startAdornment: (
+											<div>
+												<IconButton
+													aria-label="Select locale"
+													aria-owns={values.anchorEl ? 'locale-menu' : null}
+													onClick={handleMenuOpen}
+												>
+													<Icon> date_range </Icon>
+												</IconButton>
+											</div>
+										)
 									}}
 								/>
-							</ListItem>
-							<hr />
-						</List>
+							</div>
+						</MuiPickersUtilsProvider>
 					</Grid>
-
+					<Grid item xs={12}>
+						<MuiPickersUtilsProvider
+							utils={DateFnsUtils}
+							locale={values.locale}
+						>
+							<div className="picker">
+								<TimePicker
+									style={{ width: '100%' }}
+									value={values.time}
+									onChange={handleTimeChange}
+									InputProps={{
+										startAdornment: (
+											<div>
+												<IconButton
+													aria-label="Select locale"
+													aria-owns={values.anchorEl ? 'locale-menu' : null}
+													onClick={handleMenuOpen}
+												>
+													<Icon> schedule </Icon>
+												</IconButton>
+											</div>
+										)
+									}}
+								/>
+							</div>
+						</MuiPickersUtilsProvider>
+					</Grid>
 					<Grid item xs={12}>
 						<div style={{ textAlign: 'center' }}>
 							<section>
@@ -169,87 +190,99 @@ class SecondStep extends React.Component {
 								{values.previewGeneralPhotos.length > 0 ? (
 									<div>
 										<div>
-											{values.previewGeneralPhotos.map((file, i) => (
-												<div style={{ textAlign: 'center' }}>
-													<Grid container spacing={24}>
-														<Grid item xs={12} align="center">
-															{' '}
-															<img
-																onClick={this.viewImage}
-																src={URL.createObjectURL(file)}
-																alt="preview failed"
-																key={file.base64}
-																width="200"
-																height="200"
-																style={{ display: 'block', marginTop: '20px' }}
-															/>
+											{values.previewGeneralPhotos &&
+												values.previewGeneralPhotos.map((file, i) => (
+													<div style={{ textAlign: 'center' }}>
+														<Grid container spacing={24}>
+															<Grid item xs={12} align="center">
+																{' '}
+																<img
+																	onClick={this.viewImage}
+																	src={URL.createObjectURL(file)}
+																	alt="preview failed"
+																	key={file.base64}
+																	width="200"
+																	height="200"
+																	style={{
+																		display: 'block',
+																		marginTop: '20px'
+																	}}
+																/>
+															</Grid>
 														</Grid>
-													</Grid>
 
-													<Viewer
-														visible={this.state.visible}
-														onClose={this.cancelViewImage}
-														images={[
-															{
-																src: URL.createObjectURL(file),
-																alt: ''
-															}
-														]}
-													/>
+														<Viewer
+															visible={this.state.visible}
+															onClose={this.cancelViewImage}
+															images={[
+																{
+																	src: URL.createObjectURL(file),
+																	alt: ''
+																}
+															]}
+														/>
 
-													<Fab
-														size="small"
-														color="secondary"
-														aria-label="Add"
-														onClick={() => this.props.deleteImage(i)}
-														style={{ backgroundColor: 'red' }}
-													>
-														<CloseIcon />
-													</Fab>
-												</div>
-											))}
+														<Fab
+															size="small"
+															color="secondary"
+															aria-label="Add"
+															onClick={() => this.props.deleteImage(i)}
+															style={{ backgroundColor: 'red' }}
+														>
+															<CloseIcon />
+														</Fab>
+													</div>
+												))}
 										</div>
 									</div>
 								) : null}
 							</section>
 						</div>
 					</Grid>
-					<Grid container direction="row" justify="center" alignItems="center">
-						<Grid item xs={12} sm={12}>
-							<div style={{ marginTop: '15%' }}>
-								<div>
-									<Button
-										style={{
-											float: 'left',
-											backgroundColor: 'red',
-											color: 'white'
-										}}
-										onClick={this.handleBack}
-										className={classes.button}
-									>
-										Back
-									</Button>
-								</div>
+					<Grid item xs={12}>
+						<div
+							style={{
+								textAlign: 'center',
 
-								<div
-									style={{
-										textAlign: 'right',
-										justifyContent: 'right',
-										float: 'right'
-									}}
-								>
-									<Button
-										variant="contained"
-										color="primary"
-										onClick={this.handleSubmit}
-										className={classes.button}
-										style={{ float: 'right' }}
-									>
-										Next
-									</Button>
-								</div>
-							</div>
-						</Grid>
+								width: '100%',
+								marginTop: '10%'
+							}}
+						>
+							<Button
+								variant="contained"
+								color="primary"
+								onClick={this.handleBack}
+								style={{
+									width: '100%',
+									backgroundColor: 'red',
+									color: 'white'
+								}}
+							>
+								Kembali
+							</Button>
+						</div>
+					</Grid>
+					<Grid item xs={12}>
+						<div
+							style={{
+								textAlign: 'center',
+
+								width: '100%'
+							}}
+						>
+							<Button
+								variant="contained"
+								color="primary"
+								onClick={this.handleSubmit}
+								style={{
+									width: '100%',
+									backgroundColor: '#1ABC9C',
+									color: 'white'
+								}}
+							>
+								Selanjutnya
+							</Button>
+						</div>
 					</Grid>
 				</Grid>
 			</React.Fragment>

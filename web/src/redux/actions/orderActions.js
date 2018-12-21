@@ -1,4 +1,5 @@
 // import storage from '../../services/firebaseConfig';
+import { format } from 'date-fns/esm';
 
 export const removeOrder = id => {
 	return (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -38,29 +39,32 @@ export const createOrder = (order, picture) => {
 		const userId = getState().firebase.auth.uid;
 		const lokasi = {
 			alamat: order.address,
-			catatan: 'catatan',
+			catatan: order.catatan,
 			latLng: 123131
 		};
 		const logs = {
-			data: {
-				createdAt: new Date()
-			},
+			action: 'ORDER_CREATED'
+		};
+		const user = {
 			name: order.name,
 			phone: order.phone,
 			userId: userId,
-			email: order.email,
-			status: 'WAITING_CONFIRMATION'
+			email: order.email
 		};
-
-		console.log(order.downloadURLs, logs, lokasi);
+		const date = new Date();
 
 		firestore
 			.collection('orders')
 			.add({
+				createdAt: date,
 				location: lokasi,
-				foto: order.downloadURLs,
+				photos: order.downloadURLs,
 				logs: logs,
-				userId: userId
+				user: user,
+				status: 'WAITING_CONFIRMATION',
+				userId: userId,
+				tanggalPenjemputan: format(order.selectedDate, 'dd/MM/yyyy'),
+				jamPenjemputan: format(order.time, 'HH:mm')
 			})
 			.then(() => {
 				dispatch({ type: 'CREATE_ORDER', order });
@@ -75,30 +79,33 @@ export const createOrderWithoutLogin = (order, picture) => {
 	return (dispatch, getState, { getFirebase, getFirestore }) => {
 		// Make async call to database
 		const firestore = getFirestore();
-		// const profile = getState().firebase.profile;
 
 		const lokasi = {
 			alamat: order.address,
-			catatan: 'catatan',
+			catatan: order.catatan,
 			latLng: 123131
 		};
 		const logs = {
-			data: {
-				createdAt: new Date()
-			},
+			action: 'ORDER_CREATED'
+		};
+		const user = {
 			name: order.name,
 			phone: order.phone,
-
-			email: order.email,
-			status: 'WAITING_CONFIRMATION'
+			email: order.email
 		};
+		const date = new Date();
 
 		firestore
 			.collection('orders')
 			.add({
+				createdAt: date,
 				location: lokasi,
-				foto: order.downloadURLs,
-				logs: logs
+				photos: order.downloadURLs,
+				logs: logs,
+				user: user,
+				status: 'WAITING_CONFIRMATION',
+				tanggalPenjemputan: format(order.selectedDate, 'dd/MM/yyyy'),
+				jamPenjemputan: format(order.time, 'HH:mm')
 			})
 			.then(() => {
 				dispatch({ type: 'CREATE_ORDER', order });

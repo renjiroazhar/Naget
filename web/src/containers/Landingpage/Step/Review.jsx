@@ -1,14 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import Viewer from 'react-viewer';
 import 'react-viewer/dist/index.css';
 import Grid from '@material-ui/core/Grid';
-import * as moment from 'moment';
+import PropTypes from 'prop-types';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import { format } from 'date-fns/esm';
 
 const styles = theme => ({
 	listItem: {
@@ -19,6 +20,12 @@ const styles = theme => ({
 	},
 	title: {
 		marginTop: theme.spacing.unit * 2
+	},
+	list: {
+		padding: 0
+	},
+	list2: {
+		padding: 6
 	}
 });
 
@@ -57,15 +64,18 @@ class Review extends React.Component {
 	};
 
 	render() {
-		// const { classes } = this.props;
+		const { classes } = this.props;
 		const {
 			values: {
 				name,
 				phone,
 				email,
 				address,
-				previewGeneralPhotos,
 				time,
+				selectedDate,
+				previewGeneralPhotos,
+
+				catatan,
 				allowSend,
 				downloadURLs,
 				loading
@@ -103,77 +113,122 @@ class Review extends React.Component {
 		const buttonBack = () => {
 			if (allowSend) {
 				return (
-					<Button
+					<div
 						style={{
-							float: 'left',
-							backgroundColor: 'grey',
-							color: 'white',
-							marginBottom: '15px'
+							textAlign: 'center',
+
+							width: '100%'
 						}}
-						disabled
-						onClick={this.back}
 					>
-						Back
-					</Button>
+						<Button
+							variant="contained"
+							color="primary"
+							disabled
+							style={{
+								width: '100%',
+								backgroundColor: 'grey',
+								color: 'white'
+							}}
+						>
+							Kembali
+						</Button>
+					</div>
 				);
 			} else {
 				return (
-					<Button
+					<div
 						style={{
-							float: 'left',
-							backgroundColor: 'red',
-							color: 'white',
-							marginBottom: '15px'
+							textAlign: 'center',
+
+							width: '100%'
 						}}
-						onClick={this.back}
 					>
-						Back
-					</Button>
+						<Button
+							variant="contained"
+							color="primary"
+							onClick={this.back}
+							style={{
+								width: '100%',
+								backgroundColor: 'red',
+								color: 'white'
+							}}
+						>
+							Kembali
+						</Button>
+					</div>
 				);
 			}
 		};
 		const buttonSubmit = () => {
 			if (previewGeneralPhotos.length === 0 && downloadURLs.length === 0) {
 				return (
-					<Button
+					<div
 						style={{
-							float: 'right',
-							backgroundColor: 'lime',
-							color: 'white'
+							textAlign: 'center',
+
+							width: '100%'
 						}}
-						onClick={this.props.handleCreateOrder}
 					>
-						Confirm
-					</Button>
+						<Button
+							variant="contained"
+							color="primary"
+							onClick={this.props.handleCreateOrder}
+							style={{
+								width: '100%',
+								backgroundColor: '#1ABC9C',
+								color: 'white'
+							}}
+						>
+							Selanjutnya
+						</Button>
+					</div>
 				);
 			}
 			if (allowSend) {
 				return (
-					<Button
+					<div
 						style={{
-							float: 'right',
-							backgroundColor: 'lime',
-							color: 'white',
-							marginBottom: '15px'
+							textAlign: 'center',
+
+							width: '100%'
 						}}
-						onClick={this.props.handleCreateOrder}
 					>
-						Confirm
-					</Button>
+						<Button
+							variant="contained"
+							color="primary"
+							onClick={this.props.handleCreateOrder}
+							style={{
+								width: '100%',
+								backgroundColor: '#1ABC9C',
+								color: 'white'
+							}}
+						>
+							Selanjutnya
+						</Button>
+					</div>
 				);
 			} else {
 				return (
-					<Button
-						disabled
+					<div
 						style={{
-							float: 'right',
-							backgroundColor: 'grey',
-							color: 'white',
-							marginBottom: '15px'
+							textAlign: 'center',
+
+							width: '100%'
 						}}
 					>
-						Confirm
-					</Button>
+						<Button
+							variant="contained"
+							color="primary"
+							style={{
+								width: '100%',
+								backgroundColor: 'grey',
+								color: 'white'
+							}}
+							disabled
+						>
+							Selanjutnya
+						</Button>
+					</div>
 				);
 			}
 		};
@@ -196,52 +251,122 @@ class Review extends React.Component {
 		}
 
 		return (
-			console.log(this.props),
+			console.log(selectedDate),
 			(
 				<React.Fragment>
 					<Typography variant="h6" gutterBottom>
 						Order summary
 					</Typography>
 					<List>
-						<ListItem primary="Nama Lengkap" secondary={name} />
-						<ListItem primary="Nomor Telepon" secondary={phone} />
-						<ListItem primary="Email" secondary={email} />
-						<ListItem primary="Alamat" secondary={address} />
-						<ListItem primary="Jam" secondary={moment(time).format('HH:MM')} />
-						<ListItem primary="Tanggal" secondary={address} />
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText
+									style={{ float: 'left' }}
+									secondary="Nama Lengkap"
+								/>
+							</ListItem>
+							<ListItem style={{ paddingTop: 0 }}>
+								<ListItemText style={{ float: 'left' }} primary={name} />
+							</ListItem>
+						</List>
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText style={{ float: 'left' }} secondary="Alamat" />
+							</ListItem>
+							<ListItem style={{ paddingTop: 0 }}>
+								<ListItemText style={{ float: 'left' }} primary={address} />
+							</ListItem>
+						</List>
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText style={{ float: 'left' }} secondary="Email" />
+							</ListItem>
+							<ListItem style={{ paddingTop: 0 }}>
+								<ListItemText style={{ float: 'left' }} primary={email} />
+							</ListItem>
+						</List>
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText
+									style={{ float: 'left' }}
+									secondary="Nomor Telepon"
+								/>
+							</ListItem>
+							<ListItem style={{ paddingTop: 0 }}>
+								<ListItemText style={{ float: 'left' }} primary={phone} />
+							</ListItem>
+						</List>
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText
+									style={{ float: 'left' }}
+									secondary="Tanggal Penjemputan"
+								/>
+							</ListItem>
+							<ListItem style={{ paddingTop: 0 }}>
+								<ListItemText
+									style={{ float: 'left' }}
+									primary={`${format(selectedDate, 'dd/MM/yyyy')}`}
+								/>
+							</ListItem>
+						</List>
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText
+									style={{ float: 'left' }}
+									secondary="Jam Penjemputan"
+								/>
+							</ListItem>
+							<ListItem style={{ paddingTop: 0 }}>
+								<ListItemText
+									style={{ float: 'left' }}
+									primary={`${format(time, 'HH:mm')}`}
+								/>
+							</ListItem>
+						</List>
+
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText style={{ float: 'left' }} secondary="Catatan" />
+							</ListItem>
+							<ListItem style={{ paddingTop: 0 }}>
+								<ListItemText style={{ float: 'left' }} primary={catatan} />
+							</ListItem>
+						</List>
 						<ListItem primary="Foto : " />
 						{previewGeneralPhotos.length > 0 ? (
 							<div>
 								<div>
-									{previewGeneralPhotos.map((file, i) => (
-										<div style={{ textAlign: 'center' }}>
-											<Grid container spacing={24}>
-												<Grid item xs={12} align="center">
-													{' '}
-													<img
-														onClick={this.viewImage}
-														src={URL.createObjectURL(file)}
-														alt="preview failed"
-														key={file.base64}
-														width="250"
-														height="250"
-														style={{ display: 'block', margin: '20px' }}
-													/>
+									{previewGeneralPhotos &&
+										previewGeneralPhotos.map((file, i) => (
+											<div style={{ textAlign: 'center' }}>
+												<Grid container spacing={24}>
+													<Grid item xs={12} align="center">
+														{' '}
+														<img
+															onClick={this.viewImage}
+															src={URL.createObjectURL(file)}
+															alt="preview failed"
+															key={file.base64}
+															width="200"
+															height="200"
+															style={{ display: 'block' }}
+														/>
+													</Grid>
 												</Grid>
-											</Grid>
 
-											<Viewer
-												visible={this.state.visible}
-												onClose={this.cancelViewImage}
-												images={[
-													{
-														src: URL.createObjectURL(file),
-														alt: ''
-													}
-												]}
-											/>
-										</div>
-									))}
+												<Viewer
+													visible={this.state.visible}
+													onClose={this.cancelViewImage}
+													images={[
+														{
+															src: URL.createObjectURL(file),
+															alt: ''
+														}
+													]}
+												/>
+											</div>
+										))}
 								</div>
 							</div>
 						) : null}
@@ -253,10 +378,20 @@ class Review extends React.Component {
 					<br />
 					<br />
 					<br />
+
 					<div style={{ marginBottom: '25px' }}>
-						{buttonSubmit()}
-						{buttonBack()}
+						<Grid item xs={12}>
+							{buttonBack()}
+						</Grid>
+
+						<br />
+						<Grid item xs={12}>
+							{buttonSubmit()}
+						</Grid>
 					</div>
+					<br />
+					<br />
+					<br />
 				</React.Fragment>
 			)
 		);

@@ -4,9 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
 import { connect } from 'react-redux';
-import LocationSearchInput from './AutoCompletePlaces/LocationSearchInput';
+// import LocationSearchInput from './AutoCompletePlaces/LocationSearchInput';
 
 const styles = theme => ({
 	root: {
@@ -18,8 +17,7 @@ const styles = theme => ({
 		paddingLeft: theme.spacing.unit * 4
 	},
 	button: {
-		margin: theme.spacing.unit,
-		backgroundColor: '#00c43e',
+		backgroundColor: '#1ABC9C',
 		'&:hover': {
 			backgroundColor: '#0069d9',
 			borderColor: '#0062cc',
@@ -55,7 +53,6 @@ class FirstStep extends React.Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-		console.log(this.state);
 
 		this.props.nextStep();
 	};
@@ -74,6 +71,7 @@ class FirstStep extends React.Component {
 							autoComplete="fname"
 							onChange={handleChange('name')}
 							defaultValue={values.name}
+							value={values.name}
 						/>
 					</Grid>
 					<Grid item xs={12}>
@@ -82,6 +80,7 @@ class FirstStep extends React.Component {
 							type="email"
 							label="Email"
 							fullWidth
+							value={values.email}
 							autoComplete="fname"
 							onChange={handleChange('email')}
 							defaultValue={values.email}
@@ -93,6 +92,7 @@ class FirstStep extends React.Component {
 							label="Nomor WhatsApp"
 							fullWidth
 							autoComplete="fname"
+							value={values.phone}
 							onChange={handleChange('phone')}
 							defaultValue={values.phone}
 						/>
@@ -101,6 +101,7 @@ class FirstStep extends React.Component {
 						<TextField
 							required
 							label="Alamat"
+							value={values.address}
 							fullWidth
 							autoComplete="billing address-line1"
 							onChange={handleChange('address')}
@@ -108,31 +109,22 @@ class FirstStep extends React.Component {
 						/>
 					</Grid>
 					<Grid item xs={12}>
-						<LocationSearchInput />
-						<br />
-						<br />
-						<br />
-					</Grid>
-
-					<Grid item xs={12}>
-						<div style={{ textAlign: 'center' }}>
-							<Button
-								variant="contained"
-								color="primary"
-								className={classes.button}
-							>
-								LOKASI TERKINI
-								<AddIcon className={classes.rightIcon} />
-							</Button>
-						</div>
+						<TextField
+							label="Catatan Untuk Driver"
+							value={values.catatan}
+							fullWidth
+							autoComplete="billing address-line1"
+							onChange={handleChange('catatan')}
+							defaultValue={values.catatan}
+						/>
 					</Grid>
 
 					<Grid item xs={12}>
 						<div
 							style={{
-								textAlign: 'right',
-								justifyContent: 'right',
-								float: 'right',
+								textAlign: 'center',
+								justifyContent: 'center',
+								width: '100%',
 								marginTop: '10%'
 							}}
 						>
@@ -141,9 +133,9 @@ class FirstStep extends React.Component {
 								color="primary"
 								onClick={this.handleSubmit}
 								className={classes.button}
-								style={{ float: 'right' }}
+								style={{ width: '100%' }}
 							>
-								Next
+								Selanjutnya
 							</Button>
 						</div>
 					</Grid>
@@ -158,7 +150,6 @@ FirstStep.propTypes = {
 };
 
 const mapStateToProps = state => {
-	console.log(state);
 	return {
 		order: state.order.orders
 	};

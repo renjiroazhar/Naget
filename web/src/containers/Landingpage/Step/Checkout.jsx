@@ -11,10 +11,25 @@ import FirstStep from './FirstStep';
 import SecondStep from './SecondStep';
 import Review from './Review';
 import ThirdStep from './ThirdStep';
-import FixedNavbar from '../../../component/FixedNavbar';
+import NavbarPickTrash from '../../../component/NavbarPickTrash';
 import { connect } from 'react-redux';
-import { createOrderWithoutLogin } from '../../../redux/actions/orderActions';
+import { createOrder } from '../../../redux/actions/orderActions';
 import { storage } from '../../../services/firebaseConfig';
+import { format } from 'date-fns/esm';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+import idLocale from 'date-fns/locale/id';
+
+const themeMui = createMuiTheme({
+	overrides: {
+		Stepper: {
+			// Name of the component ⚛️ / style sheet
+			icon: {
+				color: 'green'
+			}
+		}
+	}
+});
 
 const styles = theme => ({
 	appBar: {
@@ -58,10 +73,15 @@ class Checkout extends React.Component {
 		name: '',
 		phone: '',
 		email: '',
-		time: '',
+		selectedDate: null,
+		anchorEl: null,
+		currentLocale: 'id',
+		time: null,
+
 		occupation: '',
 		city: '',
 		bio: '',
+		catatan: '',
 		address: '',
 		foto: [],
 		previewGeneralPhotos: [],
@@ -77,7 +97,6 @@ class Checkout extends React.Component {
 	};
 	handleChange = input => e => {
 		this.setState({ [input]: e.target.value });
-		console.log(this.state);
 	};
 
 	handleNext = () => {
@@ -226,21 +245,49 @@ class Checkout extends React.Component {
 		this.handleNext();
 	};
 
-	handleChangeTime = time => {
+	handleDateChange = date => {
+		this.setState({ selectedDate: date });
+		console.log(format(this.state.selectedDate, 'dd/MM/yyyy'));
+	};
+
+	handleMenuOpen = event => {
+		event.stopPropagation();
+		this.setState({ anchorEl: event.currentTarget });
+		console.log(format(this.state.selectedDate, 'dd/MM/yyyy'));
+	};
+
+	handleMenuClose = () => {
+		this.setState({ anchorEl: null });
+	};
+
+	handleTimeChange = date => {
+		this.setState({ time: date });
+		console.log(format(this.state.time, 'HH:mm'));
+	};
+
+	selectLocale = selectedLocale => {
 		this.setState({
-			time: time
+			currentLocale: selectedLocale,
+			anchorEl: null
 		});
 	};
 
 	render() {
 		const { classes } = this.props;
 		const { activeStep } = this.state;
+		const locale = idLocale;
+		const localeMap = {
+			id: idLocale
+		};
 
 		const steps = ['', '', '', ''];
 		const {
 			name,
 			phone,
 			email,
+			selectedDate,
+			anchorEl,
+			currentLocale,
 			time,
 			occupation,
 			city,
@@ -250,6 +297,7 @@ class Checkout extends React.Component {
 			generalPhotos,
 			previewGeneralPhotos,
 			downloadURLs,
+			catatan,
 			loading,
 			allowSend
 		} = this.state;
@@ -257,8 +305,16 @@ class Checkout extends React.Component {
 			name,
 			phone,
 			allowSend,
+			selectedDate,
+			anchorEl,
+			currentLocale,
 			time,
+
+			locale,
+			localeMap,
+
 			email,
+			catatan,
 			address,
 			occupation,
 			city,
@@ -293,6 +349,10 @@ class Checkout extends React.Component {
 							deleteImage={this.deleteImage}
 							handleChangeTime={this.handleChangeTime}
 							allowSend={this.allowSendOrder}
+							handleDateChange={this.handleDateChange}
+							handleTimeChange={this.handleTimeChange}
+							handleMenuOpen={this.handleMenuOpen}
+							handleMenuClose={this.handleMenuClose}
 						/>
 					);
 				case 2:
@@ -330,16 +390,18 @@ class Checkout extends React.Component {
 			>
 				<React.Fragment>
 					<CssBaseline />
-					<FixedNavbar />
+					<NavbarPickTrash />
 					<main className={classes.layout}>
 						<Paper className={classes.paper}>
-							<Stepper activeStep={activeStep} className={classes.stepper}>
-								{steps.map(label => (
-									<Step key={label}>
-										<StepLabel>{label}</StepLabel>
-									</Step>
-								))}
-							</Stepper>
+							<MuiThemeProvider theme={themeMui}>
+								<Stepper activeStep={activeStep} className={classes.stepper}>
+									{steps.map(label => (
+										<Step key={label}>
+											<StepLabel>{label}</StepLabel>
+										</Step>
+									))}
+								</Stepper>
+							</MuiThemeProvider>
 							<React.Fragment>
 								{activeStep === steps.length ? (
 									<React.Fragment>
@@ -374,12 +436,19 @@ Checkout.propTypes = {
 const mapDispatchToProps = dispatch => {
 	return {
 		createOrder: order => {
-			dispatch(createOrderWithoutLogin(order));
+			dispatch(createOrder(order));
 		}
 	};
 };
 
+const mapStateToProps = state => {
+	return {
+		auth: state.firebase.auth,
+		profile: state.firebase.profile
+	};
+};
+
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps
 )(withStyles(styles)(Checkout));

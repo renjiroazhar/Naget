@@ -56,8 +56,6 @@ class ThirdStep extends React.Component {
 	};
 
 	render() {
-		const { classes } = this.props;
-
 		return (
 			<React.Fragment>
 				<Grid container spacing={24}>
@@ -85,39 +83,49 @@ class ThirdStep extends React.Component {
 						</List>
 					</Grid>
 
-					<Grid item xs={12} sm={12}>
-						<div style={{ marginTop: '15%' }}>
-							<div>
-								<Button
-									style={{
-										float: 'left',
-										backgroundColor: 'red',
-										color: 'white'
-									}}
-									onClick={this.handleBack}
-									className={classes.button}
-								>
-									Kembali
-								</Button>
-							</div>
+					<Grid item xs={12}>
+						<div
+							style={{
+								textAlign: 'center',
 
-							<div
+								width: '100%',
+								marginTop: '10%'
+							}}
+						>
+							<Button
+								variant="contained"
+								color="primary"
+								onClick={this.handleBack}
 								style={{
-									textAlign: 'right',
-									justifyContent: 'right',
-									float: 'right'
+									width: '100%',
+									backgroundColor: 'red',
+									color: 'white'
 								}}
 							>
-								<Button
-									variant="contained"
-									color="primary"
-									onClick={this.handleSubmit}
-									className={classes.button}
-									style={{ float: 'right' }}
-								>
-									Next
-								</Button>
-							</div>
+								Kembali
+							</Button>
+						</div>
+					</Grid>
+					<Grid item xs={12}>
+						<div
+							style={{
+								textAlign: 'center',
+
+								width: '100%'
+							}}
+						>
+							<Button
+								variant="contained"
+								color="primary"
+								onClick={this.handleSubmit}
+								style={{
+									width: '100%',
+									backgroundColor: '#1ABC9C',
+									color: 'white'
+								}}
+							>
+								Selanjutnya
+							</Button>
 						</div>
 					</Grid>
 				</Grid>

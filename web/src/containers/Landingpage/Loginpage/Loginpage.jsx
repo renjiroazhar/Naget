@@ -327,7 +327,6 @@ const styles = theme => ({
 });
 
 const mapStateToProps = state => {
-	console.log(state);
 	return {
 		authError: state.auth.authError,
 		redirect: state.auth.redirect

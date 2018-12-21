@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import Checkout from '../../containers/Dashboard/Step/Checkout';
 import OrderDetail from '../../containers/Dashboard/Order/OrderDetail/OrderDetail';
 import BottomNavigationBar from '../../component/BottomNavigationBar';
+import EditOrder from '../../containers/Dashboard/Order/EditOrder';
 // const withoutBottomNavbar = () => {
 // 	return <div />;
 // };
@@ -28,6 +29,7 @@ export default class PublicRoute extends Component {
 							<Route path="/account" component={Account} />
 							<Route path="/form_login" component={Checkout} />
 							<Route path="/orderdetail/:id" component={OrderDetail} />
+							<Route path="/editorder/:id" component={EditOrder} />
 						</Switch>
 					)}
 				/>

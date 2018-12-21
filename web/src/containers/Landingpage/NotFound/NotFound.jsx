@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './style/style.css';
 
 export default class NotFound extends Component {
@@ -19,9 +18,7 @@ export default class NotFound extends Component {
 							removed. name changed or is temporarily unavailable
 						</p>
 
-						<Link to="/">
-							<a href="/">Back to homepage</a>
-						</Link>
+						<a href="/">Back to homepage</a>
 					</div>
 				</div>
 			</div>

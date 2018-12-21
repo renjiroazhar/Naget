@@ -1,5 +1,4 @@
 import React from 'react';
-import { Icon } from 'react-onsenui';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -17,10 +16,9 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowLeft from '@material-ui/icons/ArrowBack';
 import Viewer from 'react-viewer';
 import 'react-viewer/dist/index.css';
-import Fab from '@material-ui/core/Fab';
-import CloseIcon from '@material-ui/icons/Close';
 import { withRouter } from 'react-router-dom';
 import firebase from 'firebase';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { removeOrder } from '../../../../../redux/actions/orderActions';
 
@@ -95,10 +93,6 @@ class OrderDetail extends React.Component {
 		this.props.history.push('/order');
 	};
 
-	componentDidMount() {
-		console.log(this.props);
-	}
-
 	render() {
 		const { order, classes } = this.props;
 
@@ -138,20 +132,6 @@ class OrderDetail extends React.Component {
 							marginBottom: '25%'
 						}}
 					>
-						<div style={{ textAlign: 'center' }}>
-							<Button
-								style={{
-									backgroundColor: '#f43c3c',
-									width: '90%',
-									textAlign: 'center',
-									color: '#ffffff',
-									marginTop: '5%'
-								}}
-								onClick={this.props.pushPage}
-							>
-								Edit
-							</Button>
-						</div>
 						<List style={{ overflow: 'hidden' }}>
 							<List className={classes.list} onClick={this.handleClickOpen}>
 								<ListItem button onClick={this.handleClickOpen}>
@@ -163,7 +143,7 @@ class OrderDetail extends React.Component {
 								<ListItem style={{ paddingTop: 0 }}>
 									<ListItemText
 										style={{ float: 'left' }}
-										primary={order.logs.name ? order.logs.name : ''}
+										primary={!order.logs.name ? '' : order.logs.name}
 									/>
 								</ListItem>
 							</List>
@@ -174,7 +154,9 @@ class OrderDetail extends React.Component {
 								<ListItem style={{ paddingTop: 0 }}>
 									<ListItemText
 										style={{ float: 'left' }}
-										primary={order.location.alamat ? order.location.alamat : ''}
+										primary={
+											!order.location.alamat ? '' : order.location.alamat
+										}
 									/>
 								</ListItem>
 							</List>
@@ -188,7 +170,7 @@ class OrderDetail extends React.Component {
 								<ListItem style={{ paddingTop: 0 }}>
 									<ListItemText
 										style={{ float: 'left' }}
-										primary={order.logs.phone ? order.logs.phone : ''}
+										primary={!order.logs.phone ? '' : order.logs.phone}
 									/>
 								</ListItem>
 							</List>
@@ -211,7 +193,10 @@ class OrderDetail extends React.Component {
 									<ListItemText style={{ float: 'left' }} secondary="Foto :" />
 								</ListItem>
 								<div>
-									{order.foto !== null || order.foto !== [] ? (
+									{order.foto !== null ||
+									order.foto !== [] ||
+									order.foto !== 'undefined' ? (
+										order.foto &&
 										order.foto.map((foto, i) => {
 											return (
 												<div>
@@ -239,17 +224,6 @@ class OrderDetail extends React.Component {
 															}
 														]}
 													/>
-													<div style={{ textAlign: 'center' }}>
-														<Fab
-															size="small"
-															color="secondary"
-															aria-label="Add"
-															onClick={() => this.deleteUploadedImage(foto)}
-															style={{ backgroundColor: 'red' }}
-														>
-															<CloseIcon />
-														</Fab>
-													</div>
 												</div>
 											);
 										})
@@ -290,16 +264,22 @@ class OrderDetail extends React.Component {
 			return (
 				<div
 					style={{
-						textAlign: 'center',
-						justifyContent: 'center',
-						height: '100%',
-						position: 'relative',
-						top: 'calc(50% - 10px)'
+						backgroundColor: '#e7e7e7',
+						height: '100%'
 					}}
 				>
-					<Icon size={35} spin={true} icon="ion-load-d" />
-					<br />
-					Loading
+					<div
+						style={{
+							textAlign: 'center',
+							minHeight: '100vh',
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							overflow: 'hidden'
+						}}
+					>
+						<CircularProgress />
+					</div>
 				</div>
 			);
 		}

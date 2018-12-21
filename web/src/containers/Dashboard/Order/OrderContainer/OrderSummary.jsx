@@ -13,62 +13,66 @@ import GarbageIcon from './image/garbage.svg';
 const OrderSummary = ({ order }) => {
 	return (
 		<div>
-			<List style={{ width: '100%' }} key={order.id}>
-				<ListItem button alignItems="flex-start">
-					<ListItemAvatar>
-						{order.foto ? (
-							<Avatar
-								style={{
-									borderRadius: '5%',
-									width: '45px',
-									height: '45px'
-								}}
-								alt="Remy Sharp"
-								src={`${order.foto[0] ? order.foto[0] : ''}`}
-							/>
-						) : (
-							<Avatar
-								style={{
-									borderRadius: '5%',
-									width: '45px',
-									height: '45px'
-								}}
-								alt="Remy Sharp"
-								src={<GarbageIcon />}
-							/>
-						)}
-					</ListItemAvatar>
-					<ListItemText
-						primary={order.logs.name ? order.logs.name : ''}
-						secondary={
-							<React.Fragment>
-								<Typography component="span" color="textPrimary">
-									Telah menukarkan sampah sebanyak ...
-								</Typography>
-								<br />
+			{order ? (
+				<List style={{ width: '100%' }} key={order.id}>
+					<ListItem button alignItems="flex-start">
+						<ListItemAvatar>
+							{!order.foto ? (
+								<Avatar
+									style={{
+										borderRadius: '5%',
+										width: '45px',
+										height: '45px'
+									}}
+									alt="Remy Sharp"
+									src={<GarbageIcon />}
+								/>
+							) : (
+								<Avatar
+									style={{
+										borderRadius: '5%',
+										width: '45px',
+										height: '45px'
+									}}
+									alt="Remy Sharp"
+									src={`${!order.foto[0] ? '' : order.foto[0]}`}
+								/>
+							)}
+						</ListItemAvatar>
+						<ListItemText
+							primary={order.logs.name ? order.logs.name : ''}
+							secondary={
+								<React.Fragment>
+									<Typography component="span" color="textPrimary">
+										Telah menukarkan sampah sebanyak ...
+									</Typography>
+									<br />
 
-								{order.logs.status
-									? order.logs.status === 'SUCCESS'
-										? 'Berhasil'
-										: order.logs.status === 'WAITING_CONFIRMATION'
-											? 'Menunggu Konfirmasi'
-											: ''
-									: ''}
-							</React.Fragment>
-						}
-					/>
-					<ListItemSecondaryAction>
-						<IconButton
-							onClick={() => {
-								this.props.history.push(`/order/${order.id}`);
-							}}
-							aria-label="Comments"
-						>
-							<InfoIcon />
-						</IconButton>
-					</ListItemSecondaryAction>
-				</ListItem>
-			</List>
+									{order.logs.status
+										? order.logs.status === 'SUCCESS'
+											? 'Berhasil'
+											: order.logs.status === 'WAITING_CONFIRMATION'
+												? 'Menunggu Konfirmasi'
+												: ''
+										: ''}
+								</React.Fragment>
+							}
+						/>
+						<ListItemSecondaryAction>
+							<IconButton
+								onClick={() => {
+									this.props.history.push(`/order/${order.id}`);
+								}}
+								aria-label="Comments"
+							>
+								<InfoIcon />
+							</IconButton>
+						</ListItemSecondaryAction>
+					</ListItem>
+				</List>
+			) : (
+				[]
+			)}
 		</div>
 	);
 };
