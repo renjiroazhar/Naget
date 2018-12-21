@@ -48,7 +48,8 @@ class FirstStep extends React.Component {
 		name: '',
 		phone: '',
 		address: '',
-		area: ''
+		area: '',
+		catatan: '',
 	};
 
 	handleChange = e => {
@@ -180,7 +181,7 @@ class FirstStep extends React.Component {
 							<FormHelperText style={{ color: 'red' }}>
 								Wajib Diisi
 							</FormHelperText>
-						) : values.errorsAddress ? (
+						) : values.errorsCatatan ? (
 							<FormHelperText style={{ color: 'red' }}>
 								Wajib Diisi
 							</FormHelperText>
