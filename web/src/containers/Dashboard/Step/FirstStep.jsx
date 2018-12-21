@@ -117,7 +117,7 @@ class FirstStep extends React.Component {
 								</FormHelperText>
 							) : values.errorsAtEmail ? (
 								<FormHelperText style={{ color: 'red' }}>
-									Email harus mengandung memiliki @
+									Email harus memiliki @
 								</FormHelperText>
 							) : null}
 						</FormControl>
@@ -127,6 +127,7 @@ class FirstStep extends React.Component {
 							<TextField
 								required
 								label="Nomor WhatsApp"
+								type="number"
 								fullWidth
 								autoComplete="fname"
 								value={values.phone}
@@ -175,6 +176,15 @@ class FirstStep extends React.Component {
 							onChange={handleChange('catatan')}
 							defaultValue={values.catatan}
 						/>
+						{values.errorAll ? (
+							<FormHelperText style={{ color: 'red' }}>
+								Wajib Diisi
+							</FormHelperText>
+						) : values.errorsAddress ? (
+							<FormHelperText style={{ color: 'red' }}>
+								Wajib Diisi
+							</FormHelperText>
+						) : null}
 					</Grid>
 
 					<Grid item xs={12}>
