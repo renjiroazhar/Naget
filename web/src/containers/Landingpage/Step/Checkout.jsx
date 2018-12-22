@@ -710,7 +710,7 @@ class Checkout extends React.Component {
 								</Toolbar>
 							</AppBar>
 						</div>
-					) :activeStep === 4 ? (
+					) : activeStep === 4 ? (
 						<div
 							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
 						>
@@ -719,7 +719,7 @@ class Checkout extends React.Component {
 								position="static"
 							>
 								<Toolbar>
-								<IconButton
+									<IconButton
 										onClick={() => {
 											this.props.history.push('/');
 										}}
@@ -824,10 +824,23 @@ class Checkout extends React.Component {
 										</div>
 										<Typography
 											variant="h5"
-											style={{ textAlign: 'center',color: '#757575', justifyContent: 'center' }}
+											style={{
+												textAlign: 'center',
+												color: '#757575',
+												justifyContent: 'center'
+											}}
 											gutterBottom
 										>
-											<div style={{fontWeight: 'bold', marginRight: '5px', color: '#757575'}}>Terimakasih</div> {values.name}
+											<div
+												style={{
+													fontWeight: 'bold',
+													marginRight: '5px',
+													color: '#757575'
+												}}
+											>
+												Terimakasih
+											</div>{' '}
+											{values.name}
 										</Typography>
 										<Typography
 											variant="subtitle1"
@@ -840,11 +853,15 @@ class Checkout extends React.Component {
 
 										<Typography
 											variant="subtitle2"
-											style={{ textAlign: 'center', color: '#757575', fontSize: '12px' }}
+											style={{
+												textAlign: 'center',
+												color: '#757575',
+												fontSize: '12px',
+												fontWeight: 600
+											}}
 										>
 											*Detail order telah dikirim ke emailmu.
 										</Typography>
-
 
 										<div
 											style={{
@@ -866,7 +883,7 @@ class Checkout extends React.Component {
 												Login
 											</Button>
 										</div>
-												
+
 										<div
 											style={{
 												textAlign: 'center',
