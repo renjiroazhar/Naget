@@ -132,6 +132,26 @@ const styles = theme => ({
 			boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
 		}
 	},
+	buttonTwo: {
+		backgroundColor: '#FFFFFF',
+		borderColor: '#1ABC9C',
+		height: '46px',
+		color: '#1ABC9C',
+		border: '1px solid #1ABC9C',
+		'&:hover': {
+			backgroundColor: '#1ABC9C',
+			borderColor: '#0062cc',
+			color: 'white'
+		},
+		'&:active': {
+			boxShadow: 'none',
+			backgroundColor: '#1ABC9C',
+			borderColor: '#005cbf'
+		},
+		'&:focus': {
+			boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
+		}
+	},
 	stepper: {
 		padding: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 5}px`
 	}
@@ -690,7 +710,7 @@ class Checkout extends React.Component {
 								</Toolbar>
 							</AppBar>
 						</div>
-					) : allowSend ? (
+					) :activeStep === 4 ? (
 						<div
 							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
 						>
@@ -699,6 +719,16 @@ class Checkout extends React.Component {
 								position="static"
 							>
 								<Toolbar>
+								<IconButton
+										onClick={() => {
+											this.props.history.push('/');
+										}}
+										className={classes.menuButton}
+										color="inherit"
+										aria-label="Menu"
+									>
+										<ArrowLeft />
+									</IconButton>
 									<Typography
 										variant="h7"
 										color="inherit"
@@ -794,19 +824,27 @@ class Checkout extends React.Component {
 										</div>
 										<Typography
 											variant="h5"
-											style={{ textAlign: 'center' }}
+											style={{ textAlign: 'center',color: '#757575', justifyContent: 'center' }}
 											gutterBottom
 										>
-											Terimakasih {values.name}
+											<div style={{fontWeight: 'bold', marginRight: '5px', color: '#757575'}}>Terimakasih</div> {values.name}
 										</Typography>
 										<Typography
 											variant="subtitle1"
-											style={{ textAlign: 'center' }}
+											style={{ textAlign: 'center', color: '#757575' }}
 										>
 											Terimakasih sudah order, yuk daftarkan akunmu agar kamu
 											bisa memantau ordermu secara real time dan mendapatkan
 											poin tambahan.
 										</Typography>
+
+										<Typography
+											variant="subtitle2"
+											style={{ textAlign: 'center', color: '#757575', fontSize: '12px' }}
+										>
+											*Detail order telah dikirim ke emailmu.
+										</Typography>
+
 
 										<div
 											style={{
@@ -820,12 +858,33 @@ class Checkout extends React.Component {
 												variant="contained"
 												color="primary"
 												onClick={() => {
-													this.props.history.push('/');
+													this.props.history.push('/login');
+												}}
+												className={classes.buttonTwo}
+												style={{ width: '100%' }}
+											>
+												Login
+											</Button>
+										</div>
+												
+										<div
+											style={{
+												textAlign: 'center',
+												justifyContent: 'center',
+												width: '100%',
+												marginTop: '5%'
+											}}
+										>
+											<Button
+												variant="contained"
+												color="primary"
+												onClick={() => {
+													this.props.history.push('/signup');
 												}}
 												className={classes.button}
 												style={{ width: '100%' }}
 											>
-												Ok
+												Daftar
 											</Button>
 										</div>
 									</React.Fragment>

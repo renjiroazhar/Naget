@@ -733,7 +733,7 @@ class Checkout extends React.Component {
 								</Toolbar>
 							</AppBar>
 						</div>
-					) : allowSend ? (
+					) :activeStep === 4 ? (
 						<div
 							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
 						>
@@ -742,6 +742,16 @@ class Checkout extends React.Component {
 								position="static"
 							>
 								<Toolbar>
+								<IconButton
+										onClick={() => {
+											this.props.history.push('/');
+										}}
+										className={classes.menuButton}
+										color="inherit"
+										aria-label="Menu"
+									>
+										<ArrowLeft />
+									</IconButton>
 									<Typography
 										variant="h7"
 										color="inherit"
