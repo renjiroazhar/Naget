@@ -13,8 +13,6 @@ import Divider from '@material-ui/core/Divider';
 import Navbar from '../../../component/Navbar';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 class Account extends React.Component {
 	state = {
@@ -39,19 +37,24 @@ class Account extends React.Component {
 
 	render() {
 		return (
-			<div style={{ marginBottom: '10%', backgroundColor: '#e7e7e7' }}>
+			<div style={{
+				marginBottom: '10%',
+				marginTop: '65px',
+				backgroundColor: '#e7e7e7',
+				marginLeft: '-3px',
+			}}>
 				<Navbar />
 				<div style={{ marginTop: '5px' }}>
 					<EditProfil />
 				</div>
-				<Divider />
-				<div>
+				<div style={{ marginTop: '5%' }}>
 					<GantiPassword />
 				</div>
-
+				<Divider />
 				<div>
 					<Rate />
 				</div>
+				<Divider />
 				<div>
 					<Testimoni />
 				</div>
@@ -59,6 +62,7 @@ class Account extends React.Component {
 					<div>
 						<Faq renderTab={() => this.props.renderTab()} />
 					</div>
+					<Divider />
 					<div>
 						<Tentang />
 					</div>
@@ -75,12 +79,13 @@ class Account extends React.Component {
 				>
 					<Button
 						style={{
-							marginTop: '10%',
-							marginBottom: '15%',
-							backgroundColor: '#f43c3c',
-							width: '90%',
+							marginTop: '5%',
+							marginBottom: '5%',
+							backgroundColor: '#ffffff',
+							width: '105%',
 							textAlign: 'center',
-							color: '#ffffff'
+							color: '#f43c3c',
+							marginLeft: '-2px',
 						}}
 						onClick={this.handleClickOpen}
 					>
@@ -94,12 +99,7 @@ class Account extends React.Component {
 					aria-labelledby="alert-dialog-title"
 					aria-describedby="alert-dialog-description"
 				>
-					<DialogTitle id="alert-dialog-title">{'Anda yakin?'}</DialogTitle>
-					<DialogContent>
-						<DialogContentText id="alert-dialog-description">
-							Keluar
-						</DialogContentText>
-					</DialogContent>
+					<DialogTitle id="alert-dialog-title">{'Anda yakin ingin keluar?'}</DialogTitle>
 					<DialogActions>
 						<Button onClick={this.handleClose} color="primary">
 							Tidak

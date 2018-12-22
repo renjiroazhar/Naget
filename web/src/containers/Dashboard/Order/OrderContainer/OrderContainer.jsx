@@ -13,7 +13,6 @@ import SwipeableViews from 'react-swipeable-views';
 import './style/style.css';
 import OrderList from './OrderList';
 import Navbar from '../../../../component/Navbar';
-import FixedNavbar from '../../../../component/FixedNavbar';
 
 const styles = theme => ({
 	root: {
@@ -77,6 +76,18 @@ class OrderContainer extends React.Component {
 						height: '100%'
 					}}
 				>
+					<Navbar />
+					<AppBar style={{ marginTop: '55px', }} color="default">
+						<Tabs
+							onChange={this.handleChange}
+							indicatorColor="primary"
+							textColor="primary"
+							fullWidth
+						>
+							<Tab label="Ordered" style={stylus.tab} />
+							<Tab label="Booked" style={stylus.tab} />
+						</Tabs>
+					</AppBar>
 					<div
 						style={{
 							textAlign: 'center',
@@ -100,7 +111,18 @@ class OrderContainer extends React.Component {
 						height: '100%'
 					}}
 				>
-					<FixedNavbar />
+					<Navbar />
+					<AppBar style={{ marginTop: '55px', }} color="default">
+						<Tabs
+							onChange={this.handleChange}
+							indicatorColor="primary"
+							textColor="primary"
+							fullWidth
+						>
+							<Tab label="Ordered" style={stylus.tab} />
+							<Tab label="Booked" style={stylus.tab} />
+						</Tabs>
+					</AppBar>
 					<div
 						style={{
 							textAlign: 'center',
@@ -120,7 +142,7 @@ class OrderContainer extends React.Component {
 			return (
 				<div style={{ marginBottom: '20%' }}>
 					<Navbar />
-					<AppBar position="relative" color="default">
+					<AppBar style={{ marginTop: '55px', }} color="default">
 						<Tabs
 							value={this.state.value}
 							onChange={this.handleChange}
@@ -132,7 +154,7 @@ class OrderContainer extends React.Component {
 							<Tab label="Booked" style={stylus.tab} />
 						</Tabs>
 					</AppBar>
-					<div style={{ width: '100%' }}>
+					<div style={{ width: '100%', marginTop: '100px', }}>
 						<SwipeableViews
 							axis={theme === 'rtl' ? 'x-reverse' : 'x'}
 							index={this.state.value}

@@ -81,11 +81,11 @@ class OrderDetail extends React.Component {
 		// Delete the file
 		desertRef
 			.delete()
-			.then(function(res) {
+			.then(function (res) {
 				console.log(res, 'Waw Sukses');
 				this.deleteArrayImage();
 			})
-			.catch(function(error) {
+			.catch(function (error) {
 				console.log(error, 'Wadidaw Error');
 			});
 	};
@@ -144,10 +144,10 @@ class OrderDetail extends React.Component {
 					<div
 						style={{
 							height: '100%',
-
 							backgroundColor: '#ffffff',
 							width: '100%',
-							marginBottom: '25%'
+							padding: '10px',
+							marginLeft: '-3px',
 						}}
 					>
 						<List style={{ overflow: 'hidden' }}>
@@ -205,7 +205,7 @@ class OrderDetail extends React.Component {
 										primary={
 											!order.orderDate
 												? ''
-												:moment(order.orderDate.toDate()).format('MMMM Do YYYY, h:mm') 
+												: moment(order.orderDate.toDate()).format('MMMM Do YYYY, h:mm')
 										}
 									/>
 								</ListItem>
@@ -230,44 +230,44 @@ class OrderDetail extends React.Component {
 								</ListItem>
 								<div>
 									{order.photos !== null ||
-									order.photos !== [] ||
-									order.photos !== 'undefined' ? (
-										order.photos &&
-										order.photos.map((foto, i) => {
-											return (
-												<div>
-													<Grid container spacing={24}>
-														<Grid item xs={12} align="center">
-															<img
-																onClick={this.viewImage}
-																src={foto}
-																alt="preview failed"
-																key={i}
-																width="250"
-																height="250"
-																style={{ display: 'block', margin: '20px' }}
-															/>
+										order.photos !== [] ||
+										order.photos !== 'undefined' ? (
+											order.photos &&
+											order.photos.map((foto, i) => {
+												return (
+													<div>
+														<Grid container spacing={24}>
+															<Grid item xs={12} align="center">
+																<img
+																	onClick={this.viewImage}
+																	src={foto}
+																	alt="preview failed"
+																	key={i}
+																	width="250"
+																	height="250"
+																	style={{ display: 'block', margin: '20px' }}
+																/>
+															</Grid>
 														</Grid>
-													</Grid>
 
-													<Viewer
-														visible={this.state.visible}
-														onClose={this.cancelViewImage}
-														images={[
-															{
-																src: foto,
-																alt: ''
-															}
-														]}
-													/>
-												</div>
-											);
-										})
-									) : (
-										<div style={{ textAlign: 'center' }}>
-											<p>Tidak Ada Foto</p>
-										</div>
-									)}
+														<Viewer
+															visible={this.state.visible}
+															onClose={this.cancelViewImage}
+															images={[
+																{
+																	src: foto,
+																	alt: ''
+																}
+															]}
+														/>
+													</div>
+												);
+											})
+										) : (
+											<div style={{ textAlign: 'center' }}>
+												<p>Tidak Ada Foto</p>
+											</div>
+										)}
 									<br />
 									<br />
 									<br />
@@ -279,16 +279,15 @@ class OrderDetail extends React.Component {
 							style={{
 								textAlign: 'center',
 								bottom: 0,
-								height: '40px',
+								height: '46px',
 								backgroundColor: 'white',
-								position: 'fixed',
-								width: '100%'
+								width: '100%',
 							}}
 						>
 							<Button
 								style={{
 									backgroundColor: '#f43c3c',
-									width: '100%',
+									width: '90%',
 									textAlign: 'center',
 									color: '#ffffff'
 								}}
@@ -308,6 +307,30 @@ class OrderDetail extends React.Component {
 						height: '100%'
 					}}
 				>
+					<div style={{ flex: 1 }}>
+						<AppBar
+							style={{ width: '100%', backgroundColor: '#333c4e' }}
+							position="static"
+						>
+							<Toolbar>
+								<IconButton
+									onClick={this.backPage}
+									className={classes.menuButton}
+									color="inherit"
+									aria-label="Menu"
+								>
+									<ArrowLeft />
+								</IconButton>
+								<Typography
+									variant="h6"
+									color="inherit"
+									className={classes.grow}
+								>
+									Detail
+								</Typography>
+							</Toolbar>
+						</AppBar>
+					</div>
 					<div
 						style={{
 							textAlign: 'center',

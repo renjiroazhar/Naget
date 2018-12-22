@@ -88,7 +88,7 @@ class Review extends React.Component {
 			}
 			if (!allowSend) {
 				return (
-					<div style={{ textAlign: 'center' }}>
+					<div style={{ textAlign: 'center', padding: 0, }}>
 						<Button
 							style={{
 								backgroundColor: 'blue',
@@ -110,57 +110,6 @@ class Review extends React.Component {
 			}
 		};
 
-		const buttonBack = () => {
-			if (allowSend) {
-				return (
-					<div
-						style={{
-							textAlign: 'center',
-
-							width: '100%'
-						}}
-					>
-						<Button
-							variant="contained"
-							color="primary"
-							disabled
-							style={{
-								width: '100%',
-								backgroundColor: 'grey',
-								color: 'white',
-								height: '46px'
-							}}
-						>
-							Kembali
-						</Button>
-					</div>
-				);
-			} else {
-				return (
-					<div
-						style={{
-							textAlign: 'center',
-
-							width: '100%'
-						}}
-					>
-						<Button
-							variant="contained"
-							color="primary"
-							onClick={this.back}
-							style={{
-								width: '100%',
-								backgroundColor: 'red',
-								color: 'white',
-								height: '46px'
-							}}
-						>
-							Kembali
-						</Button>
-					</div>
-				);
-			}
-		};
 		const buttonSubmit = () => {
 			if (previewGeneralPhotos.length === 0 && downloadURLs.length === 0) {
 				return (
@@ -338,65 +287,63 @@ class Review extends React.Component {
 								<ListItemText style={{ float: 'left' }} primary={catatan} />
 							</ListItem>
 						</List>
-						<ListItemText secondary="Gambar Sampah : " />
-						{previewGeneralPhotos.length > 0 ? (
-							<div>
-								<div>
-									{previewGeneralPhotos &&
-										previewGeneralPhotos.map((file, i) => (
-											<div style={{ textAlign: 'center' }}>
-												<Grid container spacing={24}>
-													<Grid item xs={12} align="center">
-														{' '}
-														<img
-															onClick={this.viewImage}
-															src={URL.createObjectURL(file)}
-															alt="preview failed"
-															key={file.base64}
-															width="200"
-															height="200"
-															style={{ display: 'block' }}
-														/>
-													</Grid>
-												</Grid>
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItemText
+								style={{ float: 'left' }}
+								secondary="Gambar Sampah"
+							/>
 
-												<Viewer
-													visible={this.state.visible}
-													onClose={this.cancelViewImage}
-													images={[
-														{
-															src: URL.createObjectURL(file),
-															alt: ''
-														}
-													]}
-												/>
-											</div>
-										))}
+							{previewGeneralPhotos.length > 0 ? (
+								<div>
+									<div>
+										{previewGeneralPhotos &&
+											previewGeneralPhotos.map((file, i) => (
+												<div style={{ textAlign: 'center' }}>
+													<Grid container spacing={24}>
+														<Grid item xs={12} align="center">
+															{' '}
+															<img
+																onClick={this.viewImage}
+																src={URL.createObjectURL(file)}
+																alt="preview failed"
+																key={file.base64}
+																height="175"
+																style={{
+																	width: '100%',
+																	marginTop: '10px'
+																}}
+															/>
+														</Grid>
+													</Grid>
+
+													<Viewer
+														visible={this.state.visible}
+														onClose={this.cancelViewImage}
+														images={[
+															{
+																src: URL.createObjectURL(file),
+																alt: ''
+															}
+														]}
+													/>
+												</div>
+											))}
+									</div>
 								</div>
-							</div>
-						) : null}
+							) : null}
+						</List>
 					</List>
 
 					<br />
 					<div style={{ textAlign: 'center' }}>{uploadImage()}</div>
-
-					<br />
 					<br />
 					<br />
 
-					<div style={{ marginBottom: '25px' }}>
-						<Grid item xs={12}>
-							{buttonBack()}
-						</Grid>
-
-						<br />
+					<div>
 						<Grid item xs={12}>
 							{buttonSubmit()}
 						</Grid>
 					</div>
-					<br />
-					<br />
-					<br />
 				</React.Fragment>
 			)
 		);

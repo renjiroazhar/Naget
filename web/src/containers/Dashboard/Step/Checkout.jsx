@@ -11,13 +11,19 @@ import FirstStep from './FirstStep';
 import SecondStep from './SecondStep';
 import Review from './Review';
 import ThirdStep from './ThirdStep';
-import NavbarPickTrash from '../../../component/NavbarPickTrash';
 import { connect } from 'react-redux';
 import { createOrder } from '../../../redux/actions/orderActions';
 import { storage } from '../../../services/firebaseConfig';
 import { format } from 'date-fns/esm';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import checkIcon from './images/check-1-icon.png';
+import Button from '@material-ui/core/Button';
 
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import { withRouter } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
+import ArrowLeft from '@material-ui/icons/ArrowBack';
 import './style/style.css';
 
 import idLocale from 'date-fns/locale/id';
@@ -109,11 +115,25 @@ const styles = theme => ({
 			padding: theme.spacing.unit * 3
 		}
 	},
+	button: {
+		backgroundColor: '#1ABC9C',
+		height: '46px',
+		'&:hover': {
+			backgroundColor: '#1ABC9C',
+			borderColor: '#0062cc',
+			color: 'white'
+		},
+		'&:active': {
+			boxShadow: 'none',
+			backgroundColor: '#1ABC9C',
+			borderColor: '#005cbf'
+		},
+		'&:focus': {
+			boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
+		}
+	},
 	stepper: {
 		padding: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 5}px`
-	},
-	button: {
-		marginTop: theme.spacing.unit * -4
 	}
 });
 
@@ -223,6 +243,7 @@ class Checkout extends React.Component {
 		errorsEmail: false,
 		errorsAtEmail: false,
 		errorsTitikEmail: false,
+		errorsDate: false,
 		errorAll: false
 	};
 
@@ -309,7 +330,7 @@ class Checkout extends React.Component {
 			}, 5000);
 			return console.log(errorsAddress);
 		}
-
+		console.log(this.state);
 		this.handleNext();
 	};
 
@@ -317,6 +338,24 @@ class Checkout extends React.Component {
 		this.setState(state => ({
 			activeStep: state.activeStep + 1
 		}));
+	};
+
+	handleNextStepTwo = () => {
+		const { selectedDate } = this.state;
+
+		if (selectedDate === null || selectedDate === 'null') {
+			this.setState({
+				errorsDate: true
+			});
+			setTimeout(() => {
+				this.setState({
+					errorsDate: false
+				});
+			}, 5000);
+			console.log('Kosong Semua?? Tidakkk', selectedDate);
+		} else {
+			this.handleNext();
+		}
 	};
 
 	handleBack = () => {
@@ -526,7 +565,8 @@ class Checkout extends React.Component {
 			errorsAddress,
 			errorsEmail,
 			errorsTitikEmail,
-			errorsAtEmail
+			errorsAtEmail,
+			errorsDate
 		} = this.state;
 		const values = {
 			name,
@@ -556,6 +596,7 @@ class Checkout extends React.Component {
 			generalPhotos,
 			previewGeneralPhotos,
 			downloadURLs,
+			errorsDate,
 
 			errorAll
 		};
@@ -587,6 +628,7 @@ class Checkout extends React.Component {
 							handleTimeChange={this.handleTimeChange}
 							handleMenuOpen={this.handleMenuOpen}
 							handleMenuClose={this.handleMenuClose}
+							handleNextStepTwo={this.handleNextStepTwo}
 						/>
 					);
 				case 2:
@@ -617,52 +659,185 @@ class Checkout extends React.Component {
 		return (
 			<div
 				style={{
-					marginTop: '100px',
 					width: '-webkit-fill-available',
 					height: '100%'
 				}}
 			>
 				<React.Fragment>
+					{activeStep === 0 ? (
+						<div
+							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
+						>
+							<AppBar
+								style={{ width: '100%', backgroundColor: '#333c4e' }}
+								position="static"
+							>
+								<Toolbar>
+									<IconButton
+										onClick={() => {
+											this.props.history.push('/');
+										}}
+										className={classes.menuButton}
+										color="inherit"
+										aria-label="Menu"
+									>
+										<ArrowLeft />
+									</IconButton>
+									<Typography
+										variant="h6"
+										color="inherit"
+										className={classes.grow}
+									>
+										Isi Data Diri
+									</Typography>
+								</Toolbar>
+							</AppBar>
+						</div>
+					) : allowSend ? (
+						<div
+							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
+						>
+							<AppBar
+								style={{ width: '100%', backgroundColor: '#333c4e' }}
+								position="static"
+							>
+								<Toolbar>
+									<Typography
+										variant="h7"
+										color="inherit"
+										className={classes.grow}
+									>
+										{activeStep === 1
+											? 'Tanggal,Waktu ,dan Foto Trash'
+											: activeStep === 2
+												? 'Daftar Sampah beserta Harga'
+												: activeStep === 3
+													? 'Konfirmasi Pemesanan'
+													: activeStep === 4
+														? 'Pemesanan Berhasil'
+														: ''}
+									</Typography>
+								</Toolbar>
+							</AppBar>
+						</div>
+					) : (
+								<div
+									style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
+								>
+									<AppBar
+										style={{ width: '100%', backgroundColor: '#333c4e' }}
+										position="static"
+									>
+										<Toolbar>
+											<IconButton
+												onClick={this.handleBack}
+												className={classes.menuButton}
+												color="inherit"
+												aria-label="Menu"
+											>
+												<ArrowLeft />
+											</IconButton>
+											<Typography
+												variant="h7"
+												color="inherit"
+												className={classes.grow}
+											>
+												{activeStep === 1
+													? 'Tanggal,Waktu ,dan Foto Trash'
+													: activeStep === 2
+														? 'Daftar Sampah beserta Harga'
+														: activeStep === 3
+															? 'Konfirmasi Pemesanan'
+															: activeStep === 4
+																? 'Pemesanan Berhasil'
+																: ''}
+											</Typography>
+										</Toolbar>
+									</AppBar>
+								</div>
+							)}
 					<CssBaseline />
-					<NavbarPickTrash />
+					<br />
+					<br />
 					<main className={classes.layout}>
 						<Paper className={classes.paper}>
-							<MuiThemeProvider theme={themeMui}>
-								<Stepper activeStep={activeStep} className={classes.stepper}>
-									{steps.map(label => (
-										<Step key={label}>
-											<StepLabel
-												StepIconProps={{
-													classes: {
-														active: classes.stepIcon,
-														completed: classes.completedStep
-													}
-												}}
-											>
-												{label}
-											</StepLabel>
-										</Step>
-									))}
-								</Stepper>
-							</MuiThemeProvider>
+							{activeStep === 4 || activeStep > 3 ? (
+								''
+							) : (
+									<MuiThemeProvider theme={themeMui}>
+										<Stepper activeStep={activeStep} className={classes.stepper}>
+											{steps.map(label => (
+												<Step key={label}>
+													<StepLabel
+														StepIconProps={{
+															classes: {
+																active: classes.stepIcon,
+																completed: classes.completedStep
+															}
+														}}
+													>
+														{label}
+													</StepLabel>
+												</Step>
+											))}
+										</Stepper>
+									</MuiThemeProvider>
+								)}
+
 							<React.Fragment>
 								{activeStep === steps.length ? (
 									<React.Fragment>
-										<Typography variant="h5" gutterBottom>
-											Thank you for your order.
+										<div style={{ textAlign: 'center' }}>
+											<img
+												src={checkIcon}
+												alt="check"
+												width="100"
+												height="100"
+											/>
+										</div>
+										<Typography
+											variant="h5"
+											style={{ textAlign: 'center', marginTop: '10px', }}
+											gutterBottom
+										>
+											Terimakasih {values.name}
 										</Typography>
-										<Typography variant="subtitle1">
-											Your order number is #2001539. We have emailed your order
-											confirmation, and will send you an update when your order
-											has shipped.
+										<Typography
+											variant="subtitle1"
+											style={{ textAlign: 'center' }}
+										>
+											Terimakasih sudah order, yuk daftarkan akunmu agar kamu
+											bisa memantau ordermu secara real time dan mendapatkan
+											poin tambahan.
 										</Typography>
+
+										<div
+											style={{
+												textAlign: 'center',
+												justifyContent: 'center',
+												width: '100%',
+												marginTop: '10%'
+											}}
+										>
+											<Button
+												variant="contained"
+												color="primary"
+												onClick={() => {
+													this.props.history.push('/');
+												}}
+												className={classes.button}
+												style={{ width: '100%' }}
+											>
+												Ok
+											</Button>
+										</div>
 									</React.Fragment>
 								) : (
-									<React.Fragment>
-										{getStepContent(activeStep)}
-										<div>{activeStep === steps.length - 1 ? '' : ''}</div>
-									</React.Fragment>
-								)}
+										<React.Fragment>
+											{getStepContent(activeStep)}
+											<div>{activeStep === steps.length - 1 ? '' : ''}</div>
+										</React.Fragment>
+									)}
 							</React.Fragment>
 						</Paper>
 					</main>
@@ -694,4 +869,4 @@ const mapStateToProps = state => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withStyles(styles)(Checkout));
+)(withStyles(styles)(withRouter(Checkout)));

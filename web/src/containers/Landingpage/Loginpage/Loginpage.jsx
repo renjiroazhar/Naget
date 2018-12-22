@@ -68,13 +68,12 @@ class Loginpage extends Component {
 					<Navbar />
 				</div>
 				<div
-					style={{ height: '100%', backgroundColor: '#fff', padding: '40px' }}
+					style={{ height: '100%', backgroundColor: '#fff', padding: '40px', marginTop: '50px', }}
 				>
 					<h1
 						style={{
 							textAlign: 'center',
 							color: '#000',
-							marginTop: 0,
 							marginBottom: '20px'
 						}}
 					>
@@ -188,8 +187,8 @@ const styles = theme => ({
 		width: 200
 	},
 	absolute: {
-		color: '#00c43e',
-		backgroundColor: '#00c43e',
+		color: '#1ABC9C',
+		backgroundColor: '#1ABC9C',
 		position: 'fixed',
 		right: '0px',
 		bottom: '0px',
@@ -202,7 +201,7 @@ const styles = theme => ({
 		borderRadius: 0,
 		fontWeight: 400,
 		color: 'white',
-		backgroundColor: '#00c43e',
+		backgroundColor: '#1ABC9C',
 		textDecoration: 'none'
 	},
 	marginForm: {
@@ -214,18 +213,18 @@ const styles = theme => ({
 	},
 	cssRoot: {
 		color: '#FFFFFF',
-		backgroundColor: '#00c43e',
+		backgroundColor: '#1ABC9C',
 		width: '100%',
 		fontWeight: 400,
 		marginBottom: '25px',
 		'&:hover': {
-			backgroundColor: '#00c43e'
+			backgroundColor: '#1ABC9C'
 		}
 	},
 	iconchat: {
 		color: '#fff',
 		'&:hover': {
-			color: '#00c43e'
+			color: '#1ABC9C'
 		}
 	},
 	bootstrapRoot: {

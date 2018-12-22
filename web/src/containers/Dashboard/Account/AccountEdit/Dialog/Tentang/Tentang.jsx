@@ -95,7 +95,7 @@ class Tentang extends React.Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<div style={{ backgroundColor: 'white' }}>
+			<div style={{ backgroundColor: 'white', marginBottom: '10%', }}>
 				<List onClick={this.handleClickOpen} className={classes.list}>
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemIcon>
@@ -191,7 +191,7 @@ class Tentang extends React.Component {
 							>
 								<Button
 									style={{
-										backgroundColor: '#00c43e',
+										backgroundColor: '#1ABC9C',
 										width: '90%',
 										textAlign: 'center',
 										color: '#ffffff'
