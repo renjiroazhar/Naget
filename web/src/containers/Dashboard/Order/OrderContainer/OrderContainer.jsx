@@ -77,7 +77,7 @@ class OrderContainer extends React.Component {
 					}}
 				>
 					<Navbar />
-					<AppBar style={{ marginTop: '55px', }} color="default">
+					<AppBar style={{ marginTop: '55px' }} color="default">
 						<Tabs
 							onChange={this.handleChange}
 							indicatorColor="primary"
@@ -112,7 +112,7 @@ class OrderContainer extends React.Component {
 					}}
 				>
 					<Navbar />
-					<AppBar style={{ marginTop: '55px', }} color="default">
+					<AppBar style={{ marginTop: '55px' }} color="default">
 						<Tabs
 							onChange={this.handleChange}
 							indicatorColor="primary"
@@ -141,8 +141,8 @@ class OrderContainer extends React.Component {
 		} else {
 			return (
 				<div style={{ marginBottom: '20%' }}>
-					<Navbar />
-					<AppBar style={{ marginTop: '55px', }} color="default">
+					{/* <Navbar /> */}
+					<AppBar color="default">
 						<Tabs
 							value={this.state.value}
 							onChange={this.handleChange}
@@ -154,7 +154,7 @@ class OrderContainer extends React.Component {
 							<Tab label="Booked" style={stylus.tab} />
 						</Tabs>
 					</AppBar>
-					<div style={{ width: '100%', marginTop: '100px', }}>
+					<div style={{ width: '100%', marginTop: '50px' }}>
 						<SwipeableViews
 							axis={theme === 'rtl' ? 'x-reverse' : 'x'}
 							index={this.state.value}
@@ -203,6 +203,7 @@ export default compose(
 	firestoreConnect(props => {
 		// console.log(props.uid);
 		if (!props.uid) return [];
+		console.log(props.uid);
 		return [
 			{
 				collection: 'orders',

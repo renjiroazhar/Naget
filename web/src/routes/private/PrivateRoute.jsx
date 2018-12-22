@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HomeContainer from '../../containers/Dashboard/Home';
+import HomeContainer from '../../containers/Dashboard/Home/HomeContainer';
 import OrderContainer from '../../containers/Dashboard/Order/OrderContainer';
 import Help from '../../containers/Dashboard/Help';
 import Account from '../../containers/Dashboard/Account';

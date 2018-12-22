@@ -130,6 +130,7 @@ class FirstStep extends React.Component {
 								fullWidth
 								autoComplete="fname"
 								value={values.phone}
+								type="number"
 								onChange={handleChange('phone')}
 								defaultValue={values.phone}
 							/>

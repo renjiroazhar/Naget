@@ -8,12 +8,13 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Navbar from '../../../component/Navbar';
+// import Tooltip from '../../../component/Tooltip';
 class Help extends React.Component {
 	render() {
 		const { classes } = this.props;
 
 		return (
-			<div style={{ backgroundColor: '#e7e7e7', marginTop: '57px', }}>
+			<div style={{ backgroundColor: '#e7e7e7' }}>
 				<Navbar />
 				<div style={{ textAlign: 'center' }}>
 					<img
@@ -55,6 +56,7 @@ class Help extends React.Component {
 						</ExpansionPanelDetails>
 					</ExpansionPanel>
 				</div>
+				<div>{/* <Tooltip /> */}</div>
 			</div>
 		);
 	}

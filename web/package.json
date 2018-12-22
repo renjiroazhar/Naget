@@ -77,6 +77,7 @@
 		"react-places-autocomplete": "^7.2.0",
 		"react-redux": "^5.1.1",
 		"react-redux-firebase": "^2.2.4",
+		"react-responsive-carousel": "^3.1.45",
 		"react-router": "^4.3.1",
 		"react-router-dom": "^4.2.2",
 		"react-sticky": "^6.0.2",

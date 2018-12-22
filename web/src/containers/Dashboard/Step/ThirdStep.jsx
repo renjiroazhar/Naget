@@ -3,12 +3,16 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
-import BeachAccessIcon from '@material-ui/icons/BeachAccess';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import NewsPaper from './images/pexels-photo-167538.jpeg';
+import MixPaper from './images/book-address-book-learning-learn-159751.jpeg';
+import BoxPaper from './images/chuttersnap-496714-unsplash.jpg';
+import Hvs from './images/pexels-photo-209137.jpeg';
+import PlasticCup from './images/gelas aqua.jpg';
+import PlasticBottle from './images/pexels-photo-802221.jpeg';
+import Can from './images/cans-fuzzy-drinks.jpg';
 
 const styles = theme => ({
 	root: {
@@ -38,6 +42,33 @@ const styles = theme => ({
 	},
 	rightIcon: {
 		marginLeft: theme.spacing.unit
+	},
+	card: {
+		display: 'flex',
+		height: '100px'
+	},
+	details: {
+		display: 'flex',
+		flexDirection: 'column'
+	},
+	content: {
+		flex: '1 0 auto'
+	},
+	cover: {
+		width: '91px',
+		height: '91px'
+	},
+	controls: {
+		display: 'flex',
+		alignItems: 'center',
+		paddingLeft: theme.spacing.unit
+	},
+	playIcon: {
+		height: 38,
+		width: 38
+	},
+	p: {
+		fontSize: '11px'
 	}
 });
 
@@ -59,36 +90,132 @@ class ThirdStep extends React.Component {
 		const { classes } = this.props;
 		return (
 			<React.Fragment>
-				<Grid container spacing={24}>
+				<Grid className={classes.p} spacing={24}>
+					<h2>Kategori Sampah</h2>
 					<Grid item xs={12}>
-						<List>
-							<ListItem>
-								<Avatar>
-									<ImageIcon />
-								</Avatar>
-								<ListItemText primary="Photos" secondary="Jan 9, 2014" />
-							</ListItem>
-
-							<hr />
-						</List>
+						<Card className={classes.card}>
+							<CardMedia
+								className={classes.cover}
+								image={NewsPaper}
+								title="Kertas Koran"
+							/>
+							<div className={classes.details}>
+								<CardContent className={classes.content}>
+									<b>
+										<p>Kertas Koran</p>
+									</b>
+									<p>Rp. 1000/kg</p>
+								</CardContent>
+							</div>
+						</Card>
 					</Grid>
 					<Grid item xs={12}>
-						<List>
-							<ListItem>
-								<Avatar>
-									<BeachAccessIcon />
-								</Avatar>
-								<ListItemText primary="Vacation" secondary="July 20, 2014" />
-							</ListItem>
-							<hr />
-						</List>
+						<Card className={classes.card}>
+							<CardMedia
+								className={classes.cover}
+								image={MixPaper}
+								title="Kertas Campur"
+							/>
+							<div className={classes.details}>
+								<CardContent className={classes.content}>
+									<b>
+										<p>Kertas Campur</p>
+									</b>
+									<p>Rp. 300/kg</p>
+								</CardContent>
+							</div>
+						</Card>
+					</Grid>
+					<Grid item xs={12}>
+						<Card className={classes.card}>
+							<CardMedia
+								className={classes.cover}
+								image={BoxPaper}
+								title="Kertas Kardus"
+							/>
+							<div className={classes.details}>
+								<CardContent className={classes.content}>
+									<b>
+										<p>Kertas Kardus</p>
+									</b>
+									<p>Rp. 750/kg</p>
+								</CardContent>
+							</div>
+						</Card>
+					</Grid>
+					<Grid item xs={12}>
+						<Card className={classes.card}>
+							<CardMedia
+								className={classes.cover}
+								image={Hvs}
+								title="Kertas HVS"
+							/>
+							<div className={classes.details}>
+								<CardContent className={classes.content}>
+									<b>
+										<p>Kertas HVS</p>
+									</b>
+									<p>Rp. 1000/kg</p>
+								</CardContent>
+							</div>
+						</Card>
+					</Grid>
+					<Grid item xs={12}>
+						<Card className={classes.card}>
+							<CardMedia
+								className={classes.cover}
+								image={PlasticCup}
+								title="Gelas plastik air Mineral"
+							/>
+							<div className={classes.details}>
+								<CardContent className={classes.content}>
+									<b>
+										<p>Gelas plastik air Mineral</p>
+									</b>
+									<p>Rp. 1000/kg</p>
+								</CardContent>
+							</div>
+						</Card>
+					</Grid>
+					<Grid item xs={12}>
+						<Card className={classes.card}>
+							<CardMedia
+								className={classes.cover}
+								image={PlasticBottle}
+								title="Botol Plastik"
+							/>
+							<div className={classes.details}>
+								<CardContent className={classes.content}>
+									<b>
+										<p>Botol plastik</p>
+									</b>
+									<p>Rp. 1000/kg</p>
+								</CardContent>
+							</div>
+						</Card>
+					</Grid>
+					<Grid item xs={12}>
+						<Card className={classes.card}>
+							<CardMedia
+								className={classes.cover}
+								image={Can}
+								title="Kaleng Alumunium"
+							/>
+							<div className={classes.details}>
+								<CardContent className={classes.content}>
+									<b>
+										<p>Kaleng Alumunium</p>
+									</b>
+									<p>Rp. 1400/kg</p>
+								</CardContent>
+							</div>
+						</Card>
 					</Grid>
 
 					{/* <Grid item xs={12}>
 						<div
 							style={{
 								textAlign: 'center',
-
 								width: '100%',
 								marginTop: '10%'
 							}}
@@ -124,7 +251,8 @@ class ThirdStep extends React.Component {
 								style={{
 									width: '100%',
 									backgroundColor: '#1ABC9C',
-									color: 'white'
+									color: 'white',
+									marginTop: '10%'
 								}}
 							>
 								Selanjutnya
@@ -138,7 +266,8 @@ class ThirdStep extends React.Component {
 }
 
 ThirdStep.propTypes = {
-	classes: PropTypes.object.isRequired
+	classes: PropTypes.object.isRequired,
+	theme: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ThirdStep);

@@ -10,7 +10,7 @@ import Recycling from './image/svg/011-recycling.svg';
 import Totebag from './image/svg/004-tote-bag.svg';
 import RecycleBin from './image/svg/012-recycle-bin.svg';
 import Green from './image/svg/025-green.svg';
-import './style/style.css';
+import './style/carousel.css';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -34,26 +34,22 @@ const tutorialSteps = [
 
 const styles = theme => ({
 	root: {
-		maxWidth: 400,
-		flexGrow: 1
+		maxWidth: 'auto'
 	},
 	header: {
 		display: 'flex',
 		alignItems: 'center',
 		height: 50,
-		paddingLeft: theme.spacing.unit * 4,
 		backgroundColor: theme.palette.background.default
 	},
 	img: {
 		height: 150,
-		display: 'block',
-		maxWidth: 400,
 		overflow: 'hidden',
 		width: '100%'
 	}
 });
 
-class CarouselPicture extends React.Component {
+class Carousel extends React.Component {
 	state = {
 		activeStep: 0
 	};
@@ -80,7 +76,7 @@ class CarouselPicture extends React.Component {
 		const maxSteps = tutorialSteps.length;
 
 		return (
-			<div className={classes.root}>
+			<div style={{ width: '90%' }}>
 				<AutoPlaySwipeableViews
 					axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
 					index={activeStep}
@@ -90,14 +86,12 @@ class CarouselPicture extends React.Component {
 					{tutorialSteps.map((step, index) => (
 						<div key={step.label}>
 							{Math.abs(activeStep - index) <= 2 ? (
-								<center>
-									<img
-										id="image-carousel"
-										className={classes.img}
-										src={step.imgPath}
-										alt={step.label}
-									/>
-								</center>
+								<img
+									id="image-carousel"
+									className={classes.img}
+									src={step.imgPath}
+									alt={step.label}
+								/>
 							) : null}
 						</div>
 					))}
@@ -128,9 +122,9 @@ class CarouselPicture extends React.Component {
 	}
 }
 
-CarouselPicture.propTypes = {
+Carousel.propTypes = {
 	classes: PropTypes.object.isRequired,
 	theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(CarouselPicture);
+export default withStyles(styles, { withTheme: true })(Carousel);

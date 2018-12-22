@@ -129,6 +129,7 @@ class FirstStep extends React.Component {
 								label="Nomor WhatsApp"
 								fullWidth
 								autoComplete="fname"
+								type="number"
 								value={values.phone}
 								onChange={handleChange('phone')}
 								defaultValue={values.phone}

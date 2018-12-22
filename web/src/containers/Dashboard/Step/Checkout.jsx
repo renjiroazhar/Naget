@@ -371,15 +371,9 @@ class Checkout extends React.Component {
 	};
 
 	handleSendOrder = () => {
-		if (this.state.downloadURLs !== [] || this.state.downloadURLs.length > 0) {
-			this.setState({
-				allowSend: true
-			});
-		} else {
-			this.setState({
-				allowSend: false
-			});
-		}
+		this.setState({
+			allowSend: true
+		});
 	};
 
 	allowSend = () => {
@@ -441,9 +435,7 @@ class Checkout extends React.Component {
 		if (previewGeneralPhotos !== [] || previewGeneralPhotos.length > 0) {
 			const promises = [];
 			previewGeneralPhotos.forEach(file => {
-				const uploadTask = storage
-					.ref(`images/${previewGeneralPhotos.name}`)
-					.put(file);
+				const uploadTask = storage.ref(`images/${file.name}`).put(file);
 				promises.push(uploadTask);
 
 				uploadTask.on(
@@ -462,6 +454,7 @@ class Checkout extends React.Component {
 					() => {
 						uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
 							console.log(downloadURL);
+							console.log(downloadURL);
 							this.setState(oldState => ({
 								downloadURLs: [...oldState.downloadURLs, downloadURL]
 							}));
@@ -470,8 +463,11 @@ class Checkout extends React.Component {
 								this.state.downloadURLs.length ===
 								this.state.previewGeneralPhotos.length
 							) {
-								this.handleSendOrder();
+								this.allowSend();
 								this.isLoaded();
+								this.handleNext();
+								this.props.createOrder(this.state);
+								
 							}
 						});
 					}
@@ -493,6 +489,16 @@ class Checkout extends React.Component {
 	handleCreateOrder = () => {
 		this.props.createOrder(this.state);
 		this.handleNext();
+	};
+
+	handleCreateOrderWithPicture = () => {
+		const { allowSend } = this.state;
+		if (allowSend) {
+			console.log('Gambar Terkirim');
+			this.props.createOrder(this.state);
+			this.handleNext();
+		}
+		return console.log('Gambar Belum terkirim');
 	};
 
 	handleDateChange = date => {
@@ -530,15 +536,14 @@ class Checkout extends React.Component {
 		}
 	};
 
-
-	componentDidMount(){
-		const {auth, profile} = this.props;
+	componentDidMount() {
+		const { auth, profile } = this.props;
 		this.setState({
 			email: auth.email,
-			name: profile.name ?  profile.name: auth.displayName,
+			name: profile.name ? profile.name : auth.displayName,
 			phone: profile.phone,
 			address: profile.address
-		})
+		});
 	}
 
 	render() {

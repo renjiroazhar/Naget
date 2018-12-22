@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-materialize';
-import { Icon } from 'react-onsenui';
+import Icon from '@material-ui/core/Icon';
 import './style/style.css';
 
 export default class Tooltip extends Component {
@@ -10,14 +10,7 @@ export default class Tooltip extends Component {
 				<Button
 					floating
 					fab="vertical"
-					icon={
-						<Icon
-							icon="ion-chatboxes"
-							size={26}
-							fixedWidth={false}
-							style={{ verticalAlign: 'middle' }}
-						/>
-					}
+					icon={<Icon size="26" >question_answer</Icon>}
 					large
 					style={{ bottom: '45px', right: '24px' }}
 				>

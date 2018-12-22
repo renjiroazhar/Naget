@@ -20,6 +20,7 @@ import { withRouter } from 'react-router-dom';
 import firebase from 'firebase';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import moment from 'moment';
+import 'moment/locale/id';
 
 import { removeOrder } from '../../../../../redux/actions/orderActions';
 
@@ -81,11 +82,11 @@ class OrderDetail extends React.Component {
 		// Delete the file
 		desertRef
 			.delete()
-			.then(function (res) {
+			.then(function(res) {
 				console.log(res, 'Waw Sukses');
 				this.deleteArrayImage();
 			})
-			.catch(function (error) {
+			.catch(function(error) {
 				console.log(error, 'Wadidaw Error');
 			});
 	};
@@ -147,7 +148,7 @@ class OrderDetail extends React.Component {
 							backgroundColor: '#ffffff',
 							width: '100%',
 							padding: '10px',
-							marginLeft: '-3px',
+							marginLeft: '-3px'
 						}}
 					>
 						<List style={{ overflow: 'hidden' }}>
@@ -205,7 +206,7 @@ class OrderDetail extends React.Component {
 										primary={
 											!order.orderDate
 												? ''
-												: moment(order.orderDate.toDate()).format('MMMM Do YYYY, h:mm')
+												: moment(order.orderDate.toDate()).format('LLLL')
 										}
 									/>
 								</ListItem>
@@ -230,44 +231,44 @@ class OrderDetail extends React.Component {
 								</ListItem>
 								<div>
 									{order.photos !== null ||
-										order.photos !== [] ||
-										order.photos !== 'undefined' ? (
-											order.photos &&
-											order.photos.map((foto, i) => {
-												return (
-													<div>
-														<Grid container spacing={24}>
-															<Grid item xs={12} align="center">
-																<img
-																	onClick={this.viewImage}
-																	src={foto}
-																	alt="preview failed"
-																	key={i}
-																	width="250"
-																	height="250"
-																	style={{ display: 'block', margin: '20px' }}
-																/>
-															</Grid>
+									order.photos !== [] ||
+									order.photos !== 'undefined' ? (
+										order.photos &&
+										order.photos.map((foto, i) => {
+											return (
+												<div>
+													<Grid container spacing={24}>
+														<Grid item xs={12} align="center">
+															<img
+																onClick={this.viewImage}
+																src={foto}
+																alt="preview failed"
+																key={i}
+																width="250"
+																height="250"
+																style={{ display: 'block', margin: '20px' }}
+															/>
 														</Grid>
+													</Grid>
 
-														<Viewer
-															visible={this.state.visible}
-															onClose={this.cancelViewImage}
-															images={[
-																{
-																	src: foto,
-																	alt: ''
-																}
-															]}
-														/>
-													</div>
-												);
-											})
-										) : (
-											<div style={{ textAlign: 'center' }}>
-												<p>Tidak Ada Foto</p>
-											</div>
-										)}
+													<Viewer
+														visible={this.state.visible}
+														onClose={this.cancelViewImage}
+														images={[
+															{
+																src: foto,
+																alt: ''
+															}
+														]}
+													/>
+												</div>
+											);
+										})
+									) : (
+										<div style={{ textAlign: 'center' }}>
+											<p>Tidak Ada Foto</p>
+										</div>
+									)}
 									<br />
 									<br />
 									<br />
@@ -281,7 +282,7 @@ class OrderDetail extends React.Component {
 								bottom: 0,
 								height: '46px',
 								backgroundColor: 'white',
-								width: '100%',
+								width: '100%'
 							}}
 						>
 							<Button
@@ -358,7 +359,8 @@ const mapStateToProps = (state, ownProps) => {
 	const orders = state.firestore.data.orders;
 	const order = orders ? orders[id] : null;
 	return {
-		order: order
+		order: order,
+		uid: state.firebase.auth.uid
 	};
 };
 
@@ -373,5 +375,15 @@ export default compose(
 		mapStateToProps,
 		mapDispatchToProps
 	),
-	firestoreConnect([{ collection: 'orders' }])
+	firestoreConnect(props => {
+		// console.log(props.uid);
+		if (!props.uid) return [];
+		console.log(props.uid);
+		return [
+			{
+				collection: 'orders',
+				where: [['userId', '==', props.uid]]
+			}
+		];
+	})
 )(withStyles(styles)(withRouter(OrderDetail)));

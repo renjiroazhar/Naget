@@ -1,57 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import green from '@material-ui/core/colors/green';
-import './style/style.css';
-import {
-	withStyles,
-	MuiThemeProvider,
-	createMuiTheme
-} from '@material-ui/core/styles';
-import CardPicture from '../Card/CardPicture';
-import './style/style.css';
-import Grid from '@material-ui/core/Grid';
+import React, { Component } from 'react';
+import './style/home.css';
+import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Carousel from './Carousel';
+import Button from '@material-ui/core/Button';
+import CardPicture from '../Card/CardPicture';
 import Navbar from '../../../../component/Navbar';
-// import TooltipButton from '../../../../components/TooltipButton';
-class HomeContainer extends React.Component {
-	render() {
-		const { classes } = this.props;
-
-		return (
-			<div style={{ backgroundColor: '#e7e7e7', height: '100%', marginTop: '55px', }}>
-				<Navbar />
-				<div>
-					<br />
-					<div>
-						<Grid container alignItems="center" justify="center">
-							<CardPicture />
-						</Grid>
-					</div>
-					<br />
-					<br />
-					<br />
-					<div style={{ textAlign: 'center', }}>
-						<MuiThemeProvider theme={theme}>
-							<Button
-								variant="extendedFab"
-								color="primary"
-								className={classes.margin}
-								size="large"
-								onClick={() => {
-									this.props.history.push('/form_login');
-								}}
-							>
-								Pick Trash
-							</Button>
-						</MuiThemeProvider>
-					</div>
-				</div>
-				{/* <TooltipButton /> */}
-			</div>
-		);
-	}
-}
 
 const styles = theme => ({
 	container: {
@@ -74,13 +29,10 @@ const styles = theme => ({
 		marginRight: '24px'
 	},
 	margin: {
-		maxWidth: '380px',
 		width: '90%',
-		borderRadius: '5px',
-		fontWeight: 400,
-		color: 'white',
-		backgroundColor: '#1ABC9C',
-		textDecoration: 'none'
+		maxWidth: '380px',
+		minWidth: '300px',
+		backgroundColor: '#1ABC9C'
 	},
 	marginForm: {
 		maxWidth: '350px',
@@ -90,13 +42,14 @@ const styles = theme => ({
 		textDecoration: 'none'
 	},
 	cssRoot: {
-		color: 'black',
-		backgroundColor: 'white',
-		maxWidth: '350px',
-		width: '100%',
+		color: '#FFFFFF',
+		backgroundColor: '#1ABC9C',
+		maxWidth: '380px',
+		width: '90%',
+		height: '',
 		fontWeight: 400,
 		'&:hover': {
-			backgroundColor: 'white'
+			backgroundColor: '#1ABC9C'
 		}
 	},
 	cssLabel: {
@@ -201,14 +154,65 @@ const styles = theme => ({
 	}
 });
 
-const theme = createMuiTheme({
-	palette: {
-		primary: green
-	},
-	typography: {
-		useNextVariants: true
+class HomeContainer extends Component {
+	state = {
+		open: false
+	};
+
+	handleClick = () => {
+		this.setState({ open: true });
+	};
+
+	handleClose = () => {
+		this.setState({ open: false });
+	};
+
+	render() {
+		const { classes } = this.props;
+		return (
+			<div>
+				<div>
+					<Navbar />
+				</div>
+				<div>
+					<div
+						style={{
+							marginTop: 15,
+							padding: '10px',
+							textAlign: 'center',
+							paddingTop: 0,
+							paddingBottom: 0
+						}}
+					>
+						<CardPicture />
+					</div>
+					<br />
+					<div>
+						<div style={{ textAlign: 'center' }}>
+							<div className="carousel-center">
+								<Carousel />
+							</div>
+						</div>
+						<br />
+						<div style={{ textAlign: 'center' }}>
+							<Button
+								variant="extended"
+								color="primary"
+								className={classes.cssRoot}
+								onClick={() => this.props.history.push('/form_login')}
+								size="large"
+							>
+								PICK TRASH
+							</Button>
+						</div>
+						<br />
+						<br />
+					</div>
+				</div>
+			</div>
+		);
 	}
-});
+}
 
 HomeContainer.propTypes = {
 	classes: PropTypes.object.isRequired

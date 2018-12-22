@@ -101,13 +101,7 @@ class SecondStep extends React.Component {
 	}
 
 	render() {
-		const {
-			classes,
-			values,
-			handleDateChange,
-
-			handleMenuOpen
-		} = this.props;
+		const { classes, values, handleDateChange } = this.props;
 
 		return (
 			<React.Fragment>
@@ -125,13 +119,13 @@ class SecondStep extends React.Component {
 										onChange={handleDateChange}
 										label="Tanggal Penjemputan"
 										required
+										placeholder="Pilih Tanggal"
 										InputProps={{
 											endAdornment: (
 												<div>
 													<IconButton
 														aria-label="Select locale"
 														aria-owns={values.anchorEl ? 'locale-menu' : null}
-														onClick={handleMenuOpen}
 													>
 														<Icon> date_range </Icon>
 													</IconButton>
@@ -162,14 +156,15 @@ class SecondStep extends React.Component {
 										value={values.selectedDate}
 										onChange={handleDateChange}
 										label="Jam Penjemputan"
+										placeholder="Pilih Jam"
 										required
+										ampm={false}
 										InputProps={{
-											endAdornment: (
+											startAdornment: (
 												<div>
 													<IconButton
 														aria-label="Select locale"
 														aria-owns={values.anchorEl ? 'locale-menu' : null}
-														onClick={handleMenuOpen}
 													>
 														<Icon> schedule </Icon>
 													</IconButton>

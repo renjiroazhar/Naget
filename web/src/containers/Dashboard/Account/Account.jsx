@@ -37,12 +37,11 @@ class Account extends React.Component {
 
 	render() {
 		return (
-			<div style={{
-				marginBottom: '10%',
-				marginTop: '65px',
-				backgroundColor: '#e7e7e7',
-				marginLeft: '-3px',
-			}}>
+			<div
+				style={{
+					backgroundColor: '#e7e7e7'
+				}}
+			>
 				<Navbar />
 				<div style={{ marginTop: '5px' }}>
 					<EditProfil />
@@ -70,36 +69,15 @@ class Account extends React.Component {
 				{/* <div>
 					<Logout />
 				</div> */}
-				<div
-					style={{
-						textAlign: 'center',
-
-						width: '100%'
-					}}
-				>
-					<Button
-						style={{
-							marginTop: '5%',
-							marginBottom: '5%',
-							backgroundColor: '#ffffff',
-							width: '105%',
-							textAlign: 'center',
-							color: '#f43c3c',
-							marginLeft: '-2px',
-						}}
-						onClick={this.handleClickOpen}
-					>
-						Keluar
-					</Button>
-				</div>
-				{/*Tooltip*/}
 				<Dialog
 					open={this.state.open}
 					onClose={this.handleClose}
 					aria-labelledby="alert-dialog-title"
 					aria-describedby="alert-dialog-description"
 				>
-					<DialogTitle id="alert-dialog-title">{'Anda yakin ingin keluar?'}</DialogTitle>
+					<DialogTitle id="alert-dialog-title">
+						{'Anda yakin ingin keluar?'}
+					</DialogTitle>
 					<DialogActions>
 						<Button onClick={this.handleClose} color="primary">
 							Tidak
@@ -109,6 +87,33 @@ class Account extends React.Component {
 						</Button>
 					</DialogActions>
 				</Dialog>
+				<div
+					style={{
+						textAlign: 'center',
+
+						width: '100%'
+					}}
+				>
+					<Button
+						style={{
+							backgroundColor: '#ffffff',
+							width: '100%',
+							textAlign: 'center',
+							color: '#f43c3c'
+						}}
+						onClick={this.handleClickOpen}
+					>
+						Keluar
+					</Button>
+				</div>
+				<br />
+				<br />
+
+				<br />
+
+				<br />
+				<br />
+				{/*Tooltip*/}
 			</div>
 		);
 	}

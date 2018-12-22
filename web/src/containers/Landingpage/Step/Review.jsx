@@ -15,6 +15,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import moment from 'moment';
+import 'moment/locale/id';
 
 const styles = theme => ({
 	listItem: {
@@ -91,40 +93,40 @@ class Review extends React.Component {
 				previewGeneralPhotos,
 
 				catatan,
-				allowSend,
+
 				downloadURLs,
 				loading
 			}
 		} = this.props;
 
-		const uploadImage = () => {
-			if (previewGeneralPhotos.length === 0 && downloadURLs.length === 0) {
-				return null;
-			}
-			if (!allowSend) {
-				return (
-					<div style={{ textAlign: 'center' }}>
-						<Button
-							style={{
-								backgroundColor: '#1ABC9C',
-								color: 'white',
-								height: '40px',
-								marginBottom: '25px'
-							}}
-							onClick={this.handleClickOpen}
-						>
-							Kirim Gambar
-						</Button>
-					</div>
-				);
-			} else {
-				return (
-					<div style={{ textAlign: 'center' }}>
-						<p>Berhasil Mengupload Gambar</p>
-					</div>
-				);
-			}
-		};
+		// const uploadImage = () => {
+		// 	if (previewGeneralPhotos.length === 0 && downloadURLs.length === 0) {
+		// 		return null;
+		// 	}
+		// 	if (!allowSend) {
+		// 		return (
+		// 			<div style={{ textAlign: 'center' }}>
+		// 				<Button
+		// 					style={{
+		// 						backgroundColor: '#1ABC9C',
+		// 						color: 'white',
+		// 						height: '40px',
+		// 						marginBottom: '25px'
+		// 					}}
+		// 					onClick={this.handleClickOpen}
+		// 				>
+		// 					Kirim Gambar
+		// 				</Button>
+		// 			</div>
+		// 		);
+		// 	} else {
+		// 		return (
+		// 			<div style={{ textAlign: 'center' }}>
+		// 				<p>Berhasil Mengupload Gambar</p>
+		// 			</div>
+		// 		);
+		// 	}
+		// };
 
 		const buttonSubmit = () => {
 			if (previewGeneralPhotos.length === 0 && downloadURLs.length === 0) {
@@ -147,32 +149,7 @@ class Review extends React.Component {
 								height: '46px'
 							}}
 						>
-							Selanjutnya
-						</Button>
-					</div>
-				);
-			}
-			if (allowSend) {
-				return (
-					<div
-						style={{
-							textAlign: 'center',
-
-							width: '100%'
-						}}
-					>
-						<Button
-							variant="contained"
-							color="primary"
-							onClick={this.props.handleCreateOrder}
-							style={{
-								width: '100%',
-								backgroundColor: '#1ABC9C',
-								color: 'white',
-								height: '46px'
-							}}
-						>
-							Selanjutnya
+							Pesan
 						</Button>
 					</div>
 				);
@@ -190,13 +167,13 @@ class Review extends React.Component {
 							color="primary"
 							style={{
 								width: '100%',
-								backgroundColor: 'grey',
+								backgroundColor: '#1ABC9C',
 								color: 'white',
 								height: '46px'
 							}}
-							disabled
+							onClick={this.props.handleUpload}
 						>
-							Selanjutnya
+							Pesan
 						</Button>
 					</div>
 				);
@@ -298,7 +275,9 @@ class Review extends React.Component {
 							<ListItem style={{ paddingTop: 0 }}>
 								<ListItemText
 									style={{ float: 'left' }}
-									primary={`${format(selectedDate, 'dd/MM/yyyy')}`}
+									primary={`${moment(selectedDate)
+										.lang('id')
+										.format('LL')}`}
 								/>
 							</ListItem>
 						</List>
@@ -375,7 +354,7 @@ class Review extends React.Component {
 					</List>
 
 					<br />
-					<div style={{ textAlign: 'center' }}>{uploadImage()}</div>
+					{/* <div style={{ textAlign: 'center' }}>{uploadImage()}</div> */}
 
 					<br />
 					<br />

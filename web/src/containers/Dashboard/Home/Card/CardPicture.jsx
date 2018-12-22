@@ -9,7 +9,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 const styles = theme => ({
 	card2: {
 		maxWidth: '380px',
-		width: '90%'
+		width: '100%'
 	},
 	bullet: {
 		display: 'inline-block',
@@ -46,19 +46,16 @@ const styles = theme => ({
 		margin: '10px 0 0 0'
 	}
 });
-
-const CardPicture = props => {
-	const { classes } = props;
-
+let renderCardWithWidth = widthAsPercent => {
 	return (
-		<div className={classes.card2}>
-			<Card id="card-view" className={classes.card}>
+		<div>
+			<Card id="card-view" style={{ width: widthAsPercent }}>
 				<CardHeader
 					style={{
 						backgroundColor: '#1ABC9C',
 						paddingTop: 0,
 						paddingBottom: 0,
-						height: '40px',
+						height: '40px'
 					}}
 					title={
 						<div>
@@ -80,7 +77,7 @@ const CardPicture = props => {
 									color: 'white'
 								}}
 							>
-								User
+								50
 							</h5>
 						</div>
 					}
@@ -88,13 +85,17 @@ const CardPicture = props => {
 
 				<CardContent>
 					<div>
-						<Typography>Telah menukarkan sampah kepada</Typography>
-						<Typography>moretrash sejumlah:</Typography>
+						<Typography style={{ textAlign: 'center' }}>
+							Telah menukarkan sampah kepada Moretrash sejumlah:
+						</Typography>
 					</div>
 					<Typography
-						className={classes.text}
 						align="center"
-						style={{ textAlign: 'center' }}
+						style={{
+							textAlign: 'center',
+							fontWeight: 'bold',
+							fontSize: '30px'
+						}}
 					>
 						50 KG
 					</Typography>
@@ -102,6 +103,15 @@ const CardPicture = props => {
 			</Card>
 		</div>
 	);
+};
+
+const CardPicture = props => {
+	let width = window.screen.availWidth;
+	if (width > 720) {
+		return renderCardWithWidth('100%');
+	} else {
+		return renderCardWithWidth('100%');
+	}
 };
 
 CardPicture.propTypes = {

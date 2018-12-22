@@ -21,7 +21,7 @@ class Navbar extends Component {
 			<div>
 				<div className={classes.root}>
 					<AppBar
-						position="fixed"
+						position="static"
 						color="default"
 						style={{ backgroundColor: '#333C4E' }}
 					>
