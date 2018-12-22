@@ -207,13 +207,14 @@ function validateAddress(address) {
 }
 
 class Checkout extends React.Component {
+	
 	state = {
 		activeStep: 0,
 		database: [],
 		data: [],
-		name: '',
-		phone: '',
-		email: '',
+		name: this.props.profile.name ? this.props.profile.name : this.props.auth.displayName,
+		phone: this.props.profile.phone ? this.props.profile.phone : '',
+		email: !this.props.auth.email ? '': this.props.auth.email,
 		selectedDate: null,
 		anchorEl: null,
 		currentLocale: 'id',
@@ -223,7 +224,7 @@ class Checkout extends React.Component {
 		city: '',
 		bio: '',
 		catatan: '',
-		address: '',
+		address: !this.props.profile.address ? '' : this.props.profile.address,
 		foto: [],
 		previewGeneralPhotos: [],
 		generalPhotos: [],
@@ -277,58 +278,82 @@ class Checkout extends React.Component {
 			console.log('Kosong Semua?? Tidakkk');
 		}
 		if (errorsName.length > 0) {
-			this.setState({ errorsName: true });
-			setTimeout(() => {
-				this.setState({
-					errorsName: false
-				});
-			}, 5000);
-			return console.log(errorsName);
+			try {
+				this.setState({ errorsName: true });
+				setTimeout(() => {
+					this.setState({
+						errorsName: false
+					});
+				}, 5000);
+				return console.log(errorsName);
+			} catch (error) {
+				return console.log(error);
+			}
 		}
 		if (errorsEmail.length > 0) {
-			this.setState({ errorsEmail: true });
-			setTimeout(() => {
-				this.setState({
-					errorsEmail: false
-				});
-			}, 5000);
-			return console.log(errorsEmail);
+			try {
+				this.setState({ errorsEmail: true });
+				setTimeout(() => {
+					this.setState({
+						errorsEmail: false
+					});
+				}, 5000);
+				return console.log(errorsEmail);
+			} catch (error) {
+				return console.log(error);
+			}
 		}
 		if (errorsAtEmail.length > 0) {
-			this.setState({ errorsAtEmail: true });
-			setTimeout(() => {
-				this.setState({
-					errorsAtEmail: false
-				});
-			}, 5000);
-			return console.log(errorsEmail);
+			try {
+				this.setState({ errorsAtEmail: true });
+				setTimeout(() => {
+					this.setState({
+						errorsAtEmail: false
+					});
+				}, 5000);
+				return console.log(errorsEmail);
+			} catch (error) {
+				return console.log(error);
+			}
 		}
 		if (errorsTitikEmail.length > 0) {
-			this.setState({ errorsTitikEmail: true });
+			try {
+				this.setState({ errorsTitikEmail: true });
 			setTimeout(() => {
 				this.setState({
 					errorsTitikEmail: false
 				});
 			}, 5000);
 			return console.log(errorsEmail);
+			} catch (error){
+				console.log(error)
+			}
 		}
 		if (errorsPhone.length > 0) {
-			this.setState({ errorsPhone: true });
-			setTimeout(() => {
-				this.setState({
-					errorsPhone: false
-				});
-			}, 5000);
-			return console.log(errorsPhone);
+			try {
+				this.setState({ errorsPhone: true });
+				setTimeout(() => {
+					this.setState({
+						errorsPhone: false
+					});
+				}, 5000);
+				return console.log(errorsPhone);
+			} catch (error) {
+				return console.log(error)
+			}
 		}
 		if (errorsAddress.length > 0) {
-			this.setState({ errorsAddress: true });
+			try {
+				this.setState({ errorsAddress: true });
 			setTimeout(() => {
 				this.setState({
 					errorsAddress: false
 				});
 			}, 5000);
 			return console.log(errorsAddress);
+			} catch (error){
+				console.error(error)
+			}
 		}
 		console.log(this.state);
 		this.handleNext();
@@ -467,7 +492,6 @@ class Checkout extends React.Component {
 								this.isLoaded();
 								this.handleNext();
 								this.props.createOrder(this.state);
-								
 							}
 						});
 					}
@@ -536,15 +560,15 @@ class Checkout extends React.Component {
 		}
 	};
 
-	componentDidMount() {
-		const { auth, profile } = this.props;
-		this.setState({
-			email: auth.email,
-			name: profile.name ? profile.name : auth.displayName,
-			phone: profile.phone,
-			address: profile.address
-		});
-	}
+	// componentDidMount() {
+	// 	const { auth, profile } = this.props;
+	// 	this.setState({
+	// 		email: auth.email,
+	// 		name: profile.name ? profile.name : auth.displayName,
+	// 		phone: profile.phone,
+	// 		address: profile.address
+	// 	});
+	// }
 
 	render() {
 		const { classes } = this.props;

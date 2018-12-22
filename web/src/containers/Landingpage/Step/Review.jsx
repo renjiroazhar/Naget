@@ -329,7 +329,9 @@ class Review extends React.Component {
 																height="175"
 																style={{
 																	width: '100%',
-																	marginTop: '20px'
+																	marginTop: '20px',
+
+																	objectFit: 'contain'
 																}}
 															/>
 														</Grid>

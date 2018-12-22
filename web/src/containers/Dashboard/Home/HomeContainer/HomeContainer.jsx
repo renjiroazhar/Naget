@@ -170,11 +170,17 @@ class HomeContainer extends Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<div>
+			<div
+				style={{
+					backgroundColor: '#e7e7e7',
+					minHeight: '100vh',
+					overflow: 'hidden'
+				}}
+			>
 				<div>
 					<Navbar />
 				</div>
-				<div>
+				<div style={{ backgroundColor: '#e7e7e7' }}>
 					<div
 						style={{
 							marginTop: 15,

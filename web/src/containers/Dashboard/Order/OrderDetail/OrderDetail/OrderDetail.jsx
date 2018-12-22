@@ -246,7 +246,8 @@ class OrderDetail extends React.Component {
 																key={i}
 																width="250"
 																height="250"
-																style={{ display: 'block', margin: '20px' }}
+																style={{ display: 'block', margin: '20px', 
+																objectFit: 'contain' }}
 															/>
 														</Grid>
 													</Grid>

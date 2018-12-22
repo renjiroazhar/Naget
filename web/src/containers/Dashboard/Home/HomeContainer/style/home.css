@@ -21,6 +21,7 @@
   width: stretch;
   margin: 0 auto;
   padding: 0;
+  background-color: #e7e7e7
 }
 
 
@@ -42,7 +43,7 @@
   color: white;
   font-weight: 600;
   width: stretch;
-  
+  background-color: #e7e7e7;
   min-height: 100vh;
  
   

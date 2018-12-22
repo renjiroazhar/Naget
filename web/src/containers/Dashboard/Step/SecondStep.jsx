@@ -121,7 +121,7 @@ class SecondStep extends React.Component {
 										required
 										placeholder="Pilih Tanggal"
 										InputProps={{
-											endAdornment: (
+											startAdornment: (
 												<div>
 													<IconButton
 														aria-label="Select locale"
@@ -201,7 +201,8 @@ class SecondStep extends React.Component {
 															height="175"
 															style={{
 																width: '100%',
-																marginTop: '20px'
+																marginTop: '20px',
+																objectFit: 'contain'
 															}}
 														/>
 													</Grid>
@@ -239,6 +240,7 @@ class SecondStep extends React.Component {
 								textAlign: 'center',
 								height: '140px',
 								border: '1.5px dashed #757575',
+								backgroundColor: '#E5E5E5',
 								display: 'flex',
 								justifyContent: 'center',
 								alignItems: 'center'

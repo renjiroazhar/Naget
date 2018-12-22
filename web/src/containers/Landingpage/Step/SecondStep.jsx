@@ -201,7 +201,9 @@ class SecondStep extends React.Component {
 															height="175"
 															style={{
 																width: '100%',
-																marginTop: '20px'
+																marginTop: '20px',
+
+																objectFit: 'contain'
 															}}
 														/>
 													</Grid>
@@ -240,6 +242,7 @@ class SecondStep extends React.Component {
 								height: '140px',
 								border: '1.5px dashed #757575',
 								display: 'flex',
+								backgroundColor: '#E5E5E5',
 								justifyContent: 'center',
 								alignItems: 'center'
 							}}
