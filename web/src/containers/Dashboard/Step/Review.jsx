@@ -10,6 +10,11 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { format } from 'date-fns/esm';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const styles = theme => ({
 	listItem: {
@@ -31,7 +36,16 @@ const styles = theme => ({
 
 class Review extends React.Component {
 	state = {
-		visible: false
+		visible: false,
+		open: false
+	};
+
+	handleClickOpen = () => {
+		this.setState({ open: true });
+	};
+
+	handleClose = () => {
+		this.setState({ open: false });
 	};
 
 	isLoading = () => {
@@ -60,6 +74,7 @@ class Review extends React.Component {
 
 	uploadingImage = () => {
 		this.props.isLoading();
+		this.handleClose();
 		this.props.handleUpload();
 	};
 
@@ -88,14 +103,15 @@ class Review extends React.Component {
 			}
 			if (!allowSend) {
 				return (
-					<div style={{ textAlign: 'center', padding: 0, }}>
+					<div style={{ textAlign: 'center' }}>
 						<Button
 							style={{
-								backgroundColor: 'blue',
+								backgroundColor: '#1ABC9C',
 								color: 'white',
+								height: '40px',
 								marginBottom: '25px'
 							}}
-							onClick={this.uploadingImage}
+							onClick={this.handleClickOpen}
 						>
 							Kirim Gambar
 						</Button>
@@ -208,6 +224,28 @@ class Review extends React.Component {
 			console.log(selectedDate),
 			(
 				<React.Fragment>
+					<Dialog
+						open={this.state.open}
+						onClose={this.handleClose}
+						aria-labelledby="alert-dialog-title"
+						aria-describedby="alert-dialog-description"
+					>
+						<DialogTitle id="alert-dialog-title">{'Anda Yakin?'}</DialogTitle>
+						<DialogContent>
+							<DialogContentText id="alert-dialog-description">
+								Anda tidak akan bisa kembali ke tahap sebelumnya apabila gambar
+								telah terkirim. Mohon periksa kembali data yang Anda masukkan.
+							</DialogContentText>
+						</DialogContent>
+						<DialogActions>
+							<Button onClick={this.handleClose} color="primary">
+								Batal
+							</Button>
+							<Button onClick={this.uploadingImage} color="primary" autoFocus>
+								Ok
+							</Button>
+						</DialogActions>
+					</Dialog>
 					<Typography variant="h6" gutterBottom>
 						Ringkasan Pemesanan
 					</Typography>
@@ -288,10 +326,12 @@ class Review extends React.Component {
 							</ListItem>
 						</List>
 						<List className={classes.list} onClick={this.handleClickOpen}>
-							<ListItemText
-								style={{ float: 'left' }}
-								secondary="Gambar Sampah"
-							/>
+							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText
+									style={{ float: 'left' }}
+									secondary="Gambar Sampah"
+								/>
+							</ListItem>
 
 							{previewGeneralPhotos.length > 0 ? (
 								<div>
@@ -310,7 +350,7 @@ class Review extends React.Component {
 																height="175"
 																style={{
 																	width: '100%',
-																	marginTop: '10px'
+																	marginTop: '20px'
 																}}
 															/>
 														</Grid>
@@ -336,14 +376,19 @@ class Review extends React.Component {
 
 					<br />
 					<div style={{ textAlign: 'center' }}>{uploadImage()}</div>
+
+					<br />
 					<br />
 					<br />
 
-					<div>
+					<div style={{ marginBottom: '25px' }}>
 						<Grid item xs={12}>
 							{buttonSubmit()}
 						</Grid>
 					</div>
+					<br />
+					<br />
+					<br />
 				</React.Fragment>
 			)
 		);

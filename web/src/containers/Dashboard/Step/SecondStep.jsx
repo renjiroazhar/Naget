@@ -144,8 +144,8 @@ class SecondStep extends React.Component {
 											Wajib Diisi
 										</FormHelperText>
 									) : (
-											''
-										)}
+										''
+									)}
 								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>
@@ -182,8 +182,8 @@ class SecondStep extends React.Component {
 											Wajib Diisi
 										</FormHelperText>
 									) : (
-											''
-										)}
+										''
+									)}
 								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>

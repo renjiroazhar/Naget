@@ -84,7 +84,7 @@ class ThirdStep extends React.Component {
 						</List>
 					</Grid>
 
-					<Grid item xs={12}>
+					{/* <Grid item xs={12}>
 						<div
 							style={{
 								textAlign: 'center',
@@ -107,7 +107,7 @@ class ThirdStep extends React.Component {
 								Kembali
 							</Button>
 						</div>
-					</Grid>
+					</Grid> */}
 					<Grid item xs={12}>
 						<div
 							style={{
