@@ -16,6 +16,7 @@ import {
 	MuiPickersUtilsProvider,
 	TimePicker
 } from 'material-ui-pickers';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 const styles = theme => ({
 	root: {
@@ -70,7 +71,7 @@ class SecondStep extends React.Component {
 		) {
 			this.props.allowSend();
 		}
-		this.props.nextStep();
+		this.props.handleNextStepTwo();
 	};
 
 	viewImage = () => {
@@ -100,7 +101,13 @@ class SecondStep extends React.Component {
 	}
 
 	render() {
-		const { classes, values, handleDateChange, handleMenuOpen } = this.props;
+		const {
+			classes,
+			values,
+			handleDateChange,
+
+			handleMenuOpen
+		} = this.props;
 
 		return (
 			<React.Fragment>
@@ -132,6 +139,13 @@ class SecondStep extends React.Component {
 											)
 										}}
 									/>
+									{values.errorsDate ? (
+										<FormHelperText style={{ color: 'red' }}>
+											Wajib Diisi
+										</FormHelperText>
+									) : (
+											''
+										)}
 								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>
@@ -163,12 +177,78 @@ class SecondStep extends React.Component {
 											)
 										}}
 									/>
+									{values.errorsDate ? (
+										<FormHelperText style={{ color: 'red' }}>
+											Wajib Diisi
+										</FormHelperText>
+									) : (
+											''
+										)}
 								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>
 					</Grid>
 					<Grid item xs={12}>
-						<div style={{ textAlign: 'center' }}>
+						{values.previewGeneralPhotos.length > 0 ? (
+							<div>
+								<div>
+									{values.previewGeneralPhotos &&
+										values.previewGeneralPhotos.map((file, i) => (
+											<div style={{ textAlign: 'center' }}>
+												<Grid container spacing={24}>
+													<Grid item xs={12} align="center">
+														{' '}
+														<img
+															onClick={this.viewImage}
+															src={URL.createObjectURL(file)}
+															alt="preview failed"
+															key={file.base64}
+															height="175"
+															style={{
+																width: '100%',
+																marginTop: '20px'
+															}}
+														/>
+													</Grid>
+												</Grid>
+
+												<Viewer
+													visible={this.state.visible}
+													onClose={this.cancelViewImage}
+													images={[
+														{
+															src: URL.createObjectURL(file),
+															alt: ''
+														}
+													]}
+												/>
+
+												<Fab
+													size="small"
+													color="secondary"
+													aria-label="Add"
+													onClick={() => this.props.deleteImage(i)}
+													style={{ backgroundColor: 'red' }}
+												>
+													<CloseIcon />
+												</Fab>
+											</div>
+										))}
+								</div>
+							</div>
+						) : null}
+					</Grid>
+					<Grid item xs={12}>
+						<div
+							style={{
+								textAlign: 'center',
+								height: '140px',
+								border: '1.5px dashed #757575',
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center'
+							}}
+						>
 							<section>
 								<Dropzone
 									accept="image/*"
@@ -181,7 +261,12 @@ class SecondStep extends React.Component {
 											<input {...getInputProps()} />
 											<Button
 												component="span"
-												style={{ backgroundColor: 'blue', color: 'white' }}
+												style={{
+													backgroundColor: '#B0B0B0',
+													color: 'white',
+													height: '40px',
+													borderRadius: '100px'
+												}}
 												color="primary"
 											>
 												Masukkan Gambar
@@ -189,60 +274,10 @@ class SecondStep extends React.Component {
 										</div>
 									)}
 								</Dropzone>
-
-								{values.previewGeneralPhotos.length > 0 ? (
-									<div>
-										<div>
-											{values.previewGeneralPhotos &&
-												values.previewGeneralPhotos.map((file, i) => (
-													<div style={{ textAlign: 'center' }}>
-														<Grid container spacing={24}>
-															<Grid item xs={12} align="center">
-																{' '}
-																<img
-																	onClick={this.viewImage}
-																	src={URL.createObjectURL(file)}
-																	alt="preview failed"
-																	key={file.base64}
-																	width="200"
-																	height="200"
-																	style={{
-																		display: 'block',
-																		marginTop: '20px'
-																	}}
-																/>
-															</Grid>
-														</Grid>
-
-														<Viewer
-															visible={this.state.visible}
-															onClose={this.cancelViewImage}
-															images={[
-																{
-																	src: URL.createObjectURL(file),
-																	alt: ''
-																}
-															]}
-														/>
-
-														<Fab
-															size="small"
-															color="secondary"
-															aria-label="Add"
-															onClick={() => this.props.deleteImage(i)}
-															style={{ backgroundColor: 'red' }}
-														>
-															<CloseIcon />
-														</Fab>
-													</div>
-												))}
-										</div>
-									</div>
-								) : null}
 							</section>
 						</div>
 					</Grid>
-					<Grid item xs={12}>
+					{/* <Grid item xs={12}>
 						<div
 							style={{
 								textAlign: 'center',
@@ -265,12 +300,12 @@ class SecondStep extends React.Component {
 								Kembali
 							</Button>
 						</div>
-					</Grid>
+					</Grid> */}
 					<Grid item xs={12}>
 						<div
 							style={{
 								textAlign: 'center',
-
+								marginTop: '40px',
 								width: '100%'
 							}}
 						>

@@ -13,7 +13,7 @@ class Help extends React.Component {
 		const { classes } = this.props;
 
 		return (
-			<div style={{ backgroundColor: '#e7e7e7' }}>
+			<div style={{ backgroundColor: '#e7e7e7', marginTop: '57px', }}>
 				<Navbar />
 				<div style={{ textAlign: 'center' }}>
 					<img
@@ -74,7 +74,7 @@ const styles = theme => ({
 		textAlign: 'left'
 	},
 	image: {
-		margin: '40px 0 10px 0'
+		margin: '25px 0 10px 0'
 	}
 });
 

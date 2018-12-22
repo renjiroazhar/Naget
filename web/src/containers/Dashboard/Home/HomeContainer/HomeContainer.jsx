@@ -19,9 +19,9 @@ class HomeContainer extends React.Component {
 		const { classes } = this.props;
 
 		return (
-			<div style={{ backgroundColor: '#e7e7e7' }}>
+			<div style={{ backgroundColor: '#e7e7e7', height: '100%', marginTop: '55px', }}>
 				<Navbar />
-				<div style={{ height: '100%' }}>
+				<div>
 					<br />
 					<div>
 						<Grid container alignItems="center" justify="center">
@@ -31,7 +31,7 @@ class HomeContainer extends React.Component {
 					<br />
 					<br />
 					<br />
-					<div style={{ textAlign: 'center' }}>
+					<div style={{ textAlign: 'center', }}>
 						<MuiThemeProvider theme={theme}>
 							<Button
 								variant="extendedFab"
@@ -65,8 +65,8 @@ const styles = theme => ({
 		width: 200
 	},
 	absolute: {
-		color: '#00c43e',
-		backgroundColor: '#00c43e',
+		color: '#1ABC9C',
+		backgroundColor: '#1ABC9C',
 		position: 'fixed',
 		right: '0px',
 		bottom: '0px',
@@ -76,10 +76,10 @@ const styles = theme => ({
 	margin: {
 		maxWidth: '380px',
 		width: '90%',
-		borderRadius: 0,
+		borderRadius: '5px',
 		fontWeight: 400,
 		color: 'white',
-		backgroundColor: '#00c43e',
+		backgroundColor: '#1ABC9C',
 		textDecoration: 'none'
 	},
 	marginForm: {
@@ -122,7 +122,7 @@ const styles = theme => ({
 	iconchat: {
 		color: '#fff',
 		'&:hover': {
-			color: '#00c43e'
+			color: '#1ABC9C'
 		}
 	},
 	bootstrapRoot: {

@@ -28,16 +28,16 @@ const styles = theme => ({
 		width: '100%',
 		fontWeight: 400,
 		color: 'white',
-		backgroundColor: '#00c43e',
+		backgroundColor: '#1ABC9C',
 		textDecoration: 'none',
 		borderRadius: 0,
 		'&:hover': {
 			backgroundColor: '#f7f7f7',
-			color: '#00c43e'
+			color: '#1ABC9C'
 		}
 	},
 	cardBar: {
-		backgroundColor: '#00c43e',
+		backgroundColor: '#1ABC9C',
 		padding: '10px 20px 30px 20px'
 	},
 	text: {
@@ -55,9 +55,10 @@ const CardPicture = props => {
 			<Card id="card-view" className={classes.card}>
 				<CardHeader
 					style={{
-						backgroundColor: '#00c43e',
+						backgroundColor: '#1ABC9C',
 						paddingTop: 0,
-						paddingBottom: 0
+						paddingBottom: 0,
+						height: '40px',
 					}}
 					title={
 						<div>
