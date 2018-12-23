@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import FixedNavbar from '../../../component/FixedNavbar';
+import Navbar from '../../../component/Navbar';
 
 class Loginpage extends Component {
 	state = {
@@ -65,10 +65,10 @@ class Loginpage extends Component {
 		return (
 			<div>
 				<div>
-					<FixedNavbar />
+					<Navbar />
 				</div>
 				<div
-					style={{ height: '100%', backgroundColor: '#fff', padding: '40px', marginTop: '50px', }}
+					style={{ height: '100%', backgroundColor: '#fff', padding: '40px', marginTop: '40px', }}
 				>
 					<h1
 						style={{
@@ -130,7 +130,7 @@ class Loginpage extends Component {
 							onClick={this.handleSubmit}
 						>
 							{' '}
-							<span> Masuk </span>
+							<span> Login </span>
 							<div className="ripples buttonRipples">
 								<span className="ripplesCircle" />
 							</div>
@@ -142,14 +142,13 @@ class Loginpage extends Component {
 								style={{
 									textAlign: 'center',
 									color: 'red',
-									margin: '-15px'
 								}}
 							>
 								{authError}
 							</p>
 						) : null}
 					</div>
-					<p style={{ textAlign: 'center' }}>atau</p>
+					<p style={{ textAlign: 'center' }}>or</p>
 					<div style={{ width: '100%' }}>
 						<StyledFirebaseAuth
 							uiConfig={uiConfig}
@@ -160,12 +159,12 @@ class Loginpage extends Component {
 						<p
 							style={{ textAlign: 'center', color: 'black', marginTop: '20px' }}
 						>
-							<Link to="/forgot_password">Lupa Password?</Link>
+							<Link to="/forgot_password">Forgot Password?</Link>
 						</p>
 					</div>
 					<div>
 						<p style={{ textAlign: 'center', color: 'black', padding: 0 }}>
-							Belum punya akun? <Link to="/signup">Daftar sekarang!</Link>
+							Don't have account? <Link to="/signup">Register now!</Link>
 						</p>
 					</div>
 				</div>
@@ -216,7 +215,6 @@ const styles = theme => ({
 		backgroundColor: '#1ABC9C',
 		width: '100%',
 		fontWeight: 400,
-		marginBottom: '25px',
 		'&:hover': {
 			backgroundColor: '#1ABC9C'
 		}

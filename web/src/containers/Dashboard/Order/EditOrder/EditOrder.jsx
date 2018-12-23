@@ -147,7 +147,7 @@ class EditOrder extends Component {
 								<ArrowLeft />
 							</IconButton>
 							<Typography variant="h6" color="inherit" className={classes.grow}>
-								Edit Order
+								Edit Your Order
 							</Typography>
 						</Toolbar>
 					</AppBar>
@@ -156,7 +156,7 @@ class EditOrder extends Component {
 				<div style={{ textAlign: 'center' }}>
 					<Grid item xs={12}>
 						<TextField
-							label="Nama"
+							label="Name"
 							fullWidth
 							autoComplete="fname"
 							value={this.state.name}
@@ -175,7 +175,7 @@ class EditOrder extends Component {
 					</Grid>
 					<Grid item xs={12}>
 						<TextField
-							label="Nomor WhatsApp"
+							label="WhatsApp Number"
 							fullWidth
 							autoComplete="fname"
 							className={classes.textField}
@@ -184,7 +184,7 @@ class EditOrder extends Component {
 					</Grid>
 					<Grid item xs={12}>
 						<TextField
-							label="Alamat"
+							label="Address"
 							fullWidth
 							value={this.state.address}
 							autoComplete="billing address-line1"
@@ -193,7 +193,7 @@ class EditOrder extends Component {
 					</Grid>
 					<Grid item xs={12}>
 						<TextField
-							label="Catatan"
+							label="Driver Note"
 							fullWidth
 							autoComplete="billing address-line1"
 							className={classes.textField}
@@ -202,7 +202,7 @@ class EditOrder extends Component {
 					</Grid>
 					<Grid item xs={12}>
 						<TextField
-							label="Tanggal Penjemputan"
+							label="Pickup Date"
 							fullWidth
 							autoComplete="billing address-line1"
 							className={classes.textField}
@@ -210,7 +210,7 @@ class EditOrder extends Component {
 					</Grid>
 					<Grid item xs={12}>
 						<TextField
-							label="Jam"
+							label="Pickup Time"
 							fullWidth
 							autoComplete="billing address-line1"
 							className={classes.textField}
@@ -219,7 +219,7 @@ class EditOrder extends Component {
 					<List>
 						<List className={classes.list2} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
-								<ListItemText style={{ float: 'left' }} secondary="Foto :" />
+								<ListItemText style={{ float: 'left' }} secondary="Photo :" />
 							</ListItem>
 							<div>
 								{foto !== null || foto !== [] ? (
@@ -254,8 +254,8 @@ class EditOrder extends Component {
 										);
 									})
 								) : (
-									<div style={{ textAlign: 'center' }}>Tidak Ada Foto</div>
-								)}
+										<div style={{ textAlign: 'center' }}>No Photo</div>
+									)}
 								<br />
 								<br />
 								<br />

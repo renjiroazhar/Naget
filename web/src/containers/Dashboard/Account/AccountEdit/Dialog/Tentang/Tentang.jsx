@@ -105,7 +105,7 @@ class Tentang extends React.Component {
 							<ListItemText
 								style={{ fontSize: '24px' }}
 								inset
-								primary="Tentang Kami"
+								primary="About us"
 							/>
 						</ListItemSecondaryAction>
 					</ListItem>
@@ -118,7 +118,7 @@ class Tentang extends React.Component {
 				>
 					<div>
 						<Header />
-						<div style={{ marginTop: '170px' }}>
+						<div style={{ marginTop: '160px', }}>
 							<Socmed />
 						</div>
 
@@ -171,9 +171,9 @@ class Tentang extends React.Component {
 										fontSize: '#353740'
 									}}
 								>
-									Moretrash merupakan jasa yang membantu penjualan sampah daur
-									ulang dan sampah rumah tangga (platform pengelolaan sampah
-									online)
+									Moretrash is a service that helps sales of recyclable garbage
+									and household garbage (trash management platform
+									on line)
 								</p>
 								<br />
 								<br />
@@ -198,7 +198,7 @@ class Tentang extends React.Component {
 									}}
 									onClick={this.handleClose}
 								>
-									Kembali
+									Back
 								</Button>
 							</div>
 						</div>

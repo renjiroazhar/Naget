@@ -111,15 +111,15 @@ class Rate extends React.Component {
 					onCancel={this.handleClose}
 					cancelable
 				>
-					<div className="alert-dialog-title">Keluar</div>
-					<div className="alert-dialog-content">Anda Yakin?</div>
+					<div className="alert-dialog-title">Logout</div>
+					<div className="alert-dialog-content">You Sure?</div>
 
 					<Divider />
 					<Button onClick={this.Rate} className="alert-dialog-button">
-						Ya
+						Yes
 					</Button>
 					<Button onClick={this.handleClose} className="alert-dialog-button">
-						Tidak
+						No
 					</Button>
 				</AlertDialog>
 			</div>

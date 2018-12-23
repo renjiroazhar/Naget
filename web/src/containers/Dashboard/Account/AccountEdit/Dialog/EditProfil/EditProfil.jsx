@@ -22,7 +22,7 @@ import firebase from '../../../../../../services/firebaseConfig';
 import { editProfile } from '../../../../../../redux/actions/profileActions';
 const styles = theme => ({
 	appBar: {
-		position: 'relative',
+		position: 'fixed',
 		backgroundColor: '#333c4e'
 	},
 	flex: {
@@ -183,14 +183,14 @@ class EditProfil extends React.Component {
 								<CloseIcon />
 							</IconButton>
 							<Typography variant="h6" color="inherit" className={classes.flex}>
-								Profil
+								Profile
 							</Typography>
 							<Button color="inherit" onClick={this.handleSave}>
-								Simpan
+								Save
 							</Button>
 						</Toolbar>
 					</AppBar>
-					<div style={{ textAlign: 'center', marginTop: '20px' }}>
+					<div style={{ textAlign: 'center', marginTop: '75px' }}>
 						<FormControl style={{ width: '90%' }}>
 							<InputLabel
 								htmlFor="custom-css-input"
@@ -199,7 +199,7 @@ class EditProfil extends React.Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Nama Lengkap
+								Name
 							</InputLabel>
 							<Input
 								classes={{
@@ -222,7 +222,7 @@ class EditProfil extends React.Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Nomor Handphone
+								Phone Number
 							</InputLabel>
 							<Input
 								classes={{
@@ -245,7 +245,7 @@ class EditProfil extends React.Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Alamat
+								Address
 							</InputLabel>
 							<Input
 								classes={{

@@ -42,7 +42,7 @@ const styles = theme => ({
 	cssRoot: {
 		color: '#FFFFFF',
 		backgroundColor: '#1ABC9C',
-		width: '95%',
+		width: '85%',
 		height: '',
 		fontWeight: 400,
 		'&:hover': {
@@ -179,8 +179,8 @@ class Homepage extends Component {
 						className="moretrash-logo"
 					/>
 
-					<div style={{ textAlign: 'center' }}>
-						<p style={{ color: 'white', fontWeight: 400 }}>
+					<div style={{ textAlign: 'center', }}>
+						<p style={{ color: 'white', fontWeight: 400, marginBottom: '30px', }}>
 							Drop Your Trash and get benefit!
 						</p>
 						<div style={{ textAlign: 'center' }}>
@@ -208,7 +208,7 @@ class Homepage extends Component {
 						onClick={() => this.props.history.push('/login')}
 						size="large"
 					>
-						Masuk
+						Login
 					</Button>
 				</div>
 			</div>

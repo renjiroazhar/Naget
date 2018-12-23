@@ -14,7 +14,7 @@ const styles = theme => ({
 		paddingTop: theme.spacing.unit * 2,
 		paddingBottom: theme.spacing.unit * 2,
 		backgroundColor: '#1abc9c',
-		borderRadius: 0
+		borderRadius: 0,
 	},
 	text: {
 		color: '#ffffff',
@@ -33,15 +33,15 @@ function PaperSheet(props) {
 					variant="h5"
 					component="h6"
 					className={classes.text}
-					style={{ fontSize: '22px', textAlign: 'left' }}
+					style={{ fontSize: '22px', textAlign: 'center' }}
 				>
-					Moretrash adalah "Ojek for Trash"
+					Moretrash is "Ojek for Trash"
 				</Typography>
 				<p
-					style={{ textAlign: 'justify', fontWeight: 'lighter', color: '#fff' }}
+					style={{ textAlign: 'center', fontWeight: 'lighter', color: '#fff' }}
 				>
-					Moretrash merupakan jasa yang membantu penjualan sampah daur ulang dan
-					sampah rumah tangga (platform pengelolaan sampah online)
+					Moretrash is a service that helps sales of recyclable garbage
+					and household garbage (trash management platformon line)
 				</p>
 			</Paper>
 		</div>

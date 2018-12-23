@@ -184,7 +184,7 @@ function validateAtEmail(email) {
 	// in a signle array
 	const errorsAtEmail = [];
 	if (email.split('').filter(x => x === '@').length !== 1) {
-		errorsAtEmail.push('Email harus berisikan @');
+		errorsAtEmail.push('Email harus berisikan @gmail');
 	}
 	return errorsAtEmail;
 }
@@ -227,8 +227,8 @@ function validateAddress(address) {
 }
 
 function validateEmailValid(email) {
-    var re =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+	var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(String(email).toLowerCase());
 }
 
 class Checkout extends React.Component {
@@ -286,8 +286,8 @@ class Checkout extends React.Component {
 		const errorsEmail = validateEmail(email);
 		const errorsAtEmail = validateAtEmail(email);
 		const errorsTitikEmail = validateTitikEmail(email);
-		 const emailInvalid =  validateEmailValid(email)
-		 if(!emailInvalid){
+		const emailInvalid = validateEmailValid(email)
+		if (!emailInvalid) {
 			this.setState({
 				emailInvalid: true
 			});
@@ -298,7 +298,7 @@ class Checkout extends React.Component {
 			}, 5000);
 			console.log('Email Tidak Valid');
 
-		 }
+		}
 		if (
 			email.length === 0 &&
 			name.length === 0 &&
@@ -727,7 +727,7 @@ class Checkout extends React.Component {
 										color="inherit"
 										className={classes.grow}
 									>
-										Isi Data Diri
+										Fill in the Biodata's
 									</Typography>
 								</Toolbar>
 							</AppBar>
@@ -757,13 +757,13 @@ class Checkout extends React.Component {
 										className={classes.grow}
 									>
 										{activeStep === 1
-											? 'Tanggal,Waktu ,dan Foto Trash'
+											? 'Date, Time, and Photo'
 											: activeStep === 2
-												? 'Daftar Sampah beserta Harga'
+												? 'Trash list and Price'
 												: activeStep === 3
-													? 'Konfirmasi Pemesanan'
+													? 'Confirm Order'
 													: activeStep === 4
-														? 'Pemesanan Berhasil'
+														? 'Order Successful'
 														: ''}
 									</Typography>
 								</Toolbar>
@@ -792,13 +792,13 @@ class Checkout extends React.Component {
 												className={classes.grow}
 											>
 												{activeStep === 1
-													? 'Tanggal,Waktu ,dan Foto Trash'
+													? 'Date, Time, and Photo'
 													: activeStep === 2
-														? 'Daftar Sampah beserta Harga'
+														? 'Trash list and Price'
 														: activeStep === 3
-															? 'Konfirmasi Pemesanan'
+															? 'Confirm Order'
 															: activeStep === 4
-																? 'Pemesanan Berhasil'
+																? 'Order Successful'
 																: ''}
 											</Typography>
 										</Toolbar>
@@ -861,7 +861,7 @@ class Checkout extends React.Component {
 													marginTop: '10px',
 												}}
 											>
-												Terima Kasih,
+												Thank You,
 											</div>{' '}
 											{values.name}
 										</Typography>
@@ -869,9 +869,9 @@ class Checkout extends React.Component {
 											variant="subtitle1"
 											style={{ textAlign: 'center', color: '#757575' }}
 										>
-											Terimakasih sudah order, yuk daftarkan akunmu agar kamu
-											bisa memantau ordermu secara real time dan mendapatkan
-											poin tambahan.
+											Thank You for order, let's register your account
+											so you can monitor your order in real time and
+											get additional points.
 										</Typography>
 
 										<Typography
@@ -883,7 +883,7 @@ class Checkout extends React.Component {
 												fontWeight: 600
 											}}
 										>
-											*Detail order telah dikirim ke emailmu.
+											*Order details have been sent to your email.
 										</Typography>
 
 										<div
@@ -924,7 +924,7 @@ class Checkout extends React.Component {
 												className={classes.button}
 												style={{ width: '100%' }}
 											>
-												Daftar
+												Register
 											</Button>
 										</div>
 									</React.Fragment>

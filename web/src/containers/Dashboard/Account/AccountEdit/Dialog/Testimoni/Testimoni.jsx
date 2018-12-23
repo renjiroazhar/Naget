@@ -63,7 +63,7 @@ const styles = theme => ({
 		backgroundColor: red[500]
 	},
 	appBar: {
-		position: 'relative',
+		position: 'fixed',
 		backgroundColor: '#333c4e'
 	}
 });
@@ -110,7 +110,7 @@ class Testimoni extends React.Component {
 							<ListItemText
 								style={{ fontSize: '24px' }}
 								inset
-								primary="Testimoni"
+								primary="Testimonials"
 							/>
 						</ListItemSecondaryAction>
 					</ListItem>
@@ -131,7 +131,7 @@ class Testimoni extends React.Component {
 								<CloseIcon />
 							</IconButton>
 							<Typography variant="h6" color="inherit">
-								Testimoni
+								Testimonials
 							</Typography>
 						</Toolbar>
 					</AppBar>
@@ -140,12 +140,12 @@ class Testimoni extends React.Component {
 						style={{
 							width: '100%',
 							height: '100%',
-							margin: 0
+							marginTop: '56px',
 						}}
 					>
 						<PaperSheet />
 						<Typography variant="h6" className={classes.title}>
-							TESTIMONI
+							TESTIMONIALS
 						</Typography>
 						<center>
 							<CarouselTestimoni />

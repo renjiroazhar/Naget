@@ -30,7 +30,7 @@ class Help extends React.Component {
 					<ExpansionPanel>
 						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
 							<Typography className={classes.heading}>
-								Apakah Moretrash Itu?
+								What is Moretrash?
 							</Typography>
 						</ExpansionPanelSummary>
 						<ExpansionPanelDetails>
@@ -44,7 +44,7 @@ class Help extends React.Component {
 					<ExpansionPanel>
 						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
 							<Typography className={classes.heading}>
-								Bagaimana cara menukarkan sampah?
+								How to exchange garbage?
 							</Typography>
 						</ExpansionPanelSummary>
 						<ExpansionPanelDetails>

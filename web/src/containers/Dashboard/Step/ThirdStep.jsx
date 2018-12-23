@@ -92,18 +92,18 @@ class ThirdStep extends React.Component {
 		return (
 			<React.Fragment>
 				<Grid className={classes.p} spacing={24}>
-					<h2>Kategori Sampah</h2>
+					<h2>Trash Categories</h2>
 					<Grid item xs={12}>
 						<Card className={classes.card}>
 							<CardMedia
 								className={classes.cover}
 								image={NewsPaper}
-								title="Kertas Koran"
+								title="Newspaper"
 							/>
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>
-										<p>Kertas Koran</p>
+										<p>Newspaper</p>
 									</b>
 									<p>Rp. 1000/kg</p>
 								</CardContent>
@@ -115,12 +115,12 @@ class ThirdStep extends React.Component {
 							<CardMedia
 								className={classes.cover}
 								image={MixPaper}
-								title="Kertas Campur"
+								title="Mix Paper"
 							/>
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>
-										<p>Kertas Campur</p>
+										<p>Mix Paper</p>
 									</b>
 									<p>Rp. 300/kg</p>
 								</CardContent>
@@ -132,12 +132,12 @@ class ThirdStep extends React.Component {
 							<CardMedia
 								className={classes.cover}
 								image={BoxPaper}
-								title="Kertas Kardus"
+								title="Box Paper"
 							/>
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>
-										<p>Kertas Kardus</p>
+										<p>Box Paper</p>
 									</b>
 									<p>Rp. 750/kg</p>
 								</CardContent>
@@ -149,12 +149,12 @@ class ThirdStep extends React.Component {
 							<CardMedia
 								className={classes.cover}
 								image={Hvs}
-								title="Kertas HVS"
+								title="HVS Paper"
 							/>
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>
-										<p>Kertas HVS</p>
+										<p>HVS Paper</p>
 									</b>
 									<p>Rp. 1000/kg</p>
 								</CardContent>
@@ -166,12 +166,12 @@ class ThirdStep extends React.Component {
 							<CardMedia
 								className={classes.cover}
 								image={PlasticCup}
-								title="Gelas plastik air Mineral"
+								title="Mineral Water Plastic Cup"
 							/>
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>
-										<p>Gelas plastik air Mineral</p>
+										<p>Mineral Water Plastic Cup</p>
 									</b>
 									<p>Rp. 1000/kg</p>
 								</CardContent>
@@ -183,12 +183,12 @@ class ThirdStep extends React.Component {
 							<CardMedia
 								className={classes.cover}
 								image={PlasticBottle}
-								title="Botol Plastik"
+								title="Plastic Bottle"
 							/>
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>
-										<p>Botol plastik</p>
+										<p>Plastic Bottle</p>
 									</b>
 									<p>Rp. 1000/kg</p>
 								</CardContent>
@@ -200,12 +200,12 @@ class ThirdStep extends React.Component {
 							<CardMedia
 								className={classes.cover}
 								image={Can}
-								title="Kaleng Alumunium"
+								title="Can"
 							/>
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>
-										<p>Kaleng Alumunium</p>
+										<p>Can</p>
 									</b>
 									<p>Rp. 1400/kg</p>
 								</CardContent>
@@ -256,7 +256,7 @@ class ThirdStep extends React.Component {
 									marginTop: '10%'
 								}}
 							>
-								Selanjutnya
+								Next
 							</Button>
 						</div>
 					</Grid>
