@@ -42,8 +42,7 @@ const styles = theme => ({
 	cssRoot: {
 		color: '#FFFFFF',
 		backgroundColor: '#1ABC9C',
-		maxWidth: '380px',
-		width: '90%',
+		width: '95%',
 		height: '',
 		fontWeight: 400,
 		'&:hover': {
@@ -198,7 +197,7 @@ class Homepage extends Component {
 						onClick={() => this.props.history.push('/form')}
 						size="large"
 					>
-						PICK TRASH
+						Pick Trash
 					</Button>
 					<br />
 					<br />
@@ -209,7 +208,7 @@ class Homepage extends Component {
 						onClick={() => this.props.history.push('/login')}
 						size="large"
 					>
-						MASUK
+						Masuk
 					</Button>
 				</div>
 			</div>

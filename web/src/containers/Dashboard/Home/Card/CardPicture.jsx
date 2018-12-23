@@ -8,8 +8,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 
 const styles = theme => ({
 	card2: {
-		maxWidth: '380px',
-		width: '100%'
+		width: '90%'
 	},
 	bullet: {
 		display: 'inline-block',
@@ -48,7 +47,7 @@ const styles = theme => ({
 });
 let renderCardWithWidth = widthAsPercent => {
 	return (
-		<div>
+		<div style={{ width: '100%', margin: 0, }} >
 			<Card id="card-view" style={{ width: widthAsPercent }}>
 				<CardHeader
 					style={{

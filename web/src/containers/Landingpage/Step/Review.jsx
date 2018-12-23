@@ -355,21 +355,13 @@ class Review extends React.Component {
 						</List>
 					</List>
 
-					<br />
 					{/* <div style={{ textAlign: 'center' }}>{uploadImage()}</div> */}
 
-					<br />
-					<br />
-					<br />
-
-					<div style={{ marginBottom: '25px' }}>
+					<div style={{ marginTop: '10%', }}>
 						<Grid item xs={12}>
 							{buttonSubmit()}
 						</Grid>
 					</div>
-					<br />
-					<br />
-					<br />
 				</React.Fragment>
 			)
 		);

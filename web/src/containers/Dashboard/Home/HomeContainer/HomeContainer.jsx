@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Carousel from './Carousel';
 import Button from '@material-ui/core/Button';
 import CardPicture from '../Card/CardPicture';
-import Navbar from '../../../../component/Navbar';
+import FixedNavbar from '../../../../component/FixedNavbar';
 
 const styles = theme => ({
 	container: {
@@ -44,9 +44,7 @@ const styles = theme => ({
 	cssRoot: {
 		color: '#FFFFFF',
 		backgroundColor: '#1ABC9C',
-		maxWidth: '380px',
-		width: '90%',
-		height: '',
+		width: '95%',
 		fontWeight: 400,
 		'&:hover': {
 			backgroundColor: '#1ABC9C'
@@ -178,9 +176,9 @@ class HomeContainer extends Component {
 				}}
 			>
 				<div>
-					<Navbar />
+					<FixedNavbar />
 				</div>
-				<div style={{ backgroundColor: '#e7e7e7' }}>
+				<div style={{ backgroundColor: '#e7e7e7', padding: '5px', marginTop: '55px', }}>
 					<div
 						style={{
 							marginTop: 15,
@@ -208,7 +206,7 @@ class HomeContainer extends Component {
 								onClick={() => this.props.history.push('/form_login')}
 								size="large"
 							>
-								PICK TRASH
+								Pick Trash
 							</Button>
 						</div>
 						<br />

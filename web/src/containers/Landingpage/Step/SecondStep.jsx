@@ -155,10 +155,10 @@ class SecondStep extends React.Component {
 										style={{ width: '100%' }}
 										value={values.selectedDate}
 										onChange={handleDateChange}
-										placeholder="Pilih Jam"
 										label="Jam Penjemputan"
-										ampm={false}
+										placeholder="Pilih Jam"
 										required
+										ampm={false}
 										InputProps={{
 											startAdornment: (
 												<div>
@@ -202,7 +202,6 @@ class SecondStep extends React.Component {
 															style={{
 																width: '100%',
 																marginTop: '20px',
-
 																objectFit: 'contain'
 															}}
 														/>
@@ -241,8 +240,8 @@ class SecondStep extends React.Component {
 								textAlign: 'center',
 								height: '140px',
 								border: '1.5px dashed #757575',
-								display: 'flex',
 								backgroundColor: '#E5E5E5',
+								display: 'flex',
 								justifyContent: 'center',
 								alignItems: 'center'
 							}}
@@ -303,7 +302,7 @@ class SecondStep extends React.Component {
 						<div
 							style={{
 								textAlign: 'center',
-								marginTop: '40px',
+								marginTop: '10%',
 								width: '100%'
 							}}
 						>

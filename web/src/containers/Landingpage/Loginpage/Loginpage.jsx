@@ -11,7 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import Navbar from '../../../component/Navbar';
+import FixedNavbar from '../../../component/FixedNavbar';
 
 class Loginpage extends Component {
 	state = {
@@ -65,7 +65,7 @@ class Loginpage extends Component {
 		return (
 			<div>
 				<div>
-					<Navbar />
+					<FixedNavbar />
 				</div>
 				<div
 					style={{ height: '100%', backgroundColor: '#fff', padding: '40px', marginTop: '50px', }}

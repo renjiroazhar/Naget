@@ -126,11 +126,11 @@ class FirstStep extends React.Component {
 						<FormControl className={classes.formControl}>
 							<TextField
 								required
+								type="number"
 								label="Nomor WhatsApp"
 								fullWidth
 								autoComplete="fname"
 								value={values.phone}
-								type="number"
 								onChange={handleChange('phone')}
 								defaultValue={values.phone}
 							/>
@@ -169,7 +169,7 @@ class FirstStep extends React.Component {
 					</Grid>
 					<Grid item xs={12}>
 						<TextField
-							label="Catatan Untuk Driver"
+							label="Catatan Driver (Opsional)"
 							value={values.catatan}
 							fullWidth
 							autoComplete="billing address-line1"

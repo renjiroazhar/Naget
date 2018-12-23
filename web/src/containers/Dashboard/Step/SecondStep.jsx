@@ -302,7 +302,7 @@ class SecondStep extends React.Component {
 						<div
 							style={{
 								textAlign: 'center',
-								marginTop: '40px',
+								marginTop: '10%',
 								width: '100%'
 							}}
 						>

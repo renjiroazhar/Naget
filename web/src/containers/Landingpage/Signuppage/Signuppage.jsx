@@ -8,7 +8,7 @@ import '@firebase/firestore';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import Navbar from '../../../component/Navbar';
+import FixedNavbar from '../../../component/FixedNavbar';
 import PropTypes from 'prop-types';
 
 class Signuppage extends Component {
@@ -81,7 +81,7 @@ class Signuppage extends Component {
 		return (
 			<div>
 				<div>
-					<Navbar />
+					<FixedNavbar />
 				</div>
 				<div
 					style={{ height: '120%', backgroundColor: '#fff', padding: '40px', marginTop: '50px', }}

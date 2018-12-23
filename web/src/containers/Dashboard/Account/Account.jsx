@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signOut } from '../../../redux/actions/authActions';
 import Divider from '@material-ui/core/Divider';
-import Navbar from '../../../component/Navbar';
+import FixedNavbar from '../../../component/FixedNavbar';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -42,8 +42,8 @@ class Account extends React.Component {
 					backgroundColor: '#e7e7e7'
 				}}
 			>
-				<Navbar />
-				<div style={{ marginTop: '5px' }}>
+				<FixedNavbar />
+				<div style={{ marginTop: '55px' }}>
 					<EditProfil />
 				</div>
 				<div style={{ marginTop: '5%' }}>
@@ -90,8 +90,8 @@ class Account extends React.Component {
 				<div
 					style={{
 						textAlign: 'center',
-
-						width: '100%'
+						width: '100%',
+						margin: '0 0 5px 0',
 					}}
 				>
 					<Button
@@ -99,7 +99,8 @@ class Account extends React.Component {
 							backgroundColor: '#ffffff',
 							width: '100%',
 							textAlign: 'center',
-							color: '#f43c3c'
+							color: '#f43c3c',
+							height: '46px'
 						}}
 						onClick={this.handleClickOpen}
 					>
@@ -107,10 +108,6 @@ class Account extends React.Component {
 					</Button>
 				</div>
 				<br />
-				<br />
-
-				<br />
-
 				<br />
 				<br />
 				{/*Tooltip*/}

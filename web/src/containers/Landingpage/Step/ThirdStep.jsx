@@ -240,7 +240,7 @@ class ThirdStep extends React.Component {
 						<div
 							style={{
 								textAlign: 'center',
-
+								marginTop: '10%',
 								width: '100%'
 							}}
 						>

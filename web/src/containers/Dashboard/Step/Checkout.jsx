@@ -700,7 +700,8 @@ class Checkout extends React.Component {
 			<div
 				style={{
 					width: '-webkit-fill-available',
-					height: '100%'
+					height: '100%',
+					marginTop: '10px',
 				}}
 			>
 				<React.Fragment>
@@ -847,20 +848,44 @@ class Checkout extends React.Component {
 										</div>
 										<Typography
 											variant="h5"
-											style={{ textAlign: 'center' }}
+											style={{
+												textAlign: 'center',
+												color: '#757575',
+												justifyContent: 'center',
+												marginTop: '10px',
+											}}
 											gutterBottom
 										>
-											Terimakasih {values.name}
+											<div
+												style={{
+													fontWeight: 'bold',
+													marginRight: '5px',
+													color: '#757575'
+												}}
+											>
+												Terima Kasih,
+											</div>{' '}
+											{values.name}
 										</Typography>
 										<Typography
 											variant="subtitle1"
-											style={{ textAlign: 'center' }}
+											style={{ textAlign: 'center', color: '#757575' }}
 										>
 											Terimakasih sudah order, yuk daftarkan akunmu agar kamu
 											bisa memantau ordermu secara real time dan mendapatkan
 											poin tambahan.
 										</Typography>
-
+										<Typography
+											variant="subtitle2"
+											style={{
+												textAlign: 'center',
+												color: '#757575',
+												fontSize: '12px',
+												fontWeight: 600
+											}}
+										>
+											*Detail order telah dikirim ke emailmu.
+										</Typography>
 										<div
 											style={{
 												textAlign: 'center',
