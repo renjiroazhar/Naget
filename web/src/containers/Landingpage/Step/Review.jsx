@@ -149,7 +149,7 @@ class Review extends React.Component {
 								height: '46px'
 							}}
 						>
-							Pesan
+							Order
 						</Button>
 					</div>
 				);
@@ -173,7 +173,7 @@ class Review extends React.Component {
 							}}
 							onClick={this.props.handleUpload}
 						>
-							Pesan
+							Order
 						</Button>
 					</div>
 				);
@@ -192,7 +192,7 @@ class Review extends React.Component {
 					}}
 				>
 					<br />
-					Mengupload Gambar...
+					Uploading Photo...
 				</div>
 			);
 		}
@@ -210,13 +210,13 @@ class Review extends React.Component {
 						<DialogTitle id="alert-dialog-title">{'Anda Yakin?'}</DialogTitle>
 						<DialogContent>
 							<DialogContentText id="alert-dialog-description">
-								Anda tidak akan bisa kembali ke tahap sebelumnya apabila gambar
-								telah terkirim. Mohon periksa kembali data yang Anda masukkan.
+								You will not be able to return to the previous stage if the image
+								has been sent. Please double-check the data you entered.
 							</DialogContentText>
 						</DialogContent>
 						<DialogActions>
 							<Button onClick={this.handleClose} color="primary">
-								Batal
+								Cancel
 							</Button>
 							<Button onClick={this.uploadingImage} color="primary" autoFocus>
 								Ok
@@ -224,26 +224,18 @@ class Review extends React.Component {
 						</DialogActions>
 					</Dialog>
 					<Typography variant="h6" gutterBottom>
-						Ringkasan Pemesanan
+						Order Summary
 					</Typography>
 					<List>
 						<List className={classes.list} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
 								<ListItemText
 									style={{ float: 'left' }}
-									secondary="Nama Lengkap"
+									secondary="Name"
 								/>
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
 								<ListItemText style={{ float: 'left' }} primary={name} />
-							</ListItem>
-						</List>
-						<List className={classes.list} onClick={this.handleClickOpen}>
-							<ListItem button onClick={this.handleClickOpen}>
-								<ListItemText style={{ float: 'left' }} secondary="Alamat" />
-							</ListItem>
-							<ListItem style={{ paddingTop: 0 }}>
-								<ListItemText style={{ float: 'left' }} primary={address} />
 							</ListItem>
 						</List>
 						<List className={classes.list} onClick={this.handleClickOpen}>
@@ -256,9 +248,17 @@ class Review extends React.Component {
 						</List>
 						<List className={classes.list} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText style={{ float: 'left' }} secondary="Address" />
+							</ListItem>
+							<ListItem style={{ paddingTop: 0 }}>
+								<ListItemText style={{ float: 'left' }} primary={address} />
+							</ListItem>
+						</List>
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItem button onClick={this.handleClickOpen}>
 								<ListItemText
 									style={{ float: 'left' }}
-									secondary="Nomor Telepon"
+									secondary="Phone Number"
 								/>
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
@@ -269,7 +269,7 @@ class Review extends React.Component {
 							<ListItem button onClick={this.handleClickOpen}>
 								<ListItemText
 									style={{ float: 'left' }}
-									secondary="Tanggal Penjemputan"
+									secondary="Pickup Date"
 								/>
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
@@ -285,7 +285,7 @@ class Review extends React.Component {
 							<ListItem button onClick={this.handleClickOpen}>
 								<ListItemText
 									style={{ float: 'left' }}
-									secondary="Jam Penjemputan"
+									secondary="Pickup Time"
 								/>
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
@@ -298,7 +298,7 @@ class Review extends React.Component {
 
 						<List className={classes.list} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
-								<ListItemText style={{ float: 'left' }} secondary="Catatan" />
+								<ListItemText style={{ float: 'left' }} secondary="Driver Note" />
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
 								<ListItemText style={{ float: 'left' }} primary={catatan} />
@@ -308,7 +308,7 @@ class Review extends React.Component {
 							<ListItem button onClick={this.handleClickOpen}>
 								<ListItemText
 									style={{ float: 'left' }}
-									secondary="Gambar Sampah"
+									secondary="Garbage Photos"
 								/>
 							</ListItem>
 

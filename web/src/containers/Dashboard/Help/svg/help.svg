@@ -15,8 +15,8 @@
    viewBox="0 0 52.916664 52.916669"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.1 r15371"
-   sodipodi:docname="FAQV1.svg">
+   inkscape:version="0.92.3 (unknown)"
+   sodipodi:docname="help.svg">
   <defs
      id="defs2">
     <inkscape:path-effect
@@ -133,19 +133,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.29984581"
-     inkscape:cx="486.39661"
-     inkscape:cy="368.94361"
+     inkscape:zoom="1.696184"
+     inkscape:cx="146.09131"
+     inkscape:cy="81.554426"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g929"
      showgrid="false"
      showguides="true"
      inkscape:measure-start="0,0"
      inkscape:measure-end="0,0"
      inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-height="713"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
      inkscape:window-maximized="1"
      showborder="true"
      units="px"
@@ -159,7 +159,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -251,22 +251,21 @@
            x="226.27417"
            y="-2061.4812" /></flowRegion><flowPara
          id="flowPara4927" /></flowRoot>    <g
-       id="g9333"
-       transform="translate(101.0919,-194.25299)">
+       id="g929">
       <rect
          inkscape:export-ydpi="96"
          inkscape:export-xdpi="96"
          inkscape:export-filename="E:\Mockup\Project Moretrash\Assets\faq.png"
-         ry="1.3229166"
-         rx="1.3229166"
-         y="438.3363"
-         x="-101.0919"
+         ry="2.6458333"
+         rx="2.6458333"
+         y="244.08331"
+         x="-3.6865235e-06"
          height="52.916668"
          width="52.916668"
          id="rect8626"
          style="opacity:1;fill:#1abc9c;fill-opacity:1;stroke:none;stroke-width:0.42002603;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke" />
       <g
-         transform="translate(0.00473395)"
+         transform="translate(101.09663,-194.25299)"
          id="g9303">
         <g
            id="g9157"
@@ -373,30 +372,25 @@
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93888855px;line-height:0;font-family:Righteous;-inkscape-font-specification:Righteous;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-           x="-78.744087"
+           x="-81.081467"
            y="476.71375"
            id="text9161"><tspan
              sodipodi:role="line"
              id="tspan9159"
-             x="-78.744087"
+             x="-81.081467"
              y="476.71375"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-family:Roboto;-inkscape-font-specification:'Roboto Bold Condensed';fill:#ffffff;stroke-width:0.26458332">FAQ</tspan></text>
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Nunito Sans';-inkscape-font-specification:'Nunito Sans Bold';fill:#ffffff;stroke-width:0.26458332">HELP</tspan></text>
         <text
            xml:space="preserve"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.7699132px;line-height:0;font-family:Righteous;-inkscape-font-specification:Righteous;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-           x="-74.654533"
+           x="-74.62545"
            y="480.65234"
            id="text9165"><tspan
              sodipodi:role="line"
-             id="tspan9163"
-             x="-74.614845"
+             x="-74.585762"
              y="480.65234"
-             style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;line-height:1;font-family:Roboto;-inkscape-font-specification:'Roboto Medium';text-align:center;letter-spacing:0.079375px;text-anchor:middle;fill:#ffffff;stroke-width:0.26458332">Kumpulan pertanyaan tentang</tspan><tspan
-             sodipodi:role="line"
-             x="-74.614845"
-             y="483.42227"
              style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;line-height:1;font-family:Roboto;-inkscape-font-specification:'Roboto Medium';text-align:center;letter-spacing:0.079375px;text-anchor:middle;fill:#ffffff;stroke-width:0.26458332"
-             id="tspan9167">MoreTrash</tspan></text>
+             id="tspan9167">Questions about Moretrash</tspan></text>
       </g>
     </g>
   </g>

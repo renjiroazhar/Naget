@@ -23,11 +23,11 @@ import Lock from '@material-ui/icons/Lock';
 
 const styles = theme => ({
 	appBar: {
-		position: 'relative',
+		position: 'fixed',
 		backgroundColor: '#333c4e'
 	},
 	flex: {
-		flex: 1
+		flex: 1,
 	},
 	cssLabel: {
 		color: '#999',
@@ -159,7 +159,7 @@ class GantiPassword extends React.Component {
 							<ListItemText
 								style={{ fontSize: '24px' }}
 								inset
-								primary="Ubah Kata Sandi"
+								primary="Change Password"
 							/>
 						</ListItemSecondaryAction>
 					</ListItem>
@@ -179,15 +179,17 @@ class GantiPassword extends React.Component {
 							>
 								<CloseIcon />
 							</IconButton>
-							<Typography variant="h6" color="inherit" className={classes.flex}>
-								Ganti Kata Sandi
+							<Typography variant="h6" color="inherit" className={classes.flex}
+								style={{ fontSize: '19px', }}
+							>
+								Change Password
 							</Typography>
 							<Button color="inherit" onClick={this.handleSave}>
-								Simpan
+								Save
 							</Button>
 						</Toolbar>
 					</AppBar>
-					<div style={{ textAlign: 'center', marginTop: '20px' }}>
+					<div style={{ textAlign: 'center', marginTop: '75px' }}>
 						<FormControl style={{ width: '90%' }}>
 							<InputLabel
 								htmlFor="custom-css-input"
@@ -196,7 +198,7 @@ class GantiPassword extends React.Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Kata sandi saat ini
+								Old Password
 							</InputLabel>
 							<Input
 								classes={{
@@ -214,7 +216,7 @@ class GantiPassword extends React.Component {
 						<br />
 						<div>
 							<h5 style={{ fontSize: '16px', margin: 0 }}>
-								Mohon isi kata sandi Anda di bawah ini
+								Please enter new password below
 							</h5>
 							<p
 								style={{
@@ -223,10 +225,10 @@ class GantiPassword extends React.Component {
 									margin: 0
 								}}
 							>
-								Minimal 6 karakter terdiri dari huruf dan angka
+								At least 6 characters consist of letters and numbers
 							</p>
 						</div>
-						<FormControl style={{ width: '90%' }}>
+						<FormControl style={{ width: '90%', marginTop: '10px', }}>
 							<InputLabel
 								htmlFor="custom-css-input"
 								FormLabelClasses={{
@@ -234,7 +236,7 @@ class GantiPassword extends React.Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Kata sandi baru
+								New Password
 							</InputLabel>
 							<Input
 								classes={{
@@ -257,7 +259,7 @@ class GantiPassword extends React.Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Konfirmasi Kata sandi baru
+								Confirm New Password
 							</InputLabel>
 							<Input
 								classes={{
@@ -279,7 +281,7 @@ class GantiPassword extends React.Component {
 										marginTop: '10px'
 									}}
 								>
-									Kata Sandi yang Anda masukkan tidak sama
+									The password you entered is not the same
 								</p>
 							) : null}
 						</div>

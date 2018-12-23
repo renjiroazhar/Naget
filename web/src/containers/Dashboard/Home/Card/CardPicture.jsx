@@ -85,7 +85,7 @@ let renderCardWithWidth = widthAsPercent => {
 				<CardContent>
 					<div>
 						<Typography style={{ textAlign: 'center' }}>
-							Telah menukarkan sampah kepada Moretrash sejumlah:
+							Has exchanged rubbish with Moretrash for a number of:
 						</Typography>
 					</div>
 					<Typography

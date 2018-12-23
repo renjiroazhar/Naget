@@ -73,7 +73,7 @@ class FirstStep extends React.Component {
 						<FormControl className={classes.formControl}>
 							<TextField
 								required
-								label="Nama"
+								label="Name"
 								fullWidth
 								autoComplete="fname"
 								onChange={handleChange('name')}
@@ -83,11 +83,11 @@ class FirstStep extends React.Component {
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
-									Wajib Diisi
+									Required
 								</FormHelperText>
 							) : values.errorsName ? (
 								<FormHelperText style={{ color: 'red' }}>
-									Wajib Diisi
+									Required
 								</FormHelperText>
 							) : null}
 						</FormControl>
@@ -107,19 +107,19 @@ class FirstStep extends React.Component {
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
-									Wajib Diisi
+									Required
 								</FormHelperText>
 							) : values.errorsEmail ? (
 								<FormHelperText style={{ color: 'red' }}>
-									Wajib Diisi
+									Required
 								</FormHelperText>
 							) : values.errorsTitikEmail ? (
 								<FormHelperText style={{ color: 'red' }}>
-									Email setidaknya memiliki satu titik
+									Email must have at least 1 dot
 								</FormHelperText>
 							) : values.errorsAtEmail ? (
 								<FormHelperText style={{ color: 'red' }}>
-									Email harus mengandung memiliki @
+									Email must have @gmail
 								</FormHelperText>
 							) : null}
 						</FormControl>
@@ -129,7 +129,7 @@ class FirstStep extends React.Component {
 							<TextField
 								required
 								type="number"
-								label="Nomor WhatsApp"
+								label="WhatsApp Number"
 								fullWidth
 								autoComplete="fname"
 								value={values.phone}
@@ -139,11 +139,11 @@ class FirstStep extends React.Component {
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
-									Wajib Diisi
+									Required
 								</FormHelperText>
 							) : values.errorsPhone ? (
 								<FormHelperText style={{ color: 'red' }}>
-									Wajib Diisi
+									Required
 								</FormHelperText>
 							) : null}
 						</FormControl>
@@ -152,7 +152,7 @@ class FirstStep extends React.Component {
 						<FormControl className={classes.formControl}>
 							<TextField
 								required
-								label="Alamat"
+								label="Address"
 								value={values.address}
 								fullWidth
 								autoComplete="billing address-line1"
@@ -162,18 +162,18 @@ class FirstStep extends React.Component {
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
-									Wajib Diisi
+									Required
 								</FormHelperText>
 							) : values.errorsAddress ? (
 								<FormHelperText style={{ color: 'red' }}>
-									Wajib Diisi
+									Required
 								</FormHelperText>
 							) : null}
 						</FormControl>
 					</Grid>
 					<Grid item xs={12}>
 						<TextField
-							label="Catatan Driver (Opsional)"
+							label="Driver Note (Optional)"
 							value={values.catatan}
 							fullWidth
 							autoComplete="billing address-line1"
@@ -198,7 +198,7 @@ class FirstStep extends React.Component {
 								className={classes.button}
 								style={{ width: '100%' }}
 							>
-								Selanjutnya
+								Next
 							</Button>
 						</div>
 					</Grid>

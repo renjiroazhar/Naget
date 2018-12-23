@@ -45,15 +45,15 @@ const OrderSummary = ({ order }) => {
 									secondary={
 										<React.Fragment>
 											<Typography component="span" color="textPrimary">
-												Telah menukarkan sampah sebanyak ...
+												Has exchanged as much garbage as ...
 											</Typography>
 											<br />
 
 											{order.status
 												? order.status === 'SUCCESS'
-													? 'Berhasil'
+													? 'Success'
 													: order.status === 'WAITING_CONFIRMATION'
-														? 'Menunggu Konfirmasi'
+														? 'Waiting Confirmation'
 														: ''
 												: ''}
 										</React.Fragment>

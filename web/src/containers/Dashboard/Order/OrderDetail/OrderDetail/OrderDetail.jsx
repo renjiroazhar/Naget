@@ -82,11 +82,11 @@ class OrderDetail extends React.Component {
 		// Delete the file
 		desertRef
 			.delete()
-			.then(function(res) {
+			.then(function (res) {
 				console.log(res, 'Waw Sukses');
 				this.deleteArrayImage();
 			})
-			.catch(function(error) {
+			.catch(function (error) {
 				console.log(error, 'Wadidaw Error');
 			});
 	};
@@ -156,7 +156,7 @@ class OrderDetail extends React.Component {
 								<ListItem button onClick={this.handleClickOpen}>
 									<ListItemText
 										style={{ float: 'left' }}
-										secondary="Nama Pengorder"
+										secondary="Name"
 									/>
 								</ListItem>
 								<ListItem style={{ paddingTop: 0 }}>
@@ -168,7 +168,7 @@ class OrderDetail extends React.Component {
 							</List>
 							<List className={classes.list} onClick={this.handleClickOpen}>
 								<ListItem button onClick={this.handleClickOpen}>
-									<ListItemText style={{ float: 'left' }} secondary="Alamat" />
+									<ListItemText style={{ float: 'left' }} secondary="Address" />
 								</ListItem>
 								<ListItem style={{ paddingTop: 0 }}>
 									<ListItemText
@@ -183,7 +183,7 @@ class OrderDetail extends React.Component {
 								<ListItem button onClick={this.handleClickOpen}>
 									<ListItemText
 										style={{ float: 'left' }}
-										secondary="Nomor Telepon"
+										secondary="Phone Number"
 									/>
 								</ListItem>
 								<ListItem style={{ paddingTop: 0 }}>
@@ -197,7 +197,7 @@ class OrderDetail extends React.Component {
 								<ListItem button onClick={this.handleClickOpen}>
 									<ListItemText
 										style={{ float: 'left' }}
-										secondary="Waktu Penjemputan"
+										secondary="Pickup Time"
 									/>
 								</ListItem>
 								<ListItem style={{ paddingTop: 0 }}>
@@ -214,7 +214,7 @@ class OrderDetail extends React.Component {
 
 							<List className={classes.list} onClick={this.handleClickOpen}>
 								<ListItem button onClick={this.handleClickOpen}>
-									<ListItemText style={{ float: 'left' }} secondary="Catatan" />
+									<ListItemText style={{ float: 'left' }} secondary="Driver Note" />
 								</ListItem>
 								<ListItem style={{ paddingTop: 0 }}>
 									<ListItemText
@@ -227,49 +227,51 @@ class OrderDetail extends React.Component {
 							</List>
 							<List className={classes.list2} onClick={this.handleClickOpen}>
 								<ListItem button onClick={this.handleClickOpen}>
-									<ListItemText style={{ float: 'left' }} secondary="Foto :" />
+									<ListItemText style={{ float: 'left' }} secondary="Photo :" />
 								</ListItem>
 								<div>
 									{order.photos !== null ||
-									order.photos !== [] ||
-									order.photos !== 'undefined' ? (
-										order.photos &&
-										order.photos.map((foto, i) => {
-											return (
-												<div>
-													<Grid container spacing={24}>
-														<Grid item xs={12} align="center">
-															<img
-																onClick={this.viewImage}
-																src={foto}
-																alt="preview failed"
-																key={i}
-																width="250"
-																height="250"
-																style={{ display: 'block', margin: '20px', 
-																objectFit: 'contain' }}
-															/>
+										order.photos !== [] ||
+										order.photos !== 'undefined' ? (
+											order.photos &&
+											order.photos.map((foto, i) => {
+												return (
+													<div>
+														<Grid container spacing={24}>
+															<Grid item xs={12} align="center">
+																<img
+																	onClick={this.viewImage}
+																	src={foto}
+																	alt="preview failed"
+																	key={i}
+																	width="250"
+																	height="250"
+																	style={{
+																		display: 'block', margin: '20px',
+																		objectFit: 'contain'
+																	}}
+																/>
+															</Grid>
 														</Grid>
-													</Grid>
 
-													<Viewer
-														visible={this.state.visible}
-														onClose={this.cancelViewImage}
-														images={[
-															{
-																src: foto,
-																alt: ''
-															}
-														]}
-													/>
-												</div>
-											);
-										})
-									) : (
-										<div style={{ textAlign: 'center' }}>
-											<p>Tidak Ada Foto</p>
-										</div>
-									)}
+														<Viewer
+															visible={this.state.visible}
+															onClose={this.cancelViewImage}
+															images={[
+																{
+																	src: foto,
+																	alt: ''
+																}
+															]}
+														/>
+													</div>
+												);
+											})
+										) : (
+											<div style={{ textAlign: 'center' }}>
+												<p>No Photo</p>
+											</div>
+										)}
 									<br />
 									<br />
 									<br />
@@ -295,7 +297,7 @@ class OrderDetail extends React.Component {
 								}}
 								onClick={this.deleteOrder}
 							>
-								Batalkan Pemesanan
+								Cancel Order
 							</Button>
 						</div>
 					</div>

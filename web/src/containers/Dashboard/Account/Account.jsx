@@ -43,7 +43,7 @@ class Account extends React.Component {
 				}}
 			>
 				<FixedNavbar />
-				<div style={{ marginTop: '55px' }}>
+				<div style={{ marginTop: '57px' }}>
 					<EditProfil />
 				</div>
 				<div style={{ marginTop: '5%' }}>
@@ -76,14 +76,14 @@ class Account extends React.Component {
 					aria-describedby="alert-dialog-description"
 				>
 					<DialogTitle id="alert-dialog-title">
-						{'Anda yakin ingin keluar?'}
+						{'You sure want to leave?'}
 					</DialogTitle>
 					<DialogActions>
 						<Button onClick={this.handleClose} color="primary">
-							Tidak
+							No
 						</Button>
 						<Button onClick={this.logout} color="primary" autoFocus>
-							Ya
+							Yes
 						</Button>
 					</DialogActions>
 				</Dialog>
@@ -104,7 +104,7 @@ class Account extends React.Component {
 						}}
 						onClick={this.handleClickOpen}
 					>
-						Keluar
+						Logout
 					</Button>
 				</div>
 				<br />

@@ -23,7 +23,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
 	appBar: {
-		position: 'relative',
+		position: 'fixed',
 		backgroundColor: '#333c4e'
 	},
 	root: {
@@ -42,7 +42,7 @@ const styles = theme => ({
 		margin: '40px 0 10px 0'
 	},
 	flex: {
-		flex: 1
+		flex: 1,
 	},
 	cssLabel: {
 		color: '#999',
@@ -148,45 +148,47 @@ class Faq extends React.Component {
 							</Typography>
 						</Toolbar>
 					</AppBar>
-					<div style={{ textAlign: 'center' }}>
-						<img
-							src={imageFaq}
-							width="200"
-							height="200"
-							alt="FAQ Logo"
-							retina_logo_url=""
-							className={classes.image}
-						/>
-					</div>
-					<div className={classes.root}>
-						<ExpansionPanel>
-							<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-								<Typography className={classes.heading}>
-									Apakah Moretrash Itu?
+					<div style={{ backgroundColor: '#e7e7e7', }} >
+						<div style={{ textAlign: 'center', marginTop: '45px', }}>
+							<img
+								src={imageFaq}
+								width="200"
+								height="200"
+								alt="FAQ Logo"
+								retina_logo_url=""
+								className={classes.image}
+							/>
+						</div>
+						<div className={classes.root}>
+							<ExpansionPanel>
+								<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+									<Typography className={classes.heading}>
+										What is Moretrash?
 								</Typography>
-							</ExpansionPanelSummary>
-							<ExpansionPanelDetails>
-								<Typography>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-									eget.
+								</ExpansionPanelSummary>
+								<ExpansionPanelDetails>
+									<Typography>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+										eget.
 								</Typography>
-							</ExpansionPanelDetails>
-						</ExpansionPanel>
-						<ExpansionPanel>
-							<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-								<Typography className={classes.heading}>
-									Bagaimana cara menukarkan sampah?
+								</ExpansionPanelDetails>
+							</ExpansionPanel>
+							<ExpansionPanel>
+								<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+									<Typography className={classes.heading}>
+										How to exchange garbage?
 								</Typography>
-							</ExpansionPanelSummary>
-							<ExpansionPanelDetails>
-								<Typography>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-									eget.
+								</ExpansionPanelSummary>
+								<ExpansionPanelDetails>
+									<Typography>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+										eget.
 								</Typography>
-							</ExpansionPanelDetails>
-						</ExpansionPanel>
+								</ExpansionPanelDetails>
+							</ExpansionPanel>
+						</div>
 					</div>
 				</Dialog>
 			</div>

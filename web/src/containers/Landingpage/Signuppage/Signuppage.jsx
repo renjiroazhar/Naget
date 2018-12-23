@@ -8,7 +8,7 @@ import '@firebase/firestore';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import FixedNavbar from '../../../component/FixedNavbar';
+import Navbar from '../../../component/Navbar';
 import PropTypes from 'prop-types';
 
 class Signuppage extends Component {
@@ -81,10 +81,10 @@ class Signuppage extends Component {
 		return (
 			<div>
 				<div>
-					<FixedNavbar />
+					<Navbar />
 				</div>
 				<div
-					style={{ height: '120%', backgroundColor: '#fff', padding: '40px', marginTop: '50px', }}
+					style={{ height: '120%', backgroundColor: '#fff', padding: '40px', marginTop: '40px', }}
 				>
 					<h1
 						style={{
@@ -93,7 +93,7 @@ class Signuppage extends Component {
 							marginBottom: '20px'
 						}}
 					>
-						Sign Up
+						Register
 					</h1>
 					<div>
 						<FormControl style={{ width: '100%' }}>
@@ -104,7 +104,7 @@ class Signuppage extends Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Nama Lengkap
+								Full Name
 							</InputLabel>
 							<Input
 								classes={{
@@ -132,8 +132,8 @@ class Signuppage extends Component {
 								classes={{
 									underline: classes.cssUnderline
 								}}
-								id="password"
-								type="password"
+								id="email"
+								type="text"
 								onChange={this.handleChange}
 								value={this.state.email}
 							/>
@@ -148,7 +148,7 @@ class Signuppage extends Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Alamat
+								Address
 							</InputLabel>
 							<Input
 								classes={{
@@ -170,7 +170,7 @@ class Signuppage extends Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Nomor Telepon
+								Phone Number
 							</InputLabel>
 							<Input
 								classes={{
@@ -192,7 +192,7 @@ class Signuppage extends Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Masukkan Kata Sandi
+								Password
 							</InputLabel>
 							<Input
 								classes={{
@@ -214,7 +214,7 @@ class Signuppage extends Component {
 									focused: classes.cssFocused
 								}}
 							>
-								Konfirmasi Kata Sandi
+								Confirm Password
 							</InputLabel>
 							<Input
 								classes={{
@@ -240,7 +240,7 @@ class Signuppage extends Component {
 						}}
 					>
 						{' '}
-						<span>Daftar </span>
+						<span>Register</span>
 						<div className="ripples buttonRipples">
 							<span className="ripplesCircle" />
 						</div>
@@ -252,10 +252,9 @@ class Signuppage extends Component {
 								style={{
 									textAlign: 'center',
 									color: 'red',
-									marginTop: '10px'
 								}}
 							>
-								Kata Sandi dan Kata Sandi Konfirmasi harus sama
+								Password and Confirm Password must same
 							</p>
 						) : null}
 					</div>
@@ -273,9 +272,9 @@ class Signuppage extends Component {
 					</div>
 					<div>
 						<p
-							style={{ textAlign: 'center', color: 'black', marginTop: '20px' }}
+							style={{ textAlign: 'center', color: 'black', marginTop: '20px', }}
 						>
-							Sudah punya akun? <Link to="/login">Masuk</Link>
+							Already have account? <Link to="/login">Login</Link>
 						</p>
 					</div>
 				</div>
@@ -327,7 +326,6 @@ const styles = theme => ({
 		width: '100%',
 		height: '',
 		fontWeight: 400,
-		marginBottom: '25px',
 		'&:hover': {
 			backgroundColor: '#1ABC9C'
 		}

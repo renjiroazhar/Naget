@@ -117,9 +117,9 @@ class SecondStep extends React.Component {
 										style={{ width: '100%' }}
 										value={values.selectedDate}
 										onChange={handleDateChange}
-										label="Tanggal Penjemputan"
+										label="Pickup Date"
 										required
-										placeholder="Pilih Tanggal"
+										placeholder="Choose Date"
 										InputProps={{
 											startAdornment: (
 												<div>
@@ -135,11 +135,11 @@ class SecondStep extends React.Component {
 									/>
 									{values.errorsDate ? (
 										<FormHelperText style={{ color: 'red' }}>
-											Wajib Diisi
+											Required
 										</FormHelperText>
 									) : (
-										''
-									)}
+											''
+										)}
 								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>
@@ -155,8 +155,8 @@ class SecondStep extends React.Component {
 										style={{ width: '100%' }}
 										value={values.selectedDate}
 										onChange={handleDateChange}
-										label="Jam Penjemputan"
-										placeholder="Pilih Jam"
+										label="Pickup Time"
+										placeholder="Choose Time"
 										required
 										ampm={false}
 										InputProps={{
@@ -174,11 +174,11 @@ class SecondStep extends React.Component {
 									/>
 									{values.errorsDate ? (
 										<FormHelperText style={{ color: 'red' }}>
-											Wajib Diisi
+											Required
 										</FormHelperText>
 									) : (
-										''
-									)}
+											''
+										)}
 								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>
@@ -266,7 +266,7 @@ class SecondStep extends React.Component {
 												}}
 												color="primary"
 											>
-												Masukkan Gambar
+												Input Photo
 											</Button>
 										</div>
 									)}
@@ -317,7 +317,7 @@ class SecondStep extends React.Component {
 									color: 'white'
 								}}
 							>
-								Selanjutnya
+								Next
 							</Button>
 						</div>
 					</Grid>

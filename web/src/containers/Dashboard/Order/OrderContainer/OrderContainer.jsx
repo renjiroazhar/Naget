@@ -136,7 +136,7 @@ class OrderContainer extends React.Component {
 						}}
 					>
 						<br />
-						Belum Ada Order
+						No Order
 					</div>
 				</div>
 			);

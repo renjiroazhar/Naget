@@ -55,7 +55,7 @@ class BottomNavigationBar extends React.Component {
 					to="/order"
 				/>
 				<BottomNavigationAction
-					label="Faq"
+					label="Help"
 					value="nearby"
 					icon={<HelpIcon />}
 					component={Link}
