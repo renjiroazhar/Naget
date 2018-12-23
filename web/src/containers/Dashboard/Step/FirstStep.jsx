@@ -79,6 +79,7 @@ class FirstStep extends React.Component {
 								onChange={handleChange('name')}
 								defaultValue={values.name}
 								value={values.name}
+								disabled
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
@@ -102,6 +103,7 @@ class FirstStep extends React.Component {
 								autoComplete="fname"
 								onChange={handleChange('email')}
 								defaultValue={values.email}
+								disabled
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
@@ -133,6 +135,7 @@ class FirstStep extends React.Component {
 								value={values.phone}
 								onChange={handleChange('phone')}
 								defaultValue={values.phone}
+								disabled
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
@@ -155,6 +158,7 @@ class FirstStep extends React.Component {
 								autoComplete="billing address-line1"
 								onChange={handleChange('address')}
 								defaultValue={values.address}
+								disabled
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>

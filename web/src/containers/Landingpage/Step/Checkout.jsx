@@ -226,6 +226,11 @@ function validateAddress(address) {
 	return errorsAddress;
 }
 
+function validateEmailValid(email) {
+    var re =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
 class Checkout extends React.Component {
 	state = {
 		activeStep: 0,
@@ -264,7 +269,8 @@ class Checkout extends React.Component {
 		errorsAtEmail: false,
 		errorsTitikEmail: false,
 		errorsDate: false,
-		errorAll: false
+		errorAll: false,
+		emailInvalid: false
 	};
 
 	handleChange = input => e => {
@@ -280,6 +286,19 @@ class Checkout extends React.Component {
 		const errorsEmail = validateEmail(email);
 		const errorsAtEmail = validateAtEmail(email);
 		const errorsTitikEmail = validateTitikEmail(email);
+		 const emailInvalid =  validateEmailValid(email)
+		 if(!emailInvalid){
+			this.setState({
+				emailInvalid: true
+			});
+			setTimeout(() => {
+				this.setState({
+					emailInvalid: false
+				});
+			}, 5000);
+			console.log('Email Tidak Valid');
+
+		 }
 		if (
 			email.length === 0 &&
 			name.length === 0 &&
@@ -583,7 +602,8 @@ class Checkout extends React.Component {
 			errorsEmail,
 			errorsTitikEmail,
 			errorsAtEmail,
-			errorsDate
+			errorsDate,
+			emailInvalid
 		} = this.state;
 		const values = {
 			name,
@@ -615,7 +635,8 @@ class Checkout extends React.Component {
 			downloadURLs,
 			errorsDate,
 
-			errorAll
+			errorAll,
+			emailInvalid
 		};
 
 		const getStepContent = step => {
