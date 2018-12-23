@@ -13,6 +13,8 @@ import SwipeableViews from 'react-swipeable-views';
 import './style/style.css';
 import OrderList from './OrderList';
 import FixedNavbar from '../../../../component/FixedNavbar';
+import Toolbar from '@material-ui/core/Toolbar';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
 	root: {
@@ -140,10 +142,33 @@ class OrderContainer extends React.Component {
 			);
 		} else {
 			return (
-				<div>
-					<FixedNavbar />
+				<div style={{ backgroundColor: '#e7e7e7' }}>
 					<div style={{ marginBottom: '20%' }}>
-						<AppBar color="default" style={{ position: 'relative' }}>
+						<AppBar color="default" style={{ position: 'fixed' }}>
+							<Toolbar style={{ backgroundColor: '#333C4E' }}>
+								<div
+									style={{
+										display: 'block',
+										margin: '0 auto'
+									}}
+								>
+									<Link to="/">
+										<img
+											src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
+											srcSet="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
+											width="120"
+											height="35"
+											alt="Moretrash Logo"
+											retina_logo_url=""
+											className="fusion-standard-logo"
+											style={{
+												display: 'block',
+												margin: '0 auto'
+											}}
+										/>
+									</Link>
+								</div>
+							</Toolbar>
 							<Tabs
 								value={this.state.value}
 								onChange={this.handleChange}
@@ -155,7 +180,7 @@ class OrderContainer extends React.Component {
 								<Tab label="Booked" style={stylus.tab} />
 							</Tabs>
 						</AppBar>
-						<div style={{ width: '100%', marginTop: '50px' }}>
+						<div style={{ width: '100%', marginTop: '100px' }}>
 							<SwipeableViews
 								axis={theme === 'rtl' ? 'x-reverse' : 'x'}
 								index={this.state.value}
