@@ -12,7 +12,7 @@ import AppBar from '@material-ui/core/AppBar';
 import SwipeableViews from 'react-swipeable-views';
 import './style/style.css';
 import OrderList from './OrderList';
-import Navbar from '../../../../component/Navbar';
+import FixedNavbar from '../../../../component/FixedNavbar';
 
 const styles = theme => ({
 	root: {
@@ -76,7 +76,7 @@ class OrderContainer extends React.Component {
 						height: '100%'
 					}}
 				>
-					<Navbar />
+					<FixedNavbar />
 					<AppBar style={{ marginTop: '55px' }} color="default">
 						<Tabs
 							onChange={this.handleChange}
@@ -111,7 +111,7 @@ class OrderContainer extends React.Component {
 						height: '100%'
 					}}
 				>
-					<Navbar />
+					<FixedNavbar />
 					<AppBar style={{ marginTop: '55px' }} color="default">
 						<Tabs
 							onChange={this.handleChange}
@@ -140,37 +140,39 @@ class OrderContainer extends React.Component {
 			);
 		} else {
 			return (
-				<div style={{ marginBottom: '20%' }}>
-					{/* <Navbar /> */}
-					<AppBar color="default">
-						<Tabs
-							value={this.state.value}
-							onChange={this.handleChange}
-							indicatorColor="primary"
-							textColor="primary"
-							fullWidth
-						>
-							<Tab label="Ordered" style={stylus.tab} />
-							<Tab label="Booked" style={stylus.tab} />
-						</Tabs>
-					</AppBar>
-					<div style={{ width: '100%', marginTop: '50px' }}>
-						<SwipeableViews
-							axis={theme === 'rtl' ? 'x-reverse' : 'x'}
-							index={this.state.value}
-							onChangeIndex={this.handleChangeIndex}
-						>
-							<TabContainer>
-								<div>
-									<OrderList orders={orders} />
-								</div>
-							</TabContainer>
-							<TabContainer>
-								<div>
-									<OrderList orders={orders} />
-								</div>
-							</TabContainer>
-						</SwipeableViews>
+				<div>
+					<FixedNavbar />
+					<div style={{ marginBottom: '20%' }}>
+						<AppBar color="default" style={{ position: 'relative' }}>
+							<Tabs
+								value={this.state.value}
+								onChange={this.handleChange}
+								indicatorColor="primary"
+								textColor="primary"
+								fullWidth
+							>
+								<Tab label="Ordered" style={stylus.tab} />
+								<Tab label="Booked" style={stylus.tab} />
+							</Tabs>
+						</AppBar>
+						<div style={{ width: '100%', marginTop: '50px' }}>
+							<SwipeableViews
+								axis={theme === 'rtl' ? 'x-reverse' : 'x'}
+								index={this.state.value}
+								onChangeIndex={this.handleChangeIndex}
+							>
+								<TabContainer>
+									<div>
+										<OrderList orders={orders} />
+									</div>
+								</TabContainer>
+								<TabContainer>
+									<div>
+										<OrderList orders={orders} />
+									</div>
+								</TabContainer>
+							</SwipeableViews>
+						</div>
 					</div>
 				</div>
 			);
