@@ -44,13 +44,13 @@ class MainApp extends Component {
     return auth;
   };
 
-  async componentDidMount() {
+   componentDidMount() {
     // setTimeout(() => this.setState({ loading: false }), 1000);
-    await this.authListener();
+    this.authListener();
   }
 
-  async componentWillUnmount() {
-    await this.authListener();
+   componentWillUnmount() {
+  this.authListener();
   }
 
   render() {
@@ -58,8 +58,8 @@ class MainApp extends Component {
     if (loading) {
       return <p>Loading..</p>;
     }
-    return isAuthenticated ? (
-      <div>
+    if (isAuthenticated) {
+      return (
         <div>
           <Switch>
             {indexRoutes.map((prop, key) => {
@@ -69,12 +69,9 @@ class MainApp extends Component {
             })}
           </Switch>
         </div>
-      </div>
-    ) : (
-      <div>
-        <LoginPage isInvalid={isInvalid} />
-      </div>
-    );
+      );
+    }
+    return <LoginPage isInvalid={isInvalid} />;
   }
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import * as serviceWorker from "./serviceWorker";
 import { createBrowserHistory } from "history";
 import { Router } from "react-router-dom";
 import { createStore, applyMiddleware, compose } from "redux";
@@ -37,4 +38,5 @@ store.firebaseAuthIsReady.then(() => {
     </Provider>,
     document.getElementById("root")
   );
+  serviceWorker.unregister();
 });

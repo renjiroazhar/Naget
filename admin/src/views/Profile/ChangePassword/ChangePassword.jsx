@@ -231,8 +231,8 @@ class ChangePassword extends Component {
           <GridItem xs={12} sm={12} md={12}>
             <Card>
               <CardHeader color="success">
-                <h4 className={classes.cardTitleWhite}>Add Admin</h4>
-                <p className={classes.cardCategoryWhite}>Add New Admin</p>
+                <h4 className={classes.cardTitleWhite}>Change Password</h4>
+                <p className={classes.cardCategoryWhite}>Change Current Password with New Password</p>
               </CardHeader>
               <CardBody>
                 <GridContainer>
