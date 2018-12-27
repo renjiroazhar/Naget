@@ -42,7 +42,8 @@ const styles = theme => ({
 	cssRoot: {
 		color: '#FFFFFF',
 		backgroundColor: '#1ABC9C',
-		width: '85%',
+		width: '90%',
+		maxWidth: '400px',
 		height: '',
 		fontWeight: 400,
 		'&:hover': {
@@ -179,8 +180,10 @@ class Homepage extends Component {
 						className="moretrash-logo"
 					/>
 
-					<div style={{ textAlign: 'center', }}>
-						<p style={{ color: 'white', fontWeight: 400, marginBottom: '30px', }}>
+					<div style={{ textAlign: 'center' }}>
+						<p
+							style={{ color: 'white', fontWeight: 400, marginBottom: '30px' }}
+						>
 							Drop Your Trash and get benefit!
 						</p>
 						<div style={{ textAlign: 'center' }}>

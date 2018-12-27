@@ -116,9 +116,9 @@ class EditProfil extends React.Component {
 				var dataSnapshot = doc.data();
 				if (dataSnapshot !== null || dataSnapshot !== []) {
 					this.setState({
-						name: dataSnapshot.name,
-						address: dataSnapshot.address,
-						phone: dataSnapshot.phone
+						name: dataSnapshot.name && dataSnapshot.name,
+						address: dataSnapshot.address && dataSnapshot.address,
+						phone: dataSnapshot.phone && dataSnapshot.phone
 					});
 				} else {
 					console.log('Kosong? , Astaughfirullah');
@@ -146,8 +146,8 @@ class EditProfil extends React.Component {
 								profile.name
 									? profile.name
 									: auth.displayName
-										? 'No Name'
-										: null
+										? auth.displayName
+										: 'No Name'
 							}
 							secondary={auth.email}
 						/>

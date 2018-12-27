@@ -102,7 +102,7 @@ class SecondStep extends React.Component {
 
 	render() {
 		const { classes, values, handleDateChange } = this.props;
-
+		const today = new Date();
 		return (
 			<React.Fragment>
 				<Grid container spacing={24}>
@@ -119,6 +119,7 @@ class SecondStep extends React.Component {
 										onChange={handleDateChange}
 										label="Pickup Date"
 										required
+										minDate={today}
 										placeholder="Choose Date"
 										InputProps={{
 											startAdornment: (

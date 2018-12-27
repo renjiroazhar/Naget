@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { firestoreConnect } from 'react-redux-firebase';
-import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -22,7 +20,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import moment from 'moment';
 import 'moment/locale/id';
 
-import { removeOrder } from '../../../../../redux/actions/orderActions';
+import { cancelOrder } from '../../../../../redux/actions/orderActions';
 
 const styles = theme => ({
 	root: {
@@ -44,7 +42,15 @@ class OrderDetail extends React.Component {
 	state = {
 		open: true,
 		visible: false,
-		downloadURLs: []
+		createdAt: '',
+		photos: [],
+		location: [],
+		logs: [],
+		orderDate: '',
+		status: '',
+		user: [],
+		userId: '',
+		loading: false
 	};
 
 	viewImage = () => {
@@ -62,9 +68,29 @@ class OrderDetail extends React.Component {
 		this.setState(state => ({ open: !state.open }));
 	};
 
-	deleteOrder = () => {
+	cancelOrder = () => {
+		const {
+			createdAt,
+			photos,
+			location,
+			logs,
+			orderDate,
+			status,
+			user,
+			userId
+		} = this.state;
+		let dataItem = {
+			createdAt,
+			photos,
+			location,
+			logs,
+			orderDate,
+			status,
+			user,
+			userId
+		};
 		const idItem = this.props.match.params.id;
-		this.props.removeOrder(idItem);
+		this.props.cancelOrder(dataItem, idItem);
 		this.props.history.push('/order');
 	};
 
@@ -82,11 +108,11 @@ class OrderDetail extends React.Component {
 		// Delete the file
 		desertRef
 			.delete()
-			.then(function (res) {
+			.then(function(res) {
 				console.log(res, 'Waw Sukses');
 				this.deleteArrayImage();
 			})
-			.catch(function (error) {
+			.catch(function(error) {
 				console.log(error, 'Wadidaw Error');
 			});
 	};
@@ -94,28 +120,47 @@ class OrderDetail extends React.Component {
 	backPage = () => {
 		this.props.history.push('/order');
 	};
-	getSafe = (fn, defaultVal) => {
+
+	async componentDidMount() {
+		const idItem = this.props.match.params.id;
+		const ref = firebase
+			.firestore()
+			.collection('orders')
+			.doc(idItem);
 		try {
-			return fn();
-		} catch (e) {
-			return defaultVal;
+			const getData = await ref.onSnapshot(doc => {
+				var dataSnapshot = doc.data();
+				if (dataSnapshot !== null || dataSnapshot !== []) {
+					console.log(dataSnapshot);
+					this.setState({
+						createdAt: dataSnapshot.createdAt,
+						photos: dataSnapshot.photos,
+						location: dataSnapshot.location,
+						logs: dataSnapshot.logs,
+						orderDate: dataSnapshot.orderDate,
+						status: dataSnapshot.status,
+						user: dataSnapshot.user,
+						userId: dataSnapshot.userId,
+						loading: false
+					});
+					console.log(this.state);
+				} else {
+					console.log('Kosong? , Astaughfirullah');
+					this.setState({
+						loading: true
+					});
+				}
+			});
+			return getData;
+		} catch (error) {
+			console.log(error);
 		}
-	};
-
-	componentDidMount() {
-		const { order } = this.props;
-		this.getSafe(() => order, 'nothing');
-		this.getSafe(() => order.photos, 'nothing');
-		this.getSafe(() => order.user.name, 'nothing');
-		this.getSafe(() => order.location.alamat, 'nothing');
-		this.getSafe(() => order.user.phone, 'nothing');
-		this.getSafe(() => order.location.catatan, 'nothing');
 	}
-
 	render() {
-		const { order, classes } = this.props;
+		const { classes } = this.props;
+		const { loading, location, orderDate, photos, user } = this.state;
 
-		if (order) {
+		if (!loading) {
 			return (
 				<div style={{ backgroundColor: '#e7e7e7' }}>
 					<div style={{ flex: 1 }}>
@@ -154,15 +199,12 @@ class OrderDetail extends React.Component {
 						<List style={{ overflow: 'hidden' }}>
 							<List className={classes.list} onClick={this.handleClickOpen}>
 								<ListItem button onClick={this.handleClickOpen}>
-									<ListItemText
-										style={{ float: 'left' }}
-										secondary="Name"
-									/>
+									<ListItemText style={{ float: 'left' }} secondary="Name" />
 								</ListItem>
 								<ListItem style={{ paddingTop: 0 }}>
 									<ListItemText
 										style={{ float: 'left' }}
-										primary={!order.user.name ? '' : order.user.name}
+										primary={!user.name ? '' : user.name}
 									/>
 								</ListItem>
 							</List>
@@ -173,9 +215,7 @@ class OrderDetail extends React.Component {
 								<ListItem style={{ paddingTop: 0 }}>
 									<ListItemText
 										style={{ float: 'left' }}
-										primary={
-											!order.location.alamat ? '' : order.location.alamat
-										}
+										primary={!location.alamat ? '' : location.alamat}
 									/>
 								</ListItem>
 							</List>
@@ -189,7 +229,7 @@ class OrderDetail extends React.Component {
 								<ListItem style={{ paddingTop: 0 }}>
 									<ListItemText
 										style={{ float: 'left' }}
-										primary={!order.user.phone ? '' : order.user.phone}
+										primary={!user.phone ? '' : user.phone}
 									/>
 								</ListItem>
 							</List>
@@ -204,9 +244,9 @@ class OrderDetail extends React.Component {
 									<ListItemText
 										style={{ float: 'left' }}
 										primary={
-											!order.orderDate
+											!orderDate
 												? ''
-												: moment(order.orderDate.toDate()).format('LLLL')
+												: moment(orderDate.toDate()).format('LLLL')
 										}
 									/>
 								</ListItem>
@@ -214,14 +254,15 @@ class OrderDetail extends React.Component {
 
 							<List className={classes.list} onClick={this.handleClickOpen}>
 								<ListItem button onClick={this.handleClickOpen}>
-									<ListItemText style={{ float: 'left' }} secondary="Driver Note" />
+									<ListItemText
+										style={{ float: 'left' }}
+										secondary="Driver Note"
+									/>
 								</ListItem>
 								<ListItem style={{ paddingTop: 0 }}>
 									<ListItemText
 										style={{ float: 'left' }}
-										primary={
-											order.location.catatan ? order.location.catatan : ''
-										}
+										primary={location.catatan ? location.catatan : ''}
 									/>
 								</ListItem>
 							</List>
@@ -230,48 +271,49 @@ class OrderDetail extends React.Component {
 									<ListItemText style={{ float: 'left' }} secondary="Photo :" />
 								</ListItem>
 								<div>
-									{order.photos !== null ||
-										order.photos !== [] ||
-										order.photos !== 'undefined' ? (
-											order.photos &&
-											order.photos.map((foto, i) => {
-												return (
-													<div>
-														<Grid container spacing={24}>
-															<Grid item xs={12} align="center">
-																<img
-																	onClick={this.viewImage}
-																	src={foto}
-																	alt="preview failed"
-																	key={i}
-																	width="250"
-																	height="250"
-																	style={{
-																		display: 'block', margin: '20px',
-																		objectFit: 'contain'
-																	}}
-																/>
-															</Grid>
+									{photos !== null ||
+									photos !== [] ||
+									photos !== 'undefined' ? (
+										photos &&
+										photos.map((foto, i) => {
+											return (
+												<div>
+													<Grid container spacing={24}>
+														<Grid item xs={12} align="center">
+															<img
+																onClick={this.viewImage}
+																src={foto}
+																alt="preview failed"
+																key={i}
+																width="250"
+																height="250"
+																style={{
+																	display: 'block',
+																	margin: '20px',
+																	objectFit: 'contain'
+																}}
+															/>
 														</Grid>
+													</Grid>
 
-														<Viewer
-															visible={this.state.visible}
-															onClose={this.cancelViewImage}
-															images={[
-																{
-																	src: foto,
-																	alt: ''
-																}
-															]}
-														/>
-													</div>
-												);
-											})
-										) : (
-											<div style={{ textAlign: 'center' }}>
-												<p>No Photo</p>
-											</div>
-										)}
+													<Viewer
+														visible={this.state.visible}
+														onClose={this.cancelViewImage}
+														images={[
+															{
+																src: foto,
+																alt: ''
+															}
+														]}
+													/>
+												</div>
+											);
+										})
+									) : (
+										<div style={{ textAlign: 'center' }}>
+											<p>No Photo</p>
+										</div>
+									)}
 									<br />
 									<br />
 									<br />
@@ -295,7 +337,7 @@ class OrderDetail extends React.Component {
 									textAlign: 'center',
 									color: '#ffffff'
 								}}
-								onClick={this.deleteOrder}
+								onClick={this.cancelOrder}
 							>
 								Cancel Order
 							</Button>
@@ -358,6 +400,7 @@ OrderDetail.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+	console.log(state);
 	const id = ownProps.match.params.id;
 	const orders = state.firestore.data.orders;
 	const order = orders ? orders[id] : null;
@@ -369,24 +412,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		removeOrder: id => dispatch(removeOrder(id))
+		cancelOrder: (dataItem, id) => dispatch(cancelOrder(dataItem, id))
 	};
 };
 
-export default compose(
-	connect(
-		mapStateToProps,
-		mapDispatchToProps
-	),
-	firestoreConnect(props => {
-		// console.log(props.uid);
-		if (!props.uid) return [];
-		console.log(props.uid);
-		return [
-			{
-				collection: 'orders',
-				where: [['userId', '==', props.uid]]
-			}
-		];
-	})
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
 )(withStyles(styles)(withRouter(OrderDetail)));

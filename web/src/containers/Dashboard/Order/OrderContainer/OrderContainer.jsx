@@ -11,7 +11,8 @@ import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import SwipeableViews from 'react-swipeable-views';
 import './style/style.css';
-import OrderList from './OrderList';
+import WaitingConfirmation from './OrderList/WaitingConfirmation';
+import OrderHistory from './OrderList/OrderHistory';
 import FixedNavbar from '../../../../component/FixedNavbar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Link } from 'react-router-dom';
@@ -87,7 +88,7 @@ class OrderContainer extends React.Component {
 							fullWidth
 						>
 							<Tab label="Ordered" style={stylus.tab} />
-							<Tab label="Booked" style={stylus.tab} />
+							<Tab label="History" style={stylus.tab} />
 						</Tabs>
 					</AppBar>
 					<div
@@ -122,7 +123,7 @@ class OrderContainer extends React.Component {
 							fullWidth
 						>
 							<Tab label="Ordered" style={stylus.tab} />
-							<Tab label="Booked" style={stylus.tab} />
+							<Tab label="History" style={stylus.tab} />
 						</Tabs>
 					</AppBar>
 					<div
@@ -142,7 +143,7 @@ class OrderContainer extends React.Component {
 			);
 		} else {
 			return (
-				<div style={{ backgroundColor: '#e7e7e7' }}>
+				<div>
 					<div style={{ marginBottom: '20%' }}>
 						<AppBar color="default" style={{ position: 'fixed' }}>
 							<Toolbar style={{ backgroundColor: '#333C4E' }}>
@@ -177,7 +178,7 @@ class OrderContainer extends React.Component {
 								fullWidth
 							>
 								<Tab label="Ordered" style={stylus.tab} />
-								<Tab label="Booked" style={stylus.tab} />
+								<Tab label="History" style={stylus.tab} />
 							</Tabs>
 						</AppBar>
 						<div style={{ width: '100%', marginTop: '100px' }}>
@@ -188,12 +189,12 @@ class OrderContainer extends React.Component {
 							>
 								<TabContainer>
 									<div>
-										<OrderList orders={orders} />
+										<WaitingConfirmation orders={orders} />
 									</div>
 								</TabContainer>
 								<TabContainer>
 									<div>
-										<OrderList orders={orders} />
+										<OrderHistory orders={orders} />
 									</div>
 								</TabContainer>
 							</SwipeableViews>
@@ -230,7 +231,6 @@ export default compose(
 	firestoreConnect(props => {
 		// console.log(props.uid);
 		if (!props.uid) return [];
-		console.log(props.uid);
 		return [
 			{
 				collection: 'orders',

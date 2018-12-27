@@ -1,5 +1,6 @@
 const initState = {
-	orders: []
+	orders: [],
+	editError: null
 };
 
 const orderReducers = (state = initState, action) => {
@@ -21,11 +22,23 @@ const orderReducers = (state = initState, action) => {
 		case 'CREATE_ORDER_ERROR':
 			console.log('Create Order Error', action.err);
 			break;
+		case 'CANCEL_ORDER_SUCCESS':
+			console.log('Cancel Order Success');
+			return {
+				...state,
+				editError: null
+			};
+		case 'CANCEL_ORDER_ERROR':
+			console.log('Cancle Order Failed');
+			return {
+				...state,
+				editError: 'Edit Order Failed'
+			};
 		case 'REMOVE_ORDER':
 			console.log('Deleting Order Success', action.id);
 			return state;
-		case 'REMOVE_ERROR':
-			console.log('Deleting Order Error', action.err);
+		case 'REMOVE_ORDER_ERROR':
+			console.log('Deleting Order Error', action.error);
 			//    return state.filter(({ id }) => id !== action.id);
 			break;
 		default:

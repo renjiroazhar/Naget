@@ -10,11 +10,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { format } from 'date-fns/esm';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import moment from 'moment';
 import 'moment/locale/id';
 
@@ -201,38 +196,13 @@ class Review extends React.Component {
 			console.log(selectedDate),
 			(
 				<React.Fragment>
-					<Dialog
-						open={this.state.open}
-						onClose={this.handleClose}
-						aria-labelledby="alert-dialog-title"
-						aria-describedby="alert-dialog-description"
-					>
-						<DialogTitle id="alert-dialog-title">{'Anda Yakin?'}</DialogTitle>
-						<DialogContent>
-							<DialogContentText id="alert-dialog-description">
-								You will not be able to return to the previous stage if the image
-								has been sent. Please double-check the data you entered.
-							</DialogContentText>
-						</DialogContent>
-						<DialogActions>
-							<Button onClick={this.handleClose} color="primary">
-								Cancel
-							</Button>
-							<Button onClick={this.uploadingImage} color="primary" autoFocus>
-								Ok
-							</Button>
-						</DialogActions>
-					</Dialog>
 					<Typography variant="h6" gutterBottom>
 						Order Summary
 					</Typography>
 					<List>
 						<List className={classes.list} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
-								<ListItemText
-									style={{ float: 'left' }}
-									secondary="Name"
-								/>
+								<ListItemText style={{ float: 'left' }} secondary="Name" />
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
 								<ListItemText style={{ float: 'left' }} primary={name} />
@@ -298,7 +268,10 @@ class Review extends React.Component {
 
 						<List className={classes.list} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
-								<ListItemText style={{ float: 'left' }} secondary="Driver Note" />
+								<ListItemText
+									style={{ float: 'left' }}
+									secondary="Driver Note"
+								/>
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
 								<ListItemText style={{ float: 'left' }} primary={catatan} />
@@ -357,7 +330,7 @@ class Review extends React.Component {
 
 					{/* <div style={{ textAlign: 'center' }}>{uploadImage()}</div> */}
 
-					<div style={{ marginTop: '10%', }}>
+					<div style={{ marginTop: '10%' }}>
 						<Grid item xs={12}>
 							{buttonSubmit()}
 						</Grid>

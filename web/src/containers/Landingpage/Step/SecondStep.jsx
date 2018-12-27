@@ -102,7 +102,11 @@ class SecondStep extends React.Component {
 
 	render() {
 		const { classes, values, handleDateChange } = this.props;
-
+		const officeHours = [
+			{ from: '9:00', to: '12:00' },
+			{ from: '13:00', to: '17:00' }
+		];
+		const today = new Date();
 		return (
 			<React.Fragment>
 				<Grid container spacing={24}>
@@ -114,6 +118,7 @@ class SecondStep extends React.Component {
 							<div className="picker">
 								<FormControl style={{ width: '100%' }}>
 									<DatePicker
+										minDate={today}
 										style={{ width: '100%' }}
 										value={values.selectedDate}
 										onChange={handleDateChange}
@@ -138,8 +143,8 @@ class SecondStep extends React.Component {
 											Required
 										</FormHelperText>
 									) : (
-											''
-										)}
+										''
+									)}
 								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>
@@ -154,6 +159,7 @@ class SecondStep extends React.Component {
 									<TimePicker
 										style={{ width: '100%' }}
 										value={values.selectedDate}
+										allowedTimes={officeHours}
 										onChange={handleDateChange}
 										label="Pickup Time"
 										placeholder="Choose Time"
@@ -177,8 +183,8 @@ class SecondStep extends React.Component {
 											Required
 										</FormHelperText>
 									) : (
-											''
-										)}
+										''
+									)}
 								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>

@@ -1,6 +1,40 @@
 // import storage from '../../services/firebaseConfig';
 import { format } from 'date-fns/esm';
 
+export const cancelOrder = (orderdata, id) => {
+	return (dispatch, getState, { getFirestore }) => {
+		const firestore = getFirestore();
+
+		const logs = {
+			action: 'ORDER_CANCELED_BY_USER',
+			date: new Date()
+		};
+		const spreadLogs = [...orderdata.logs, { ...logs }];
+		console.log(spreadLogs);
+		const today = new Date();
+		firestore
+			.collection('orders')
+			.doc(id)
+			.set({
+				createdAt: orderdata.createdAt,
+				updatedAt: today,
+				location: orderdata.location,
+				user: orderdata.user,
+				logs: spreadLogs,
+				orderDate: orderdata.orderDate,
+				photos: orderdata.photos,
+				status: 'CANCELED_BY_USER',
+				userId: orderdata.userId
+			})
+			.then(() => {
+				dispatch({ type: 'CANCEL_ORDER_SUCCESS', orderdata });
+			})
+			.catch(err => {
+				dispatch({ type: 'CANCEL_ORDER_ERROR', err });
+			});
+	};
+};
+
 export const removeOrder = id => {
 	return (dispatch, getState, { getFirebase, getFirestore }) => {
 		const firestore = getFirestore();
@@ -14,7 +48,7 @@ export const removeOrder = id => {
 			})
 			.catch(error => {
 				console.error('Error removing document: ', error);
-				dispatch({ type: 'REMOVE_ERROR', error });
+				// dispatch({ type: 'REMOVE_ORDER_ERROR', error });
 			});
 	};
 };
@@ -53,6 +87,7 @@ export const createOrder = (order, picture) => {
 			userId: userId,
 			email: order.email
 		};
+		const spreadLogs = [{ ...logs }];
 
 		firestore
 			.collection('orders')
@@ -60,7 +95,7 @@ export const createOrder = (order, picture) => {
 				createdAt: firestore.FieldValue.serverTimestamp(),
 				location: lokasi,
 				photos: order.downloadURLs,
-				logs: logs,
+				logs: spreadLogs,
 				user: user,
 				status: 'WAITING_CONFIRMATION',
 				userId: userId,
@@ -68,6 +103,7 @@ export const createOrder = (order, picture) => {
 			})
 			.then(() => {
 				dispatch({ type: 'CREATE_ORDER', order });
+				console.log(spreadLogs);
 			})
 			.catch(err => {
 				dispatch({ type: 'CREATE_ORDER_ERROR', err });
@@ -95,6 +131,7 @@ export const createOrderWithoutLogin = (order, picture) => {
 			phone: order.phone,
 			email: order.email
 		};
+		const spreadLogs = [{ ...logs }];
 
 		firestore
 			.collection('orders')
@@ -102,7 +139,7 @@ export const createOrderWithoutLogin = (order, picture) => {
 				createdAt: firestore.FieldValue.serverTimestamp(),
 				location: lokasi,
 				photos: order.downloadURLs,
-				logs: logs,
+				logs: spreadLogs,
 				user: user,
 				status: 'WAITING_CONFIRMATION',
 				orderDate: order.selectedDate
