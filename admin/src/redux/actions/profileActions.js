@@ -33,9 +33,15 @@ export const editProfileAdmin = (userdata, id) => {
       })
       .then(() => {
         dispatch({ type: "EDIT_SUCCESS", userdata });
+        setTimeout(()=>{
+          dispatch({type: "NOTHING_HAPPEN"})
+        }, 5000)
       })
       .catch(err => {
         dispatch({ type: "EDIT_ERROR", err });
+        setTimeout(()=>{
+          dispatch({type: "NOTHING_HAPPEN"})
+        }, 5000)
       });
   };
 };
