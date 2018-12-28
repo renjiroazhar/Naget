@@ -29,7 +29,7 @@
     },
     {
       "target": "admin",
-      "public": "admin/staging",
+      "public": "adminTwo/staging",
       "ignore": [
         "firebase.json",
         "**/.*",
