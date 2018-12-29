@@ -45,10 +45,11 @@ const styles = theme => ({
 		margin: '10px 0 0 0'
 	}
 });
-let renderCardWithWidth = widthAsPercent => {
+
+const CardPicture = props => {
 	return (
-		<div style={{ width: '100%', margin: 0, }} >
-			<Card id="card-view" style={{ width: widthAsPercent }}>
+		<div style={{ width: '100%', margin: 0 }}>
+			<Card id="card-view" style={{ width: '100%' }}>
 				<CardHeader
 					style={{
 						backgroundColor: '#1ABC9C',
@@ -66,7 +67,7 @@ let renderCardWithWidth = widthAsPercent => {
 									color: 'white'
 								}}
 							>
-								User
+								{props.name}
 							</h5>
 							<h5
 								style={{
@@ -102,15 +103,6 @@ let renderCardWithWidth = widthAsPercent => {
 			</Card>
 		</div>
 	);
-};
-
-const CardPicture = props => {
-	let width = window.screen.availWidth;
-	if (width > 720) {
-		return renderCardWithWidth('100%');
-	} else {
-		return renderCardWithWidth('100%');
-	}
 };
 
 CardPicture.propTypes = {

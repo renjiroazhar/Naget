@@ -207,12 +207,13 @@ function validateAddress(address) {
 }
 
 class Checkout extends React.Component {
-
 	state = {
 		activeStep: 0,
 		database: [],
 		data: [],
-		name: this.props.profile.name ? this.props.profile.name : this.props.auth.displayName,
+		name: this.props.profile.name
+			? this.props.profile.name
+			: this.props.auth.displayName,
 		phone: this.props.profile.phone ? this.props.profile.phone : '',
 		email: !this.props.auth.email ? '' : this.props.auth.email,
 		selectedDate: null,
@@ -326,7 +327,7 @@ class Checkout extends React.Component {
 				}, 5000);
 				return console.log(errorsEmail);
 			} catch (error) {
-				console.log(error)
+				console.log(error);
 			}
 		}
 		if (errorsPhone.length > 0) {
@@ -339,7 +340,7 @@ class Checkout extends React.Component {
 				}, 5000);
 				return console.log(errorsPhone);
 			} catch (error) {
-				return console.log(error)
+				return console.log(error);
 			}
 		}
 		if (errorsAddress.length > 0) {
@@ -352,7 +353,7 @@ class Checkout extends React.Component {
 				}, 5000);
 				return console.log(errorsAddress);
 			} catch (error) {
-				console.error(error)
+				console.error(error);
 			}
 		}
 		console.log(this.state);
@@ -553,43 +554,41 @@ class Checkout extends React.Component {
 	};
 
 	getSafe = (fn, defaultVal) => {
-		let name = sessionStorage.getItem("name")
-		let date = sessionStorage.getItem("date")
-		let email = sessionStorage.getItem("email")
-		let phone = sessionStorage.getItem("phone")
-		let address = sessionStorage.getItem("address")
+		let name = sessionStorage.getItem('name');
+		let date = sessionStorage.getItem('date');
+		let email = sessionStorage.getItem('email');
+		let phone = sessionStorage.getItem('phone');
+		let address = sessionStorage.getItem('address');
 		try {
-			if(name){
+			if (name) {
 				this.setState({
 					name: name
-				})
+				});
 			}
-			if(date){
+			if (date) {
 				this.setState({
 					selectedDate: date
-				})
+				});
 			}
-			if(phone){
+			if (phone) {
 				this.setState({
 					phone: phone
-				})
+				});
 			}
-			if(address){
+			if (address) {
 				this.setState({
 					address: address
-				})
+				});
 			}
-			if(email){
+			if (email) {
 				this.setState({
 					email: email
-				})
+				});
 			}
 		} catch (e) {
 			return console.log;
 		}
 	};
-
-
 
 	componentDidMount() {
 		const { auth, profile } = this.props;
@@ -732,7 +731,7 @@ class Checkout extends React.Component {
 				style={{
 					width: '-webkit-fill-available',
 					height: '100%',
-					marginTop: '10px',
+					marginTop: '10px'
 				}}
 			>
 				<React.Fragment>
@@ -803,41 +802,41 @@ class Checkout extends React.Component {
 							</AppBar>
 						</div>
 					) : (
-								<div
-									style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
-								>
-									<AppBar
-										style={{ width: '100%', backgroundColor: '#333c4e' }}
-										position="static"
+						<div
+							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
+						>
+							<AppBar
+								style={{ width: '100%', backgroundColor: '#333c4e' }}
+								position="static"
+							>
+								<Toolbar>
+									<IconButton
+										onClick={this.handleBack}
+										className={classes.menuButton}
+										color="inherit"
+										aria-label="Menu"
 									>
-										<Toolbar>
-											<IconButton
-												onClick={this.handleBack}
-												className={classes.menuButton}
-												color="inherit"
-												aria-label="Menu"
-											>
-												<ArrowLeft />
-											</IconButton>
-											<Typography
-												variant="h7"
-												color="inherit"
-												className={classes.grow}
-											>
-												{activeStep === 1
-													? 'Date, Time, and Photo'
-													: activeStep === 2
-														? 'Trash list and Price'
-														: activeStep === 3
-															? 'Confirm Order'
-															: activeStep === 4
-																? 'Order Successful'
-																: ''}
-											</Typography>
-										</Toolbar>
-									</AppBar>
-								</div>
-							)}
+										<ArrowLeft />
+									</IconButton>
+									<Typography
+										variant="h7"
+										color="inherit"
+										className={classes.grow}
+									>
+										{activeStep === 1
+											? 'Date, Time, and Photo'
+											: activeStep === 2
+												? 'Trash list and Price'
+												: activeStep === 3
+													? 'Confirm Order'
+													: activeStep === 4
+														? 'Order Successful'
+														: ''}
+									</Typography>
+								</Toolbar>
+							</AppBar>
+						</div>
+					)}
 					<CssBaseline />
 					<br />
 					<br />
@@ -846,25 +845,25 @@ class Checkout extends React.Component {
 							{activeStep === 4 || activeStep > 3 ? (
 								''
 							) : (
-									<MuiThemeProvider theme={themeMui}>
-										<Stepper activeStep={activeStep} className={classes.stepper}>
-											{steps.map(label => (
-												<Step key={label}>
-													<StepLabel
-														StepIconProps={{
-															classes: {
-																active: classes.stepIcon,
-																completed: classes.completedStep
-															}
-														}}
-													>
-														{label}
-													</StepLabel>
-												</Step>
-											))}
-										</Stepper>
-									</MuiThemeProvider>
-								)}
+								<MuiThemeProvider theme={themeMui}>
+									<Stepper activeStep={activeStep} className={classes.stepper}>
+										{steps.map(label => (
+											<Step key={label}>
+												<StepLabel
+													StepIconProps={{
+														classes: {
+															active: classes.stepIcon,
+															completed: classes.completedStep
+														}
+													}}
+												>
+													{label}
+												</StepLabel>
+											</Step>
+										))}
+									</Stepper>
+								</MuiThemeProvider>
+							)}
 
 							<React.Fragment>
 								{activeStep === steps.length ? (
@@ -883,7 +882,7 @@ class Checkout extends React.Component {
 												textAlign: 'center',
 												color: '#757575',
 												justifyContent: 'center',
-												marginTop: '10px',
+												marginTop: '10px'
 											}}
 											gutterBottom
 										>
@@ -902,8 +901,8 @@ class Checkout extends React.Component {
 											variant="subtitle1"
 											style={{ textAlign: 'center', color: '#757575' }}
 										>
-											Thank You for order, You can monitor your order in real time and
-											get additional points.
+											Thank You for order, You can monitor your order in real
+											time and get additional points.
 										</Typography>
 										<Typography
 											variant="subtitle2"
@@ -938,11 +937,11 @@ class Checkout extends React.Component {
 										</div>
 									</React.Fragment>
 								) : (
-										<React.Fragment>
-											{getStepContent(activeStep)}
-											<div>{activeStep === steps.length - 1 ? '' : ''}</div>
-										</React.Fragment>
-									)}
+									<React.Fragment>
+										{getStepContent(activeStep)}
+										<div>{activeStep === steps.length - 1 ? '' : ''}</div>
+									</React.Fragment>
+								)}
 							</React.Fragment>
 						</Paper>
 					</main>

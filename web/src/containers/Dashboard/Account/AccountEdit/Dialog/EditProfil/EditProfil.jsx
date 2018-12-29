@@ -20,6 +20,7 @@ import FormControl from '@material-ui/core/FormControl';
 import { connect } from 'react-redux';
 import firebase from '../../../../../../services/firebaseConfig';
 import { editProfile } from '../../../../../../redux/actions/profileActions';
+
 const styles = theme => ({
 	appBar: {
 		position: 'fixed',
@@ -114,11 +115,21 @@ class EditProfil extends React.Component {
 		try {
 			const getData = await ref.onSnapshot(doc => {
 				var dataSnapshot = doc.data();
-				if (dataSnapshot !== null || dataSnapshot !== []) {
+				console.log(dataSnapshot);
+				if (dataSnapshot != null || dataSnapshot != undefined) {
 					this.setState({
-						name: dataSnapshot.name && dataSnapshot.name,
-						address: dataSnapshot.address && dataSnapshot.address,
-						phone: dataSnapshot.phone && dataSnapshot.phone
+						name:
+							dataSnapshot.name != null || dataSnapshot.name != undefined
+								? dataSnapshot.name
+								: '',
+						address:
+							dataSnapshot.address != null || dataSnapshot.address != undefined
+								? dataSnapshot.address
+								: '',
+						phone:
+							dataSnapshot.phone != null || dataSnapshot.phone != undefined
+								? dataSnapshot.phone
+								: ''
 					});
 				} else {
 					console.log('Kosong? , Astaughfirullah');
@@ -270,6 +281,7 @@ EditProfil.propTypes = {
 };
 
 const mapStateToProps = state => {
+	console.log(state);
 	const id = state.firebase.auth.uid;
 	const users = state.firestore.data.users;
 	const user = users ? users[id] : null;

@@ -197,11 +197,7 @@ class ThirdStep extends React.Component {
 					</Grid>
 					<Grid item xs={12}>
 						<Card className={classes.card}>
-							<CardMedia
-								className={classes.cover}
-								image={Can}
-								title="Can"
-							/>
+							<CardMedia className={classes.cover} image={Can} title="Can" />
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>

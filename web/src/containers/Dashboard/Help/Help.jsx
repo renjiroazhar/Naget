@@ -35,23 +35,141 @@ class Help extends React.Component {
 						</ExpansionPanelSummary>
 						<ExpansionPanelDetails>
 							<Typography>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-								eget.
+								Moretrash is a pilot company engaged in online waste
+								transportation services based on Progressive Web Application
+								which provides convenience for customers and focuses on
+								the utilization of these technologies to be implemented
+								maximally.
 							</Typography>
 						</ExpansionPanelDetails>
 					</ExpansionPanel>
 					<ExpansionPanel>
 						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
 							<Typography className={classes.heading}>
-								How to exchange garbage?
+								How to use Moretrash services?
 							</Typography>
 						</ExpansionPanelSummary>
 						<ExpansionPanelDetails>
 							<Typography>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-								eget.
+								Customers only need to open the Browser on their smartphone,
+								then go to the Moretrash website. Customers can directly
+								book garbage pick up, which then customers will fill in
+								their personal data, time and pickup address.
+							</Typography>
+						</ExpansionPanelDetails>
+					</ExpansionPanel>
+					<ExpansionPanel>
+						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+							<Typography className={classes.heading}>
+								What features are on Moretrash?
+							</Typography>
+						</ExpansionPanelSummary>
+						<ExpansionPanelDetails>
+							<Typography>
+								In Moretrash there are 4 features that can be enjoyed by all
+								customers, namely Trash Sale (transportation of recycled
+								waste). Trash Bag (transporting household waste), More
+								Point (Customer loyalty card), More Pay (customers can
+								pay anything).
+							</Typography>
+						</ExpansionPanelDetails>
+					</ExpansionPanel>
+					<ExpansionPanel>
+						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+							<Typography className={classes.heading}>
+								What kind of garbage that can be picked up by Moretrash?
+							</Typography>
+						</ExpansionPanelSummary>
+						<ExpansionPanelDetails>
+							<Typography>
+								Waste that can be picked up by Moretrash partners is
+								in the form of paper waste, plastic bottles and some
+								other heavy metal objects.
+							</Typography>
+						</ExpansionPanelDetails>
+					</ExpansionPanel>
+					<ExpansionPanel>
+						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+							<Typography className={classes.heading}>
+								How do I know the price of each type of garbage that will be picked up?
+							</Typography>
+						</ExpansionPanelSummary>
+						<ExpansionPanelDetails>
+							<Typography>
+								To find out the price of garbage for each item, you only need
+								to make a trash booking first.
+							</Typography>
+						</ExpansionPanelDetails>
+					</ExpansionPanel>
+					<ExpansionPanel>
+						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+							<Typography className={classes.heading}>
+								How Moretrash weigh the garbage?
+							</Typography>
+						</ExpansionPanelSummary>
+						<ExpansionPanelDetails>
+							<Typography>
+								The garbage that will be transported by the Moretrash partner
+								is weighed using a digital scale that is real accurate and
+								cannot be manipulated.
+							</Typography>
+						</ExpansionPanelDetails>
+					</ExpansionPanel>
+					<ExpansionPanel>
+						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+							<Typography className={classes.heading}>
+								What is a Drop Point?
+							</Typography>
+						</ExpansionPanelSummary>
+						<ExpansionPanelDetails>
+							<Typography>
+								If the customer wants to get a higher price, then the customer
+								just simply comes and brings the garbage to the partner site
+								that has already collaborated with Moretrash.
+							</Typography>
+						</ExpansionPanelDetails>
+					</ExpansionPanel>
+					<ExpansionPanel>
+						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+							<Typography className={classes.heading}>
+								What benefits do I get when using Moretrash services?
+							</Typography>
+						</ExpansionPanelSummary>
+						<ExpansionPanelDetails>
+							<Typography>
+								Customers do not need to be bothered and difficult if they
+								want to dispose of their trash, just book Moretrash.
+								Garbage is immediately picked up.
+							</Typography>
+						</ExpansionPanelDetails>
+					</ExpansionPanel>
+					<ExpansionPanel>
+						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+							<Typography className={classes.heading}>
+								What is the procedure if there is a cancel order because
+								picker or the customer does not make a pickup?
+							</Typography>
+						</ExpansionPanelSummary>
+						<ExpansionPanelDetails>
+							<Typography>
+								If there is a cancel order or a failed pickup,
+								the customer only needs to re-order.
+							</Typography>
+						</ExpansionPanelDetails>
+					</ExpansionPanel>
+					<ExpansionPanel>
+						<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+							<Typography className={classes.heading}>
+								What are the benefits if you log in with an account on Moretrash?
+							</Typography>
+						</ExpansionPanelSummary>
+						<ExpansionPanelDetails>
+							<Typography>
+								Many benefits are obtained by customers when creating an
+								Account on Moretrash, in addition to speeding up steps
+								or the process of filling out the form, customers will
+								also get points every time a pickup is made by the
+								Moretrash partner.
 							</Typography>
 						</ExpansionPanelDetails>
 					</ExpansionPanel>
@@ -65,7 +183,8 @@ class Help extends React.Component {
 const styles = theme => ({
 	root: {
 		width: '100%',
-		marginTop: '10px'
+		marginTop: '5%',
+		marginBottom: '23%',
 	},
 	content: {
 		textAlign: 'left'
