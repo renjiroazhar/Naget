@@ -148,7 +148,8 @@ export const createOrderWithoutLogin = (order, picture) => {
 				dispatch({ type: 'CREATE_ORDER', order });
 			})
 			.catch(err => {
-				dispatch({ type: 'CREATE_ORDER_ERROR', err });
+				// dispatch({ type: 'CREATE_ORDER_ERROR', err });
+				console.log(err);
 			});
 	};
 };

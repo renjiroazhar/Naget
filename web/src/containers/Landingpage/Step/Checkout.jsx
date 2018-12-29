@@ -286,7 +286,7 @@ class Checkout extends React.Component {
 		const errorsEmail = validateEmail(email);
 		const errorsAtEmail = validateAtEmail(email);
 		const errorsTitikEmail = validateTitikEmail(email);
-		const emailInvalid = validateEmailValid(email)
+		const emailInvalid = validateEmailValid(email);
 		if (!emailInvalid) {
 			this.setState({
 				emailInvalid: true
@@ -297,7 +297,6 @@ class Checkout extends React.Component {
 				});
 			}, 5000);
 			console.log('Email Tidak Valid');
-
 		}
 		if (
 			email.length === 0 &&
@@ -566,6 +565,60 @@ class Checkout extends React.Component {
 		});
 	};
 
+	setFirstStepItem = () => {
+		sessionStorage.setItem('name', this.state.name);
+		sessionStorage.setItem('email', this.state.email);
+		sessionStorage.setItem('phone', this.state.phone);
+		sessionStorage.setItem('address', this.state.address);
+	};
+
+	setSecondStepItem = () => {
+		sessionStorage.setItem('date', this.state.selectedDate);
+	};
+
+	getSafe = () => {
+		let name = sessionStorage.getItem('name');
+		let email = sessionStorage.getItem('email');
+		let phone = sessionStorage.getItem('phone');
+		let address = sessionStorage.getItem('address');
+		let date = sessionStorage.getItem('date');
+		
+		try {
+			if(name){
+				this.setState({
+					name: name
+				})
+			}
+			if(email){
+				this.setState({
+					email: email
+				})
+			}
+			if(phone){
+				this.setState({
+					phone: phone
+				})
+			}
+			if(address){
+				this.setState({
+					address: address
+				})
+			}
+			if(date){
+				this.setState({
+					selectedDate: date
+				})
+			}
+		}
+		catch (e){
+			return console.error(e)
+		}
+	};
+
+	componentDidMount(){
+		this.getSafe()
+	}
+
 	render() {
 		const { classes } = this.props;
 		const { activeStep } = this.state;
@@ -647,6 +700,7 @@ class Checkout extends React.Component {
 							nextStep={this.handleSubmit}
 							handleChange={this.handleChange}
 							values={values}
+							setFirstStepItem={this.setFirstStepItem}
 						/>
 					);
 				case 1:
@@ -667,6 +721,7 @@ class Checkout extends React.Component {
 							handleMenuOpen={this.handleMenuOpen}
 							handleMenuClose={this.handleMenuClose}
 							handleNextStepTwo={this.handleNextStepTwo}
+							setSecondStepItem={this.setSecondStepItem}
 						/>
 					);
 				case 2:
@@ -699,7 +754,7 @@ class Checkout extends React.Component {
 				style={{
 					width: '-webkit-fill-available',
 					height: '100%',
-					marginTop: '10px',
+					marginTop: '10px'
 				}}
 			>
 				<React.Fragment>
@@ -770,41 +825,41 @@ class Checkout extends React.Component {
 							</AppBar>
 						</div>
 					) : (
-								<div
-									style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
-								>
-									<AppBar
-										style={{ width: '100%', backgroundColor: '#333c4e' }}
-										position="static"
+						<div
+							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
+						>
+							<AppBar
+								style={{ width: '100%', backgroundColor: '#333c4e' }}
+								position="static"
+							>
+								<Toolbar>
+									<IconButton
+										onClick={this.handleBack}
+										className={classes.menuButton}
+										color="inherit"
+										aria-label="Menu"
 									>
-										<Toolbar>
-											<IconButton
-												onClick={this.handleBack}
-												className={classes.menuButton}
-												color="inherit"
-												aria-label="Menu"
-											>
-												<ArrowLeft />
-											</IconButton>
-											<Typography
-												variant="h7"
-												color="inherit"
-												className={classes.grow}
-											>
-												{activeStep === 1
-													? 'Date, Time, and Photo'
-													: activeStep === 2
-														? 'Trash list and Price'
-														: activeStep === 3
-															? 'Confirm Order'
-															: activeStep === 4
-																? 'Order Successful'
-																: ''}
-											</Typography>
-										</Toolbar>
-									</AppBar>
-								</div>
-							)}
+										<ArrowLeft />
+									</IconButton>
+									<Typography
+										variant="h7"
+										color="inherit"
+										className={classes.grow}
+									>
+										{activeStep === 1
+											? 'Date, Time, and Photo'
+											: activeStep === 2
+												? 'Trash list and Price'
+												: activeStep === 3
+													? 'Confirm Order'
+													: activeStep === 4
+														? 'Order Successful'
+														: ''}
+									</Typography>
+								</Toolbar>
+							</AppBar>
+						</div>
+					)}
 					<CssBaseline />
 					<br />
 					<br />
@@ -813,25 +868,25 @@ class Checkout extends React.Component {
 							{activeStep === 4 || activeStep > 3 ? (
 								''
 							) : (
-									<MuiThemeProvider theme={themeMui}>
-										<Stepper activeStep={activeStep} className={classes.stepper}>
-											{steps.map(label => (
-												<Step key={label}>
-													<StepLabel
-														StepIconProps={{
-															classes: {
-																active: classes.stepIcon,
-																completed: classes.completedStep
-															}
-														}}
-													>
-														{label}
-													</StepLabel>
-												</Step>
-											))}
-										</Stepper>
-									</MuiThemeProvider>
-								)}
+								<MuiThemeProvider theme={themeMui}>
+									<Stepper activeStep={activeStep} className={classes.stepper}>
+										{steps.map(label => (
+											<Step key={label}>
+												<StepLabel
+													StepIconProps={{
+														classes: {
+															active: classes.stepIcon,
+															completed: classes.completedStep
+														}
+													}}
+												>
+													{label}
+												</StepLabel>
+											</Step>
+										))}
+									</Stepper>
+								</MuiThemeProvider>
+							)}
 
 							<React.Fragment>
 								{activeStep === steps.length ? (
@@ -858,7 +913,7 @@ class Checkout extends React.Component {
 													fontWeight: 'bold',
 													marginRight: '5px',
 													color: '#757575',
-													marginTop: '10px',
+													marginTop: '10px'
 												}}
 											>
 												Thank You,
@@ -869,9 +924,9 @@ class Checkout extends React.Component {
 											variant="subtitle1"
 											style={{ textAlign: 'center', color: '#757575' }}
 										>
-											Thank You for order, let's register your account
-											so you can monitor your order in real time and
-											get additional points.
+											Thank You for order, let's register your account so you
+											can monitor your order in real time and get additional
+											points.
 										</Typography>
 
 										<Typography
@@ -929,11 +984,11 @@ class Checkout extends React.Component {
 										</div>
 									</React.Fragment>
 								) : (
-										<React.Fragment>
-											{getStepContent(activeStep)}
-											<div>{activeStep === steps.length - 1 ? '' : ''}</div>
-										</React.Fragment>
-									)}
+									<React.Fragment>
+										{getStepContent(activeStep)}
+										<div>{activeStep === steps.length - 1 ? '' : ''}</div>
+									</React.Fragment>
+								)}
 							</React.Fragment>
 						</Paper>
 					</main>

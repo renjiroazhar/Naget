@@ -59,7 +59,7 @@ class FirstStep extends React.Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-
+		this.props.setFirstStepItem();
 		this.props.nextStep();
 	};
 

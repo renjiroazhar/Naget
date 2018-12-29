@@ -553,22 +553,53 @@ class Checkout extends React.Component {
 	};
 
 	getSafe = (fn, defaultVal) => {
+		let name = sessionStorage.getItem("name")
+		let date = sessionStorage.getItem("date")
+		let email = sessionStorage.getItem("email")
+		let phone = sessionStorage.getItem("phone")
+		let address = sessionStorage.getItem("address")
 		try {
-			return fn();
+			if(name){
+				this.setState({
+					name: name
+				})
+			}
+			if(date){
+				this.setState({
+					selectedDate: date
+				})
+			}
+			if(phone){
+				this.setState({
+					phone: phone
+				})
+			}
+			if(address){
+				this.setState({
+					address: address
+				})
+			}
+			if(email){
+				this.setState({
+					email: email
+				})
+			}
 		} catch (e) {
-			return defaultVal;
+			return console.log;
 		}
 	};
 
-	// componentDidMount() {
-	// 	const { auth, profile } = this.props;
-	// 	this.setState({
-	// 		email: auth.email,
-	// 		name: profile.name ? profile.name : auth.displayName,
-	// 		phone: profile.phone,
-	// 		address: profile.address
-	// 	});
-	// }
+
+
+	componentDidMount() {
+		const { auth, profile } = this.props;
+		this.setState({
+			email: auth.email,
+			name: profile.name ? profile.name : auth.displayName,
+			phone: profile.phone,
+			address: profile.address
+		});
+	}
 
 	render() {
 		const { classes } = this.props;

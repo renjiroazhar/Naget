@@ -71,6 +71,7 @@ class SecondStep extends React.Component {
 		) {
 			this.props.allowSend();
 		}
+		this.props.setSecondStepItem();
 		this.props.handleNextStepTwo();
 	};
 
