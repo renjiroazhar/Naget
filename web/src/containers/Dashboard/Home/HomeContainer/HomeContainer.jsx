@@ -66,11 +66,11 @@ const styles = theme => ({
 	},
 	cssRoot: {
 		color: '#FFFFFF',
-		backgroundColor: '#1ABC9C',
+		backgroundColor: '#00c43e',
 		width: '95%',
 		fontWeight: 400,
 		'&:hover': {
-			backgroundColor: '#1ABC9C'
+			backgroundColor: '#00c43e'
 		}
 	},
 	cssLabel: {

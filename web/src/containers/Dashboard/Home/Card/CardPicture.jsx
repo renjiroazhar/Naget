@@ -52,7 +52,7 @@ const CardPicture = props => {
 			<Card id="card-view" style={{ width: '100%' }}>
 				<CardHeader
 					style={{
-						backgroundColor: '#1ABC9C',
+						backgroundColor: '#00c43e',
 						paddingTop: 0,
 						paddingBottom: 0,
 						height: '40px'

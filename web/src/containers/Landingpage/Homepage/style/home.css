@@ -17,10 +17,11 @@
   align-items: center;
   /* center items vertically */
   justify-content: center;
-  background-color: #282c34;
+  background-color: #ffffff;
   width: stretch;
   margin: 0 auto;
   padding: 0;
+  margin-top: -5px;
 }
 
 .home p {
@@ -47,6 +48,6 @@
   width: stretch;
   
   min-height: 100vh;
-  background-color: #282c34;
+  background-color: #ffffff;
   
 }

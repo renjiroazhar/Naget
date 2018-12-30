@@ -108,11 +108,11 @@ class OrderDetail extends React.Component {
 		// Delete the file
 		desertRef
 			.delete()
-			.then(function(res) {
+			.then(function (res) {
 				console.log(res, 'Waw Sukses');
 				this.deleteArrayImage();
 			})
-			.catch(function(error) {
+			.catch(function (error) {
 				console.log(error, 'Wadidaw Error');
 			});
 	};
@@ -165,7 +165,7 @@ class OrderDetail extends React.Component {
 				<div style={{ backgroundColor: '#e7e7e7' }}>
 					<div style={{ flex: 1 }}>
 						<AppBar
-							style={{ width: '100%', backgroundColor: '#333c4e' }}
+							style={{ width: '100%', backgroundColor: '#00c43e' }}
 							position="static"
 						>
 							<Toolbar>
@@ -272,48 +272,48 @@ class OrderDetail extends React.Component {
 								</ListItem>
 								<div>
 									{photos !== null ||
-									photos !== [] ||
-									photos !== 'undefined' ? (
-										photos &&
-										photos.map((foto, i) => {
-											return (
-												<div>
-													<Grid container spacing={24}>
-														<Grid item xs={12} align="center">
-															<img
-																onClick={this.viewImage}
-																src={foto}
-																alt="preview failed"
-																key={i}
-																width="250"
-																height="250"
-																style={{
-																	display: 'block',
-																	margin: '20px',
-																	objectFit: 'contain'
-																}}
-															/>
+										photos !== [] ||
+										photos !== 'undefined' ? (
+											photos &&
+											photos.map((foto, i) => {
+												return (
+													<div>
+														<Grid container spacing={24}>
+															<Grid item xs={12} align="center">
+																<img
+																	onClick={this.viewImage}
+																	src={foto}
+																	alt="preview failed"
+																	key={i}
+																	width="250"
+																	height="250"
+																	style={{
+																		display: 'block',
+																		margin: '20px',
+																		objectFit: 'contain'
+																	}}
+																/>
+															</Grid>
 														</Grid>
-													</Grid>
 
-													<Viewer
-														visible={this.state.visible}
-														onClose={this.cancelViewImage}
-														images={[
-															{
-																src: foto,
-																alt: ''
-															}
-														]}
-													/>
-												</div>
-											);
-										})
-									) : (
-										<div style={{ textAlign: 'center' }}>
-											<p>No Photo</p>
-										</div>
-									)}
+														<Viewer
+															visible={this.state.visible}
+															onClose={this.cancelViewImage}
+															images={[
+																{
+																	src: foto,
+																	alt: ''
+																}
+															]}
+														/>
+													</div>
+												);
+											})
+										) : (
+											<div style={{ textAlign: 'center' }}>
+												<p>No Photo</p>
+											</div>
+										)}
 									<br />
 									<br />
 									<br />

@@ -26,7 +26,7 @@ class Navbar extends Component {
 					<AppBar
 						style={{
 							width: '100%',
-							backgroundColor: '#333c4e'
+							backgroundColor: '#00c43e'
 						}}
 						position="static"
 					>

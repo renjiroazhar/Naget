@@ -1,7 +1,7 @@
 import React from 'react';
 import EditProfil from './AccountEdit/Dialog/EditProfil';
 import GantiPassword from './AccountEdit/Dialog/GantiPassword';
-import Faq from './AccountEdit/Dialog/Faq';
+import Help from './AccountEdit/Dialog/Help';
 import Rate from './AccountEdit/Dialog/Rate';
 import Tentang from './AccountEdit/Dialog/Tentang';
 import Testimoni from './AccountEdit/Dialog/Testimoni';
@@ -59,7 +59,7 @@ class Account extends React.Component {
 				</div>
 				<div style={{ marginTop: '5%' }}>
 					<div>
-						<Faq renderTab={() => this.props.renderTab()} />
+						<Help renderTab={() => this.props.renderTab()} />
 					</div>
 					<Divider />
 					<div>

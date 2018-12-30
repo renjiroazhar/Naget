@@ -1,51 +1,36 @@
-import React, { Component } from 'react';
-import { Fab, SpeedDial, SpeedDialItem, Icon } from 'react-onsenui';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import ChatIcon from '@material-ui/icons/Chat';
+import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
 
-export default class TooltipButton extends Component {
-	render() {
-		return (
-			<div
-				style={{
-					top: 0,
-					bottom: 0,
-					left: 0,
-					right: 0,
-					overflowY: 'auto'
-				}}
-			>
-				<SpeedDial
-					disabled={false}
-					direction="up"
-					onClick={() => console.log('test1')}
-					position="right bottom"
-					style={{ position: 'absolute !important' }}
-				>
-					<Fab style={{ backgroundColor: '#00c43e' }}>
-						<Icon
-							icon="ion-chatboxes"
-							size={26}
-							fixedWidth={false}
-							style={{ verticalAlign: 'middle' }}
-						/>
-					</Fab>
-					<SpeedDialItem onClick={() => console.log('speed A')}>
-						{' '}
-						A{' '}
-					</SpeedDialItem>
-					<SpeedDialItem onClick={() => console.log('speed B')}>
-						{' '}
-						B{' '}
-					</SpeedDialItem>
-					<SpeedDialItem onClick={() => console.log('speed C')}>
-						{' '}
-						C{' '}
-					</SpeedDialItem>
-					<SpeedDialItem onClick={() => console.log('speed D')}>
-						{' '}
-						D{' '}
-					</SpeedDialItem>
-				</SpeedDial>
-			</div>
-		);
-	}
+const styles = theme => ({
+	fab: {
+		position: 'fixed',
+		right: '20px',
+		bottom: '15px',
+		marginBottom: 0,
+		zIndex: 997,
+		backgroundColor: '#00c43e !important'
+	},
+});
+
+function TooltipButton(props) {
+	const { classes } = props;
+	return (
+		<div>
+			<Tooltip title="Chat" aria-label="Chat" href="https://line.me/R/ti/p/@vzx3170v" target="_blank">
+				<Fab color="primary" className={classes.fab}>
+					<ChatIcon />
+				</Fab>
+			</Tooltip>
+		</div>
+	);
 }
+
+TooltipButton.propTypes = {
+	classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(TooltipButton);

@@ -24,7 +24,7 @@ import { editProfile } from '../../../../../../redux/actions/profileActions';
 const styles = theme => ({
 	appBar: {
 		position: 'fixed',
-		backgroundColor: '#333c4e'
+		backgroundColor: '#00c43e'
 	},
 	flex: {
 		flex: 1

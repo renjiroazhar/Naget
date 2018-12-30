@@ -134,7 +134,7 @@ class EditOrder extends Component {
 			>
 				<div style={{ flex: 1 }}>
 					<AppBar
-						style={{ width: '100%', backgroundColor: '#333c4e' }}
+						style={{ width: '100%', backgroundColor: '#00c43e' }}
 						position="static"
 					>
 						<Toolbar>

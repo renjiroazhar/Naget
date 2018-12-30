@@ -103,7 +103,7 @@ class Review extends React.Component {
 		// 			<div style={{ textAlign: 'center' }}>
 		// 				<Button
 		// 					style={{
-		// 						backgroundColor: '#1ABC9C',
+		// 						backgroundColor: '#00c43e',
 		// 						color: 'white',
 		// 						height: '40px',
 		// 						marginBottom: '25px'
@@ -139,7 +139,7 @@ class Review extends React.Component {
 							onClick={this.props.handleCreateOrder}
 							style={{
 								width: '100%',
-								backgroundColor: '#1ABC9C',
+								backgroundColor: '#00c43e',
 								color: 'white',
 								height: '46px'
 							}}
@@ -162,7 +162,7 @@ class Review extends React.Component {
 							color="primary"
 							style={{
 								width: '100%',
-								backgroundColor: '#1ABC9C',
+								backgroundColor: '#00c43e',
 								color: 'white',
 								height: '46px'
 							}}

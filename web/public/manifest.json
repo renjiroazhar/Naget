@@ -1,9 +1,15 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Moretrash",
+  "name": [
+    {
+      "src": "moretrash.jpg",
+      "sizes": "1280x343 640x171,5 320x85,75 160x42,875",
+      "type": "image/jpeg"
+    }
+  ],
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logo_daun.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }

@@ -33,10 +33,10 @@ const themeMui = createMuiTheme({
 		MuiStepIcon: {
 			root: {
 				'&$completed': {
-					color: '#1ABC9C'
+					color: '#00c43e'
 				},
 				'&$active': {
-					color: '#1ABC9C'
+					color: '#00c43e'
 				}
 			}
 		},
@@ -116,16 +116,16 @@ const styles = theme => ({
 		}
 	},
 	button: {
-		backgroundColor: '#1ABC9C',
+		backgroundColor: '#00c43e',
 		height: '46px',
 		'&:hover': {
-			backgroundColor: '#1ABC9C',
+			backgroundColor: '#00c43e',
 			borderColor: '#0062cc',
 			color: 'white'
 		},
 		'&:active': {
 			boxShadow: 'none',
-			backgroundColor: '#1ABC9C',
+			backgroundColor: '#00c43e',
 			borderColor: '#005cbf'
 		},
 		'&:focus': {
