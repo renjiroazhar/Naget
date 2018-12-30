@@ -13,7 +13,7 @@ const Navbar = props => {
 					style={{
 						height: '56px',
 						color: '#ffffff',
-						backgroundColor: '#16a085'
+						backgroundColor: '#00c43e'
 					}}
 				>
 					<div style={{ color: '#ffffff' }}>Detail Order</div>

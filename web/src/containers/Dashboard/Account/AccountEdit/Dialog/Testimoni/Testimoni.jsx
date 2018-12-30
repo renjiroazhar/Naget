@@ -29,7 +29,7 @@ const styles = theme => ({
 	},
 	title: {
 		margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
-		color: '#1abc9c',
+		color: '#00c43e',
 		textAlign: 'center'
 	},
 	card: {
@@ -64,7 +64,7 @@ const styles = theme => ({
 	},
 	appBar: {
 		position: 'fixed',
-		backgroundColor: '#333c4e'
+		backgroundColor: '#00c43e'
 	}
 });
 
@@ -145,7 +145,7 @@ class Testimoni extends React.Component {
 					>
 						<PaperSheet />
 						<Typography variant="h6" className={classes.title}>
-							TESTIMONIALS
+							Testimonials
 						</Typography>
 						<center>
 							<CarouselTestimoni />

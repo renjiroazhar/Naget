@@ -191,7 +191,7 @@ class Tentang extends React.Component {
 							>
 								<Button
 									style={{
-										backgroundColor: '#1ABC9C',
+										backgroundColor: '#00c43e',
 										width: '90%',
 										textAlign: 'center',
 										color: '#ffffff'

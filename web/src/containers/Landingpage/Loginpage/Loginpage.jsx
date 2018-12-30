@@ -186,8 +186,8 @@ const styles = theme => ({
 		width: 200
 	},
 	absolute: {
-		color: '#1ABC9C',
-		backgroundColor: '#1ABC9C',
+		color: '#00c43e',
+		backgroundColor: '#00c43e',
 		position: 'fixed',
 		right: '0px',
 		bottom: '0px',
@@ -200,7 +200,7 @@ const styles = theme => ({
 		borderRadius: 0,
 		fontWeight: 400,
 		color: 'white',
-		backgroundColor: '#1ABC9C',
+		backgroundColor: '#00c43e',
 		textDecoration: 'none'
 	},
 	marginForm: {
@@ -212,17 +212,17 @@ const styles = theme => ({
 	},
 	cssRoot: {
 		color: '#FFFFFF',
-		backgroundColor: '#1ABC9C',
+		backgroundColor: '#00c43e',
 		width: '100%',
 		fontWeight: 400,
 		'&:hover': {
-			backgroundColor: '#1ABC9C'
+			backgroundColor: '#00c43e'
 		}
 	},
 	iconchat: {
 		color: '#fff',
 		'&:hover': {
-			color: '#1ABC9C'
+			color: '#00c43e'
 		}
 	},
 	bootstrapRoot: {

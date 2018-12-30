@@ -19,16 +19,16 @@ const styles = theme => ({
 		paddingLeft: theme.spacing.unit * 4
 	},
 	button: {
-		backgroundColor: '#1ABC9C',
+		backgroundColor: '#00c43e',
 		height: '46px',
 		'&:hover': {
-			backgroundColor: '#1ABC9C',
+			backgroundColor: '#00c43e',
 			borderColor: '#0062cc',
 			color: 'white'
 		},
 		'&:active': {
 			boxShadow: 'none',
-			backgroundColor: '#1ABC9C',
+			backgroundColor: '#00c43e',
 			borderColor: '#005cbf'
 		},
 		'&:focus': {

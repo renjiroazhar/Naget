@@ -5,36 +5,36 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import Recycle from './image/svg/009-recycle.svg';
-import Recycling from './image/svg/011-recycling.svg';
-import Totebag from './image/svg/004-tote-bag.svg';
-import RecycleBin from './image/svg/012-recycle-bin.svg';
-import Green from './image/svg/025-green.svg';
+import DropTrash from '../../../assets/png/DropTrash.png';
+import TrashScale from '../../../assets/png/TrashScale.png';
+import TrashDrop from '../../../assets/png/TrashDrop.png';
+import TrashBag from '../../../assets/png/TrashBag.png'
+import TrashPoints from '../../../assets/png/TrashPoints.png'
 import './style/carousel.css';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
 	{
-		imgPath: `${RecycleBin}`
+		imgPath: `${DropTrash}`
 	},
 	{
-		imgPath: `${Recycling}`
+		imgPath: `${TrashScale}`
 	},
 	{
-		imgPath: `${Green}`
+		imgPath: `${TrashDrop}`
 	},
 	{
-		imgPath: `${Recycle}`
+		imgPath: `${TrashBag}`
 	},
 	{
-		imgPath: `${Totebag}`
+		imgPath: `${TrashPoints}`
 	}
 ];
 
 const styles = theme => ({
 	root: {
-		maxWidth: 400,
+		maxWidth: 200,
 		flexGrow: 1
 	},
 	header: {
@@ -45,9 +45,9 @@ const styles = theme => ({
 		backgroundColor: theme.palette.background.default
 	},
 	img: {
-		height: 150,
+		height: 200,
 		display: 'block',
-		maxWidth: 400,
+		maxWidth: 200,
 		overflow: 'hidden',
 		width: '100%'
 	}
