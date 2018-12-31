@@ -115,24 +115,16 @@ class EditProfil extends React.Component {
 		try {
 			const getData = await ref.onSnapshot(doc => {
 				var dataSnapshot = doc.data();
-				console.log(dataSnapshot);
-				if (dataSnapshot != null || dataSnapshot != undefined) {
+				console.log('Data Loaded');
+				if (dataSnapshot && dataSnapshot !== undefined) {
 					this.setState({
-						name:
-							dataSnapshot.name != null || dataSnapshot.name != undefined
-								? dataSnapshot.name
-								: '',
-						address:
-							dataSnapshot.address != null || dataSnapshot.address != undefined
-								? dataSnapshot.address
-								: '',
-						phone:
-							dataSnapshot.phone != null || dataSnapshot.phone != undefined
-								? dataSnapshot.phone
-								: ''
+						name: dataSnapshot && dataSnapshot.name,
+						address: dataSnapshot && dataSnapshot.address,
+						phone: dataSnapshot && dataSnapshot.phone
 					});
 				} else {
 					console.log('Kosong? , Astaughfirullah');
+					this.handleClickOpen();
 				}
 			});
 			return getData;
@@ -140,7 +132,7 @@ class EditProfil extends React.Component {
 			console.log(error);
 		}
 	}
-
+	
 	render() {
 		const { classes, profile, auth } = this.props;
 		return (

@@ -29,7 +29,7 @@ class NavbarPickTrash extends Component {
 			<div>
 				<div className={classes.root}>
 					<AppBar
-						style={{ width: '100%', backgroundColor: '#333c4e' }}
+						style={{ width: '100%', backgroundColor: '#00c43e' }}
 						position="static"
 					>
 						<Toolbar>

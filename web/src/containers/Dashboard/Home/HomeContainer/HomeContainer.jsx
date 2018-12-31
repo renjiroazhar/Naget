@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import Carousel from './Carousel';
+import Grid from '@material-ui/core/Grid';
 import CardPicture from '../Card/CardPicture';
 import { connect } from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
@@ -13,14 +13,14 @@ import { editProfile } from '../../../../redux/actions/profileActions';
 import firebase from '../../../../services/firebaseConfig';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import Logo from '../../../../assets/moretrash.jpg';
-import Promo from '../../../../assets/png/promo.png';
+import Logo from '../../../../assets/img/moretrash.jpg';
+import Promo from '../../../../assets/img/png/promo.png';
 import Slide from '@material-ui/core/Slide';
 import Toolbar from '@material-ui/core/Toolbar';
-import tTrashScale from '../../../../assets/png/tTrashScale.png';
-import tTrashBag from '../../../../assets/png/tTrashBag.png';
-import tTrashPoints from '../../../../assets/png/tTrashPoints.png';
-import tTrashDrop from '../../../../assets/png/tTrashDrop.png';
+import tTrashScale from '../../../../assets/img/png/tTrashScale.png';
+import tTrashBag from '../../../../assets/img/png/tTrashBag.png';
+import tTrashPoints from '../../../../assets/img/png/tTrashPoints.png';
+import tTrashDrop from '../../../../assets/img/png/tTrashDrop.png';
 import Typography from '@material-ui/core/Typography';
 
 import FormControl from '@material-ui/core/FormControl';
@@ -32,7 +32,7 @@ const styles = theme => ({
 	},
 	appBar: {
 		position: 'fixed',
-		backgroundColor: '#333c4e'
+		backgroundColor: '#00c43e'
 	},
 	flex: {
 		flex: 1
@@ -48,8 +48,8 @@ const styles = theme => ({
 		width: 200
 	},
 	absolute: {
-		color: '#1ABC9C',
-		backgroundColor: '#1ABC9C',
+		color: '#00c43e',
+		backgroundColor: '#00c43e',
 		position: 'fixed',
 		right: '0px',
 		bottom: '0px',
@@ -60,7 +60,7 @@ const styles = theme => ({
 		width: '90%',
 		maxWidth: '380px',
 		minWidth: '300px',
-		backgroundColor: '#1ABC9C'
+		backgroundColor: '#00c43e'
 	},
 	marginForm: {
 		maxWidth: '350px',
@@ -104,7 +104,7 @@ const styles = theme => ({
 	iconchat: {
 		color: '#fff',
 		'&:hover': {
-			color: '#1ABC9C'
+			color: '#00c43e'
 		}
 	},
 	bootstrapRoot: {
@@ -146,7 +146,7 @@ const styles = theme => ({
 		}
 	},
 	image: {
-		margin: '20px',
+		margin: '20px'
 	},
 	snackbar: {
 		position: 'absolute',
@@ -240,20 +240,11 @@ class HomeContainer extends Component {
 			const getData = await ref.onSnapshot(doc => {
 				var dataSnapshot = doc.data();
 				console.log('Data Loaded');
-				if (dataSnapshot != null || dataSnapshot != undefined) {
+				if (dataSnapshot && dataSnapshot !== undefined) {
 					this.setState({
-						name:
-							dataSnapshot.name != null || dataSnapshot.name != undefined
-								? dataSnapshot.name
-								: '',
-						address:
-							dataSnapshot.address != null || dataSnapshot.address != undefined
-								? dataSnapshot.address
-								: '',
-						phone:
-							dataSnapshot.phone != null || dataSnapshot.phone != undefined
-								? dataSnapshot.phone
-								: ''
+						name: dataSnapshot && dataSnapshot.name,
+						address: dataSnapshot && dataSnapshot.address,
+						phone: dataSnapshot && dataSnapshot.phone
 					});
 				} else {
 					console.log('Kosong? , Astaughfirullah');
@@ -265,48 +256,99 @@ class HomeContainer extends Component {
 			console.log(error);
 		}
 	}
-
 	render() {
 		const { classes } = this.props;
-		const { name } = this.state
-		return (
-			<div
-				style={{
-					backgroundColor: '#fff',
-					minHeight: '100vh',
-					overflow: 'hidden'
-				}}
-			>
-				<div style={{ textAlign: 'center' }} >
-					<img
-						src={Logo}
-						srcSet={Logo}
-						width="171"
-						height="50"
-						alt="Moretrash Logo"
-						retina_logo_url=""
-						className={classes.image}
-					/>
-				</div>
-				<div
-					style={{
-						backgroundColor: '#ffffff',
-						padding: '5px',
-					}}
-				>
-					<div
-						style={{
-							padding: '10px',
-							textAlign: 'center',
-							paddingTop: 0,
-							paddingBottom: 0
-						}}
-					>
-						<CardPicture name={name} />
+		const { name } = this.state;
+		const screenWidth = window.screen.width;
+		const gridPicture = () => {
+			if (screenWidth > 320) {
+				return (
+					<div style={{ textAlign: 'center', marginTop: '1%' }}>
+						<div style={{ textAlign: 'center', width: '	100%' }}>
+							<Grid
+								container
+								alignItems="center"
+								align="center"
+								alignContent="center"
+								spacing={24}
+								style={{ padding: 10 }}
+							>
+								<Grid item xs={3}>
+									<Button
+										variant="extended"
+										className={classes.cssRoot}
+										onClick={() => this.props.history.push('/form_login')}
+										size="small"
+										aria-label=""
+									>
+										<img
+											src={tTrashScale}
+											height="48px"
+											width="48px"
+											alt="Trash Scale"
+											title="Trash Scale"
+										/>
+									</Button>
+								</Grid>
+								<Grid item xs={3}>
+									<Button
+										variant="extended"
+										className={classes.cssRoot}
+										onClick={() => this.props.history.push('/form_login')}
+										size="small"
+										aria-label=""
+									>
+										<img
+											src={tTrashScale}
+											height="48px"
+											width="48px"
+											alt="Trash Scale"
+											title="Trash Scale"
+										/>
+									</Button>
+								</Grid>
+								<Grid item xs={3}>
+									<Button
+										variant="extended"
+										className={classes.cssRoot}
+										onClick={() => this.props.history.push('/form_login')}
+										size="small"
+										aria-label=""
+									>
+										<img
+											src={tTrashScale}
+											height="48px"
+											width="48px"
+											alt="Trash Scale"
+											title="Trash Scale"
+										/>
+									</Button>
+								</Grid>
+								<Grid item xs={3}>
+									<Button
+										variant="extended"
+										className={classes.cssRoot}
+										onClick={() => this.props.history.push('/form_login')}
+										size="small"
+										aria-label=""
+									>
+										<img
+											src={tTrashScale}
+											height="48px"
+											width="48px"
+											alt="Trash Scale"
+											title="Trash Scale"
+										/>
+									</Button>
+								</Grid>
+							</Grid>
+						</div>
 					</div>
-					<br />
-					<div style={{ textAlign: 'center', marginTop: '1%', }}>
-						<div style={{ textAlign: 'center', width: '	100%', }} >
+				);
+			} else {
+				return (
+					<div style={{ textAlign: 'center', marginTop: '1%' }}>
+						<div style={{ textAlign: 'center', width: '	100%' }}>
 							<Button
 								variant="extended"
 								className={classes.cssRoot}
@@ -366,117 +408,169 @@ class HomeContainer extends Component {
 							</Button>
 						</div>
 					</div>
-					<div style={{ padding: '7px', textAlign: 'center', marginTop: '2%', }}>
+				);
+			}
+		};
+		return (
+			console.log(screenWidth),
+			(
+				<div
+					style={{
+						backgroundColor: '#fff',
+						height: '100%',
+						overflow: 'hidden'
+					}}
+				>
+					<div style={{ textAlign: 'center' }}>
 						<img
-							src={Promo}
-							height="100%"
-							width="100%"
-							alt="Promo"
-							title="Promo"
+							src={Logo}
+							srcSet={Logo}
+							width="141"
+							height="40"
+							alt="Moretrash Logo"
+							retina_logo_url=""
+							className={classes.image}
 						/>
 					</div>
-				</div>
-				<Dialog
-					fullScreen
-					open={this.state.open}
-					onClose={this.handleClose}
-					TransitionComponent={Transition}
-				>
-					<AppBar className={classes.appBar}>
-						<Toolbar>
-							<Typography variant="h6" color="inherit" className={classes.flex}>
-								Profile
-							</Typography>
-							<Button color="inherit" onClick={this.handleSave}>
-								Save
-							</Button>
-						</Toolbar>
-					</AppBar>
-					<div style={{ textAlign: 'center', marginTop: '75px' }}>
-						<div>
-							<h5 style={{ fontSize: '16px', margin: 0 }}>
-								Looks like , you are the new user of us
-							</h5>
-							<p
-								style={{
-									padding: 0,
-									margin: 0
-								}}
-							>
-								Please Complete your Profile
-							</p>
+					<div
+						style={{
+							backgroundColor: '#ffffff',
+							padding: '5px'
+						}}
+					>
+						<div
+							style={{
+								padding: '10px',
+								textAlign: 'center',
+								paddingTop: 0,
+								paddingBottom: 0
+							}}
+						>
+							<CardPicture name={name} />
 						</div>
-
-						<FormControl style={{ width: '90%' }}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Name
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								onKeyPress={this.handleKeyPress}
-								id="name"
-								type="text"
-								onChange={this.handleChange}
-								value={this.state.name}
+						<br />
+						{gridPicture()}
+						<div
+							style={{ padding: '7px', textAlign: 'center', marginTop: '2%' }}
+						>
+							<img
+								src={Promo}
+								height="100%"
+								width="100%"
+								alt="Promo"
+								title="Promo"
 							/>
-						</FormControl>
-						<br />
-						<br />
-						<FormControl style={{ width: '90%' }}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Phone Number
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								onKeyPress={this.handleKeyPress}
-								id="phone"
-								type="text"
-								onChange={this.handleChange}
-								value={this.state.phone}
-							/>
-						</FormControl>
-						<br />
-						<br />
-						<FormControl style={{ width: '90%' }}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Address
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								onKeyPress={this.handleKeyPress}
-								id="address"
-								type="text"
-								onChange={this.handleChange}
-								value={this.state.address}
-							/>
-						</FormControl>
+						</div>
 					</div>
-				</Dialog>
-			</div>
+					<Dialog
+						fullScreen
+						open={this.state.open}
+						onClose={this.handleClose}
+						TransitionComponent={Transition}
+					>
+						<AppBar className={classes.appBar}>
+							<Toolbar>
+								<Typography
+									variant="h6"
+									color="inherit"
+									className={classes.flex}
+								>
+									Profile
+								</Typography>
+								<Button color="inherit" onClick={this.handleSave}>
+									Save
+								</Button>
+							</Toolbar>
+						</AppBar>
+						<div style={{ textAlign: 'center', marginTop: '75px' }}>
+							<div>
+								<h5 style={{ fontSize: '16px', margin: 0 }}>
+									Looks like , you are the new user of us
+								</h5>
+								<p
+									style={{
+										padding: 0,
+										margin: 0
+									}}
+								>
+									Please Complete your Profile
+								</p>
+							</div>
+
+							<FormControl style={{ width: '90%' }}>
+								<InputLabel
+									htmlFor="custom-css-input"
+									FormLabelClasses={{
+										root: classes.cssLabel,
+										focused: classes.cssFocused
+									}}
+								>
+									Name
+								</InputLabel>
+								<Input
+									classes={{
+										underline: classes.cssUnderline
+									}}
+									onKeyPress={this.handleKeyPress}
+									id="name"
+									type="text"
+									onChange={this.handleChange}
+									value={this.state.name}
+								/>
+							</FormControl>
+							<br />
+							<br />
+							<FormControl style={{ width: '90%' }}>
+								<InputLabel
+									htmlFor="custom-css-input"
+									FormLabelClasses={{
+										root: classes.cssLabel,
+										focused: classes.cssFocused
+									}}
+								>
+									Phone Number
+								</InputLabel>
+								<Input
+									classes={{
+										underline: classes.cssUnderline
+									}}
+									onKeyPress={this.handleKeyPress}
+									id="phone"
+									type="text"
+									onChange={this.handleChange}
+									value={this.state.phone}
+								/>
+							</FormControl>
+							<br />
+							<br />
+							<FormControl style={{ width: '90%' }}>
+								<InputLabel
+									htmlFor="custom-css-input"
+									FormLabelClasses={{
+										root: classes.cssLabel,
+										focused: classes.cssFocused
+									}}
+								>
+									Address
+								</InputLabel>
+								<Input
+									classes={{
+										underline: classes.cssUnderline
+									}}
+									onKeyPress={this.handleKeyPress}
+									id="address"
+									type="text"
+									onChange={this.handleChange}
+									value={this.state.address}
+								/>
+							</FormControl>
+						</div>
+					</Dialog>
+					<br />
+					<br />
+					<br />
+				</div>
+			)
 		);
 	}
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Link } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
 
 const styles = {
 	root: {
@@ -12,6 +12,11 @@ const styles = {
 		width: '100%',
 		top: 0,
 		zIndex: 100
+	},
+	grow: {
+		color: '#ffffff',
+		fontSize: '1.1rem',
+		fontWeight: 'bold'
 	}
 };
 
@@ -24,31 +29,12 @@ class FixedNavbar extends Component {
 					<AppBar
 						position="static"
 						color="default"
-						style={{ backgroundColor: '#333C4E' }}
+						style={{ backgroundColor: '#00c43e' }}
 					>
 						<Toolbar>
-							<div
-								style={{
-									display: 'block',
-									margin: '0 auto'
-								}}
-							>
-								<Link to="/">
-									<img
-										src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
-										srcSet="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
-										width="120"
-										height="35"
-										alt="Moretrash Logo"
-										retina_logo_url=""
-										className="fusion-standard-logo"
-										style={{
-											display: 'block',
-											margin: '0 auto'
-										}}
-									/>
-								</Link>
-							</div>
+							<Typography variant="h6" color="inherit" className={classes.grow}>
+								{this.props.pageName}
+							</Typography>
 						</Toolbar>
 					</AppBar>
 				</div>

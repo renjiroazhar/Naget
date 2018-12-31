@@ -10,6 +10,7 @@ import firebase from 'firebase';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import Paper from '@material-ui/core/Paper';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import Navbar from '../../../component/Navbar';
 
@@ -63,112 +64,138 @@ class Loginpage extends Component {
 			}
 		};
 		return (
-			<div>
+			<div style={{ overflow: 'hidden', width: '100%' }}>
 				<div>
 					<Navbar />
 				</div>
-				<div
-					style={{ height: '100%', backgroundColor: '#fff', padding: '40px', marginTop: '40px', }}
-				>
-					<h1
-						style={{
-							textAlign: 'center',
-							color: '#000',
-							marginBottom: '20px'
-						}}
-					>
-						Login
-					</h1>
-					<div>
-						<FormControl style={{ width: '100%' }} onSubmit={this.handleSubmit}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Email
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								id="email"
-								type="email"
-								onChange={this.handleChange}
-								value={this.state.email}
-							/>
-						</FormControl>
-					</div>
-					<div className="group">
-						<FormControl style={{ width: '100%', marginTop: '10px' }}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Password
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								id="password"
-								type="password"
-								onChange={this.handleChange}
-								value={this.state.password}
-							/>
-						</FormControl>
-					</div>
-					<center>
-						<Button
-							type="button"
-							className={classes.cssRoot}
-							onClick={this.handleSubmit}
+				<div style={{ padding: 15 }}>
+					<Paper className={classes.paper}>
+						<div
+							style={{
+								height: '100%',
+								backgroundColor: '#fff',
+								padding: '20px',
+								marginTop: '60px'
+							}}
 						>
-							{' '}
-							<span> Login </span>
-							<div className="ripples buttonRipples">
-								<span className="ripplesCircle" />
-							</div>
-						</Button>{' '}
-					</center>
-					<div>
-						{authError ? (
 							<p
 								style={{
 									textAlign: 'center',
-									color: 'red',
+									color: '#000'
 								}}
 							>
-								{authError}
+								Enter your registered Email to login
 							</p>
-						) : null}
-					</div>
-					<p style={{ textAlign: 'center' }}>or</p>
-					<div style={{ width: '100%' }}>
-						<StyledFirebaseAuth
-							uiConfig={uiConfig}
-							firebaseAuth={firebase.auth()}
-						/>
-					</div>
-					<div>
-						<p
-							style={{ textAlign: 'center', color: 'black', marginTop: '20px' }}
-						>
-							<Link to="/forgot_password">Forgot Password?</Link>
-						</p>
-					</div>
-					<div>
-						<p style={{ textAlign: 'center', color: 'black', padding: 0 }}>
-							Don't have account? <Link to="/signup">Register now!</Link>
-						</p>
-					</div>
+							<div>
+								<FormControl
+									style={{ width: '100%' }}
+									onSubmit={this.handleSubmit}
+								>
+									<InputLabel
+										htmlFor="custom-css-input"
+										FormLabelClasses={{
+											root: classes.cssLabel,
+											focused: classes.cssFocused
+										}}
+									>
+										Email
+									</InputLabel>
+									<Input
+										classes={{
+											underline: classes.cssUnderline
+										}}
+										id="email"
+										type="email"
+										onChange={this.handleChange}
+										value={this.state.email}
+									/>
+								</FormControl>
+							</div>
+							<div className="group">
+								<FormControl style={{ width: '100%', marginTop: '10px' }}>
+									<InputLabel
+										htmlFor="custom-css-input"
+										FormLabelClasses={{
+											root: classes.cssLabel,
+											focused: classes.cssFocused
+										}}
+									>
+										Password
+									</InputLabel>
+									<Input
+										classes={{
+											underline: classes.cssUnderline
+										}}
+										id="password"
+										type="password"
+										onChange={this.handleChange}
+										value={this.state.password}
+									/>
+								</FormControl>
+							</div>
+							<center>
+								<Button
+									type="button"
+									className={classes.cssRoot}
+									onClick={this.handleSubmit}
+								>
+									{' '}
+									<span> Login </span>
+									<div className="ripples buttonRipples">
+										<span className="ripplesCircle" />
+									</div>
+								</Button>{' '}
+							</center>
+							<div>
+								{authError ? (
+									<p
+										style={{
+											textAlign: 'center',
+											color: 'red'
+										}}
+									>
+										{authError}
+									</p>
+								) : null}
+							</div>
+							<p style={{ textAlign: 'center' }}>or</p>
+							<div style={{ width: '100%' }}>
+								<StyledFirebaseAuth
+									uiConfig={uiConfig}
+									firebaseAuth={firebase.auth()}
+								/>
+							</div>
+							<div>
+								<p
+									style={{
+										textAlign: 'center',
+										color: 'black',
+										marginTop: '20px'
+									}}
+								>
+									<Link
+										to="/forgot_password"
+										style={{ textDecoration: 'none', color: 'black' }}
+									>
+										Forgot Password?
+									</Link>
+								</p>
+							</div>
+							<div>
+								<p style={{ textAlign: 'center', color: 'black', padding: 0 }}>
+									Don't have account?{' '}
+									<Link
+										to="/signup"
+										style={{ color: '#00c43e', textDecoration: 'none' }}
+									>
+										Register now!
+									</Link>
+								</p>
+							</div>
+						</div>
+						{redirect ? <Redirect to="/" /> : null}
+					</Paper>
 				</div>
-				{redirect ? <Redirect to="/" /> : null}
 			</div>
 		);
 	}
@@ -181,6 +208,18 @@ const styles = theme => ({
 	},
 	dense: {
 		marginTop: 19
+	},
+	paper: {
+		marginTop: theme.spacing.unit * 3,
+		marginBottom: theme.spacing.unit * 3,
+		padding: 0,
+		width: '100%',
+		height: '100vh',
+		[theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+			marginTop: theme.spacing.unit * 6,
+			marginBottom: theme.spacing.unit * 6,
+			padding: theme.spacing.unit * 3
+		}
 	},
 	menu: {
 		width: 200

@@ -16,7 +16,7 @@ import { createOrder } from '../../../redux/actions/orderActions';
 import { storage } from '../../../services/firebaseConfig';
 import { format } from 'date-fns/esm';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import checkIcon from './images/check-1-icon.png';
+import checkIcon from '../../../assets/img/checkicon.jpg';
 import Button from '@material-ui/core/Button';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -740,7 +740,7 @@ class Checkout extends React.Component {
 							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
 						>
 							<AppBar
-								style={{ width: '100%', backgroundColor: '#333c4e' }}
+								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
 								<Toolbar>
@@ -769,7 +769,7 @@ class Checkout extends React.Component {
 							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
 						>
 							<AppBar
-								style={{ width: '100%', backgroundColor: '#333c4e' }}
+								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
 								<Toolbar>
@@ -806,7 +806,7 @@ class Checkout extends React.Component {
 							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
 						>
 							<AppBar
-								style={{ width: '100%', backgroundColor: '#333c4e' }}
+								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
 								<Toolbar>

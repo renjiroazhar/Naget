@@ -134,7 +134,7 @@ class Tentang extends React.Component {
 											<ListItemText primary="Rate GMB" />
 											<ListItemSecondaryAction>
 												<IconButton aria-label="Add">
-													<Add style={{ fontSize: '40px', color: '#333c4e' }} />
+													<Add style={{ fontSize: '40px', color: '#00c43e' }} />
 												</IconButton>
 											</ListItemSecondaryAction>
 										</ListItem>
@@ -154,7 +154,7 @@ class Tentang extends React.Component {
 											<ListItemText primary="Rate GMB" />
 											<ListItemSecondaryAction>
 												<IconButton aria-label="Add">
-													<Add style={{ fontSize: '40px', color: '#333c4e' }} />
+													<Add style={{ fontSize: '40px', color: '#00c43e' }} />
 												</IconButton>
 											</ListItemSecondaryAction>
 										</ListItem>

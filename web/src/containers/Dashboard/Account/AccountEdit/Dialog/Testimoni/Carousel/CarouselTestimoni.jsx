@@ -80,7 +80,7 @@ const styles = theme => ({
     width: "100%"
   },
   mobileStepper: {
-    color: "#1abc9c",
+    color: "#00c43e",
   },
   /* Styles applied to a dot if `variant="dots"` and this is the active step. */
   dot: {

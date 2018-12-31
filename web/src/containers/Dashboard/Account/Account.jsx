@@ -42,11 +42,11 @@ class Account extends React.Component {
 					backgroundColor: '#e7e7e7'
 				}}
 			>
-				<FixedNavbar />
+				<FixedNavbar pageName="Account" />
 				<div style={{ marginTop: '57px' }}>
 					<EditProfil />
 				</div>
-				<div style={{ marginTop: '5%' }}>
+				<div style={{ marginTop: '3%' }}>
 					<GantiPassword />
 				</div>
 				<Divider />
@@ -57,7 +57,7 @@ class Account extends React.Component {
 				<div>
 					<Testimoni />
 				</div>
-				<div style={{ marginTop: '5%' }}>
+				<div style={{ marginTop: '3%' }}>
 					<div>
 						<Help renderTab={() => this.props.renderTab()} />
 					</div>
@@ -91,7 +91,7 @@ class Account extends React.Component {
 					style={{
 						textAlign: 'center',
 						width: '100%',
-						margin: '0 0 5px 0',
+						margin: '0 0 5px 0'
 					}}
 				>
 					<Button

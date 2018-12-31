@@ -13,7 +13,7 @@ const styles = theme => ({
 		...theme.mixins.gutters(),
 		paddingTop: theme.spacing.unit * 2,
 		paddingBottom: theme.spacing.unit * 2,
-		backgroundColor: '#333c4e',
+		backgroundColor: '#00c43e',
 		borderRadius: 0,
 	},
 	text: {
