@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Carousel from './Carousel';
 import Button from '@material-ui/core/Button';
-import Logo from './image/moretrash.jpg';
+import Logo from '../../../assets/moretrash.jpg';
 import TooltipButton from '../../../component/TooltipButton';
 
 const styles = theme => ({
