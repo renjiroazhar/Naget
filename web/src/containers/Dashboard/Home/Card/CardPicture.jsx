@@ -55,7 +55,8 @@ const CardPicture = props => {
 						backgroundColor: '#00c43e',
 						paddingTop: 0,
 						paddingBottom: 0,
-						height: '40px'
+						height: 30,
+						fontSize: '15px'
 					}}
 					title={
 						<div>
@@ -67,7 +68,7 @@ const CardPicture = props => {
 									color: 'white'
 								}}
 							>
-								{props.name}
+								Your points
 							</h5>
 							<h5
 								style={{
@@ -77,16 +78,16 @@ const CardPicture = props => {
 									color: 'white'
 								}}
 							>
-								50
+								100 pts
 							</h5>
 						</div>
 					}
 				/>
 
-				<CardContent>
+				<CardContent style={{ height: 100, }}>
 					<div>
-						<Typography style={{ textAlign: 'center' }}>
-							Has exchanged rubbish with Moretrash for a number of:
+						<Typography style={{ textAlign: 'center', marginBottom: '2%', }}>
+							You has exchanged rubbish with Moretrash for a number of:
 						</Typography>
 					</div>
 					<Typography
@@ -94,7 +95,7 @@ const CardPicture = props => {
 						style={{
 							textAlign: 'center',
 							fontWeight: 'bold',
-							fontSize: '30px'
+							fontSize: '20px'
 						}}
 					>
 						50 KG

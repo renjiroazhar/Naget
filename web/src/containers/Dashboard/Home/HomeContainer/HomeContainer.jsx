@@ -3,20 +3,25 @@ import './style/home.css';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Carousel from './Carousel';
+import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
+import Carousel from './Carousel';
 import CardPicture from '../Card/CardPicture';
-import FixedNavbar from '../../../../component/FixedNavbar';
 import { connect } from 'react-redux';
+import Dialog from '@material-ui/core/Dialog';
+import { editProfile } from '../../../../redux/actions/profileActions';
 import firebase from '../../../../services/firebaseConfig';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import Logo from '../../../../assets/moretrash.jpg';
+import Promo from '../../../../assets/png/promo.png';
 import Slide from '@material-ui/core/Slide';
-import Dialog from '@material-ui/core/Dialog';
-import { editProfile } from '../../../../redux/actions/profileActions';
+import Toolbar from '@material-ui/core/Toolbar';
+import tTrashScale from '../../../../assets/png/tTrashScale.png';
+import tTrashBag from '../../../../assets/png/tTrashBag.png';
+import tTrashPoints from '../../../../assets/png/tTrashPoints.png';
+import tTrashDrop from '../../../../assets/png/tTrashDrop.png';
+import Typography from '@material-ui/core/Typography';
 
 import FormControl from '@material-ui/core/FormControl';
 
@@ -65,12 +70,15 @@ const styles = theme => ({
 		textDecoration: 'none'
 	},
 	cssRoot: {
-		color: '#FFFFFF',
-		backgroundColor: '#00c43e',
-		width: '95%',
+		backgroundColor: '#fffff',
+		width: '55px',
+		height: '55px',
 		fontWeight: 400,
+		margin: '0 2% 2.5% 2%',
+		padding: '3px',
+		border: '1px solid #c7c7c7	',
 		'&:hover': {
-			backgroundColor: '#00c43e'
+			backgroundColor: '#ffffff'
 		}
 	},
 	cssLabel: {
@@ -136,6 +144,9 @@ const styles = theme => ({
 		'&:focus': {
 			boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
 		}
+	},
+	image: {
+		margin: '20px',
 	},
 	snackbar: {
 		position: 'absolute',
@@ -257,28 +268,34 @@ class HomeContainer extends Component {
 
 	render() {
 		const { classes } = this.props;
-		const {name} = this.state
+		const { name } = this.state
 		return (
 			<div
 				style={{
-					backgroundColor: '#e7e7e7',
+					backgroundColor: '#fff',
 					minHeight: '100vh',
 					overflow: 'hidden'
 				}}
 			>
-				<div>
-					<FixedNavbar />
+				<div style={{ textAlign: 'center' }} >
+					<img
+						src={Logo}
+						srcSet={Logo}
+						width="171"
+						height="50"
+						alt="Moretrash Logo"
+						retina_logo_url=""
+						className={classes.image}
+					/>
 				</div>
 				<div
 					style={{
-						backgroundColor: '#e7e7e7',
+						backgroundColor: '#ffffff',
 						padding: '5px',
-						marginTop: '55px'
 					}}
 				>
 					<div
 						style={{
-							marginTop: 15,
 							padding: '10px',
 							textAlign: 'center',
 							paddingTop: 0,
@@ -288,26 +305,75 @@ class HomeContainer extends Component {
 						<CardPicture name={name} />
 					</div>
 					<br />
-					<div>
-						<div style={{ textAlign: 'center' }}>
-							<div className="carousel-center">
-								<Carousel />
-							</div>
-						</div>
-						<br />
-						<div style={{ textAlign: 'center' }}>
+					<div style={{ textAlign: 'center', marginTop: '1%', }}>
+						<div style={{ textAlign: 'center', width: '	100%', }} >
 							<Button
 								variant="extended"
-								color="primary"
 								className={classes.cssRoot}
 								onClick={() => this.props.history.push('/form_login')}
-								size="large"
+								size="small"
+								aria-label=""
 							>
-								Pick Trash
+								<img
+									src={tTrashScale}
+									height="48px"
+									width="48px"
+									alt="Trash Scale"
+									title="Trash Scale"
+								/>
+							</Button>
+							<Button
+								variant="extended"
+								className={classes.cssRoot}
+								onClick=""
+								size="small"
+							>
+								<img
+									src={tTrashBag}
+									height="48px"
+									width="48px"
+									alt="Trash Bag"
+									title="Trash Bag"
+								/>
+							</Button>
+							<Button
+								variant="extended"
+								className={classes.cssRoot}
+								onClick=""
+								size="small"
+							>
+								<img
+									src={tTrashPoints}
+									height="48px"
+									width="48px"
+									alt="Trash Points"
+									title="Trash Points"
+								/>
+							</Button>
+							<Button
+								variant="extended"
+								className={classes.cssRoot}
+								onClick=""
+								size="small"
+							>
+								<img
+									src={tTrashDrop}
+									height="48px"
+									width="48px"
+									alt="Trash Drop"
+									title="Trash Drop"
+								/>
 							</Button>
 						</div>
-						<br />
-						<br />
+					</div>
+					<div style={{ padding: '7px', textAlign: 'center', marginTop: '2%', }}>
+						<img
+							src={Promo}
+							height="100%"
+							width="100%"
+							alt="Promo"
+							title="Promo"
+						/>
 					</div>
 				</div>
 				<Dialog
