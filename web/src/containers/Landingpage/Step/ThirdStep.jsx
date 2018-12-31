@@ -221,7 +221,7 @@ class ThirdStep extends React.Component {
 								marginTop: '10%'
 							}}
 						>
-							<Button
+							<Button varian="contained"
 								variant="contained"
 								color="primary"
 								onClick={this.handleBack}
@@ -244,7 +244,7 @@ class ThirdStep extends React.Component {
 								width: '100%'
 							}}
 						>
-							<Button
+							<Button varian="contained"
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}

@@ -58,7 +58,7 @@ class Homepage extends Component {
 						</div>
 					</div>
 					<br />
-					<Button
+					<Button varian="contained"
 						variant="extended"
 						color="primary"
 						className={classes.cssRoot}
@@ -69,7 +69,7 @@ class Homepage extends Component {
 					</Button>
 					<br />
 					<br />
-					<Button
+					<Button varian="contained"
 						variant="extended"
 						color="primary"
 						className={classes.cssRoot}

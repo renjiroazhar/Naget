@@ -330,7 +330,7 @@ class OrderDetail extends React.Component {
 								width: '100%'
 							}}
 						>
-							<Button
+							<Button varian="contained"
 								style={{
 									backgroundColor: '#f43c3c',
 									width: '90%',

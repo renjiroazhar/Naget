@@ -189,7 +189,7 @@ class Tentang extends React.Component {
 									width: '100%'
 								}}
 							>
-								<Button
+								<Button varian="contained"
 									style={{
 										backgroundColor: '#00c43e',
 										width: '90%',

@@ -5,7 +5,7 @@ export default class ButtonFixed extends Component {
 	render() {
 		return (
 			<div>
-				<Button
+				<Button varian="contained"
 					floating
 					fab="vertical"
 					icon="message"
@@ -13,10 +13,10 @@ export default class ButtonFixed extends Component {
 					large
 					style={{ bottom: '45px', right: '24px' }}
 				>
-					<Button floating icon="insert_chart" className="red" />
-					<Button floating icon="format_quote" className="yellow darken-1" />
-					<Button floating icon="publish" className="green" />
-					<Button floating icon="attach_file" className="blue" />
+					<Button varian="contained" floating icon="insert_chart" className="red" />
+					<Button varian="contained" floating icon="format_quote" className="yellow darken-1" />
+					<Button varian="contained" floating icon="publish" className="green" />
+					<Button varian="contained" floating icon="attach_file" className="blue" />
 				</Button>
 			</div>
 		);

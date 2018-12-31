@@ -126,10 +126,10 @@ class Logout extends React.Component {
 					<div className="alert-dialog-content">You Sure?</div>
 
 					<Divider />
-					<Button onClick={this.logout} className="alert-dialog-button">
+					<Button varian="contained" onClick={this.logout} className="alert-dialog-button">
 						Yes
 					</Button>
-					<Button onClick={this.handleClose} className="alert-dialog-button">
+					<Button varian="contained" onClick={this.handleClose} className="alert-dialog-button">
 						No
 					</Button>
 				</AlertDialog>

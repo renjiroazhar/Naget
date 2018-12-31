@@ -135,6 +135,7 @@ class Loginpage extends Component {
 							</div>
 							<center>
 								<Button
+									varian="contained"
 									type="button"
 									className={classes.cssRoot}
 									onClick={this.handleSubmit}
@@ -254,6 +255,7 @@ const styles = theme => ({
 		backgroundColor: '#00c43e',
 		width: '100%',
 		fontWeight: 400,
+		height: '40px',
 		'&:hover': {
 			backgroundColor: '#00c43e'
 		}

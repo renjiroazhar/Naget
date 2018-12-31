@@ -201,8 +201,10 @@ OrderContainer.propTypes = {
 const stylus = {
 	tab: {
 		border: 'none',
-		borderColor: 'white',
-		borderBottomColor: 'white'
+		borderColor: '#00c43e',
+		borderBottomColor: 'white',
+		color: 'black',
+		fontWeight: 'bold'
 	}
 };
 

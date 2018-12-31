@@ -949,7 +949,7 @@ class Checkout extends React.Component {
 												marginTop: '10%'
 											}}
 										>
-											<Button
+											<Button varian="contained"
 												variant="contained"
 												color="primary"
 												onClick={() => {
@@ -970,7 +970,7 @@ class Checkout extends React.Component {
 												marginTop: '5%'
 											}}
 										>
-											<Button
+											<Button varian="contained"
 												variant="contained"
 												color="primary"
 												onClick={() => {

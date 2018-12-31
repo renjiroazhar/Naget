@@ -79,10 +79,10 @@ class Account extends React.Component {
 						{'You sure want to leave?'}
 					</DialogTitle>
 					<DialogActions>
-						<Button onClick={this.handleClose} color="primary">
+						<Button varian="contained" onClick={this.handleClose} color="primary">
 							No
 						</Button>
-						<Button onClick={this.logout} color="primary" autoFocus>
+						<Button varian="contained" onClick={this.logout} color="primary" autoFocus>
 							Yes
 						</Button>
 					</DialogActions>
@@ -94,7 +94,7 @@ class Account extends React.Component {
 						margin: '0 0 5px 0'
 					}}
 				>
-					<Button
+					<Button varian="contained"
 						style={{
 							backgroundColor: '#ffffff',
 							width: '100%',
