@@ -27,16 +27,16 @@ const styles = theme => ({
 		width: '100%',
 		fontWeight: 400,
 		color: 'white',
-		backgroundColor: '#1ABC9C',
+		backgroundColor: '#00c43e',
 		textDecoration: 'none',
 		borderRadius: 0,
 		'&:hover': {
 			backgroundColor: '#f7f7f7',
-			color: '#1ABC9C'
+			color: '#00c43e'
 		}
 	},
 	cardBar: {
-		backgroundColor: '#1ABC9C',
+		backgroundColor: '#00c43e',
 		padding: '10px 20px 30px 20px'
 	},
 	text: {

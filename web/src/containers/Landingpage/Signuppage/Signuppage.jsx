@@ -10,6 +10,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Navbar from '../../../component/Navbar';
 import PropTypes from 'prop-types';
+import Paper from '@material-ui/core/Paper';
 
 class Signuppage extends Component {
 	state = {
@@ -79,206 +80,224 @@ class Signuppage extends Component {
 		const { password, passwordConfirmation } = this.state;
 		const isInvalid = password !== passwordConfirmation;
 		return (
-			<div>
+			<div style={{ overflow: 'hidden', width: '100%' }}>
 				<div>
 					<Navbar />
 				</div>
-				<div
-					style={{ height: '120%', backgroundColor: '#fff', padding: '40px', marginTop: '40px', }}
-				>
-					<h1
-						style={{
-							textAlign: 'center',
-							color: '#000',
-							marginBottom: '20px'
-						}}
-					>
-						Register
-					</h1>
-					<div>
-						<FormControl style={{ width: '100%' }}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Full Name
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								id="name"
-								type="text"
-								onChange={this.handleChange}
-								value={this.state.name}
-							/>
-						</FormControl>
-					</div>
-					<div>
-						<FormControl style={{ width: '100%', marginTop: '10px' }}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Email
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								id="email"
-								type="text"
-								onChange={this.handleChange}
-								value={this.state.email}
-							/>
-						</FormControl>
-					</div>
-					<div>
-						<FormControl style={{ width: '100%', marginTop: '10px' }}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Address
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								id="address"
-								type="text"
-								onChange={this.handleChange}
-								value={this.state.address}
-							/>
-						</FormControl>
-					</div>
-					<div>
-						<FormControl style={{ width: '100%', marginTop: '10px' }}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Phone Number
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								id="phone"
-								type="text"
-								onChange={this.handleChange}
-								value={this.state.phone}
-							/>
-						</FormControl>
-					</div>
-					<div>
-						<FormControl style={{ width: '100%', marginTop: '10px' }}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Password
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								id="password"
-								type="password"
-								onChange={this.handleChange}
-								value={this.state.password}
-							/>
-						</FormControl>
-					</div>
-					<div className="group">
-						<FormControl style={{ width: '100%', marginTop: '10px' }}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Confirm Password
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								id="passwordConfirmation"
-								type="password"
-								onChange={this.handleChange}
-								value={this.state.passwordConfirmation}
-							/>
-						</FormControl>
-					</div>
-					<Button
-						type="button"
-						className={classes.cssRoot}
-						onClick={e => {
-							this.setState({
-								errorSignup: null,
-								errorMessage: null
-							});
-							e.preventDefault();
-							this.handleSubmit();
-						}}
-					>
-						{' '}
-						<span>Register</span>
-						<div className="ripples buttonRipples">
-							<span className="ripplesCircle" />
-						</div>
-					</Button>
-					<br />
-					<div>
-						{isInvalid ? (
-							<p
-								style={{
-									textAlign: 'center',
-									color: 'red',
-								}}
-							>
-								Password and Confirm Password must same
-							</p>
-						) : null}
-					</div>
-					<div>
-						{this.state.errorSignup ? (
-							<p
-								style={{
-									textAlign: 'center',
-									color: 'red'
-								}}
-							>
-								{this.state.errorMessage}
-							</p>
-						) : null}
-					</div>
-					<div>
-						<p
-							style={{ textAlign: 'center', color: 'black', marginTop: '20px', }}
+				<div style={{ padding: 15 }}>
+					<Paper className={classes.paper}>
+						<div
+							style={{
+								height: '100%',
+								backgroundColor: '#fff',
+								padding: '20px',
+								marginTop: '60px'
+							}}
 						>
-							Already have account? <Link to="/login">Login</Link>
-						</p>
-					</div>
+							<p
+								style={{
+									textAlign: 'center',
+									color: '#000'
+								}}
+							>
+								Register
+							</p>
+							<div>
+								<FormControl style={{ width: '100%' }}>
+									<InputLabel
+										htmlFor="custom-css-input"
+										FormLabelClasses={{
+											root: classes.cssLabel,
+											focused: classes.cssFocused
+										}}
+									>
+										Full Name
+									</InputLabel>
+									<Input
+										classes={{
+											underline: classes.cssUnderline
+										}}
+										id="name"
+										type="text"
+										onChange={this.handleChange}
+										value={this.state.name}
+									/>
+								</FormControl>
+							</div>
+							<div>
+								<FormControl style={{ width: '100%', marginTop: '10px' }}>
+									<InputLabel
+										htmlFor="custom-css-input"
+										FormLabelClasses={{
+											root: classes.cssLabel,
+											focused: classes.cssFocused
+										}}
+									>
+										Email
+									</InputLabel>
+									<Input
+										classes={{
+											underline: classes.cssUnderline
+										}}
+										id="email"
+										type="text"
+										onChange={this.handleChange}
+										value={this.state.email}
+									/>
+								</FormControl>
+							</div>
+							<div>
+								<FormControl style={{ width: '100%', marginTop: '10px' }}>
+									<InputLabel
+										htmlFor="custom-css-input"
+										FormLabelClasses={{
+											root: classes.cssLabel,
+											focused: classes.cssFocused
+										}}
+									>
+										Address
+									</InputLabel>
+									<Input
+										classes={{
+											underline: classes.cssUnderline
+										}}
+										id="address"
+										type="text"
+										onChange={this.handleChange}
+										value={this.state.address}
+									/>
+								</FormControl>
+							</div>
+							<div>
+								<FormControl style={{ width: '100%', marginTop: '10px' }}>
+									<InputLabel
+										htmlFor="custom-css-input"
+										FormLabelClasses={{
+											root: classes.cssLabel,
+											focused: classes.cssFocused
+										}}
+									>
+										Phone Number
+									</InputLabel>
+									<Input
+										classes={{
+											underline: classes.cssUnderline
+										}}
+										id="phone"
+										type="text"
+										onChange={this.handleChange}
+										value={this.state.phone}
+									/>
+								</FormControl>
+							</div>
+							<div>
+								<FormControl style={{ width: '100%', marginTop: '10px' }}>
+									<InputLabel
+										htmlFor="custom-css-input"
+										FormLabelClasses={{
+											root: classes.cssLabel,
+											focused: classes.cssFocused
+										}}
+									>
+										Password
+									</InputLabel>
+									<Input
+										classes={{
+											underline: classes.cssUnderline
+										}}
+										id="password"
+										type="password"
+										onChange={this.handleChange}
+										value={this.state.password}
+									/>
+								</FormControl>
+							</div>
+							<div className="group">
+								<FormControl style={{ width: '100%', marginTop: '10px' }}>
+									<InputLabel
+										htmlFor="custom-css-input"
+										FormLabelClasses={{
+											root: classes.cssLabel,
+											focused: classes.cssFocused
+										}}
+									>
+										Confirm Password
+									</InputLabel>
+									<Input
+										classes={{
+											underline: classes.cssUnderline
+										}}
+										id="passwordConfirmation"
+										type="password"
+										onChange={this.handleChange}
+										value={this.state.passwordConfirmation}
+									/>
+								</FormControl>
+							</div>
+							<Button
+								type="button"
+								className={classes.cssRoot}
+								onClick={e => {
+									this.setState({
+										errorSignup: null,
+										errorMessage: null
+									});
+									e.preventDefault();
+									this.handleSubmit();
+								}}
+							>
+								{' '}
+								<span>Register</span>
+								<div className="ripples buttonRipples">
+									<span className="ripplesCircle" />
+								</div>
+							</Button>
+							<br />
+							<div>
+								{isInvalid ? (
+									<p
+										style={{
+											textAlign: 'center',
+											color: 'red'
+										}}
+									>
+										Password and Confirm Password must same
+									</p>
+								) : null}
+							</div>
+							<div>
+								{this.state.errorSignup ? (
+									<p
+										style={{
+											textAlign: 'center',
+											color: 'red'
+										}}
+									>
+										{this.state.errorMessage}
+									</p>
+								) : null}
+							</div>
+							<div>
+								<p
+									style={{
+										textAlign: 'center',
+										color: 'black',
+										marginTop: '20px'
+									}}
+								>
+									Already have account?{' '}
+									<Link
+										to="/login"
+										style={{ color: '#00c43e', textDecoration: 'none' }}
+									>
+										Login
+									</Link>
+								</p>
+							</div>
+						</div>
+						{redirect ? <Redirect to="/" /> : null}
+					</Paper>
 				</div>
-				{redirect ? <Redirect to="/" /> : null}
 			</div>
 		);
 	}
@@ -291,6 +310,18 @@ const styles = theme => ({
 	},
 	dense: {
 		marginTop: 19
+	},
+	paper: {
+		marginTop: theme.spacing.unit * 3,
+		marginBottom: theme.spacing.unit * 3,
+		padding: 0,
+		width: '100%',
+		height: '100vh',
+		[theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+			marginTop: theme.spacing.unit * 6,
+			marginBottom: theme.spacing.unit * 6,
+			padding: theme.spacing.unit * 3
+		}
 	},
 	menu: {
 		width: 200

@@ -15,7 +15,6 @@ import WaitingConfirmation from './OrderList/WaitingConfirmation';
 import OrderHistory from './OrderList/OrderHistory';
 import FixedNavbar from '../../../../component/FixedNavbar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { Link } from 'react-router-dom';
 
 const styles = theme => ({
 	root: {
@@ -79,7 +78,7 @@ class OrderContainer extends React.Component {
 						height: '100%'
 					}}
 				>
-					<FixedNavbar />
+					<FixedNavbar pageName="Order" />
 					<AppBar style={{ marginTop: '55px' }} color="default">
 						<Tabs
 							onChange={this.handleChange}
@@ -114,7 +113,7 @@ class OrderContainer extends React.Component {
 						height: '100%'
 					}}
 				>
-					<FixedNavbar />
+					<FixedNavbar pageName="Order" />
 					<AppBar style={{ marginTop: '55px' }} color="default">
 						<Tabs
 							onChange={this.handleChange}
@@ -146,29 +145,18 @@ class OrderContainer extends React.Component {
 				<div>
 					<div style={{ marginBottom: '20%' }}>
 						<AppBar color="default" style={{ position: 'fixed' }}>
-							<Toolbar style={{ backgroundColor: '#333C4E' }}>
-								<div
+							<Toolbar style={{ backgroundColor: '#00c43e' }}>
+								<Typography
+									variant="h6"
+									color="inherit"
 									style={{
-										display: 'block',
-										margin: '0 auto'
+										color: 'white',
+										fontWeight: 'bold',
+										fontSize: '1.1rem'
 									}}
 								>
-									<Link to="/">
-										<img
-											src="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png"
-											srcSet="https://www.moretrash.id/wp-content/uploads/2018/05/logo-moretrash.png 1x"
-											width="120"
-											height="35"
-											alt="Moretrash Logo"
-											retina_logo_url=""
-											className="fusion-standard-logo"
-											style={{
-												display: 'block',
-												margin: '0 auto'
-											}}
-										/>
-									</Link>
-								</div>
+									Order
+								</Typography>
 							</Toolbar>
 							<Tabs
 								value={this.state.value}

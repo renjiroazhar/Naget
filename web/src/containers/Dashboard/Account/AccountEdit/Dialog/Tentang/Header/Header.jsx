@@ -24,7 +24,7 @@ class Header extends Component {
 					<AppBar
 						position="static"
 						color="default"
-						style={{ backgroundColor: '#333c4e', paddingBottom: '13px' }}
+						style={{ backgroundColor: '#00c43e', paddingBottom: '13px' }}
 					>
 						<Toolbar>
 							<div>

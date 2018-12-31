@@ -16,7 +16,7 @@ import { createOrderWithoutLogin } from '../../../redux/actions/orderActions';
 import { storage } from '../../../services/firebaseConfig';
 import { format } from 'date-fns/esm';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import checkIcon from './images/check-1-icon.png';
+import checkIcon from '../../../assets/img/checkicon.jpg';
 import Button from '@material-ui/core/Button';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -33,10 +33,10 @@ const themeMui = createMuiTheme({
 		MuiStepIcon: {
 			root: {
 				'&$completed': {
-					color: '#1ABC9C'
+					color: '#00c43e'
 				},
 				'&$active': {
-					color: '#1ABC9C'
+					color: '#00c43e'
 				}
 			}
 		},
@@ -116,16 +116,16 @@ const styles = theme => ({
 		}
 	},
 	button: {
-		backgroundColor: '#1ABC9C',
+		backgroundColor: '#00c43e',
 		height: '46px',
 		'&:hover': {
-			backgroundColor: '#1ABC9C',
+			backgroundColor: '#00c43e',
 			borderColor: '#0062cc',
 			color: 'white'
 		},
 		'&:active': {
 			boxShadow: 'none',
-			backgroundColor: '#1ABC9C',
+			backgroundColor: '#00c43e',
 			borderColor: '#005cbf'
 		},
 		'&:focus': {
@@ -134,18 +134,18 @@ const styles = theme => ({
 	},
 	buttonTwo: {
 		backgroundColor: '#FFFFFF',
-		borderColor: '#1ABC9C',
+		borderColor: '#00c43e',
 		height: '46px',
-		color: '#1ABC9C',
-		border: '1px solid #1ABC9C',
+		color: '#00c43e',
+		border: '1px solid #00c43e',
 		'&:hover': {
-			backgroundColor: '#1ABC9C',
+			backgroundColor: '#00c43e',
 			borderColor: '#0062cc',
 			color: 'white'
 		},
 		'&:active': {
 			boxShadow: 'none',
-			backgroundColor: '#1ABC9C',
+			backgroundColor: '#00c43e',
 			borderColor: '#005cbf'
 		},
 		'&:focus': {
@@ -763,7 +763,7 @@ class Checkout extends React.Component {
 							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
 						>
 							<AppBar
-								style={{ width: '100%', backgroundColor: '#333c4e' }}
+								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
 								<Toolbar>
@@ -792,7 +792,7 @@ class Checkout extends React.Component {
 							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
 						>
 							<AppBar
-								style={{ width: '100%', backgroundColor: '#333c4e' }}
+								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
 								<Toolbar>
@@ -829,7 +829,7 @@ class Checkout extends React.Component {
 							style={{ width: '100%', position: 'fixed', top: 0, zIndex: 1000 }}
 						>
 							<AppBar
-								style={{ width: '100%', backgroundColor: '#333c4e' }}
+								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
 								<Toolbar>

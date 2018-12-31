@@ -2,35 +2,13 @@ import React, { Component } from 'react';
 import firebase from './services/firebaseConfig';
 import PrivateRoute from './routes/private';
 import PublicRoute from './routes/public';
-import Lottie from 'lottie-react-web';
-import Planet from './component/Loaders/json/planet_rotating.json';
+import logo from './assets/img/moretrash.jpg';
 // import Demo from './Demo';
-
-const Loading = () => (
-	<div
-		style={{
-			textAlign: 'center',
-			minHeight: '100vh',
-			display: 'flex',
-			justifyContent: 'center',
-			alignItems: 'center',
-			overflow: 'hidden'
-		}}
-	>
-		<Lottie
-			width="200px"
-			height="200px"
-			options={{
-				animationData: Planet
-			}}
-		/>
-	</div>
-);
 
 class App extends Component {
 	state = {
 		isAuthenticated: null,
-		loading: false
+		loading: true
 	};
 
 	authListener = () => {
@@ -50,7 +28,7 @@ class App extends Component {
 	};
 
 	componentDidMount() {
-		// setTimeout(() => this.setState({ loading: false }), 1000);
+		setTimeout(() => this.setState({ loading: false }), 1000);
 		this.authListener();
 	}
 
@@ -61,11 +39,25 @@ class App extends Component {
 	render() {
 		const { loading, isAuthenticated } = this.state;
 		if (loading) {
-			return <Loading />;
+			return (
+				<div style={cssInJs.loading}>
+					<img src={logo} alt="splash-screen" width="175" height="45" />{' '}
+				</div>
+			);
 		}
 		return isAuthenticated ? <PrivateRoute /> : <PublicRoute />;
 		// return <Demo />;
 	}
 }
+
+const cssInJs = {
+	loading: {
+		left: '50%',
+		top: '50%',
+		WebkitTransform: 'translate(-50%, -50%)',
+		transform: 'translate(-50%, -50%)',
+		position: 'absolute'
+	}
+};
 
 export default App;
