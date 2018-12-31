@@ -101,7 +101,7 @@ class Review extends React.Component {
 		// 	if (!allowSend) {
 		// 		return (
 		// 			<div style={{ textAlign: 'center' }}>
-		// 				<Button varian="contained"
+		// 				<Button
 		// 					style={{
 		// 						backgroundColor: '#00c43e',
 		// 						color: 'white',
@@ -133,7 +133,7 @@ class Review extends React.Component {
 							width: '100%'
 						}}
 					>
-						<Button varian="contained"
+						<Button
 							variant="contained"
 							color="primary"
 							onClick={this.props.handleCreateOrder}
@@ -157,7 +157,7 @@ class Review extends React.Component {
 							width: '100%'
 						}}
 					>
-						<Button varian="contained"
+						<Button
 							variant="contained"
 							color="primary"
 							style={{

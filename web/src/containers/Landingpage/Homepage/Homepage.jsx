@@ -19,7 +19,7 @@ const styles = theme => ({
 		'&:hover': {
 			backgroundColor: '#00c43e'
 		}
-	},
+	}
 });
 
 class Homepage extends Component {
@@ -58,8 +58,8 @@ class Homepage extends Component {
 						</div>
 					</div>
 					<br />
-					<Button varian="contained"
-						variant="extended"
+					<Button
+						variant="contained"
 						color="primary"
 						className={classes.cssRoot}
 						onClick={() => this.props.history.push('/form')}
@@ -69,8 +69,8 @@ class Homepage extends Component {
 					</Button>
 					<br />
 					<br />
-					<Button varian="contained"
-						variant="extended"
+					<Button
+						variant="contained"
 						color="primary"
 						className={classes.cssRoot}
 						onClick={() => this.props.history.push('/login')}

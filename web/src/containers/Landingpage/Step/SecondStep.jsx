@@ -313,7 +313,7 @@ class SecondStep extends React.Component {
 								width: '100%'
 							}}
 						>
-							<Button varian="contained"
+							<Button 
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}

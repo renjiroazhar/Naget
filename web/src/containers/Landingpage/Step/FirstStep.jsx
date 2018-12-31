@@ -77,7 +77,6 @@ class FirstStep extends React.Component {
 								fullWidth
 								autoComplete="fname"
 								onChange={handleChange('name')}
-								defaultValue={values.name}
 								value={values.name}
 							/>
 							{values.errorAll ? (
@@ -101,7 +100,6 @@ class FirstStep extends React.Component {
 								value={values.email}
 								autoComplete="fname"
 								onChange={handleChange('email')}
-								defaultValue={values.email}
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
@@ -132,7 +130,6 @@ class FirstStep extends React.Component {
 								autoComplete="fname"
 								value={values.phone}
 								onChange={handleChange('phone')}
-								defaultValue={values.phone}
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
@@ -154,7 +151,6 @@ class FirstStep extends React.Component {
 								fullWidth
 								autoComplete="billing address-line1"
 								onChange={handleChange('address')}
-								defaultValue={values.address}
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
@@ -174,7 +170,6 @@ class FirstStep extends React.Component {
 							fullWidth
 							autoComplete="billing address-line1"
 							onChange={handleChange('catatan')}
-							defaultValue={values.catatan}
 						/>
 					</Grid>
 
@@ -187,7 +182,7 @@ class FirstStep extends React.Component {
 								marginTop: '10%'
 							}}
 						>
-							<Button varian="contained"
+							<Button
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}

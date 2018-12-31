@@ -308,6 +308,15 @@ class HomeContainer extends Component {
 											title=""
 										/>
 									</Button>
+									<p
+										style={{
+											fontSize: 'small',
+											color: '#555555',
+											fontWeight: 'bold'
+										}}
+									>
+										TRASH <p style={{ padding: 0, margin: 0 }}>SCALE</p>
+									</p>
 								</Grid>
 								<Grid item xs={3}>
 									<Button
@@ -324,6 +333,15 @@ class HomeContainer extends Component {
 											title=""
 										/>
 									</Button>
+									<p
+										style={{
+											fontSize: 'small',
+											color: '#555555',
+											fontWeight: 'bold'
+										}}
+									>
+										TRASH <p style={{ padding: 0, margin: 0 }}>BAG</p>
+									</p>
 								</Grid>{' '}
 								<Grid item xs={3}>
 									<Button
@@ -340,6 +358,15 @@ class HomeContainer extends Component {
 											title=""
 										/>
 									</Button>
+									<p
+										style={{
+											fontSize: 'small',
+											color: '#555555',
+											fontWeight: 'bold'
+										}}
+									>
+										TRASH <p style={{ padding: 0, margin: 0 }}>POINTS</p>
+									</p>
 								</Grid>
 								<Grid item xs={3}>
 									<Button
@@ -356,6 +383,15 @@ class HomeContainer extends Component {
 											title=""
 										/>
 									</Button>
+									<p
+										style={{
+											fontSize: 'small',
+											color: '#555555',
+											fontWeight: 'bold'
+										}}
+									>
+										TRASH <p style={{ padding: 0, margin: 0 }}>DROP</p>
+									</p>
 								</Grid>
 							</Grid>
 						</div>
@@ -364,54 +400,104 @@ class HomeContainer extends Component {
 			} else {
 				return (
 					<div style={{ textAlign: 'center', marginTop: '1%' }}>
-						<div style={{ textAlign: 'center', width: '	100%' }}>
-							<Button
-								className={classes.cssRoot}
-								onClick={this.handleForm}
-								size="small"
-								aria-label=""
-							>
-								<img
-									src={tTrashScale}
-									height="48px"
-									width="48px"
-									alt="Trash Scale"
-									title="Trash Scale"
-								/>
-							</Button>
-
-							<Button
-								className={classes.cssRoot}
-								onClick={this.handleForm}
-								size="small"
-								aria-label=""
-							>
-								<img
-									src={tTrashBag}
-									height="48px"
-									width="48px"
-									alt="Trash Scale"
-									title="Trash Scale"
-								/>
-							</Button>
-							<Button className={classes.cssRoot}  size="small">
-								<img
-									src={tTrashPoints}
-									height="48px"
-									width="48px"
-									alt="Trash Points"
-									title="Trash Points"
-								/>
-							</Button>
-							<Button className={classes.cssRoot}  size="small">
-								<img
-									src={tTrashDrop}
-									height="48px"
-									width="48px"
-									alt="Trash Drop"
-									title="Trash Drop"
-								/>
-							</Button>
+						<div
+							style={{
+								textAlign: 'center',
+								width: '	100%',
+								display: 'flex',
+								justifyContent: 'space-evenly'
+							}}
+						>
+							<div>
+								<Button
+									className={classes.cssRoot}
+									onClick={this.handleForm}
+									size="small"
+									aria-label=""
+								>
+									<img
+										src={tTrashScale}
+										height="48px"
+										width="48px"
+										alt="Trash Scale"
+										title="Trash Scale"
+									/>
+								</Button>
+								<p
+									style={{
+										fontSize: 'small',
+										color: '#555555',
+										fontWeight: 'bold'
+									}}
+								>
+									TRASH <p style={{ padding: 0, margin: 0 }}>SCALE</p>
+								</p>
+							</div>
+							<div>
+								<Button
+									className={classes.cssRoot}
+									onClick={this.handleForm}
+									size="small"
+									aria-label=""
+								>
+									<img
+										src={tTrashBag}
+										height="48px"
+										width="48px"
+										alt="Trash Scale"
+										title="Trash Scale"
+									/>
+								</Button>
+								<p
+									style={{
+										fontSize: 'small',
+										color: '#555555',
+										fontWeight: 'bold'
+									}}
+								>
+									TRASH <p style={{ padding: 0, margin: 0 }}>BAG</p>
+								</p>
+							</div>
+							<div>
+								<Button className={classes.cssRoot} size="small">
+									<img
+										src={tTrashPoints}
+										height="48px"
+										width="48px"
+										alt="Trash Points"
+										title="Trash Points"
+									/>
+								</Button>
+								<p
+									style={{
+										fontSize: 'small',
+										color: '#555555',
+										fontWeight: 'bold'
+									}}
+								>
+									TRASH <p style={{ padding: 0, margin: 0 }}>POINTS</p>
+								</p>
+							</div>
+							<div>
+								<Button className={classes.cssRoot} size="small">
+									<img
+										src={tTrashDrop}
+										height="48px"
+										width="48px"
+										alt="Trash Drop"
+										title="Trash Drop"
+									/>
+								</Button>
+								<p
+									style={{
+										fontSize: 'small',
+										color: '#555555',
+										fontWeight: 'bold'
+									}}
+								>
+									TRASH <p style={{ padding: 0, margin: 0 }}>DROP</p>
+								</p>
+							</div>
 						</div>
 					</div>
 				);
