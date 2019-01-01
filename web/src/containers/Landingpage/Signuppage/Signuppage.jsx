@@ -235,7 +235,6 @@ class Signuppage extends Component {
 								</FormControl>
 							</div>
 							<Button
-								varian="contained"
 								type="button"
 								className={classes.cssRoot}
 								onClick={e => {
@@ -283,7 +282,7 @@ class Signuppage extends Component {
 									style={{
 										textAlign: 'center',
 										color: 'black',
-										marginTop: '20px'
+										marginTop: '30px'
 									}}
 								>
 									Already have account?{' '}
@@ -317,7 +316,6 @@ const styles = theme => ({
 		marginBottom: theme.spacing.unit * 3,
 		padding: 0,
 		width: '100%',
-		height: '100vh',
 		[theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
 			marginTop: theme.spacing.unit * 6,
 			marginBottom: theme.spacing.unit * 6,
@@ -356,7 +354,7 @@ const styles = theme => ({
 		color: '#FFFFFF',
 		backgroundColor: '#00c43e',
 		width: '100%',
-		height: '40px',
+		height: '',
 		fontWeight: 400,
 		'&:hover': {
 			backgroundColor: '#00c43e'

@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import './style/style.css';
 import { connect } from 'react-redux';
 import { resetPassword } from '../../../redux/actions/profileActions';
-
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
+import { Link } from 'react-router-dom';
 import Navbar from '../../../component/Navbar';
+import Paper from '@material-ui/core/Paper';
+
 
 class Forgotpassword extends Component {
 	state = {
@@ -47,74 +49,95 @@ class Forgotpassword extends Component {
 		const { resetErr, classes } = this.props;
 
 		return (
-			<div>
+			<div style={{ overflow: 'hidden', width: '100%' }} >
 				<div>
 					<Navbar />
 				</div>
-				<div
-					style={{
-						height: '100%',
-						backgroundColor: '#fff',
-						padding: '40px',
-						marginTop: '40px'
-					}}
-				>
-					<h1
-						style={{
-							textAlign: 'center',
-							color: '#000',
-							marginBottom: '20px'
-						}}
-					>
-						Reset Password
-					</h1>
-					<div>
-						<FormControl style={{ width: '100%' }} onSubmit={this.handleSubmit}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Email
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								id="email"
-								type="email"
-								onChange={this.handleChange}
-								value={this.state.email}
-							/>
-						</FormControl>
-					</div>
-					<center>
-						<Button varian="contained"
-							type="button"
-							className={classes.cssRoot}
-							onClick={this.handleSubmit}
+				<div style={{ padding: 15 }} >
+					<Paper className={classes.paper}>
+						<div
+							style={{
+								height: '100%',
+								backgroundColor: '#fff',
+								padding: '20px',
+								marginTop: '60px'
+							}}
 						>
-							{' '}
-							<span> Reset Password </span>
-							<div className="ripples buttonRipples">
-								<span className="ripplesCircle" />
-							</div>
-						</Button>{' '}
-					</center>
-					<div>
-						{resetErr ? (
-							<p
+							<h2
 								style={{
 									textAlign: 'center',
-									color: 'red'
+									color: '#000',
+									marginBottom: '20px'
 								}}
 							>
-								{resetErr}
-							</p>
-						) : null}
-					</div>
+								Reset Password
+					</h2>
+							<div>
+								<FormControl style={{ width: '100%' }} onSubmit={this.handleSubmit}>
+									<InputLabel
+										htmlFor="custom-css-input"
+										FormLabelClasses={{
+											root: classes.cssLabel,
+											focused: classes.cssFocused
+										}}
+									>
+										Email
+							</InputLabel>
+									<Input
+										classes={{
+											underline: classes.cssUnderline
+										}}
+										id="email"
+										type="email"
+										onChange={this.handleChange}
+										value={this.state.email}
+									/>
+								</FormControl>
+							</div>
+							<center>
+								<Button
+									type="button"
+									className={classes.cssRoot}
+									onClick={this.handleSubmit}
+								>
+									{' '}
+									<span> Reset Password </span>
+									<div className="ripples buttonRipples">
+										<span className="ripplesCircle" />
+									</div>
+								</Button>{' '}
+							</center>
+							<div>
+								{resetErr ? (
+									<p
+										style={{
+											textAlign: 'center',
+											color: 'red'
+										}}
+									>
+										{resetErr}
+									</p>
+								) : null}
+							</div>
+							<div>
+								<p
+									style={{
+										textAlign: 'center',
+										color: 'black',
+										marginTop: '30px'
+									}}
+								>
+									Already have account?{' '}
+									<Link
+										to="/login"
+										style={{ color: '#00c43e', textDecoration: 'none' }}
+									>
+										Login
+									</Link>
+								</p>
+							</div>
+						</div>
+					</Paper>
 				</div>
 			</div>
 		);
@@ -128,6 +151,17 @@ const styles = theme => ({
 	},
 	dense: {
 		marginTop: 19
+	},
+	paper: {
+		marginTop: theme.spacing.unit * 3,
+		marginBottom: theme.spacing.unit * 3,
+		padding: 0,
+		width: '100%',
+		[theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+			marginTop: theme.spacing.unit * 6,
+			marginBottom: theme.spacing.unit * 6,
+			padding: theme.spacing.unit * 3
+		}
 	},
 	menu: {
 		width: 200

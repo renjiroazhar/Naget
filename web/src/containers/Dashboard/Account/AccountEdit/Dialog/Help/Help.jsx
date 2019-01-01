@@ -80,7 +80,7 @@ class Faq extends React.Component {
 							<HelpIcon style={{ fontSize: '24px', color: 'cornflowerblue' }} />
 						</ListItemIcon>
 						<ListItemSecondaryAction>
-							<ListItemText style={{ fontSize: '24px' }} inset primary="Faq" />
+							<ListItemText style={{ fontSize: '24px' }} inset primary="Help" />
 						</ListItemSecondaryAction>
 					</ListItem>
 				</List>
@@ -100,7 +100,7 @@ class Faq extends React.Component {
 								<CloseIcon />
 							</IconButton>
 							<Typography variant="h6" color="inherit" className={classes.flex}>
-								Faq
+								Help
 							</Typography>
 						</Toolbar>
 					</AppBar>

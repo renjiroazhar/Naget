@@ -3,11 +3,37 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
-import Recycle from "../image/svg/009-recycle.svg";
-import Recycling from "../image/svg/011-recycling.svg";
-import Totebag from "../image/svg/004-tote-bag.svg";
-import RecycleBin from "../image/svg/012-recycle-bin.svg";
-import Green from "../image/svg/025-green.svg";
+import Img from '../image/img/photo.jpg';
+import Img1 from '../image/img/photo (1).jpg';
+import Img2 from '../image/img/photo (2).jpg';
+import Img3 from '../image/img/photo (3).jpg';
+import Img4 from '../image/img/photo (4).jpg';
+import Img5 from '../image/img/photo (5).jpg';
+import Img6 from '../image/img/photo (6).jpg';
+import Img7 from '../image/img/photo (7).jpg';
+import Img8 from '../image/img/photo (8).jpg';
+import Img9 from '../image/img/photo (9).jpg';
+import Img10 from '../image/img/photo (10).jpg';
+import Img11 from '../image/img/photo (11).jpg';
+import Img12 from '../image/img/photo (12).jpg';
+import Img13 from '../image/img/photo (13).jpg';
+import Img14 from '../image/img/photo (14).jpg';
+import Img15 from '../image/img/photo (15).jpg';
+import Img16 from '../image/img/photo (16).jpg';
+import Img17 from '../image/img/photo (17).jpg';
+import Img18 from '../image/img/photo (18).jpg';
+import Img19 from '../image/img/photo (19).jpg';
+import Img20 from '../image/img/photo (20).jpg';
+import Img21 from '../image/img/photo (21).jpg';
+import Img22 from '../image/img/photo (22).jpg';
+import Img23 from '../image/img/photo (23).jpg';
+import Img24 from '../image/img/photo (24).jpg';
+import Img25 from '../image/img/photo (25).jpg';
+import Img26 from '../image/img/photo (26).jpg';
+import Img27 from '../image/img/photo (27).jpg';
+import Img28 from '../image/img/photo (28).jpg';
+import Img29 from '../image/img/photo (29).jpg';
+import Img30 from '../image/img/photo (30).jpg';
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import SwipeableViews from "react-swipeable-views";
@@ -19,30 +45,190 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const tutorialSteps = [
   {
     label:
-      "Sampah revisian skripsi jadi duit. Lumayan nih buat cover buat wisuda hahaha",
-    imgPath: `${RecycleBin}`,
-    name: "Fulan bin Fulan"
+      "Awesome! Sampahnya dijemput, pickernya ramah, dapet uang lagi hehe. Sangat memudahkan bagi kami para mahasiswa yang di kos banyak tumpukan sampah. Save the earth by keeping it clean.",
+    imgPath: `${Img}`,
+    name: "Dian Istiqomah"
   },
   {
-    label: "Sampah duit jadi revisian skripsi. Lumayan buat hahaha nih wisuda buat cover ",
-    imgPath: `${Recycling}`,
-    name: 'Fulan Bin Fulan'
+    label:
+      "Keren. Bisa nih jadi solusi untuk yg punya barang2 bekas selain bisa buat rumah makin bersih juga dapat uang lho Sip, makasih atas jasanya 😄😄😄😄.",
+    imgPath: `${Img1}`,
+    name: "Arie Widya"
   },
   {
-    label: "Duit ? Sampah? ohhh",
-    imgPath: `${Green}`,
-    name: "Fulan bin Fulan"
+    label:
+      "Akhirnyaaa nemu jasa buat menghibahkan kertas kertas yang numpuk di kosan, asli berguna sangat. Tengkyu yaaaa❣️.",
+    imgPath: `${Img2}`,
+    name: "Hala Saadiyya"
   },
   {
-    label: "Hmmmadasmm",
-    imgPath: `${Recycle}`,
-    name: "Fulan bin Fulan"
+    label:
+      "Gerakan yang bagus untuk menyadarkan kita bahwa biar sampah sekalipun tetap bisa menghasilkan manfaat (uang) dan ga cuma numpuk jadi debu dikosan/rumah. Mulai perduli dengan lingkungan dari hal-hal kecil kaya gini👍.",
+    imgPath: `${Img3}`,
+    name: "Afina Aini"
   },
   {
-    label: "Hmmmmmmmmmmm",
-    imgPath: `${Totebag}`,
-    name: "Fulan bin Fulan"
-  }
+    label:
+      "Sangat Membantu dan bermanfaat banget buat mahasiswa... pelayananannya gercep dan gapake ribet.. mantap deh pokoknya 👍 Semoga sukses.",
+    imgPath: `${Img4}`,
+    name: "afifah farhah"
+  },
+  {
+    label:
+      "Sangat kreatif, dan bermanfaat. Pelayanan cepat dan ramah dengan harga yang terjangkau. Menyadarkan saya bahwa menjaga lingkungan dapat mendatangkan banyak keuntungan bagi saya secara nyata.",
+    imgPath: `${Img5}`,
+    name: "Theo Dora Sinta Arum Jati"
+  },
+  {
+    label:
+      "Keren banget, solusi buat yg punya barang barang bekas selain bisa buat rumah makin bersih juga dapat uang lho.",
+    imgPath: `${Img6}`,
+    name: "Faizah Dila"
+  },
+  {
+    label:
+      "Pelayanan baik dan ramah. Cocok buat yang bingung mau buang kertas bekas kemana. Lumayan, sekalian bersih-bersih kamar.",
+    imgPath: `${Img7}`,
+    name: "Aditia Prasetio"
+  },
+  {
+    label:
+      "Fast respon, ramaaah banget walaupun aku ganti jadwal :) pas ketemu kurirnya juga ramah, terbaiq!",
+    imgPath: `${Img8}`,
+    name: "Khansa Ramadianti"
+  },
+  {
+    label:
+      "Mantapp nih aplikasi. Udah ga pusing mau di kemanain sampah2 kertas di kosan. 👍👍.",
+    imgPath: `${Img9}`,
+    name: "Deswulan 96"
+  },
+  {
+    label:
+      "Sampah2 kertas jadi ga numpuk lagi di kosan, makasih banyak moretrash semoga lancar terus!!",
+    imgPath: `${Img10}`,
+    name: "Windy Isnin Sitta S."
+  },
+  {
+    label:
+      "Mantaaap, mengurangi sampah kertas di kosan.. semoga bisa bermanfaat 😁.",
+    imgPath: `${Img11}`,
+    name: "Tiara S"
+  },
+  {
+    label:
+      "Sangat membantu dan menyenangkan, tidak perlu repot-repot ke pengepul tapi tetap dapat untung hehe.",
+    imgPath: `${Img12}`,
+    name: "Akhbarani Rani"
+  },
+  {
+    label:
+      "mantap coy, cepet prosesnya. sukses teruss🙏 .",
+    imgPath: `${Img13}`,
+    name: "annisa lufth"
+  },
+  {
+    label:
+      "Seneng banget bisa buang sisa kertas laporan dengan mudah.",
+    imgPath: `${Img14}`,
+    name: "Chintya ramadhani"
+  },
+  {
+    label:
+      "cara tepat mengelola sampah #2019semarangbebassampah.",
+    imgPath: `${Img15}`,
+    name: "aulia nisrina"
+  },
+  {
+    label:
+      "sangat membantu.",
+    imgPath: `${Img16}`,
+    name: "Chairinnisa Alicia"
+  },
+  {
+    label:
+      "Dapet duit dari rosokin sampah 👍.",
+    imgPath: `${Img17}`,
+    name: "Devid Adi Surya"
+  },
+  {
+    label:
+      "Solusi cepat dan tepat untuk yang punya sampah kertas.",
+    imgPath: `${Img18}`,
+    name: "ESTIE YONASARI"
+  },
+  {
+    label:
+      "Simple banget sih cara ordernya, and fast respon yang bikin seneng,,",
+    imgPath: `${Img19}`,
+    name: "Ayu Silvia"
+  },
+  {
+    label:
+      "sampah tidak untuk dikoleksi, ini solusi nya #2019semarangbebassampah.",
+    imgPath: `${Img20}`,
+    name: "Maulidia putri p"
+  },
+  {
+    label:
+      "Bermanfaat.",
+    imgPath: `${Img21}`,
+    name: "Novia Dwinisrina"
+  },
+  {
+    label:
+      "mantap.",
+    imgPath: `${Img22}`,
+    name: "Kemal Ahmad"
+  },
+  {
+    label:
+      "Mantap.",
+    imgPath: `${Img23}`,
+    name: "Ari wibowo"
+  },
+  {
+    label:
+      "Awesome! Sampahnya dijemput, pickernya ramah, dapet uang lagi hehe. Sangat memudahkan bagi kami para mahasiswa yang di kos banyak tumpukan sampah. Save the earth by keeping it clean.",
+    imgPath: `${Img24}`,
+    name: "Dian Istiqomah"
+  },
+  {
+    label:
+      "Miminya ramah dan drivernya juga.",
+    imgPath: `${Img25}`,
+    name: "fitria qotrotun nada"
+  },
+  {
+    label:
+      "This is a good movement to reduce student waste. Contact the id, choose to picked up the trash by them or put it yourself, and finish. We will get money from it and protect the environment at the same time. The picker is nice and friendly. It also has a good track record. Sukses terus untuk Moretrash Indonesia .",
+    imgPath: `${Img26}`,
+    name: "debianandya seiva"
+  },
+  {
+    label:
+      "It's a new and fun way to throw away our trash..",
+    imgPath: `${Img27}`,
+    name: "Priskila Mellyn"
+  },
+  {
+    label:
+      "Nice place, good movement from the young.",
+    imgPath: `${Img28}`,
+    name: "Akbar Hars"
+  },
+  {
+    label:
+      "good more bike.id.",
+    imgPath: `${Img29}`,
+    name: "Dwi Rahayu Prihandini"
+  },
+  {
+    label:
+      "Good.",
+    imgPath: `${Img30}`,
+    name: "Ridwan Santosa"
+  },
 ];
 
 const styles = theme => ({
@@ -73,11 +259,11 @@ const styles = theme => ({
     textAlign: "center"
   },
   img: {
-    height: "140px",
+    height: 40,
     display: "block",
-    maxWidth: "100%",
     overflow: "hidden",
-    width: "100%"
+    width: 40,
+    marginTop: '50px'
   },
   mobileStepper: {
     color: "#00c43e",
@@ -134,15 +320,20 @@ class CarouselTestimoni extends React.Component {
             <div key={step.label}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <div>
-                  <img className={classes.img} src={step.imgPath} alt="" />
-
                   <Paper square elevation={0} className={classes.header}>
-                    <Typography style={{textAlign : 'center',justifyContent : "center"}} >{tutorialSteps[activeStep].label}</Typography>
+                    <Typography style={{ textAlign: 'center', justifyContent: "center" }} >
+                      {tutorialSteps[activeStep].label}
+                    </Typography>
                   </Paper>
+
+                  <center>
+                    <img className={classes.img} src={step.imgPath} alt="" />
+                  </center>
+
                   <Paper square elevation={0} className={classes.name}>
-                    <Typography style={{ fontWeight: "bold" }}>{`${
-                      tutorialSteps[activeStep].name
-                    }, ${`Mahasiswa`}`}</Typography>
+                    <Typography style={{ fontWeight: "bold", }}>{`${
+                      tutorialSteps[activeStep].name}`}
+                    </Typography>
                   </Paper>
                 </div>
               ) : null}
@@ -150,21 +341,21 @@ class CarouselTestimoni extends React.Component {
           ))}
         </AutoPlaySwipeableViews>
         <MobileStepper
-        variant="dots"
-        steps={maxSteps}
-        position="static"
-        activeStep={this.state.activeStep}
-        className={classes.root}
-        nextButton={
-          <Button varian="contained" size="small" onClick={this.handleNext} disabled={this.state.activeStep === 5}>
-          </Button>
-        }
-        backButton={
-          <Button varian="contained" size="small" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
-         
-          </Button>
-        }
-      />
+          variant="dots"
+          steps={maxSteps}
+          position="static"
+          activeStep={this.state.activeStep}
+          className={classes.root}
+          nextButton={
+            <Button varian="contained" size="small" onClick={this.handleNext} disabled={this.state.activeStep === 5}>
+            </Button>
+          }
+          backButton={
+            <Button varian="contained" size="small" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
+
+            </Button>
+          }
+        />
       </div>
     );
   }

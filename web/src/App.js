@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from './services/firebaseConfig';
 import PrivateRoute from './routes/private';
 import PublicRoute from './routes/public';
-import logo from './assets/img/moretrash.jpg';
+import logo from './assets/png/logo.png';
 import { hot } from 'react-hot-loader';
 // import Demo from './Demo';
 
