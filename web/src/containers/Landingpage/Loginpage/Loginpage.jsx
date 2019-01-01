@@ -75,7 +75,8 @@ class Loginpage extends Component {
 								height: '100%',
 								backgroundColor: '#fff',
 								padding: '20px',
-								marginTop: '60px'
+								marginTop: '60px',
+
 							}}
 						>
 							<p
@@ -135,7 +136,6 @@ class Loginpage extends Component {
 							</div>
 							<center>
 								<Button
-									varian="contained"
 									type="button"
 									className={classes.cssRoot}
 									onClick={this.handleSubmit}
@@ -183,7 +183,7 @@ class Loginpage extends Component {
 								</p>
 							</div>
 							<div>
-								<p style={{ textAlign: 'center', color: 'black', padding: 0 }}>
+								<p style={{ textAlign: 'center', color: 'black', padding: 0, marginTop: '30px', }}>
 									Don't have account?{' '}
 									<Link
 										to="/signup"
@@ -215,7 +215,6 @@ const styles = theme => ({
 		marginBottom: theme.spacing.unit * 3,
 		padding: 0,
 		width: '100%',
-		height: '100vh',
 		[theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
 			marginTop: theme.spacing.unit * 6,
 			marginBottom: theme.spacing.unit * 6,
@@ -255,7 +254,6 @@ const styles = theme => ({
 		backgroundColor: '#00c43e',
 		width: '100%',
 		fontWeight: 400,
-		height: '40px',
 		'&:hover': {
 			backgroundColor: '#00c43e'
 		}

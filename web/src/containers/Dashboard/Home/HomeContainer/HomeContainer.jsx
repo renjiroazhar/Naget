@@ -310,12 +310,12 @@ class HomeContainer extends Component {
 									</Button>
 									<p
 										style={{
-											fontSize: 'small',
+											fontSize: '9px',
 											color: '#555555',
 											fontWeight: 'bold'
 										}}
 									>
-										TRASH <p style={{ padding: 0, margin: 0 }}>SCALE</p>
+										TRASH SCALE
 									</p>
 								</Grid>
 								<Grid item xs={3}>
@@ -335,12 +335,12 @@ class HomeContainer extends Component {
 									</Button>
 									<p
 										style={{
-											fontSize: 'small',
+											fontSize: '9px',
 											color: '#555555',
 											fontWeight: 'bold'
 										}}
 									>
-										TRASH <p style={{ padding: 0, margin: 0 }}>BAG</p>
+										TRASH BAG
 									</p>
 								</Grid>{' '}
 								<Grid item xs={3}>
@@ -360,12 +360,12 @@ class HomeContainer extends Component {
 									</Button>
 									<p
 										style={{
-											fontSize: 'small',
+											fontSize: '9px',
 											color: '#555555',
 											fontWeight: 'bold'
 										}}
 									>
-										TRASH <p style={{ padding: 0, margin: 0 }}>POINTS</p>
+										TRASH POINTS
 									</p>
 								</Grid>
 								<Grid item xs={3}>
@@ -385,12 +385,12 @@ class HomeContainer extends Component {
 									</Button>
 									<p
 										style={{
-											fontSize: 'small',
+											fontSize: '9px',
 											color: '#555555',
 											fontWeight: 'bold'
 										}}
 									>
-										TRASH <p style={{ padding: 0, margin: 0 }}>DROP</p>
+										TRASH DROP
 									</p>
 								</Grid>
 							</Grid>
@@ -425,12 +425,12 @@ class HomeContainer extends Component {
 								</Button>
 								<p
 									style={{
-										fontSize: 'small',
+										fontSize: '9px',
 										color: '#555555',
 										fontWeight: 'bold'
 									}}
 								>
-									TRASH <p style={{ padding: 0, margin: 0 }}>SCALE</p>
+									TRASH SCALE
 								</p>
 							</div>
 							<div>
@@ -450,12 +450,12 @@ class HomeContainer extends Component {
 								</Button>
 								<p
 									style={{
-										fontSize: 'small',
+										fontSize: '9px',
 										color: '#555555',
 										fontWeight: 'bold'
 									}}
 								>
-									TRASH <p style={{ padding: 0, margin: 0 }}>BAG</p>
+									TRASH BAG
 								</p>
 							</div>
 							<div>
@@ -470,12 +470,12 @@ class HomeContainer extends Component {
 								</Button>
 								<p
 									style={{
-										fontSize: 'small',
+										fontSize: '9px',
 										color: '#555555',
 										fontWeight: 'bold'
 									}}
 								>
-									TRASH <p style={{ padding: 0, margin: 0 }}>POINTS</p>
+									TRASH POINTS
 								</p>
 							</div>
 							<div>
@@ -490,12 +490,12 @@ class HomeContainer extends Component {
 								</Button>
 								<p
 									style={{
-										fontSize: 'small',
+										fontSize: '9px',
 										color: '#555555',
 										fontWeight: 'bold'
 									}}
 								>
-									TRASH <p style={{ padding: 0, margin: 0 }}>DROP</p>
+									TRASH DROP
 								</p>
 							</div>
 						</div>

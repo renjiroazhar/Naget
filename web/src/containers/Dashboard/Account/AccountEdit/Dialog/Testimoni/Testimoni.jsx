@@ -30,7 +30,8 @@ const styles = theme => ({
 	title: {
 		margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
 		color: '#00c43e',
-		textAlign: 'center'
+		textAlign: 'center',
+		marginBottom: '13%',
 	},
 	card: {
 		maxWidth: 400,
