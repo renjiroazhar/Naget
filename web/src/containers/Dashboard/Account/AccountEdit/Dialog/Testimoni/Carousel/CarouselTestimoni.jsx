@@ -156,11 +156,11 @@ class CarouselTestimoni extends React.Component {
         activeStep={this.state.activeStep}
         className={classes.root}
         nextButton={
-          <Button size="small" onClick={this.handleNext} disabled={this.state.activeStep === 5}>
+          <Button varian="contained" size="small" onClick={this.handleNext} disabled={this.state.activeStep === 5}>
           </Button>
         }
         backButton={
-          <Button size="small" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
+          <Button varian="contained" size="small" onClick={this.handleBack} disabled={this.state.activeStep === 0}>
          
           </Button>
         }

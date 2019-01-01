@@ -106,7 +106,7 @@ class EditProfil extends React.Component {
 		this.handleClose();
 	};
 
-	async componentDidMount() {
+	async getData() {
 		const { auth } = this.props;
 		const ref = firebase
 			.firestore()
@@ -132,7 +132,11 @@ class EditProfil extends React.Component {
 			console.log(error);
 		}
 	}
-	
+
+	componentDidMount() {
+		this.getData();
+	}
+
 	render() {
 		const { classes, profile, auth } = this.props;
 		return (
@@ -188,7 +192,7 @@ class EditProfil extends React.Component {
 							<Typography variant="h6" color="inherit" className={classes.flex}>
 								Profile
 							</Typography>
-							<Button color="inherit" onClick={this.handleSave}>
+							<Button varian="contained" color="inherit" onClick={this.handleSave}>
 								Save
 							</Button>
 						</Toolbar>
@@ -273,7 +277,6 @@ EditProfil.propTypes = {
 };
 
 const mapStateToProps = state => {
-	console.log(state);
 	const id = state.firebase.auth.uid;
 	const users = state.firestore.data.users;
 	const user = users ? users[id] : null;

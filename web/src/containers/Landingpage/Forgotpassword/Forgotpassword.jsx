@@ -91,7 +91,7 @@ class Forgotpassword extends Component {
 						</FormControl>
 					</div>
 					<center>
-						<Button
+						<Button varian="contained"
 							type="button"
 							className={classes.cssRoot}
 							onClick={this.handleSubmit}

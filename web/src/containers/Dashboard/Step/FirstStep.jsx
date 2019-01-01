@@ -191,7 +191,7 @@ class FirstStep extends React.Component {
 								marginTop: '10%'
 							}}
 						>
-							<Button
+							<Button varian="contained"
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}

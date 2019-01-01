@@ -263,7 +263,7 @@ class SecondStep extends React.Component {
 									{({ getRootProps, getInputProps }) => (
 										<div {...getRootProps()}>
 											<input {...getInputProps()} />
-											<Button
+											<Button varian="contained"
 												component="span"
 												style={{
 													backgroundColor: '#B0B0B0',
@@ -290,7 +290,7 @@ class SecondStep extends React.Component {
 								marginTop: '10%'
 							}}
 						>
-							<Button
+							<Button varian="contained"
 								variant="contained"
 								color="primary"
 								onClick={this.handleBack}
@@ -313,7 +313,7 @@ class SecondStep extends React.Component {
 								width: '100%'
 							}}
 						>
-							<Button
+							<Button 
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}

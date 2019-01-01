@@ -184,7 +184,7 @@ class GantiPassword extends React.Component {
 							>
 								Change Password
 							</Typography>
-							<Button color="inherit" onClick={this.handleSave}>
+							<Button varian="contained" color="inherit" onClick={this.handleSave}>
 								Save
 							</Button>
 						</Toolbar>

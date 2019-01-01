@@ -103,14 +103,14 @@ class Carousel extends React.Component {
 					className={classes.mobileStepper}
 					style={{ backgroundColor: 'transparent' }}
 					nextButton={
-						<Button
+						<Button varian="contained"
 							size="small"
 							onClick={this.handleNext}
 							disabled={activeStep === maxSteps - 1}
 						/>
 					}
 					backButton={
-						<Button
+						<Button varian="contained"
 							size="small"
 							onClick={this.handleBack}
 							disabled={activeStep === 0}

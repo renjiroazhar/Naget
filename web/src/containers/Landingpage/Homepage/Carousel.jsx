@@ -8,8 +8,8 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import DropTrash from '../../../assets/img/png/DropTrash.png';
 import TrashScale from '../../../assets/img/png/TrashScale.png';
 import TrashDrop from '../../../assets/img/png/TrashDrop.png';
-import TrashBag from '../../../assets/img/png/TrashBag.png'
-import TrashPoints from '../../../assets/img/png/TrashPoints.png'
+import TrashBag from '../../../assets/img/png/TrashBag.png';
+import TrashPoints from '../../../assets/img/png/TrashPoints.png';
 import './style/carousel.css';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -50,6 +50,10 @@ const styles = theme => ({
 		maxWidth: 200,
 		overflow: 'hidden',
 		width: '100%'
+	},
+	dot: {
+		color: 'red',
+		backgroundColor: 'blue'
 	}
 });
 
@@ -88,26 +92,32 @@ class Carousel extends React.Component {
 					enableMouseEvents
 				>
 					{tutorialSteps.map((step, index) => (
-						<div key={step.label}>
+						<div key={index}>
 							{Math.abs(activeStep - index) <= 2 ? (
 								<img
 									id="image-carousel"
 									className={classes.img}
 									src={step.imgPath}
+									key={index}
 									alt={step.label}
 								/>
 							) : null}
 						</div>
 					))}
 				</AutoPlaySwipeableViews>
+
 				<MobileStepper
 					steps={maxSteps}
 					position="static"
+					LinearProgressProps={{
+						dotActive: classes.dot
+					}}
 					activeStep={activeStep}
 					className={classes.mobileStepper}
 					style={{ backgroundColor: 'transparent' }}
 					nextButton={
 						<Button
+							varian="contained"
 							size="small"
 							onClick={this.handleNext}
 							disabled={activeStep === maxSteps - 1}
@@ -115,6 +125,7 @@ class Carousel extends React.Component {
 					}
 					backButton={
 						<Button
+							varian="contained"
 							size="small"
 							onClick={this.handleBack}
 							disabled={activeStep === 0}

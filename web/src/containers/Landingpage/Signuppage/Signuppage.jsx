@@ -235,6 +235,7 @@ class Signuppage extends Component {
 								</FormControl>
 							</div>
 							<Button
+								varian="contained"
 								type="button"
 								className={classes.cssRoot}
 								onClick={e => {
@@ -355,7 +356,7 @@ const styles = theme => ({
 		color: '#FFFFFF',
 		backgroundColor: '#00c43e',
 		width: '100%',
-		height: '',
+		height: '40px',
 		fontWeight: 400,
 		'&:hover': {
 			backgroundColor: '#00c43e'
