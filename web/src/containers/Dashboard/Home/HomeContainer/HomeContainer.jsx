@@ -84,21 +84,23 @@ const styles = theme => ({
 	cssLabel: {
 		color: '#999',
 		'&$cssFocused': {
-			color: '#999'
+			color: '#000000'
 		}
 	},
 	cssFocused: {},
 	cssUnderline: {
 		width: '100%',
-		maxWidth: '345px',
 		borderColor: '#fff',
-		color: '#black',
-		borderBottomColor: 'black',
+		color: '#000',
+		borderBottomColor: '#000000',
 		'&:before': {
-			borderBottomColor: 'black'
+			borderBottomColor: '#000000'
 		},
 		'&:after': {
-			borderBottomColor: 'black'
+			borderBottomColor: '#000000'
+		},
+		'&:hover': {
+			borderBottomColor: '#000000'
 		}
 	},
 	iconchat: {

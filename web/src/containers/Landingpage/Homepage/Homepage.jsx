@@ -43,8 +43,8 @@ class Homepage extends Component {
 					<img
 						src={Logo}
 						srcSet={Logo}
-						width="171"
-						height="50"
+						width="151"
+						height="40"
 						alt="Moretrash Logo"
 						retina_logo_url=""
 						className="moretrash-logo"

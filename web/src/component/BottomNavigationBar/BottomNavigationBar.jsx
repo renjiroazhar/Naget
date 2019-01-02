@@ -8,17 +8,65 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountIcon from '@material-ui/icons/AccountCircle';
 import { Link } from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-const styles = {
+const themeMui = createMuiTheme({
+	overrides: {
+		MuiBottomNavigation: {
+			root: {
+				'&$selected': {
+					color: 'red'
+				}
+			}
+		},
+		MuiBottomNavigationAction: {
+			root: {
+				'&$selected': {
+					color: 'green',
+					backgroundColor: 'green'
+				}
+			},
+			'&$selected': {
+				color: 'red'
+			}
+		},
+		step: {
+			'& $completed': {
+				color: 'lightgreen'
+			},
+			'& $active': {
+				color: 'pink'
+			},
+			'& $disabled': {
+				color: 'red'
+			}
+		},
+		alternativeLabel: {},
+		active: {}, //needed so that the &$active tag works
+		completed: {},
+		disabled: {},
+		labelContainer: {
+			'& $alternativeLabel': {
+				marginTop: 0
+			}
+		}
+	}
+});
+
+const styles = theme => ({
 	root: {
 		width: '100%',
 		bottom: 0,
 		position: 'fixed'
 	},
+	'&$iconOnly': {
+		paddingTop: 16
+	},
 	'&$selected': {
-		backgroundColor: 'red'
+		paddingTop: 6,
+		color: theme.palette.primary.main
 	}
-};
+});
 
 class BottomNavigationBar extends React.Component {
 	state = {
@@ -40,35 +88,47 @@ class BottomNavigationBar extends React.Component {
 				onChange={this.handleChange}
 				className={classes.root}
 			>
-				<BottomNavigationAction
-					label="Home"
-					className={classes.action}
-					value="recents"
-					icon={<HomeIcon />}
-					component={Link}
-					to="/"
-				/>
-				<BottomNavigationAction
-					label="Order"
-					value="favorites"
-					icon={<AssignmentIcon />}
-					component={Link}
-					to="/order"
-				/>
-				<BottomNavigationAction
-					label="Help"
-					value="nearby"
-					icon={<HelpIcon />}
-					component={Link}
-					to="/help"
-				/>
-				<BottomNavigationAction
-					label="Account"
-					value="folder"
-					icon={<AccountIcon />}
-					component={Link}
-					to="/account"
-				/>
+				<MuiThemeProvider theme={themeMui}>
+					<BottomNavigationAction
+						label="Home"
+						className={classes.action}
+						value="recents"
+						icon={<HomeIcon />}
+						component={Link}
+						to="/"
+						showLabel
+					/>
+				</MuiThemeProvider>
+				<MuiThemeProvider theme={themeMui}>
+					<BottomNavigationAction
+						label="Order"
+						value="favorites"
+						icon={<AssignmentIcon />}
+						component={Link}
+						showLabel
+						to="/order"
+					/>
+				</MuiThemeProvider>
+				<MuiThemeProvider theme={themeMui}>
+					<BottomNavigationAction
+						label="Help"
+						value="nearby"
+						icon={<HelpIcon />}
+						component={Link}
+						to="/help"
+						showLabel
+					/>
+				</MuiThemeProvider>
+				<MuiThemeProvider theme={themeMui}>
+					<BottomNavigationAction
+						label="Account"
+						value="folder"
+						icon={<AccountIcon />}
+						component={Link}
+						showLabel
+						to="/account"
+					/>
+				</MuiThemeProvider>
 			</BottomNavigation>
 		);
 	}
