@@ -10,7 +10,6 @@ export const cancelOrder = (orderdata, id) => {
 			date: new Date()
 		};
 		const spreadLogs = [...orderdata.logs, { ...logs }];
-		console.log(spreadLogs);
 		const today = new Date();
 		firestore
 			.collection('orders')

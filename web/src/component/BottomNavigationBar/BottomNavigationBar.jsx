@@ -1,141 +1,79 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import HelpIcon from '@material-ui/icons/Help';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import HomeIcon from '@material-ui/icons/Home';
-import AccountIcon from '@material-ui/icons/AccountCircle';
-import { Link } from 'react-router-dom';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { TabBar } from 'antd-mobile';
+import { Icon } from 'antd';
+import { withRouter } from 'react-router-dom';
+import './style/style.css';
 
-const themeMui = createMuiTheme({
-	overrides: {
-		MuiBottomNavigation: {
-			root: {
-				'&$selected': {
-					color: 'red'
-				}
-			}
-		},
-		MuiBottomNavigationAction: {
-			root: {
-				'&$selected': {
-					color: 'green',
-					backgroundColor: 'green'
-				}
-			},
-			'&$selected': {
-				color: 'red'
-			}
-		},
-		step: {
-			'& $completed': {
-				color: 'lightgreen'
-			},
-			'& $active': {
-				color: 'pink'
-			},
-			'& $disabled': {
-				color: 'red'
-			}
-		},
-		alternativeLabel: {},
-		active: {}, //needed so that the &$active tag works
-		completed: {},
-		disabled: {},
-		labelContainer: {
-			'& $alternativeLabel': {
-				marginTop: 0
-			}
-		}
-	}
-});
-
-const styles = theme => ({
-	root: {
-		width: '100%',
-		bottom: 0,
-		position: 'fixed'
-	},
-	'&$iconOnly': {
-		paddingTop: 16
-	},
-	'&$selected': {
-		paddingTop: 6,
-		color: theme.palette.primary.main
-	}
-});
-
-class BottomNavigationBar extends React.Component {
-	state = {
-		value: 'recents'
-	};
-
-	handleChange = (event, value) => {
-		this.setState({ value });
-	};
-
-	render() {
-		const { classes } = this.props;
-		const { value } = this.state;
-
-		return (
-			<BottomNavigation
-				value={value}
-				showLabels={true}
-				onChange={this.handleChange}
-				className={classes.root}
+const BottomNavigationBar = props => {
+	return (
+		<div
+			style={{
+				width: '100%',
+				position: 'fixed',
+				bottom: '0'
+			}}
+		>
+			<TabBar
+				unselectedTintColor="#696969"
+				tintColor="#00c43e"
+				style={{ height: '56px', fontSize: '18px' }}
+				barTintColor="white"
 			>
-				<MuiThemeProvider theme={themeMui}>
-					<BottomNavigationAction
-						label="Home"
-						className={classes.action}
-						value="recents"
-						icon={<HomeIcon />}
-						component={Link}
-						to="/"
-						showLabel
-					/>
-				</MuiThemeProvider>
-				<MuiThemeProvider theme={themeMui}>
-					<BottomNavigationAction
-						label="Order"
-						value="favorites"
-						icon={<AssignmentIcon />}
-						component={Link}
-						to="/order"
-						showLabel
-					/>
-				</MuiThemeProvider>
-				<MuiThemeProvider theme={themeMui}>
-					<BottomNavigationAction
-						label="Help"
-						value="nearby"
-						showLabel
-						icon={<HelpIcon />}
-						component={Link}
-						to="/help"
-					/>
-				</MuiThemeProvider>
-				<MuiThemeProvider theme={themeMui}>
-					<BottomNavigationAction
-						label="Account"
-						value="folder"
-						showLabel
-						icon={<AccountIcon />}
-						component={Link}
-						to="/account"
-					/>
-				</MuiThemeProvider>
-			</BottomNavigation>
-		);
-	}
-}
+				<TabBar.Item
+					title={<p style={{ margin: 0, fontSize: '0.75rem' }}>Home</p>}
+					key="list"
+					icon={<Icon style={{ fontSize: '18px' }} type="home" />}
+					selectedIcon={<Icon style={{ fontSize: '18px' }} type="home" />}
+					selected={props.selectedTab === 'home'}
+					onPress={() => {
+						props.history.push('/');
+						props.onChangeTab('home');
+					}}
+				/>
 
-BottomNavigationBar.propTypes = {
-	classes: PropTypes.object.isRequired
+				<TabBar.Item
+					icon={<Icon style={{ fontSize: '18px' }} type="reconciliation" />}
+					selectedIcon={
+						<Icon style={{ fontSize: '18px' }} type="reconciliation" />
+					}
+					title={<p style={{ margin: 0, fontSize: '0.75rem' }}>Order</p>}
+					key="order"
+					// dot
+					selected={props.selectedTab === 'order'}
+					onPress={() => {
+						props.history.push('/order');
+						props.onChangeTab('order');
+					}}
+				/>
+				<TabBar.Item
+					icon={<Icon style={{ fontSize: '18px' }} type="question-circle" />}
+					selectedIcon={
+						<Icon style={{ fontSize: '18px' }} type="question-circle" />
+					}
+					title={<p style={{ margin: 0, fontSize: '0.75rem' }}>Help</p>}
+					key="help"
+					// badge={"new"}
+					selected={props.selectedTab === 'help'}
+					onPress={() => {
+						props.history.push('/help');
+						props.onChangeTab('help');
+					}}
+				/>
+
+				<TabBar.Item
+					icon={<Icon style={{ fontSize: '18px' }} type="user" />}
+					selectedIcon={<Icon style={{ fontSize: '18px' }} type="user" />}
+					title={<p style={{ margin: 0, fontSize: '0.75rem' }}>Account</p>}
+					key="account"
+					selected={props.selectedTab === 'account'}
+					onPress={() => {
+						props.history.push('/account');
+						props.onChangeTab('account');
+					}}
+				/>
+			</TabBar>
+		</div>
+	);
 };
 
-export default withStyles(styles)(BottomNavigationBar);
+export default withRouter(BottomNavigationBar);

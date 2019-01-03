@@ -12,62 +12,61 @@ class App extends Component {
 		loading: true
 	};
 
+	statePersistence = userId => {
+		firebase
+			.database()
+			.ref('.info/connected')
+			.on('value', function(snapshot) {
+				console.log(snapshot.val());
+				if (snapshot.val() === false || !snapshot.val()) {
+					console.log('offline', !snapshot.val());
+					firebase
+						.firestore()
+						.collection('status')
+						.doc(userId)
+						.set({
+							status: 'offline',
+							last_changed: firebase.firestore.FieldValue.serverTimestamp()
+						});
+				}
+
+				firebase
+					.database()
+					.ref('/status/' + userId)
+					.onDisconnect()
+					.set({
+						status: 'offline',
+						last_changed: firebase.firestore.FieldValue.serverTimestamp()
+					})
+					.then(() => {
+						firebase
+							.database()
+							.ref('/status/' + userId)
+							.set({
+								status: 'online',
+								last_changed: firebase.firestore.FieldValue.serverTimestamp()
+							});
+						// We'll also add Firestore set here for when we come online.
+						firebase
+							.firestore()
+							.collection('status')
+							.doc(userId)
+							.set({
+								status: 'online',
+								last_changed: firebase.firestore.FieldValue.serverTimestamp()
+							});
+					});
+				// .then(function() {
+			});
+	};
+
 	authListener = () => {
 		const auth = firebase.auth().onAuthStateChanged(user => {
 			if (user && user !== null) {
 				this.setState({
 					isAuthenticated: user
 				});
-				firebase
-					.database()
-					.ref('.info/connected')
-					.on('value', function(snapshot) {
-						console.log(snapshot.val());
-						if (snapshot.val() === false || !snapshot.val()) {
-							console.log('offline', !snapshot.val());
-							firebase
-								.firestore()
-								.collection('status')
-								.doc(user.uid)
-								.set({
-									status: 'offline',
-									last_changed: firebase.firestore.FieldValue.serverTimestamp()
-								});
-						}
-
-						firebase
-							.database()
-							.ref('/status/' + user.uid)
-							.onDisconnect()
-							.set({
-								status: 'offline',
-								last_changed: firebase.firestore.FieldValue.serverTimestamp()
-							})
-							.then(() => {
-								firebase
-									.database()
-									.ref('/status/' + user.uid)
-									.set({
-										status: 'online',
-										last_changed: firebase.firestore.FieldValue.serverTimestamp()
-									});
-								// We'll also add Firestore set here for when we come online.
-								firebase
-									.firestore()
-									.collection('status')
-									.doc(user.uid)
-									.set({
-										status: 'online',
-										last_changed: firebase.firestore.FieldValue.serverTimestamp()
-									});
-							});
-						// .then(function() {
-					});
-
-				// var userStatusDatabaseRef = firebase.database();
-
-				// Firestore uses a different server timestamp value, so we'll
-				// create two more constants for Firestore state.
+				this.statePersistence(user.uid);
 			} else {
 				this.setState({
 					isAuthenticated: null

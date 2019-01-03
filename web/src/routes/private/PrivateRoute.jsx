@@ -17,6 +17,17 @@ import EditOrder from '../../containers/Dashboard/Order/EditOrder';
 // };
 
 export default class PublicRoute extends Component {
+	state = {
+		selectedTab: 'home'
+	};
+
+	onChangeTab = selectedTab => {
+		// console.log('hello')
+		this.setState({
+			selectedTab: selectedTab
+		});
+	};
+
 	render() {
 		const currentPath = window.location.pathname;
 
@@ -37,7 +48,10 @@ export default class PublicRoute extends Component {
 				/>
 				{!currentPath.includes('form_login') &&
 				!currentPath.includes('orderdetail') ? (
-					<BottomNavigationBar />
+					<BottomNavigationBar
+						selectedTab={this.state.selectedTab}
+						onChangeTab={this.onChangeTab}
+					/>
 				) : null}
 			</div>
 		);

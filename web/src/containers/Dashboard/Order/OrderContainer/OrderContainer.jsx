@@ -203,7 +203,8 @@ const stylus = {
 		border: 'none',
 		borderColor: '#00c43e',
 		borderBottomColor: 'white',
-		color: 'black'
+		color: 'black',
+		fontWeight: 'normal'
 	}
 };
 

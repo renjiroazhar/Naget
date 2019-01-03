@@ -30,8 +30,7 @@ const styles = theme => ({
 	title: {
 		margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
 		color: '#00c43e',
-		textAlign: 'center',
-		marginBottom: '13%',
+		textAlign: 'center'
 	},
 	card: {
 		maxWidth: 400,
@@ -141,7 +140,7 @@ class Testimoni extends React.Component {
 						style={{
 							width: '100%',
 							height: '100%',
-							marginTop: '56px',
+							marginTop: '56px'
 						}}
 					>
 						<PaperSheet />
