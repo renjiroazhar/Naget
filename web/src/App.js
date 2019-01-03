@@ -23,8 +23,16 @@ class App extends Component {
 					.ref('.info/connected')
 					.on('value', function(snapshot) {
 						console.log(snapshot.val());
-						if (snapshot.val()) {
-							console.log('online', snapshot.val());
+						if (snapshot.val() === false || !snapshot.val()) {
+							console.log('offline', !snapshot.val());
+							firebase
+								.firestore()
+								.collection('status')
+								.doc(user.uid)
+								.set({
+									status: 'offline',
+									last_changed: firebase.firestore.FieldValue.serverTimestamp()
+								});
 						}
 
 						firebase
@@ -44,6 +52,14 @@ class App extends Component {
 										last_changed: firebase.firestore.FieldValue.serverTimestamp()
 									});
 								// We'll also add Firestore set here for when we come online.
+								firebase
+									.firestore()
+									.collection('status')
+									.doc(user.uid)
+									.set({
+										status: 'online',
+										last_changed: firebase.firestore.FieldValue.serverTimestamp()
+									});
 							});
 						// .then(function() {
 					});

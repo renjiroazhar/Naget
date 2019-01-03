@@ -84,7 +84,7 @@ class BottomNavigationBar extends React.Component {
 		return (
 			<BottomNavigation
 				value={value}
-				showLabels
+				showLabels={true}
 				onChange={this.handleChange}
 				className={classes.root}
 			>
@@ -105,27 +105,27 @@ class BottomNavigationBar extends React.Component {
 						value="favorites"
 						icon={<AssignmentIcon />}
 						component={Link}
-						showLabel
 						to="/order"
+						showLabel
 					/>
 				</MuiThemeProvider>
 				<MuiThemeProvider theme={themeMui}>
 					<BottomNavigationAction
 						label="Help"
 						value="nearby"
+						showLabel
 						icon={<HelpIcon />}
 						component={Link}
 						to="/help"
-						showLabel
 					/>
 				</MuiThemeProvider>
 				<MuiThemeProvider theme={themeMui}>
 					<BottomNavigationAction
 						label="Account"
 						value="folder"
+						showLabel
 						icon={<AccountIcon />}
 						component={Link}
-						showLabel
 						to="/account"
 					/>
 				</MuiThemeProvider>

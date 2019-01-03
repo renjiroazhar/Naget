@@ -54,11 +54,20 @@ export const signInWithFacebook = credentials => {
 export const signOut = () => {
 	return (dispatch, getState, { getFirebase }) => {
 		const firebase = getFirebase();
-
+		const userId = getState().firebase.auth.uid;
+		console.log('Keluar :(');
 		firebase
 			.auth()
 			.signOut()
 			.then(() => {
+				firebase
+					.firestore()
+					.collection('status')
+					.doc(userId)
+					.set({
+						status: 'offline',
+						last_changed: firebase.firestore.FieldValue.serverTimestamp()
+					});
 				dispatch({ type: 'SIGNOUT_SUCCESS' });
 			});
 	};

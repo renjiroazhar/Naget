@@ -121,7 +121,9 @@ class Carousel extends React.Component {
 							size="small"
 							onClick={this.handleNext}
 							disabled={activeStep === maxSteps - 1}
-						/>
+						>
+							{''}
+						</Button>
 					}
 					backButton={
 						<Button
@@ -129,7 +131,9 @@ class Carousel extends React.Component {
 							size="small"
 							onClick={this.handleBack}
 							disabled={activeStep === 0}
-						/>
+						>
+							{''}
+						</Button>
 					}
 				/>
 			</div>
