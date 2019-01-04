@@ -10,7 +10,7 @@ import TrashScale from '../../../assets/img/webp/TrashScale.webp';
 import TrashDrop from '../../../assets/img/webp/TrashDrop.webp';
 import TrashBag from '../../../assets/img/webp/TrashBag.webp';
 import TrashPoints from '../../../assets/img/webp/TrashPoints.webp';
-import LazyLoad from 'react-lazy-load';
+import LazyLoad from 'react-lazyload';
 import './style/carousel.css';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -95,7 +95,7 @@ class Carousel extends React.Component {
 					{tutorialSteps.map((step, index) => (
 						<div key={index}>
 							{Math.abs(activeStep - index) <= 2 ? (
-								<LazyLoad height="100%" width="100%">
+								<LazyLoad placeholder={<div>Loading</div>} debounce={500} height="100%" width="100%">
 									<img
 										id="image-carousel"
 										className={classes.img}

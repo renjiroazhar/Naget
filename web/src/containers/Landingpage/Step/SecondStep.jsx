@@ -144,8 +144,8 @@ class SecondStep extends React.Component {
 											Required
 										</FormHelperText>
 									) : (
-											''
-										)}
+										''
+									)}
 								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>
@@ -184,8 +184,8 @@ class SecondStep extends React.Component {
 											Required
 										</FormHelperText>
 									) : (
-											''
-										)}
+										''
+									)}
 								</FormControl>
 							</div>
 						</MuiPickersUtilsProvider>
@@ -263,7 +263,8 @@ class SecondStep extends React.Component {
 									{({ getRootProps, getInputProps }) => (
 										<div {...getRootProps()}>
 											<input {...getInputProps()} />
-											<Button varian="contained"
+											<Button
+												varian="contained"
 												component="span"
 												style={{
 													backgroundColor: '#B0B0B0',
@@ -313,7 +314,7 @@ class SecondStep extends React.Component {
 								width: '100%'
 							}}
 						>
-							<Button 
+							<Button
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}

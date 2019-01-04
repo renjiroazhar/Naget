@@ -4,13 +4,10 @@ import { withStyles } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Star from '@material-ui/icons/Star';
-import { AlertDialog, Button } from 'react-onsenui';
 import { withRouter } from 'react-router-dom';
-import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
 	appBar: {
@@ -105,31 +102,6 @@ class Rate extends React.Component {
 						</ListItemSecondaryAction>
 					</ListItem>
 				</List>
-
-				<AlertDialog
-					isOpen={this.state.isOpen}
-					onCancel={this.handleClose}
-					cancelable
-				>
-					<div className="alert-dialog-title">Logout</div>
-					<div className="alert-dialog-content">You Sure?</div>
-
-					<Divider />
-					<Button
-						varian="contained"
-						onClick={this.Rate}
-						className="alert-dialog-button"
-					>
-						Yes
-					</Button>
-					<Button
-						varian="contained"
-						onClick={this.handleClose}
-						className="alert-dialog-button"
-					>
-						No
-					</Button>
-				</AlertDialog>
 			</div>
 		);
 	}

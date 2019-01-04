@@ -107,7 +107,7 @@ const styles = theme => ({
 	paper: {
 		marginTop: theme.spacing.unit * 3,
 		marginBottom: theme.spacing.unit * 3,
-		padding: theme.spacing.unit * 5,
+		padding: theme.spacing.unit * 4,
 		width: '100%',
 		[theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
 			marginTop: theme.spacing.unit * 6,

@@ -90,7 +90,8 @@ class OrderContainer extends React.Component {
 								indicator: classes.indicator
 							}}
 							textColor="primary"
-							fullWidth
+							variant="fullWidth"
+							values={0}
 						>
 							<Tab label="Ordered" style={stylus.tab} />
 							<Tab label="History" style={stylus.tab} />
@@ -128,7 +129,8 @@ class OrderContainer extends React.Component {
 								indicator: classes.indicator
 							}}
 							textColor="primary"
-							fullWidth
+							variant="fullWidth"
+							values={0}
 						>
 							<Tab label="Ordered" style={stylus.tab} />
 							<Tab label="History" style={stylus.tab} />
@@ -175,7 +177,8 @@ class OrderContainer extends React.Component {
 									indicator: classes.indicator
 								}}
 								textColor="primary"
-								fullWidth
+								variant="fullWidth"
+								values={0}
 							>
 								<Tab label="Ordered" style={stylus.tab} />
 								<Tab label="History" style={stylus.tab} />

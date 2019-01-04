@@ -8,7 +8,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FixedNavbar from '../../../component/FixedNavbar';
-import LazyLoad from 'react-lazy-load';
+import LazyLoad from 'react-lazyload';
 // import Tooltip from '../../../component/Tooltip';
 class Help extends React.Component {
 	render() {
@@ -18,7 +18,7 @@ class Help extends React.Component {
 			<div style={{ height: '100%' }}>
 				<FixedNavbar pageName="Help" />
 				<div style={{ textAlign: 'center', marginTop: '55px' }}>
-					<LazyLoad>
+					<LazyLoad placeholder={<div>Loading</div>} debounce={500} height="100%">
 						<img
 							src={imageFaq}
 							width="200"

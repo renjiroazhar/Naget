@@ -305,7 +305,10 @@ class CarouselTestimoni extends React.Component {
 								<div>
 									<Paper square elevation={0} className={classes.header}>
 										<Typography
-											style={{ textAlign: 'center', justifyContent: 'center' }}
+											style={{
+												textAlign: 'center',
+												justifyContent: 'center'
+											}}
 										>
 											{tutorialSteps[activeStep].label}
 										</Typography>

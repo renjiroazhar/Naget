@@ -75,8 +75,7 @@ class Loginpage extends Component {
 								height: '100%',
 								backgroundColor: '#fff',
 								padding: '20px',
-								marginTop: '60px',
-
+								marginTop: '60px'
 							}}
 						>
 							<p
@@ -183,7 +182,14 @@ class Loginpage extends Component {
 								</p>
 							</div>
 							<div>
-								<p style={{ textAlign: 'center', color: 'black', padding: 0, marginTop: '30px', }}>
+								<p
+									style={{
+										textAlign: 'center',
+										color: 'black',
+										padding: 0,
+										marginTop: '30px'
+									}}
+								>
 									Don't have account?{' '}
 									<Link
 										to="/signup"
@@ -253,6 +259,7 @@ const styles = theme => ({
 		color: '#FFFFFF',
 		backgroundColor: '#00c43e',
 		width: '100%',
+		height: '40px',
 		fontWeight: 400,
 		'&:hover': {
 			backgroundColor: '#00c43e'

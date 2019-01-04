@@ -22,7 +22,7 @@ import tTrashBag from '../../../../assets/img/webp/tTrashBag.webp';
 import tTrashPoints from '../../../../assets/img/webp/tTrashPoints.webp';
 import tTrashDrop from '../../../../assets/img/webp/tTrashDrop.webp';
 import Typography from '@material-ui/core/Typography';
-import LazyLoad from 'react-lazy-load';
+import LazyLoad from 'react-lazyload';
 import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
@@ -302,7 +302,13 @@ class HomeContainer extends Component {
 										size="small"
 										aria-label=""
 									>
-										<LazyLoad height={48} width={48}>
+										<LazyLoad
+											placeholder={<div>Loading</div>}
+											debounce={500}
+											throttle={200}
+											height={48}
+											width={48}
+										>
 											<img
 												src={tTrashScale}
 												height="48px"
@@ -329,7 +335,12 @@ class HomeContainer extends Component {
 										size="small"
 										aria-label=""
 									>
-										<LazyLoad height={48} width={48}>
+										<LazyLoad
+											placeholder={<div>Loading</div>}
+											debounce={500}
+											height={48}
+											width={48}
+										>
 											<img
 												src={tTrashBag}
 												height="48px"
@@ -356,7 +367,12 @@ class HomeContainer extends Component {
 										size="small"
 										aria-label=""
 									>
-										<LazyLoad height={48} width={48}>
+										<LazyLoad
+											placeholder={<div>Loading</div>}
+											debounce={500}
+											height={48}
+											width={48}
+										>
 											<img
 												src={tTrashPoints}
 												height="48px"
@@ -383,7 +399,12 @@ class HomeContainer extends Component {
 										size="small"
 										aria-label=""
 									>
-										<LazyLoad height={48} width={48}>
+										<LazyLoad
+											placeholder={<div>Loading</div>}
+											debounce={500}
+											height={48}
+											width={48}
+										>
 											<img
 												src={tTrashDrop}
 												height="48px"
@@ -425,7 +446,12 @@ class HomeContainer extends Component {
 									size="small"
 									aria-label=""
 								>
-									<LazyLoad height={48} width={48}>
+									<LazyLoad
+										placeholder={<div>Loading</div>}
+										debounce={500}
+										height={48}
+										width={48}
+									>
 										<img
 											src={tTrashScale}
 											height="48px"
@@ -453,7 +479,12 @@ class HomeContainer extends Component {
 									aria-label=""
 								>
 									{' '}
-									<LazyLoad height={48} width={48}>
+									<LazyLoad
+										placeholder={<div>Loading</div>}
+										debounce={500}
+										height={48}
+										width={48}
+									>
 										<img
 											src={tTrashBag}
 											height="48px"
@@ -475,7 +506,12 @@ class HomeContainer extends Component {
 							</div>
 							<div>
 								<Button className={classes.cssRoot} size="small">
-									<LazyLoad height={48} width={48}>
+									<LazyLoad
+										placeholder={<div>Loading</div>}
+										debounce={500}
+										height={48}
+										width={48}
+									>
 										<img
 											src={tTrashPoints}
 											height="48px"
@@ -497,7 +533,12 @@ class HomeContainer extends Component {
 							</div>
 							<div>
 								<Button className={classes.cssRoot} size="small">
-									<LazyLoad height={48} width={48}>
+									<LazyLoad
+										placeholder={<div>Loading</div>}
+										debounce={500}
+										height={48}
+										width={48}
+									>
 										<img
 											src={tTrashDrop}
 											height="48px"
@@ -531,7 +572,12 @@ class HomeContainer extends Component {
 				}}
 			>
 				<div style={{ textAlign: 'center' }}>
-					<LazyLoad height="40" width="141">
+					<LazyLoad
+						placeholder={<div>Loading</div>}
+						debounce={500}
+						height="40"
+						width="141"
+					>
 						<img
 							src={Logo}
 							srcSet={Logo}
@@ -562,7 +608,12 @@ class HomeContainer extends Component {
 					<br />
 					{gridPicture()}
 					<div style={{ padding: '7px', textAlign: 'center', marginTop: '2%' }}>
-						<LazyLoad height="100%" width="100%">
+						<LazyLoad
+							placeholder={<div>Loading</div>}
+							debounce={500}
+							height="100%"
+							width="100%"
+						>
 							<img
 								src={Promo}
 								height="100%"
