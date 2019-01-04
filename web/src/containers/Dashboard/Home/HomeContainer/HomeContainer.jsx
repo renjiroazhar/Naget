@@ -13,16 +13,16 @@ import { editProfile } from '../../../../redux/actions/profileActions';
 import firebase from '../../../../services/firebaseConfig';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import Logo from '../../../../assets/img/moretrash.jpg';
-import Promo from '../../../../assets/img/png/promo.png';
+import Logo from '../../../../assets/img/webp/moretrash.webp';
+import Promo from '../../../../assets/img/webp/promo.webp';
 import Slide from '@material-ui/core/Slide';
 import Toolbar from '@material-ui/core/Toolbar';
-import tTrashScale from '../../../../assets/img/png/tTrashScale.png';
-import tTrashBag from '../../../../assets/img/png/tTrashBag.png';
-import tTrashPoints from '../../../../assets/img/png/tTrashPoints.png';
-import tTrashDrop from '../../../../assets/img/png/tTrashDrop.png';
+import tTrashScale from '../../../../assets/img/webp/tTrashScale.webp';
+import tTrashBag from '../../../../assets/img/webp/tTrashBag.webp';
+import tTrashPoints from '../../../../assets/img/webp/tTrashPoints.webp';
+import tTrashDrop from '../../../../assets/img/webp/tTrashDrop.webp';
 import Typography from '@material-ui/core/Typography';
-
+import LazyLoad from 'react-lazy-load';
 import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
@@ -302,13 +302,15 @@ class HomeContainer extends Component {
 										size="small"
 										aria-label=""
 									>
-										<img
-											src={tTrashScale}
-											height="48px"
-											width="48px"
-											alt=""
-											title=""
-										/>
+										<LazyLoad height={48} width={48}>
+											<img
+												src={tTrashScale}
+												height="48px"
+												width="48px"
+												alt=""
+												title=""
+											/>
+										</LazyLoad>
 									</Button>
 									<p
 										style={{
@@ -327,13 +329,15 @@ class HomeContainer extends Component {
 										size="small"
 										aria-label=""
 									>
-										<img
-											src={tTrashBag}
-											height="48px"
-											width="48px"
-											alt=""
-											title=""
-										/>
+										<LazyLoad height={48} width={48}>
+											<img
+												src={tTrashBag}
+												height="48px"
+												width="48px"
+												alt=""
+												title=""
+											/>
+										</LazyLoad>
 									</Button>
 									<p
 										style={{
@@ -352,13 +356,15 @@ class HomeContainer extends Component {
 										size="small"
 										aria-label=""
 									>
-										<img
-											src={tTrashPoints}
-											height="48px"
-											width="48px"
-											alt=""
-											title=""
-										/>
+										<LazyLoad height={48} width={48}>
+											<img
+												src={tTrashPoints}
+												height="48px"
+												width="48px"
+												alt=""
+												title=""
+											/>
+										</LazyLoad>
 									</Button>
 									<p
 										style={{
@@ -377,13 +383,15 @@ class HomeContainer extends Component {
 										size="small"
 										aria-label=""
 									>
-										<img
-											src={tTrashDrop}
-											height="48px"
-											width="48px"
-											alt=""
-											title=""
-										/>
+										<LazyLoad height={48} width={48}>
+											<img
+												src={tTrashDrop}
+												height="48px"
+												width="48px"
+												alt=""
+												title=""
+											/>
+										</LazyLoad>
 									</Button>
 									<p
 										style={{
@@ -417,13 +425,15 @@ class HomeContainer extends Component {
 									size="small"
 									aria-label=""
 								>
-									<img
-										src={tTrashScale}
-										height="48px"
-										width="48px"
-										alt="Trash Scale"
-										title="Trash Scale"
-									/>
+									<LazyLoad height={48} width={48}>
+										<img
+											src={tTrashScale}
+											height="48px"
+											width="48px"
+											alt="Trash Scale"
+											title="Trash Scale"
+										/>
+									</LazyLoad>
 								</Button>
 								<p
 									style={{
@@ -442,13 +452,16 @@ class HomeContainer extends Component {
 									size="small"
 									aria-label=""
 								>
-									<img
-										src={tTrashBag}
-										height="48px"
-										width="48px"
-										alt="Trash Scale"
-										title="Trash Scale"
-									/>
+									{' '}
+									<LazyLoad height={48} width={48}>
+										<img
+											src={tTrashBag}
+											height="48px"
+											width="48px"
+											alt="Trash Scale"
+											title="Trash Scale"
+										/>
+									</LazyLoad>
 								</Button>
 								<p
 									style={{
@@ -462,13 +475,15 @@ class HomeContainer extends Component {
 							</div>
 							<div>
 								<Button className={classes.cssRoot} size="small">
-									<img
-										src={tTrashPoints}
-										height="48px"
-										width="48px"
-										alt="Trash Points"
-										title="Trash Points"
-									/>
+									<LazyLoad height={48} width={48}>
+										<img
+											src={tTrashPoints}
+											height="48px"
+											width="48px"
+											alt="Trash Points"
+											title="Trash Points"
+										/>
+									</LazyLoad>
 								</Button>
 								<p
 									style={{
@@ -482,13 +497,15 @@ class HomeContainer extends Component {
 							</div>
 							<div>
 								<Button className={classes.cssRoot} size="small">
-									<img
-										src={tTrashDrop}
-										height="48px"
-										width="48px"
-										alt="Trash Drop"
-										title="Trash Drop"
-									/>
+									<LazyLoad height={48} width={48}>
+										<img
+											src={tTrashDrop}
+											height="48px"
+											width="48px"
+											alt="Trash Drop"
+											title="Trash Drop"
+										/>
+									</LazyLoad>
 								</Button>
 								<p
 									style={{
@@ -514,15 +531,17 @@ class HomeContainer extends Component {
 				}}
 			>
 				<div style={{ textAlign: 'center' }}>
-					<img
-						src={Logo}
-						srcSet={Logo}
-						width="141"
-						height="40"
-						alt="Moretrash Logo"
-						retina_logo_url=""
-						className={classes.image}
-					/>
+					<LazyLoad height="40" width="141">
+						<img
+							src={Logo}
+							srcSet={Logo}
+							width="141"
+							height="40"
+							alt="Moretrash Logo"
+							retina_logo_url=""
+							className={classes.image}
+						/>
+					</LazyLoad>
 				</div>
 				<div
 					style={{
@@ -543,13 +562,15 @@ class HomeContainer extends Component {
 					<br />
 					{gridPicture()}
 					<div style={{ padding: '7px', textAlign: 'center', marginTop: '2%' }}>
-						<img
-							src={Promo}
-							height="100%"
-							width="100%"
-							alt="Promo"
-							title="Promo"
-						/>
+						<LazyLoad height="100%" width="100%">
+							<img
+								src={Promo}
+								height="100%"
+								width="100%"
+								alt="Promo"
+								title="Promo"
+							/>
+						</LazyLoad>
 					</div>
 				</div>
 				<Dialog

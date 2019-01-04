@@ -24,6 +24,9 @@ const styles = theme => ({
 	},
 	inline: {
 		display: 'inline'
+	},
+	indicator: {
+		backgroundColor: '#00c43e'
 	}
 });
 
@@ -68,7 +71,7 @@ class OrderContainer extends React.Component {
 	}
 
 	render() {
-		const { orders, theme } = this.props;
+		const { orders, theme, classes } = this.props;
 
 		if (!isLoaded(orders)) {
 			return (
@@ -83,6 +86,9 @@ class OrderContainer extends React.Component {
 						<Tabs
 							onChange={this.handleChange}
 							indicatorColor="primary"
+							classes={{
+								indicator: classes.indicator
+							}}
 							textColor="primary"
 							fullWidth
 						>
@@ -118,6 +124,9 @@ class OrderContainer extends React.Component {
 						<Tabs
 							onChange={this.handleChange}
 							indicatorColor="primary"
+							classes={{
+								indicator: classes.indicator
+							}}
 							textColor="primary"
 							fullWidth
 						>
@@ -162,6 +171,9 @@ class OrderContainer extends React.Component {
 								value={this.state.value}
 								onChange={this.handleChange}
 								indicatorColor="primary"
+								classes={{
+									indicator: classes.indicator
+								}}
 								textColor="primary"
 								fullWidth
 							>

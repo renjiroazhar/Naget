@@ -16,14 +16,14 @@ const BottomNavigationBar = props => {
 			<TabBar
 				unselectedTintColor="#696969"
 				tintColor="#00c43e"
-				style={{ height: '56px', fontSize: '18px' }}
+				style={{ height: '56px', fontSize: '19px' }}
 				barTintColor="white"
 			>
 				<TabBar.Item
 					title={<p style={{ margin: 0, fontSize: '0.75rem' }}>Home</p>}
 					key="list"
-					icon={<Icon style={{ fontSize: '18px' }} type="home" />}
-					selectedIcon={<Icon style={{ fontSize: '18px' }} type="home" />}
+					icon={<Icon style={{ fontSize: '19px' }} type="home" />}
+					selectedIcon={<Icon style={{ fontSize: '19px' }} type="home" />}
 					selected={props.selectedTab === 'home'}
 					onPress={() => {
 						props.history.push('/');
@@ -32,9 +32,9 @@ const BottomNavigationBar = props => {
 				/>
 
 				<TabBar.Item
-					icon={<Icon style={{ fontSize: '18px' }} type="reconciliation" />}
+					icon={<Icon style={{ fontSize: '19px' }} type="reconciliation" />}
 					selectedIcon={
-						<Icon style={{ fontSize: '18px' }} type="reconciliation" />
+						<Icon style={{ fontSize: '19px' }} type="reconciliation" />
 					}
 					title={<p style={{ margin: 0, fontSize: '0.75rem' }}>Order</p>}
 					key="order"
@@ -46,9 +46,9 @@ const BottomNavigationBar = props => {
 					}}
 				/>
 				<TabBar.Item
-					icon={<Icon style={{ fontSize: '18px' }} type="question-circle" />}
+					icon={<Icon style={{ fontSize: '19px' }} type="question-circle" />}
 					selectedIcon={
-						<Icon style={{ fontSize: '18px' }} type="question-circle" />
+						<Icon style={{ fontSize: '19px' }} type="question-circle" />
 					}
 					title={<p style={{ margin: 0, fontSize: '0.75rem' }}>Help</p>}
 					key="help"
@@ -61,8 +61,8 @@ const BottomNavigationBar = props => {
 				/>
 
 				<TabBar.Item
-					icon={<Icon style={{ fontSize: '18px' }} type="user" />}
-					selectedIcon={<Icon style={{ fontSize: '18px' }} type="user" />}
+					icon={<Icon style={{ fontSize: '19px' }} type="user" />}
+					selectedIcon={<Icon style={{ fontSize: '19px' }} type="user" />}
 					title={<p style={{ margin: 0, fontSize: '0.75rem' }}>Account</p>}
 					key="account"
 					selected={props.selectedTab === 'account'}

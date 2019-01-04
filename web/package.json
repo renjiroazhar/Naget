@@ -74,6 +74,8 @@
 		"react-geosuggest": "^2.9.0",
 		"react-google-maps": "^9.4.5",
 		"react-hot-loader": "^4.6.3",
+		"react-lazy-images": "^1.1.0",
+		"react-lazy-load": "^3.0.13",
 		"react-loadable": "^5.4.0",
 		"react-location-picker": "^1.3.0",
 		"react-material-ui-form-validator": "^2.0.3",

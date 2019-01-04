@@ -104,7 +104,7 @@ class Testimoni extends React.Component {
 				>
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemIcon>
-							<ThumbUpIcon style={{ fontSize: '24px', color: 'lawngreen' }} />
+							<ThumbUpIcon style={{ fontSize: '24px' }} />
 						</ListItemIcon>
 						<ListItemSecondaryAction>
 							<ListItemText

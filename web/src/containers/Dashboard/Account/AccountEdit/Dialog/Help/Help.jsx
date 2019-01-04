@@ -29,7 +29,7 @@ const styles = theme => ({
 	root: {
 		width: '100%',
 		marginTop: '10px',
-		marginBottom: '3%',
+		marginBottom: '3%'
 	},
 	heading: {
 		fontSize: theme.typography.pxToRem(15),
@@ -38,7 +38,7 @@ const styles = theme => ({
 	},
 	image: {
 		margin: '40px 0 10px 0'
-	},
+	}
 });
 
 function Transition(props) {
@@ -77,7 +77,7 @@ class Faq extends React.Component {
 				>
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemIcon>
-							<HelpIcon style={{ fontSize: '24px', color: 'cornflowerblue' }} />
+							<HelpIcon style={{ fontSize: '24px' }} />
 						</ListItemIcon>
 						<ListItemSecondaryAction>
 							<ListItemText style={{ fontSize: '24px' }} inset primary="Help" />
@@ -104,8 +104,8 @@ class Faq extends React.Component {
 							</Typography>
 						</Toolbar>
 					</AppBar>
-					<div style={{ backgroundColor: '#e7e7e7', }} >
-						<div style={{ textAlign: 'center', marginTop: '45px', }}>
+					<div style={{ backgroundColor: '#e7e7e7' }}>
+						<div style={{ textAlign: 'center', marginTop: '45px' }}>
 							<img
 								src={imageFaq}
 								width="200"
@@ -120,16 +120,16 @@ class Faq extends React.Component {
 								<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
 									<Typography className={classes.heading}>
 										What is Moretrash?
-								</Typography>
+									</Typography>
 								</ExpansionPanelSummary>
 								<ExpansionPanelDetails>
 									<Typography>
 										Moretrash is a pilot company engaged in online waste
 										transportation services based on Progressive Web Application
-										which provides convenience for customers and focuses on
-										the utilization of these technologies to be implemented
+										which provides convenience for customers and focuses on the
+										utilization of these technologies to be implemented
 										maximally.
-								</Typography>
+									</Typography>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>
 							<ExpansionPanel>
@@ -157,9 +157,9 @@ class Faq extends React.Component {
 									<Typography>
 										In Moretrash there are 4 features that can be enjoyed by all
 										customers, namely Trash Sale (transportation of recycled
-										waste). Trash Bag (transporting household waste), More
-										Point (Customer loyalty card), More Pay (customers can
-										pay anything).
+										waste). Trash Bag (transporting household waste), More Point
+										(Customer loyalty card), More Pay (customers can pay
+										anything).
 									</Typography>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>
@@ -171,22 +171,23 @@ class Faq extends React.Component {
 								</ExpansionPanelSummary>
 								<ExpansionPanelDetails>
 									<Typography>
-										Waste that can be picked up by Moretrash partners is
-										in the form of paper waste, plastic bottles and some
-										other heavy metal objects.
+										Waste that can be picked up by Moretrash partners is in the
+										form of paper waste, plastic bottles and some other heavy
+										metal objects.
 									</Typography>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>
 							<ExpansionPanel>
 								<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
 									<Typography className={classes.heading}>
-										How do I know the price of each type of garbage that will be picked up?
+										How do I know the price of each type of garbage that will be
+										picked up?
 									</Typography>
 								</ExpansionPanelSummary>
 								<ExpansionPanelDetails>
 									<Typography>
-										To find out the price of garbage for each item, you only need
-										to make a trash booking first.
+										To find out the price of garbage for each item, you only
+										need to make a trash booking first.
 									</Typography>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>
@@ -198,9 +199,9 @@ class Faq extends React.Component {
 								</ExpansionPanelSummary>
 								<ExpansionPanelDetails>
 									<Typography>
-										The garbage that will be transported by the Moretrash partner
-										is weighed using a digital scale that is real accurate and
-										cannot be manipulated.
+										The garbage that will be transported by the Moretrash
+										partner is weighed using a digital scale that is real
+										accurate and cannot be manipulated.
 									</Typography>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>
@@ -212,9 +213,9 @@ class Faq extends React.Component {
 								</ExpansionPanelSummary>
 								<ExpansionPanelDetails>
 									<Typography>
-										If the customer wants to get a higher price, then the customer
-										just simply comes and brings the garbage to the partner site
-										that has already collaborated with Moretrash.
+										If the customer wants to get a higher price, then the
+										customer just simply comes and brings the garbage to the
+										partner site that has already collaborated with Moretrash.
 									</Typography>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>
@@ -227,8 +228,8 @@ class Faq extends React.Component {
 								<ExpansionPanelDetails>
 									<Typography>
 										Customers do not need to be bothered and difficult if they
-										want to dispose of their trash, just book Moretrash.
-										Garbage is immediately picked up.
+										want to dispose of their trash, just book Moretrash. Garbage
+										is immediately picked up.
 									</Typography>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>
@@ -241,24 +242,24 @@ class Faq extends React.Component {
 								</ExpansionPanelSummary>
 								<ExpansionPanelDetails>
 									<Typography>
-										If there is a cancel order or a failed pickup,
-										the customer only needs to re-order.
+										If there is a cancel order or a failed pickup, the customer
+										only needs to re-order.
 									</Typography>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>
 							<ExpansionPanel>
 								<ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
 									<Typography className={classes.heading}>
-										What are the benefits if you log in with an account on Moretrash?
+										What are the benefits if you log in with an account on
+										Moretrash?
 									</Typography>
 								</ExpansionPanelSummary>
 								<ExpansionPanelDetails>
 									<Typography>
 										Many benefits are obtained by customers when creating an
-										Account on Moretrash, in addition to speeding up steps
-										or the process of filling out the form, customers will
-										also get points every time a pickup is made by the
-										Moretrash partner.
+										Account on Moretrash, in addition to speeding up steps or
+										the process of filling out the form, customers will also get
+										points every time a pickup is made by the Moretrash partner.
 									</Typography>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>

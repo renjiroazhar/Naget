@@ -105,7 +105,7 @@ class Logout extends React.Component {
 				>
 					<ListItem button onClick={this.handleOpen}>
 						<ListItemIcon>
-							<ExitToApp style={{ fontSize: '24px', color: 'red' }} />
+							<ExitToApp style={{ fontSize: '24px' }} />
 						</ListItemIcon>
 						<ListItemSecondaryAction>
 							<ListItemText
@@ -126,10 +126,18 @@ class Logout extends React.Component {
 					<div className="alert-dialog-content">You Sure?</div>
 
 					<Divider />
-					<Button varian="contained" onClick={this.logout} className="alert-dialog-button">
+					<Button
+						varian="contained"
+						onClick={this.logout}
+						className="alert-dialog-button"
+					>
 						Yes
 					</Button>
-					<Button varian="contained" onClick={this.handleClose} className="alert-dialog-button">
+					<Button
+						varian="contained"
+						onClick={this.handleClose}
+						className="alert-dialog-button"
+					>
 						No
 					</Button>
 				</AlertDialog>

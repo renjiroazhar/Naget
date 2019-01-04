@@ -27,7 +27,7 @@ const styles = theme => ({
 		backgroundColor: '#00c43e'
 	},
 	flex: {
-		flex: 1,
+		flex: 1
 	},
 	cssLabel: {
 		color: '#999',
@@ -153,7 +153,7 @@ class GantiPassword extends React.Component {
 				>
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemIcon>
-							<Lock style={{ fontSize: '24px', color: 'orange' }} />
+							<Lock style={{ fontSize: '24px' }} />
 						</ListItemIcon>
 						<ListItemSecondaryAction>
 							<ListItemText
@@ -179,12 +179,19 @@ class GantiPassword extends React.Component {
 							>
 								<CloseIcon />
 							</IconButton>
-							<Typography variant="h6" color="inherit" className={classes.flex}
-								style={{ fontSize: '19px', }}
+							<Typography
+								variant="h6"
+								color="inherit"
+								className={classes.flex}
+								style={{ fontSize: '19px' }}
 							>
 								Change Password
 							</Typography>
-							<Button varian="contained" color="inherit" onClick={this.handleSave}>
+							<Button
+								varian="contained"
+								color="inherit"
+								onClick={this.handleSave}
+							>
 								Save
 							</Button>
 						</Toolbar>
@@ -228,7 +235,7 @@ class GantiPassword extends React.Component {
 								At least 6 characters consist of letters and numbers
 							</p>
 						</div>
-						<FormControl style={{ width: '90%', marginTop: '10px', }}>
+						<FormControl style={{ width: '90%', marginTop: '10px' }}>
 							<InputLabel
 								htmlFor="custom-css-input"
 								FormLabelClasses={{

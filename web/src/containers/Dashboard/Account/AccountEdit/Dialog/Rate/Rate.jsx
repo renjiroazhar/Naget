@@ -94,7 +94,7 @@ class Rate extends React.Component {
 				<List className={classes.list} style={{ paddingBottom: '10px' }}>
 					<ListItem button onClick={this.handleOpen}>
 						<ListItemIcon>
-							<Star style={{ fontSize: '24px', color: 'yellow' }} />
+							<Star style={{ fontSize: '24px' }} />
 						</ListItemIcon>
 						<ListItemSecondaryAction>
 							<ListItemText
@@ -115,10 +115,18 @@ class Rate extends React.Component {
 					<div className="alert-dialog-content">You Sure?</div>
 
 					<Divider />
-					<Button varian="contained" onClick={this.Rate} className="alert-dialog-button">
+					<Button
+						varian="contained"
+						onClick={this.Rate}
+						className="alert-dialog-button"
+					>
 						Yes
 					</Button>
-					<Button varian="contained" onClick={this.handleClose} className="alert-dialog-button">
+					<Button
+						varian="contained"
+						onClick={this.handleClose}
+						className="alert-dialog-button"
+					>
 						No
 					</Button>
 				</AlertDialog>

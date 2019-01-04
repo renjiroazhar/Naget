@@ -1,30 +1,33 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import imageFaq from './svg/help.svg';
+import imageFaq from './webp/help.webp';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FixedNavbar from '../../../component/FixedNavbar';
+import LazyLoad from 'react-lazy-load';
 // import Tooltip from '../../../component/Tooltip';
 class Help extends React.Component {
 	render() {
 		const { classes } = this.props;
 
 		return (
-			<div style={{ backgroundColor: '#e7e7e7', height: '100%' }}>
+			<div style={{ height: '100%' }}>
 				<FixedNavbar pageName="Help" />
 				<div style={{ textAlign: 'center', marginTop: '55px' }}>
-					<img
-						src={imageFaq}
-						width="200"
-						height="200"
-						alt="FAQ Logo"
-						retina_logo_url=""
-						className={classes.image}
-					/>
+					<LazyLoad>
+						<img
+							src={imageFaq}
+							width="200"
+							height="200"
+							alt="FAQ Logo"
+							retina_logo_url=""
+							className={classes.image}
+						/>
+					</LazyLoad>
 				</div>
 				<div className={classes.root}>
 					<ExpansionPanel>

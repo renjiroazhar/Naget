@@ -5,11 +5,12 @@ import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import DropTrash from '../../../assets/img/png/DropTrash.png';
-import TrashScale from '../../../assets/img/png/TrashScale.png';
-import TrashDrop from '../../../assets/img/png/TrashDrop.png';
-import TrashBag from '../../../assets/img/png/TrashBag.png';
-import TrashPoints from '../../../assets/img/png/TrashPoints.png';
+import DropTrash from '../../../assets/img/webp/DropTrash.webp';
+import TrashScale from '../../../assets/img/webp/TrashScale.webp';
+import TrashDrop from '../../../assets/img/webp/TrashDrop.webp';
+import TrashBag from '../../../assets/img/webp/TrashBag.webp';
+import TrashPoints from '../../../assets/img/webp/TrashPoints.webp';
+import LazyLoad from 'react-lazy-load';
 import './style/carousel.css';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -94,13 +95,15 @@ class Carousel extends React.Component {
 					{tutorialSteps.map((step, index) => (
 						<div key={index}>
 							{Math.abs(activeStep - index) <= 2 ? (
-								<img
-									id="image-carousel"
-									className={classes.img}
-									src={step.imgPath}
-									key={index}
-									alt={step.label}
-								/>
+								<LazyLoad height="100%" width="100%">
+									<img
+										id="image-carousel"
+										className={classes.img}
+										src={step.imgPath}
+										key={index}
+										alt={step.label}
+									/>
+								</LazyLoad>
 							) : null}
 						</div>
 					))}
