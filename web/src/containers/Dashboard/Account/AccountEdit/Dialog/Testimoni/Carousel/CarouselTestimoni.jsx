@@ -178,7 +178,7 @@ const tutorialSteps = [
 	},
 	{
 		label:
-			'Awesome! Sampahnya dijemput, pickernya ramah, dapet uang lagi hehe. Sangat memudahkan bagi kami para mahasiswa yang di kos banyak tumpukan sampah. Save the earth by keeping it clean.',
+			'Great! Sampahnya dijemput, pickernya ramah, dapet uang lagi hehe. Sangat memudahkan bagi kami para mahasiswa yang di kos banyak tumpukan sampah. Save the earth by keeping it clean.',
 		imgPath: `${Img24}`,
 		name: 'Dian Istiqomah'
 	},
@@ -225,11 +225,11 @@ const styles = theme => ({
 		alignItems: 'center',
 		height: 50,
 		justifyContent: 'center',
-		paddingLeft: theme.spacing.unit * 4,
 		backgroundColor: theme.palette.background.default,
 		marginTop: '20px',
 		fontStyle: 'italic',
 		color: '#757575',
+		padding: '17px',
 		textAlign: 'center'
 	},
 	name: {
@@ -237,7 +237,7 @@ const styles = theme => ({
 		alignItems: 'center',
 		height: 50,
 		justifyContent: 'center',
-		paddingLeft: theme.spacing.unit * 4,
+		paddingLeft: 0,
 		backgroundColor: theme.palette.background.default,
 		fontWeight: 'bold',
 		textAlign: 'center'

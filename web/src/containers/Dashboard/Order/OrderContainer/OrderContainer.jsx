@@ -91,7 +91,7 @@ class OrderContainer extends React.Component {
 							}}
 							textColor="primary"
 							variant="fullWidth"
-							values={0}
+							value={this.state.value}
 						>
 							<Tab label="Ordered" style={stylus.tab} />
 							<Tab label="History" style={stylus.tab} />
@@ -130,7 +130,7 @@ class OrderContainer extends React.Component {
 							}}
 							textColor="primary"
 							variant="fullWidth"
-							values={0}
+							value={this.state.value}
 						>
 							<Tab label="Ordered" style={stylus.tab} />
 							<Tab label="History" style={stylus.tab} />
@@ -158,7 +158,7 @@ class OrderContainer extends React.Component {
 						<AppBar color="default" style={{ position: 'fixed' }}>
 							<Toolbar style={{ backgroundColor: '#00c43e' }}>
 								<Typography
-									variant="h6"
+									variant="title"
 									color="inherit"
 									style={{
 										color: 'white',
@@ -178,7 +178,6 @@ class OrderContainer extends React.Component {
 								}}
 								textColor="primary"
 								variant="fullWidth"
-								values={0}
 							>
 								<Tab label="Ordered" style={stylus.tab} />
 								<Tab label="History" style={stylus.tab} />
@@ -190,7 +189,7 @@ class OrderContainer extends React.Component {
 								index={this.state.value}
 								onChangeIndex={this.handleChangeIndex}
 							>
-								<TabContainer>
+								<TabContainer dir="">
 									<div>
 										<WaitingConfirmation orders={orders} />
 									</div>

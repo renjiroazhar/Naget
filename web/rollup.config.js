@@ -7,7 +7,7 @@ import uglify from 'rollup-plugin-uglify';
 const env = process.env.NODE_ENV;
 
 export default {
-	entry: 'main.jsx',
+	entry: 'App.js',
 	dest: 'bundle.js',
 	format: 'iife',
 	plugins: [

@@ -39,7 +39,7 @@ class Homepage extends Component {
 		const { classes } = this.props;
 		return (
 			<div className="home">
-				<div className="container">
+				<div className="container" style={{ backgroundColor: '#ffffff' }}>
 					<img
 						src={Logo}
 						srcSet={Logo}

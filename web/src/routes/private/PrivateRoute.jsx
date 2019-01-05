@@ -1,13 +1,44 @@
 import React, { Component } from 'react';
-import HomeContainer from '../../containers/Dashboard/Home/HomeContainer';
-import OrderContainer from '../../containers/Dashboard/Order/OrderContainer';
-import Help from '../../containers/Dashboard/Help';
-import Account from '../../containers/Dashboard/Account';
 import { Route, Switch } from 'react-router-dom';
-import Checkout from '../../containers/Dashboard/Step/Checkout';
-import OrderDetail from '../../containers/Dashboard/Order/OrderDetail/OrderDetail';
 import BottomNavigationBar from '../../component/BottomNavigationBar';
-import EditOrder from '../../containers/Dashboard/Order/EditOrder';
+import Loadable from 'react-loadable';
+import Loader from '../../component/Loaders/component/Loader';
+
+const HomeContainer = Loadable({
+	loader: () => import('../../containers/Dashboard/Home/HomeContainer'),
+	loading: Loader
+});
+
+const OrderContainer = Loadable({
+	loader: () => import('../../containers/Dashboard/Order/OrderContainer'),
+	loading: Loader
+});
+
+const Help = Loadable({
+	loader: () => import('../../containers/Dashboard/Help'),
+	loading: Loader
+});
+
+const Account = Loadable({
+	loader: () => import('../../containers/Dashboard/Account/Account'),
+	loading: Loader
+});
+
+const Checkout = Loadable({
+	loader: () => import('../../containers/Dashboard/Step/Checkout'),
+	loading: Loader
+});
+
+const OrderDetail = Loadable({
+	loader: () =>
+		import('../../containers/Dashboard/Order/OrderDetail/OrderDetail'),
+	loading: Loader
+});
+
+const EditOrder = Loadable({
+	loader: () => import('../../containers/Dashboard/Order/EditOrder'),
+	loading: Loader
+});
 
 export default class PublicRoute extends Component {
 	state = {

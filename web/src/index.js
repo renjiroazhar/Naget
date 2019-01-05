@@ -38,6 +38,10 @@ store.firebaseAuthIsReady.then(() => {
 		</Provider>,
 		document.getElementById('root')
 	);
+	if (process.env.NODE_ENV !== 'production') {
+		const { whyDidYouUpdate } = require('why-did-you-update');
+		whyDidYouUpdate(React);
+	}
 	if (module.hot) {
 		module.hot.accept();
 	}

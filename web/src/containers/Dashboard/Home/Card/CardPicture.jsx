@@ -84,14 +84,13 @@ const CardPicture = props => {
 					}
 				/>
 
-				<CardContent style={{ height: 100, }}>
+				<CardContent style={{ height: 100 }}>
 					<div>
-						<Typography style={{ textAlign: 'center', marginBottom: '2%', }}>
+						<Typography style={{ textAlign: 'center', marginBottom: '2%' }}>
 							You has exchanged rubbish with Moretrash for a number of:
 						</Typography>
 					</div>
 					<Typography
-						align="center"
 						style={{
 							textAlign: 'center',
 							fontWeight: 'bold',

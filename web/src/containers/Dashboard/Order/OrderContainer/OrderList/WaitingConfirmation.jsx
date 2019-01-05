@@ -15,7 +15,7 @@ const WaitingConfirmation = ({ orders }) => {
 							</div>
 						);
 					}
-					return <div />;
+					return <div key={order.id} />;
 				})}
 		</div>
 	);

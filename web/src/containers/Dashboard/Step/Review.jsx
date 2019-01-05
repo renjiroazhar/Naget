@@ -196,7 +196,7 @@ class Review extends React.Component {
 			console.log(selectedDate),
 			(
 				<React.Fragment>
-					<Typography variant="h6" gutterBottom>
+					<Typography variant="title" gutterBottom>
 						Order Summary
 					</Typography>
 					<List>

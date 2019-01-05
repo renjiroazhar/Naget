@@ -41,7 +41,7 @@ class NavbarPickTrash extends Component {
 							>
 								<ArrowLeft />
 							</IconButton>
-							<Typography variant="h6" color="inherit" className={classes.grow}>
+							<Typography variant="title" color="inherit" className={classes.grow}>
 								Pick Trash
 							</Typography>
 						</Toolbar>

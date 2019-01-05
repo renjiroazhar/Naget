@@ -130,7 +130,7 @@ class Testimoni extends React.Component {
 							>
 								<CloseIcon />
 							</IconButton>
-							<Typography variant="h6" color="inherit">
+							<Typography variant="title" color="inherit">
 								Testimonials
 							</Typography>
 						</Toolbar>
@@ -144,7 +144,7 @@ class Testimoni extends React.Component {
 						}}
 					>
 						<PaperSheet />
-						<Typography variant="h6" className={classes.title}>
+						<Typography variant="title" className={classes.title}>
 							Testimonials
 						</Typography>
 						<center>

@@ -9,7 +9,8 @@ import { hot } from 'react-hot-loader';
 class App extends Component {
 	state = {
 		isAuthenticated: null,
-		loading: true
+		loading: true,
+		isMounted: false
 	};
 
 	statePersistence = userId => {
@@ -56,21 +57,22 @@ class App extends Component {
 								last_changed: firebase.firestore.FieldValue.serverTimestamp()
 							});
 					});
-				// .then(function() {
 			});
 	};
 
 	authListener = () => {
 		const auth = firebase.auth().onAuthStateChanged(user => {
-			if (user && user !== null) {
-				this.setState({
-					isAuthenticated: user
-				});
-				this.statePersistence(user.uid);
-			} else {
-				this.setState({
-					isAuthenticated: null
-				});
+			if (this.state.isMounted) {
+				if (user && user !== null) {
+					this.setState({
+						isAuthenticated: user
+					});
+					this.statePersistence(user.uid);
+				} else {
+					this.setState({
+						isAuthenticated: null
+					});
+				}
 			}
 		});
 		return auth;
@@ -78,11 +80,17 @@ class App extends Component {
 
 	componentDidMount() {
 		setTimeout(() => this.setState({ loading: false }), 500);
+		this.setState({
+			isMounted: true
+		});
 		this.authListener();
+		console.log('Aaaa');
 	}
 
 	componentWillUnmount() {
-		this.authListener();
+		this.setState({
+			isMounted: false
+		});
 	}
 
 	render() {
@@ -97,7 +105,6 @@ class App extends Component {
 			);
 		}
 		return isAuthenticated ? <PrivateRoute /> : <PublicRoute />;
-		// return <Demo />;
 	}
 }
 

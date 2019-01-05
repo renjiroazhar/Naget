@@ -180,7 +180,7 @@ class GantiPassword extends React.Component {
 								<CloseIcon />
 							</IconButton>
 							<Typography
-								variant="h6"
+								variant="title"
 								color="inherit"
 								className={classes.flex}
 								style={{ fontSize: '19px' }}

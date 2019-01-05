@@ -95,7 +95,7 @@ class Tentang extends React.Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<div style={{ backgroundColor: 'white', marginBottom: '10%', }}>
+			<div style={{ backgroundColor: 'white', marginBottom: '10%' }}>
 				<List onClick={this.handleClickOpen} className={classes.list}>
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemIcon>
@@ -118,12 +118,12 @@ class Tentang extends React.Component {
 				>
 					<div>
 						<Header />
-						<div style={{ marginTop: '160px', }}>
+						<div style={{ marginTop: '140px' }}>
 							<Socmed />
 						</div>
 
 						{/* Second Card */}
-						<div style={{ marginTop: '78px' }}>
+						<div style={{ marginTop: '58px' }}>
 							<center>
 								<div
 									className={classes.demo}
@@ -172,8 +172,7 @@ class Tentang extends React.Component {
 									}}
 								>
 									Moretrash is a service that helps sales of recyclable garbage
-									and household garbage (trash management platform
-									on line)
+									and household garbage (trash management platform on line)
 								</p>
 								<br />
 								<br />
@@ -189,8 +188,10 @@ class Tentang extends React.Component {
 									width: '100%'
 								}}
 							>
-								<Button varian="contained"
+								<Button
+									varian="contained"
 									style={{
+										height: '40px',
 										backgroundColor: '#00c43e',
 										width: '90%',
 										textAlign: 'center',

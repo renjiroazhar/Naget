@@ -273,6 +273,7 @@ class HomeContainer extends Component {
 	componentDidMount() {
 		this.getData();
 		window.addEventListener('resize', this.handleResize);
+		window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 	}
 
 	componentWillUnmount() {
@@ -632,7 +633,11 @@ class HomeContainer extends Component {
 				>
 					<AppBar className={classes.appBar}>
 						<Toolbar>
-							<Typography variant="h6" color="inherit" className={classes.flex}>
+							<Typography
+								variant="title"
+								color="inherit"
+								className={classes.flex}
+							>
 								Profile
 							</Typography>
 							<Button color="inherit" onClick={this.handleSave}>

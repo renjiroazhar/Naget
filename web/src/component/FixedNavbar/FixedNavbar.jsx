@@ -32,7 +32,7 @@ class FixedNavbar extends Component {
 						style={{ backgroundColor: '#00c43e' }}
 					>
 						<Toolbar>
-							<Typography variant="h6" color="inherit" className={classes.grow}>
+							<Typography variant="title" color="inherit" className={classes.grow}>
 								{this.props.pageName}
 							</Typography>
 						</Toolbar>

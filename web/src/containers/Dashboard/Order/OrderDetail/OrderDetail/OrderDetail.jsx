@@ -178,7 +178,7 @@ class OrderDetail extends React.Component {
 									<ArrowLeft />
 								</IconButton>
 								<Typography
-									variant="h6"
+									variant="title"
 									color="inherit"
 									className={classes.grow}
 								>
@@ -368,7 +368,7 @@ class OrderDetail extends React.Component {
 									<ArrowLeft />
 								</IconButton>
 								<Typography
-									variant="h6"
+									variant="title"
 									color="inherit"
 									className={classes.grow}
 								>

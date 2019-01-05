@@ -99,7 +99,7 @@ class Faq extends React.Component {
 							>
 								<CloseIcon />
 							</IconButton>
-							<Typography variant="h6" color="inherit" className={classes.flex}>
+							<Typography variant="title" color="inherit" className={classes.flex}>
 								Help
 							</Typography>
 						</Toolbar>
