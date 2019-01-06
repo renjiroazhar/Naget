@@ -42,9 +42,9 @@ class LocationSearchInput extends React.Component {
 					<div>
 						<TextField
 							{...getInputProps({
-								placeholder: 'Cari Tempat...',
 								className: 'location-search-input'
 							})}
+							label="Pilih Area"
 							fullWidth
 						/>
 						<div className="autocomplete-dropdown-container">

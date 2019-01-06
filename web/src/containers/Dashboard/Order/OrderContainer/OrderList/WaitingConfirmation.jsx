@@ -15,6 +15,9 @@ const WaitingConfirmation = ({ orders }) => {
 							</div>
 						);
 					}
+					if (!order) {
+						return <p style={{ textAlign: 'center' }}>Kosong...</p>;
+					}
 					return <div key={order.id} />;
 				})}
 		</div>

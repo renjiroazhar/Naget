@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-// import LocationSearchInput from './AutoCompletePlaces/LocationSearchInput';
+import LocationSearchInput from './AutoCompletePlaces/LocationSearchInput';
 
 const styles = theme => ({
 	root: {
@@ -162,6 +162,9 @@ class FirstStep extends React.Component {
 								</FormHelperText>
 							) : null}
 						</FormControl>
+					</Grid>
+					<Grid item xs={12}>
+						<LocationSearchInput />
 					</Grid>
 					<Grid item xs={12}>
 						<TextField

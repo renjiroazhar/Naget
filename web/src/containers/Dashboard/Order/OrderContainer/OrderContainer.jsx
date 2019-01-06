@@ -189,12 +189,12 @@ class OrderContainer extends React.Component {
 								index={this.state.value}
 								onChangeIndex={this.handleChangeIndex}
 							>
-								<TabContainer dir="">
+								<TabContainer dir="1">
 									<div>
 										<WaitingConfirmation orders={orders} />
 									</div>
 								</TabContainer>
-								<TabContainer>
+								<TabContainer dir="2">
 									<div>
 										<OrderHistory orders={orders} />
 									</div>
