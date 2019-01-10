@@ -16,7 +16,7 @@ const OrderHistory = ({ orders }) => {
 							</div>
 						);
 					}
-					return <div />;
+					return console.log('Hehehe');
 				})}
 		</div>
 	);

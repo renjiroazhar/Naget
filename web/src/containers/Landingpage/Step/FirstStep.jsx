@@ -6,8 +6,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import LocationSearchInput from './AutoCompletePlaces/LocationSearchInput';
 
 const styles = theme => ({
 	root: {
@@ -48,7 +50,9 @@ class FirstStep extends React.Component {
 		name: '',
 		phone: '',
 		address: '',
-		area: ''
+		area: '',
+		open: false,
+		openTwo: false
 	};
 
 	handleChange = e => {
@@ -57,10 +61,34 @@ class FirstStep extends React.Component {
 		});
 	};
 
+	handleClose = () => {
+		this.setState({
+			open: false
+		});
+	};
+
+	handleOpen = () => {
+		this.setState({
+			open: true
+		});
+	};
+
+	handleCloseTwo = () => {
+		this.setState({
+			openTwo: false
+		});
+	};
+
+	handleOpenTwo = () => {
+		this.setState({
+			openTwo: true
+		});
+	};
+
 	handleSubmit = e => {
 		e.preventDefault();
-		this.props.setFirstStepItem();
 		this.props.nextStep();
+		console.log('FIRST');
 	};
 
 	render() {
@@ -78,6 +106,7 @@ class FirstStep extends React.Component {
 								autoComplete="fname"
 								onChange={handleChange('name')}
 								value={values.name}
+								disabled
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
@@ -97,9 +126,10 @@ class FirstStep extends React.Component {
 								type="email"
 								label="Email"
 								fullWidth
-								value={values.email}
 								autoComplete="fname"
 								onChange={handleChange('email')}
+								value={values.email}
+								disabled
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
@@ -128,8 +158,9 @@ class FirstStep extends React.Component {
 								label="WhatsApp Number"
 								fullWidth
 								autoComplete="fname"
-								value={values.phone}
 								onChange={handleChange('phone')}
+								value={values.phone}
+								disabled
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
@@ -144,13 +175,74 @@ class FirstStep extends React.Component {
 					</Grid>
 					<Grid item xs={12}>
 						<FormControl className={classes.formControl}>
+							<InputLabel htmlFor="age-label-placeholder">Kecamatan</InputLabel>
+							<Select
+								open={this.state.open}
+								onClose={this.handleClose}
+								onOpen={this.handleOpen}
+								value={values.kecamatan}
+								onChange={handleChange('kecamatan')}
+								style={{ width: '100%' }}
+							>
+								<MenuItem disabled value="">
+									<em>- Pilih Kecamatan -</em>
+								</MenuItem>
+
+								<MenuItem value="Semarang Tengah">Semarang Tengah</MenuItem>
+								<MenuItem value="Semarang Utara">Semarang Utara</MenuItem>
+								<MenuItem value="Semarang Timur">Semarang Timur</MenuItem>
+								<MenuItem value="Semarang Selatan">Semarang Selatan</MenuItem>
+								<MenuItem value="Semarang Barat">Semarang Barat</MenuItem>
+								<MenuItem value="Gayamsari">Gayamsari</MenuItem>
+								<MenuItem value="Genuk">Genuk</MenuItem>
+								<MenuItem value="Candisari">Candisari</MenuItem>
+								<MenuItem value="Gajahmungkur">Gajahmungkur</MenuItem>
+								<MenuItem value="Tembalang">Tembalang</MenuItem>
+								<MenuItem value="Banyumanik">Banyumanik</MenuItem>
+								<MenuItem value="Gunungpati">Gunungpati</MenuItem>
+								<MenuItem value="Mijen">Mijen</MenuItem>
+								<MenuItem value="Ngaliyan">Ngaliyan</MenuItem>
+								<MenuItem value="Tugu">Tugu</MenuItem>
+							</Select>
+						</FormControl>
+					</Grid>
+					<Grid item xs={12}>
+						<FormControl className={classes.formControl}>
+							<InputLabel htmlFor="age-label-placeholder">Kelurahan</InputLabel>
+							<Select
+								open={this.state.openTwo}
+								onClose={this.handleCloseTwo}
+								onOpen={this.handleOpenTwo}
+								value={values.kelurahan}
+								onChange={handleChange('kelurahan')}
+								style={{ width: '100%' }}
+							>
+								<MenuItem value="" disabled>
+									<em>- Pilih Kelurahan -</em>
+								</MenuItem>
+								<MenuItem value="Gudang">Gudang</MenuItem>
+								<MenuItem value="Gudang Ikan">Gudang Ikan</MenuItem>
+								<MenuItem value="Kebersihan">Kebersihan</MenuItem>
+								<MenuItem value="Outbound">Outbound</MenuItem>
+								<MenuItem value="Pertamanan">Pertamanan</MenuItem>
+								<MenuItem value="Rekreasi">Rekreasi</MenuItem>
+								<MenuItem value="Restoran">Restoran</MenuItem>
+								<MenuItem value="Technical Support">Technical Support</MenuItem>
+								<MenuItem value="Security">Security</MenuItem>
+							</Select>
+						</FormControl>
+					</Grid>
+
+					<Grid item xs={12}>
+						<FormControl className={classes.formControl}>
 							<TextField
 								required
 								label="Address"
-								value={values.address}
 								fullWidth
 								autoComplete="billing address-line1"
 								onChange={handleChange('address')}
+								value={values.address}
+								disabled
 							/>
 							{values.errorAll ? (
 								<FormHelperText style={{ color: 'red' }}>
@@ -164,15 +256,12 @@ class FirstStep extends React.Component {
 						</FormControl>
 					</Grid>
 					<Grid item xs={12}>
-						<LocationSearchInput />
-					</Grid>
-					<Grid item xs={12}>
 						<TextField
 							label="Driver Note (Optional)"
-							value={values.catatan}
 							fullWidth
 							autoComplete="billing address-line1"
 							onChange={handleChange('catatan')}
+							value={values.catatan}
 						/>
 					</Grid>
 
@@ -186,6 +275,7 @@ class FirstStep extends React.Component {
 							}}
 						>
 							<Button
+								varian="contained"
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}

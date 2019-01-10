@@ -5,8 +5,8 @@ import { storage } from '../services/firebaseConfig';
 import { withRouter } from 'react-router-dom';
 import { format } from 'date-fns/esm';
 
-export const stepContext = createContext();
-const { Provider } = stepContext;
+export const stepLoginContext = createContext();
+const { Provider } = stepLoginContext;
 
 function validateName(name) {
 	// we are going to store errors for all fields
@@ -82,7 +82,7 @@ function validateEmailValid(email) {
 	return re.test(String(email).toLowerCase());
 }
 
-class StepProvider extends Component {
+class StepLoginProvider extends Component {
 	state = {
 		activeStep: 0,
 		database: [],
@@ -121,10 +121,10 @@ class StepProvider extends Component {
 		errorsTitikEmail: false,
 		errorsDate: false,
 		errorAll: false,
-		emailInvalid: false,
-		kelurahan: '',
+        emailInvalid: false,
+        
+        kelurahan: '',
 		kecamatan: ''
-	
 	};
 
 	handleSubmit = e => {
@@ -218,7 +218,7 @@ class StepProvider extends Component {
 			}, 5000);
 			return console.log(errorsAddress);
 		}
-		console.log(this.state);
+		console.log('...');
 		this.handleNext();
 	};
 
@@ -348,7 +348,6 @@ class StepProvider extends Component {
 
 			Promise.all(promises).then(tasks => {
 				console.log('all uploads complete', tasks);
-			
 			});
 		} else {
 			this.props.createOrder(this.state);
@@ -446,10 +445,20 @@ class StepProvider extends Component {
 			return console.error(e);
 		}
 	};
-	
+
+	handleTypographyDep = () => {
+		return (window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true);
+	};
 
 	componentDidMount() {
-		this.getSafe();
+		const { auth, profile } = this.props;
+		this.setState({
+			email: auth.email,
+			name: profile.name ? profile.name : auth.displayName,
+			phone: profile.phone,
+			address: profile.address
+		});
+		this.handleTypographyDep();
 	}
 
 	render() {
@@ -461,7 +470,6 @@ class StepProvider extends Component {
 						this.setState({ [input]: e.target.value });
 						console.log(this.state);
 					},
-					
 					handleSubmit: () => {
 						this.handleSubmit();
 					},
@@ -474,8 +482,8 @@ class StepProvider extends Component {
 					handleBack: () => {
 						this.handleBack();
 					},
-					handleReturnToHome:()=>{
-						this.props.history.push('/')
+					handleReturnToHome: () => {
+						this.props.history.push('/');
 					},
 					handleReset: () => {
 						this.handleReset();
@@ -569,9 +577,9 @@ const mapStateToProps = state => {
 	};
 };
 
-const deliveredStepProvider = connect(
+const deliveredStepLoginProvider = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withRouter(StepProvider));
+)(withRouter(StepLoginProvider));
 
-export { deliveredStepProvider as StepProvider };
+export { deliveredStepLoginProvider as StepLoginProvider };

@@ -1,21 +1,15 @@
 {
-  "short_name": "Moretrash",
-  "name": [
-    {
-      "src": "moretrash.jpg",
-      "sizes": "1280x343 640x171,5 320x85,75 160x42,875",
-      "type": "image/jpeg"
-    }
-  ],
-  "icons": [
-    {
-      "src": "leaf-icon.jpg",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+	"short_name": "Moretrash",
+	"name": "Moretrash",
+	"icons": [
+		{
+			"src": "leaf-icon.jpg",
+			"sizes": "64x64 32x32 24x24 16x16",
+			"type": "image/x-icon"
+		}
+	],
+	"start_url": "index.html",
+	"display": "standalone",
+	"theme_color": "#000000",
+	"background_color": "#ffffff"
 }

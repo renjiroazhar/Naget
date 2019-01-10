@@ -6,7 +6,7 @@ import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -78,14 +78,14 @@ class Loginpage extends Component {
 								marginTop: '60px'
 							}}
 						>
-							<p
+							<h3
 								style={{
 									textAlign: 'center',
 									color: '#000'
 								}}
 							>
 								Enter your registered Email to login
-							</p>
+							</h3>
 							<div>
 								<FormControl
 									style={{ width: '100%' }}

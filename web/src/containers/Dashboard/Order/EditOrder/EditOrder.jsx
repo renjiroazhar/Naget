@@ -13,7 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import Viewer from 'react-viewer';
 import 'react-viewer/dist/index.css';
 import CircularProgress from '@material-ui/core/CircularProgress';

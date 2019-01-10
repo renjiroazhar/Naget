@@ -24,8 +24,8 @@ const Account = Loadable({
 	loading: Loader
 });
 
-const Checkout = Loadable({
-	loader: () => import('../../containers/Dashboard/Step/Checkout'),
+const MainStep = Loadable({
+	loader: () => import('../../containers/Dashboard/Step/MainStep'),
 	loading: Loader
 });
 
@@ -64,7 +64,7 @@ export default class PublicRoute extends Component {
 							<Route path="/order" component={OrderContainer} />
 							<Route path="/help" component={Help} />
 							<Route path="/account" component={Account} />
-							<Route path="/form_login" component={Checkout} />
+							<Route path="/form_login" component={MainStep} />
 							<Route path="/orderdetail/:id" component={OrderDetail} />
 							<Route path="/editorder/:id" component={EditOrder} />
 						</Switch>

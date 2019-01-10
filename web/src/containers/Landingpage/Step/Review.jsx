@@ -101,7 +101,7 @@ class Review extends React.Component {
 		// 	if (!allowSend) {
 		// 		return (
 		// 			<div style={{ textAlign: 'center' }}>
-		// 				<Button
+		// 				<Button varian="contained"
 		// 					style={{
 		// 						backgroundColor: '#00c43e',
 		// 						color: 'white',
@@ -133,7 +133,7 @@ class Review extends React.Component {
 							width: '100%'
 						}}
 					>
-						<Button
+						<Button varian="contained"
 							variant="contained"
 							color="primary"
 							onClick={this.props.handleCreateOrder}
@@ -157,7 +157,7 @@ class Review extends React.Component {
 							width: '100%'
 						}}
 					>
-						<Button
+						<Button varian="contained"
 							variant="contained"
 							color="primary"
 							style={{
@@ -202,7 +202,10 @@ class Review extends React.Component {
 					<List>
 						<List className={classes.list} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
-								<ListItemText style={{ float: 'left' }} secondary="Name" />
+								<ListItemText
+									style={{ float: 'left' }}
+									secondary="Name"
+								/>
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
 								<ListItemText style={{ float: 'left' }} primary={name} />
@@ -268,10 +271,7 @@ class Review extends React.Component {
 
 						<List className={classes.list} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
-								<ListItemText
-									style={{ float: 'left' }}
-									secondary="Driver Note"
-								/>
+								<ListItemText style={{ float: 'left' }} secondary="Driver Note" />
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
 								<ListItemText style={{ float: 'left' }} primary={catatan} />
@@ -290,7 +290,7 @@ class Review extends React.Component {
 									<div>
 										{previewGeneralPhotos &&
 											previewGeneralPhotos.map((file, i) => (
-												<div style={{ textAlign: 'center' }} key={i}>
+												<div style={{ textAlign: 'center' }}>
 													<Grid container spacing={24}>
 														<Grid item xs={12} align="center">
 															{' '}
@@ -330,7 +330,7 @@ class Review extends React.Component {
 
 					{/* <div style={{ textAlign: 'center' }}>{uploadImage()}</div> */}
 
-					<div style={{ marginTop: '10%' }}>
+					<div style={{ marginTop: '10%', }}>
 						<Grid item xs={12}>
 							{buttonSubmit()}
 						</Grid>

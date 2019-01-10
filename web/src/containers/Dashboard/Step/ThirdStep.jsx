@@ -240,7 +240,8 @@ class ThirdStep extends React.Component {
 								width: '100%'
 							}}
 						>
-							<Button varian="contained"
+							<Button
+								varian="contained"
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}
@@ -263,8 +264,7 @@ class ThirdStep extends React.Component {
 }
 
 ThirdStep.propTypes = {
-	classes: PropTypes.object.isRequired,
-	theme: PropTypes.object.isRequired
+	classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ThirdStep);

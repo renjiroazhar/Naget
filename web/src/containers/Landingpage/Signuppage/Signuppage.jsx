@@ -94,14 +94,14 @@ class Signuppage extends Component {
 								marginTop: '60px'
 							}}
 						>
-							<p
+							<h3
 								style={{
 									textAlign: 'center',
 									color: '#000'
 								}}
 							>
 								Register
-							</p>
+							</h3>
 							<div>
 								<FormControl style={{ width: '100%' }}>
 									<InputLabel

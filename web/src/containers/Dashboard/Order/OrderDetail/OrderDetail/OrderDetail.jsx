@@ -15,7 +15,7 @@ import ArrowLeft from '@material-ui/icons/ArrowBack';
 import Viewer from 'react-viewer';
 import 'react-viewer/dist/index.css';
 import { withRouter } from 'react-router-dom';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import moment from 'moment';
 import 'moment/locale/id';
@@ -131,7 +131,7 @@ class OrderDetail extends React.Component {
 			const getData = await ref.onSnapshot(doc => {
 				var dataSnapshot = doc.data();
 				if (dataSnapshot !== null || dataSnapshot !== []) {
-					console.log(dataSnapshot);
+					console.log('Data Terload  ');
 					this.setState({
 						createdAt: dataSnapshot.createdAt,
 						photos: dataSnapshot.photos,
@@ -143,7 +143,7 @@ class OrderDetail extends React.Component {
 						userId: dataSnapshot.userId,
 						loading: false
 					});
-					console.log(this.state);
+					console.log('Data Terload');
 				} else {
 					console.log('Kosong? , Astaughfirullah');
 					this.setState({
@@ -168,7 +168,7 @@ class OrderDetail extends React.Component {
 							style={{ width: '100%', backgroundColor: '#00c43e' }}
 							position="static"
 						>
-							<Toolbar>
+							<Toolbar style={{paddingLeft: 0}}>
 								<IconButton
 									onClick={this.backPage}
 									className={classes.menuButton}
@@ -278,7 +278,7 @@ class OrderDetail extends React.Component {
 										photos &&
 										photos.map((foto, i) => {
 											return (
-												<div>
+												<div key={i}>
 													<Grid container spacing={24}>
 														<Grid item xs={12} align="center">
 															<img
@@ -306,6 +306,7 @@ class OrderDetail extends React.Component {
 																alt: ''
 															}
 														]}
+														key={i}
 													/>
 												</div>
 											);
@@ -402,7 +403,6 @@ OrderDetail.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-	console.log(state);
 	const id = ownProps.match.params.id;
 	const orders = state.firestore.data.orders;
 	const order = orders ? orders[id] : null;

@@ -11,24 +11,24 @@ import FirstStep from './FirstStep';
 import SecondStep from './SecondStep';
 import Review from './Review';
 import ThirdStep from './ThirdStep';
-import { connect } from 'react-redux';
-import { createOrder } from '../../../redux/actions/orderActions';
-import { storage } from '../../../services/firebaseConfig';
-import { format } from 'date-fns/esm';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import checkIcon from '../../../assets/img/checkicon.jpg';
 import Button from '@material-ui/core/Button';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { withRouter } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowLeft from '@material-ui/icons/ArrowBack';
 import './style/style.css';
 
 import idLocale from 'date-fns/locale/id';
 
+import { stepLoginContext } from '../../../context/StepLoginProvider';
+
 const themeMui = createMuiTheme({
+	typography: {
+		useNextVariants: true
+	},
 	overrides: {
 		MuiStepIcon: {
 			root: {
@@ -43,8 +43,8 @@ const themeMui = createMuiTheme({
 		},
 		typography: {
 			useNextVariants: true,
-			suppressDeprecationWarnings: true,
-		  },
+			suppressDeprecationWarnings: true
+		},
 		step: {
 			'& $completed': {
 				color: 'lightgreen'
@@ -137,479 +137,43 @@ const styles = theme => ({
 			boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
 		}
 	},
+	buttonTwo: {
+		backgroundColor: '#FFFFFF',
+		borderColor: '#00c43e',
+		height: '46px',
+		color: '#00c43e',
+		border: '1px solid #00c43e',
+		'&:hover': {
+			backgroundColor: '#00c43e',
+			borderColor: '#0062cc',
+			color: 'white'
+		},
+		'&:active': {
+			boxShadow: 'none',
+			backgroundColor: '#00c43e',
+			borderColor: '#005cbf'
+		},
+		'&:focus': {
+			boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
+		}
+	},
 	stepper: {
 		padding: `${theme.spacing.unit * 3}px 0 ${theme.spacing.unit * 5}px`
 	}
 });
 
-function validateName(name) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsName = [];
-
-	if (name.length === 0) {
-		errorsName.push('Nama tidak boleh kosong');
-	}
-
-	return errorsName;
-}
-
-function validateEmail(email) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsEmail = [];
-	if (email.length < 5) {
-		errorsEmail.push('Email harus memiliki minimal 5 karakter');
-	}
-	return errorsEmail;
-}
-
-function validateAtEmail(email) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsAtEmail = [];
-	if (email.split('').filter(x => x === '@').length !== 1) {
-		errorsAtEmail.push('Email harus berisikan @gmail');
-	}
-	return errorsAtEmail;
-}
-
-function validateTitikEmail(email) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsTitikEmail = [];
-	if (email.indexOf('.') === -1) {
-		errorsTitikEmail.push('Email harus berisikan setidaknya 1 titik');
-	}
-	return errorsTitikEmail;
-}
-
-function validatePhone(phone) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsPhone = [];
-
-	if (phone.length === 0) {
-		errorsPhone.push('Nomor WhatsApp tidak boleh kosong');
-	}
-	if (phone.indexOf('+62') === 1) {
-		errorsPhone.push('Nomor WhatsApp harus diawali dengan +62');
-	}
-
-	return errorsPhone;
-}
-
-function validateAddress(address) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsAddress = [];
-
-	if (address.length === 0) {
-		errorsAddress.push('Alamat tidak boleh kosong');
-	}
-
-	return errorsAddress;
-}
-
 class Checkout extends React.Component {
-	state = {
-		activeStep: 0,
-		database: [],
-		data: [],
-		name: this.props.profile.name
-			? this.props.profile.name
-			: this.props.auth.displayName,
-		phone: this.props.profile.phone ? this.props.profile.phone : '',
-		email: !this.props.auth.email ? '' : this.props.auth.email,
-		selectedDate: null,
-		anchorEl: null,
-		currentLocale: 'id',
-		time: null,
-
-		occupation: '',
-		city: '',
-		bio: '',
-		catatan: '',
-		address: !this.props.profile.address ? '' : this.props.profile.address,
-		foto: [],
-		previewGeneralPhotos: [],
-		generalPhotos: [],
-		downloadURLs: [],
-		uploadProgress: 0,
-		filenames: [],
-		allowSend: false,
-
-		isUploading: false,
-
-		loading: false,
-		isInvalid: false,
-
-		errorsName: false,
-		errorsAddress: false,
-		errorsPhone: false,
-		errorsEmail: false,
-		errorsAtEmail: false,
-		errorsTitikEmail: false,
-		errorsDate: false,
-		errorAll: false
-	};
-
-	handleChange = input => e => {
-		this.setState({ [input]: e.target.value });
-		console.log(this.state)
-	};
-
-	handleSubmit = e => {
-		const { name, email, phone, address } = this.state;
-
-		const errorsName = validateName(name);
-		const errorsAddress = validateAddress(address);
-		const errorsPhone = validatePhone(phone);
-		const errorsEmail = validateEmail(email);
-		const errorsAtEmail = validateAtEmail(email);
-		const errorsTitikEmail = validateTitikEmail(email);
-		if (
-			email.length === 0 &&
-			name.length === 0 &&
-			phone.length === 0 &&
-			address.length === 0
-		) {
-			this.setState({
-				errorAll: true
-			});
-			setTimeout(() => {
-				this.setState({
-					errorAll: false
-				});
-			}, 5000);
-			console.log('Kosong Semua?? Tidakkk');
-		}
-		if (errorsName.length > 0) {
-			try {
-				this.setState({ errorsName: true });
-				setTimeout(() => {
-					this.setState({
-						errorsName: false
-					});
-				}, 5000);
-				return console.log(errorsName);
-			} catch (error) {
-				return console.log(error);
-			}
-		}
-		if (errorsEmail.length > 0) {
-			try {
-				this.setState({ errorsEmail: true });
-				setTimeout(() => {
-					this.setState({
-						errorsEmail: false
-					});
-				}, 5000);
-				return console.log(errorsEmail);
-			} catch (error) {
-				return console.log(error);
-			}
-		}
-		if (errorsAtEmail.length > 0) {
-			try {
-				this.setState({ errorsAtEmail: true });
-				setTimeout(() => {
-					this.setState({
-						errorsAtEmail: false
-					});
-				}, 5000);
-				return console.log(errorsEmail);
-			} catch (error) {
-				return console.log(error);
-			}
-		}
-		if (errorsTitikEmail.length > 0) {
-			try {
-				this.setState({ errorsTitikEmail: true });
-				setTimeout(() => {
-					this.setState({
-						errorsTitikEmail: false
-					});
-				}, 5000);
-				return console.log(errorsEmail);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		if (errorsPhone.length > 0) {
-			try {
-				this.setState({ errorsPhone: true });
-				setTimeout(() => {
-					this.setState({
-						errorsPhone: false
-					});
-				}, 5000);
-				return console.log(errorsPhone);
-			} catch (error) {
-				return console.log(error);
-			}
-		}
-		if (errorsAddress.length > 0) {
-			try {
-				this.setState({ errorsAddress: true });
-				setTimeout(() => {
-					this.setState({
-						errorsAddress: false
-					});
-				}, 5000);
-				return console.log(errorsAddress);
-			} catch (error) {
-				console.error(error);
-			}
-		}
-		console.log(this.state);
-		this.handleNext();
-	};
-
-	handleNext = () => {
-		this.setState(state => ({
-			activeStep: state.activeStep + 1
-		}));
-	};
-
-	handleNextStepTwo = () => {
-		const { selectedDate } = this.state;
-
-		if (selectedDate === null || selectedDate === 'null') {
-			this.setState({
-				errorsDate: true
-			});
-			setTimeout(() => {
-				this.setState({
-					errorsDate: false
-				});
-			}, 5000);
-			console.log('Kosong Semua?? Tidakkk', selectedDate);
-		} else {
-			this.handleNext();
-		}
-	};
-
-	handleBack = () => {
-		this.setState(state => ({
-			activeStep: state.activeStep - 1
-		}));
-	};
-
-	handleReset = () => {
-		this.setState({
-			activeStep: 0
-		});
-	};
-
-	handleSendOrder = () => {
-		this.setState({
-			allowSend: true
-		});
-	};
-
-	allowSend = () => {
-		this.setState({
-			allowSend: true
-		});
-	};
-	// Handle fields change
-	handleChange = input => e => {
-		this.setState({ [input]: e.target.value });
-		console.log(this.state)
-	};
-
-	handleChangeFoto = input => event => {
-		var dataPhotos = Array.from(event.target.files);
-		this.setState({ [input]: dataPhotos });
-	};
-
-	deleteImage = params => {
-		const { previewGeneralPhotos } = this.state;
-		previewGeneralPhotos.splice(params, 1);
-		this.setState({
-			previewGeneralPhotos
-		});
-	};
-
-	onDropGeneral = currentGeneralPhoto => {
-		let index;
-		for (index = 0; index < currentGeneralPhoto.length; ++index) {
-			const file = currentGeneralPhoto[index];
-			this.setState(({ previewGeneralPhotos }) => ({
-				previewGeneralPhotos: previewGeneralPhotos.concat(file)
-			}));
-			const reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onload = event => {
-				this.setState({
-					generalPhotos: this.state.generalPhotos.concat([
-						{ base64: event.target.result }
-					])
-				});
-			};
-		}
-	};
-
-	isLoading = () => {
-		this.setState({
-			loading: true
-		});
-	};
-
-	isLoaded = () => {
-		this.setState({
-			loading: false
-		});
-	};
-
-	handleUpload = () => {
-		const { previewGeneralPhotos } = this.state;
-		if (previewGeneralPhotos !== [] || previewGeneralPhotos.length > 0) {
-			const promises = [];
-			previewGeneralPhotos.forEach(file => {
-				const uploadTask = storage.ref(`images/${file.name}`).put(file);
-				promises.push(uploadTask);
-
-				uploadTask.on(
-					'state_changed',
-					snapshot => {
-						const progress =
-							(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-						console.log(progress);
-						this.setState({
-							loading: true
-						});
-					},
-					error => {
-						console.log(error);
-					},
-					() => {
-						uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-							console.log(downloadURL);
-							console.log(downloadURL);
-							this.setState(oldState => ({
-								downloadURLs: [...oldState.downloadURLs, downloadURL]
-							}));
-							console.log(this.state.downloadURLs);
-							if (
-								this.state.downloadURLs.length ===
-								this.state.previewGeneralPhotos.length
-							) {
-								this.allowSend();
-								this.isLoaded();
-								this.handleNext();
-								this.props.createOrder(this.state);
-							}
-						});
-					}
-				);
-			});
-
-			Promise.all(promises).then(tasks => {
-				console.log('all uploads complete', tasks);
-				this.setState({
-					loading: false
-				});
-			});
-		} else {
-			this.props.createOrder(this.state);
-			this.handleNext();
-		}
-	};
-
-	handleCreateOrder = () => {
-		this.props.createOrder(this.state);
-		this.handleNext();
-	};
-
-	handleCreateOrderWithPicture = () => {
-		const { allowSend } = this.state;
-		if (allowSend) {
-			console.log('Gambar Terkirim');
-			this.props.createOrder(this.state);
-			this.handleNext();
-		}
-		return console.log('Gambar Belum terkirim');
-	};
-
-	handleDateChange = date => {
-		this.setState({ selectedDate: date });
-		console.log(format(this.state.selectedDate, 'dd/MM/yyyy'));
-	};
-
-	handleMenuOpen = event => {
-		event.stopPropagation();
-		this.setState({ anchorEl: event.currentTarget });
-		console.log(format(this.state.selectedDate, 'dd/MM/yyyy'));
-	};
-
-	handleMenuClose = () => {
-		this.setState({ anchorEl: null });
-	};
-
-	handleTimeChange = date => {
-		this.setState({ time: date });
-		console.log(format(this.state.time, 'HH:mm'));
-	};
-
-	selectLocale = selectedLocale => {
-		this.setState({
-			currentLocale: selectedLocale,
-			anchorEl: null
-		});
-	};
-
-	getSafe = (fn, defaultVal) => {
-		let name = sessionStorage.getItem('name');
-		let date = sessionStorage.getItem('date');
-		let email = sessionStorage.getItem('email');
-		let phone = sessionStorage.getItem('phone');
-		let address = sessionStorage.getItem('address');
-		try {
-			if (name) {
-				this.setState({
-					name: name
-				});
-			}
-			if (date) {
-				this.setState({
-					selectedDate: date
-				});
-			}
-			if (phone) {
-				this.setState({
-					phone: phone
-				});
-			}
-			if (address) {
-				this.setState({
-					address: address
-				});
-			}
-			if (email) {
-				this.setState({
-					email: email
-				});
-			}
-		} catch (e) {
-			return console.log;
-		}
+	handleTypographyDep = () => {
+		return (window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true);
 	};
 
 	componentDidMount() {
-		const { auth, profile } = this.props;
-		this.setState({
-			email: auth.email,
-			name: profile.name ? profile.name : auth.displayName,
-			phone: profile.phone,
-			address: profile.address
-		});
+		this.handleTypographyDep();
+		console.log(this.context)
 	}
-
 	render() {
 		const { classes } = this.props;
-		const { activeStep } = this.state;
+		const { activeStep } = this.context.state;
 		const locale = idLocale;
 		const localeMap = {
 			id: idLocale
@@ -643,8 +207,9 @@ class Checkout extends React.Component {
 			errorsEmail,
 			errorsTitikEmail,
 			errorsAtEmail,
-			errorsDate
-		} = this.state;
+			errorsDate,
+			emailInvalid
+		} = this.context.state;
 		const values = {
 			name,
 			phone,
@@ -675,7 +240,8 @@ class Checkout extends React.Component {
 			downloadURLs,
 			errorsDate,
 
-			errorAll
+			errorAll,
+			emailInvalid
 		};
 
 		const getStepContent = step => {
@@ -683,49 +249,51 @@ class Checkout extends React.Component {
 				case 0:
 					return (
 						<FirstStep
-							nextStep={this.handleSubmit}
-							handleChange={this.handleChange}
+							nextStep={this.context.handleSubmit}
+							handleChange={this.context.handleChange}
 							values={values}
+							setFirstStepItem={this.context.setFirstStepItem}
 						/>
 					);
 				case 1:
 					return (
 						<SecondStep
-							previousStep={this.handleBack}
-							nextStep={this.handleNext}
-							handleChange={this.handleChange}
+							previousStep={this.context.handleBack}
+							nextStep={this.context.handleNext}
+							handleChange={this.context.handleChange}
 							values={values}
-							prevStep={this.prevStep}
-							handleChangeFoto={this.handleChangeFoto}
-							onDropGeneral={this.onDropGeneral}
-							deleteImage={this.deleteImage}
-							handleChangeTime={this.handleChangeTime}
-							allowSend={this.allowSendOrder}
-							handleDateChange={this.handleDateChange}
-							handleTimeChange={this.handleTimeChange}
-							handleMenuOpen={this.handleMenuOpen}
-							handleMenuClose={this.handleMenuClose}
-							handleNextStepTwo={this.handleNextStepTwo}
+							prevStep={this.context.prevStep}
+							handleChangeFoto={this.context.handleChangeFoto}
+							onDropGeneral={this.context.onDropGeneral}
+							deleteImage={this.context.deleteImage}
+							handleChangeTime={this.context.handleChangeTime}
+							allowSend={this.context.allowSendOrder}
+							handleDateChange={this.context.handleDateChange}
+							handleTimeChange={this.context.handleTimeChange}
+							handleMenuOpen={this.context.handleMenuOpen}
+							handleMenuClose={this.context.handleMenuClose}
+							handleNextStepTwo={this.context.handleNextStepTwo}
+							setSecondStepItem={this.context.setSecondStepItem}
 						/>
 					);
 				case 2:
 					return (
 						<ThirdStep
-							previousStep={this.handleBack}
-							nextStep={this.handleNext}
-							handleChange={this.handleChange}
+							previousStep={this.context.handleBack}
+							nextStep={this.context.handleNext}
+							handleChange={this.context.handleChange}
 							values={values}
 						/>
 					);
 				case 3:
 					return (
 						<Review
-							allData={this.state}
+							allData={this.context.state}
 							values={values}
-							handleCreateOrder={this.handleCreateOrder}
-							previousStep={this.handleBack}
-							isLoading={this.isLoading}
-							handleUpload={this.handleUpload}
+							handleCreateOrder={this.context.handleCreateOrder}
+							previousStep={this.context.handleBack}
+							isLoading={this.context.isLoading}
+							handleUpload={this.context.handleUpload}
 						/>
 					);
 				default:
@@ -750,10 +318,10 @@ class Checkout extends React.Component {
 								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
-								<Toolbar style={{ paddingLeft: 0}}>
+								<Toolbar style={{ paddingLeft: 0 }}>
 									<IconButton
 										onClick={() => {
-											this.props.history.push('/');
+											this.context.handleReturnToHome();
 										}}
 										className={classes.menuButton}
 										color="inherit"
@@ -762,7 +330,7 @@ class Checkout extends React.Component {
 										<ArrowLeft />
 									</IconButton>
 									<Typography
-										variant="title"
+										variant="h6"
 										color="inherit"
 										className={classes.grow}
 									>
@@ -779,10 +347,10 @@ class Checkout extends React.Component {
 								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
-								<Toolbar style={{ paddingLeft: 0}}>
+								<Toolbar style={{ paddingLeft: 0 }}>
 									<IconButton
 										onClick={() => {
-											this.props.history.push('/');
+											this.context.handleReturnToHome();
 										}}
 										className={classes.menuButton}
 										color="inherit"
@@ -791,19 +359,19 @@ class Checkout extends React.Component {
 										<ArrowLeft />
 									</IconButton>
 									<Typography
-										variant="title"
+										variant="h6"
 										color="inherit"
 										className={classes.grow}
 									>
 										{activeStep === 1
 											? 'Date, Time, and Photo'
 											: activeStep === 2
-												? 'Trash list and Price'
-												: activeStep === 3
-													? 'Confirm Order'
-													: activeStep === 4
-														? 'Order Successful'
-														: ''}
+											? 'Trash list and Price'
+											: activeStep === 3
+											? 'Confirm Order'
+											: activeStep === 4
+											? 'Order Successful'
+											: ''}
 									</Typography>
 								</Toolbar>
 							</AppBar>
@@ -816,10 +384,10 @@ class Checkout extends React.Component {
 								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
-								<Toolbar style={{ paddingLeft: 0}}>
+								<Toolbar style={{ paddingLeft: 0 }}>
 									<IconButton
 										onClick={() => {
-											this.props.history.push('/');
+											this.context.handleReturnToHome();
 										}}
 										className={classes.menuButton}
 										color="inherit"
@@ -828,19 +396,19 @@ class Checkout extends React.Component {
 										<ArrowLeft />
 									</IconButton>
 									<Typography
-										variant="title"
+										variant="h6"
 										color="inherit"
 										className={classes.grow}
 									>
 										{activeStep === 1
 											? 'Date, Time, and Photo'
 											: activeStep === 2
-												? 'Trash list and Price'
-												: activeStep === 3
-													? 'Confirm Order'
-													: activeStep === 4
-														? 'Order Successful'
-														: ''}
+											? 'Trash list and Price'
+											: activeStep === 3
+											? 'Confirm Order'
+											: activeStep === 4
+											? 'Order Successful'
+											: ''}
 									</Typography>
 								</Toolbar>
 							</AppBar>
@@ -890,8 +458,7 @@ class Checkout extends React.Component {
 											style={{
 												textAlign: 'center',
 												color: '#757575',
-												justifyContent: 'center',
-												marginTop: '10px'
+												justifyContent: 'center'
 											}}
 											gutterBottom
 										>
@@ -899,7 +466,8 @@ class Checkout extends React.Component {
 												style={{
 													fontWeight: 'bold',
 													marginRight: '5px',
-													color: '#757575'
+													color: '#757575',
+													marginTop: '10px'
 												}}
 											>
 												Thank You,
@@ -910,9 +478,11 @@ class Checkout extends React.Component {
 											variant="subtitle1"
 											style={{ textAlign: 'center', color: '#757575' }}
 										>
-											Thank You for order, You can monitor your order in real
-											time and get additional points.
+											Thank You for order, let's register your account so you
+											can monitor your order in real time and get additional
+											points.
 										</Typography>
+
 										<Typography
 											variant="subtitle2"
 											style={{
@@ -924,6 +494,7 @@ class Checkout extends React.Component {
 										>
 											*Order details have been sent to your email.
 										</Typography>
+
 										<div
 											style={{
 												textAlign: 'center',
@@ -932,16 +503,37 @@ class Checkout extends React.Component {
 												marginTop: '10%'
 											}}
 										>
-											<Button varian="contained"
+											<Button
 												variant="contained"
 												color="primary"
 												onClick={() => {
-													this.props.history.push('/');
+													this.props.history.push('/login');
+												}}
+												className={classes.buttonTwo}
+												style={{ width: '100%' }}
+											>
+												Login
+											</Button>
+										</div>
+
+										<div
+											style={{
+												textAlign: 'center',
+												justifyContent: 'center',
+												width: '100%',
+												marginTop: '5%'
+											}}
+										>
+											<Button
+												variant="contained"
+												color="primary"
+												onClick={() => {
+													this.props.history.push('/signup');
 												}}
 												className={classes.button}
 												style={{ width: '100%' }}
 											>
-												Ok
+												Register
 											</Button>
 										</div>
 									</React.Fragment>
@@ -964,22 +556,8 @@ Checkout.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-const mapDispatchToProps = dispatch => {
-	return {
-		createOrder: order => {
-			dispatch(createOrder(order));
-		}
-	};
-};
+Checkout.contextType = stepLoginContext;
 
-const mapStateToProps = state => {
-	return {
-		auth: state.firebase.auth,
-		profile: state.firebase.profile
-	};
-};
+const styledCheckout = withStyles(styles)(Checkout);
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(withStyles(styles)(withRouter(Checkout)));
+export { styledCheckout as Checkout };

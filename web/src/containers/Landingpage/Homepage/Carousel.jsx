@@ -17,12 +17,15 @@ import './style/carousel.css';
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const themeMui = createMuiTheme({
+	typography: {
+		useNextVariants: true
+	},
 	overrides: {
+		typography: {
+			useNextVariants: true
+		},
 		MuiMobileStepper: {
 			root: {
-				'&$completed': {
-					backgroundColor: '#00c43e'
-				},
 				'&$dotActive': {
 					backgroundColor: '#00c43e',
 					color: '#00c43e'
@@ -32,10 +35,6 @@ const themeMui = createMuiTheme({
 				backgroundColor: '#00c43e',
 				color: '#00c43e'
 			}
-		},
-		typography: {
-			useNextVariants: true,
-			suppressDeprecationWarnings: true
 		},
 		step: {
 			'& $completed': {
@@ -123,6 +122,13 @@ class Carousel extends React.Component {
 	handleStepChange = activeStep => {
 		this.setState({ activeStep });
 	};
+
+	handleTypographyDep = () =>
+		(window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true);
+
+	componentDidMount() {
+		this.handleTypographyDep();
+	}
 
 	render() {
 		const { classes, theme } = this.props;

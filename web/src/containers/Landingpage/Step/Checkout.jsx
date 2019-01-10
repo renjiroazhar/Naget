@@ -17,7 +17,6 @@ import Button from '@material-ui/core/Button';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { withRouter } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowLeft from '@material-ui/icons/ArrowBack';
 import './style/style.css';
@@ -27,11 +26,14 @@ import idLocale from 'date-fns/locale/id';
 import { stepContext } from '../../../context/StepProvider';
 
 const themeMui = createMuiTheme({
+	typography: {
+		useNextVariants: true
+	},
 	overrides: {
 		MuiStepIcon: {
 			root: {
 				'&$completed': {
-					color: '#00c43e',
+					color: '#00c43e'
 				},
 				'&$active': {
 					color: '#00c43e'
@@ -161,7 +163,14 @@ const styles = theme => ({
 });
 
 class Checkout extends React.Component {
+	handleTypographyDep = () => {
+		return (window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true);
+	};
 
+	componentDidMount() {
+		this.handleTypographyDep();
+		console.log(this.context);
+	}
 	render() {
 		const { classes } = this.props;
 		const { activeStep } = this.context.state;
@@ -312,7 +321,7 @@ class Checkout extends React.Component {
 								<Toolbar style={{ paddingLeft: 0 }}>
 									<IconButton
 										onClick={() => {
-											this.props.history.push('/');
+											this.context.handleReturnToHome();
 										}}
 										className={classes.menuButton}
 										color="inherit"
@@ -341,7 +350,7 @@ class Checkout extends React.Component {
 								<Toolbar style={{ paddingLeft: 0 }}>
 									<IconButton
 										onClick={() => {
-											this.props.history.push('/');
+											this.context.handleReturnToHome();
 										}}
 										className={classes.menuButton}
 										color="inherit"
@@ -378,7 +387,7 @@ class Checkout extends React.Component {
 								<Toolbar style={{ paddingLeft: 0 }}>
 									<IconButton
 										onClick={() => {
-											this.props.history.push('/');
+											this.context.handleReturnToHome();
 										}}
 										className={classes.menuButton}
 										color="inherit"
@@ -549,6 +558,6 @@ Checkout.propTypes = {
 
 Checkout.contextType = stepContext;
 
-const styledCheckout = withStyles(styles)(withRouter(Checkout));
+const styledCheckout = withStyles(styles)(Checkout);
 
 export { styledCheckout as Checkout };

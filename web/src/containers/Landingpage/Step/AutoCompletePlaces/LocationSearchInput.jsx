@@ -45,7 +45,6 @@ class LocationSearchInput extends React.Component {
 								className: 'location-search-input'
 							})}
 							label="Pilih Area"
-							style={{ color: 'black' }}
 							fullWidth
 						/>
 						<div className="autocomplete-dropdown-container">

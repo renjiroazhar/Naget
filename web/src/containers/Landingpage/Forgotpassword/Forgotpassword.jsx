@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 import Navbar from '../../../component/Navbar';
 import Paper from '@material-ui/core/Paper';
 
-
 class Forgotpassword extends Component {
 	state = {
 		email: '',
@@ -49,11 +48,11 @@ class Forgotpassword extends Component {
 		const { resetErr, classes } = this.props;
 
 		return (
-			<div style={{ overflow: 'hidden', width: '100%' }} >
+			<div style={{ overflow: 'hidden', width: '100%' }}>
 				<div>
 					<Navbar />
 				</div>
-				<div style={{ padding: 15 }} >
+				<div style={{ padding: 15 }}>
 					<Paper className={classes.paper}>
 						<div
 							style={{
@@ -63,7 +62,7 @@ class Forgotpassword extends Component {
 								marginTop: '60px'
 							}}
 						>
-							<h2
+							<h3
 								style={{
 									textAlign: 'center',
 									color: '#000',
@@ -71,9 +70,12 @@ class Forgotpassword extends Component {
 								}}
 							>
 								Reset Password
-					</h2>
+							</h3>
 							<div>
-								<FormControl style={{ width: '100%' }} onSubmit={this.handleSubmit}>
+								<FormControl
+									style={{ width: '100%' }}
+									onSubmit={this.handleSubmit}
+								>
 									<InputLabel
 										htmlFor="custom-css-input"
 										FormLabelClasses={{
@@ -82,7 +84,7 @@ class Forgotpassword extends Component {
 										}}
 									>
 										Email
-							</InputLabel>
+									</InputLabel>
 									<Input
 										classes={{
 											underline: classes.cssUnderline

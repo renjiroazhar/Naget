@@ -71,7 +71,6 @@ class SecondStep extends React.Component {
 		) {
 			this.props.allowSend();
 		}
-		this.props.setSecondStepItem();
 		this.props.handleNextStepTwo();
 	};
 
@@ -103,14 +102,10 @@ class SecondStep extends React.Component {
 
 	render() {
 		const { classes, values, handleDateChange } = this.props;
-		const officeHours = [
-			{ from: '9:00', to: '12:00' },
-			{ from: '13:00', to: '17:00' }
-		];
 		const today = new Date();
 		return (
 			<React.Fragment>
-				<Grid container spacing={24}>
+				<Grid container={true} spacing={24}>
 					<Grid item xs={12}>
 						<MuiPickersUtilsProvider
 							utils={DateFnsUtils}
@@ -119,12 +114,12 @@ class SecondStep extends React.Component {
 							<div className="picker">
 								<FormControl style={{ width: '100%' }}>
 									<DatePicker
-										minDate={today}
 										style={{ width: '100%' }}
 										value={values.selectedDate}
 										onChange={handleDateChange}
 										label="Pickup Date"
 										required
+										minDate={today}
 										placeholder="Choose Date"
 										InputProps={{
 											startAdornment: (
@@ -160,7 +155,6 @@ class SecondStep extends React.Component {
 									<TimePicker
 										style={{ width: '100%' }}
 										value={values.selectedDate}
-										allowedtimes={officeHours}
 										onChange={handleDateChange}
 										label="Pickup Time"
 										placeholder="Choose Time"
@@ -315,6 +309,7 @@ class SecondStep extends React.Component {
 							}}
 						>
 							<Button
+								varian="contained"
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}

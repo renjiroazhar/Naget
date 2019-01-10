@@ -34,6 +34,13 @@ class Homepage extends Component {
 	handleClose = () => {
 		this.setState({ open: false });
 	};
+	handleTypographyDep = () => {
+		return (window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true);
+	};
+
+	componentDidMount() {
+		this.handleTypographyDep();
+	}
 
 	render() {
 		const { classes } = this.props;
