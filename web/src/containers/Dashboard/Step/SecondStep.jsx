@@ -105,7 +105,7 @@ class SecondStep extends React.Component {
 		const today = new Date();
 		return (
 			<React.Fragment>
-				<Grid container spacing={24}>
+				<Grid container={true} spacing={24}>
 					<Grid item xs={12}>
 						<MuiPickersUtilsProvider
 							utils={DateFnsUtils}
@@ -257,7 +257,8 @@ class SecondStep extends React.Component {
 									{({ getRootProps, getInputProps }) => (
 										<div {...getRootProps()}>
 											<input {...getInputProps()} />
-											<Button varian="contained"
+											<Button
+												varian="contained"
 												component="span"
 												style={{
 													backgroundColor: '#B0B0B0',
@@ -307,7 +308,8 @@ class SecondStep extends React.Component {
 								width: '100%'
 							}}
 						>
-							<Button varian="contained"
+							<Button
+								varian="contained"
 								variant="contained"
 								color="primary"
 								onClick={this.handleSubmit}

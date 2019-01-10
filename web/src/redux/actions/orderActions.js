@@ -102,7 +102,6 @@ export const createOrder = (order, picture) => {
 			})
 			.then(() => {
 				dispatch({ type: 'CREATE_ORDER', order });
-				console.log(spreadLogs);
 			})
 			.catch(err => {
 				dispatch({ type: 'CREATE_ORDER_ERROR', err });

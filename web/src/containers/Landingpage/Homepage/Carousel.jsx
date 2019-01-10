@@ -11,9 +11,54 @@ import TrashDrop from '../../../assets/img/webp/TrashDrop.webp';
 import TrashBag from '../../../assets/img/webp/TrashBag.webp';
 import TrashPoints from '../../../assets/img/webp/TrashPoints.webp';
 import LazyLoad from 'react-lazy-load';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './style/carousel.css';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+
+const themeMui = createMuiTheme({
+	overrides: {
+		MuiMobileStepper: {
+			root: {
+				'&$completed': {
+					backgroundColor: '#00c43e'
+				},
+				'&$dotActive': {
+					backgroundColor: '#00c43e',
+					color: '#00c43e'
+				}
+			},
+			dotActive: {
+				backgroundColor: '#00c43e',
+				color: '#00c43e'
+			}
+		},
+		typography: {
+			useNextVariants: true,
+			suppressDeprecationWarnings: true
+		},
+		step: {
+			'& $completed': {
+				color: 'lightgreen'
+			},
+			'& $active': {
+				color: 'pink'
+			},
+			'& $disabled': {
+				color: 'red'
+			}
+		},
+		alternativeLabel: {},
+		active: {}, //needed so that the &$active tag works
+		completed: {},
+		disabled: {},
+		labelContainer: {
+			'& $alternativeLabel': {
+				marginTop: 0
+			}
+		}
+	}
+});
 
 const tutorialSteps = [
 	{
@@ -35,7 +80,7 @@ const tutorialSteps = [
 
 const styles = theme => ({
 	root: {
-		maxWidth: 200,
+		width: '100%',
 		flexGrow: 1
 	},
 	header: {
@@ -86,59 +131,67 @@ class Carousel extends React.Component {
 
 		return (
 			<div className={classes.root}>
-				<AutoPlaySwipeableViews
-					axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-					index={activeStep}
-					onChangeIndex={this.handleStepChange}
-					enableMouseEvents
-				>
-					{tutorialSteps.map((step, index) => (
-						<div key={index}>
-							{Math.abs(activeStep - index) <= 2 ? (
-								<LazyLoad placeholder={<div>Loading</div>} debounce={true} height="100%" width="100%">
-									<img
-										id="image-carousel"
-										className={classes.img}
-										src={step.imgPath}
-										key={index}
-										alt={step.label}
-									/>
-								</LazyLoad>
-							) : null}
-						</div>
-					))}
-				</AutoPlaySwipeableViews>
-
-				<MobileStepper
-					steps={maxSteps}
-					position="static"
-					LinearProgressProps={{
-						dotActive: classes.dot
-					}}
-					activeStep={activeStep}
-					className={classes.mobileStepper}
-					style={{ backgroundColor: 'transparent' }}
-					nextButton={
-						<Button
-							varian="contained"
-							size="small"
-							onClick={this.handleNext}
-							disabled={activeStep === maxSteps - 1}
-						>
-							{''}
-						</Button>
-					}
-					backButton={
-						<Button
-							varian="contained"
-							size="small"
-							onClick={this.handleBack}
-							disabled={activeStep === 0}
-						>
-							{''}
-						</Button>
-					}
-				/>
+				<center>
+					<AutoPlaySwipeableViews
+						axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+						index={activeStep}
+						onChangeIndex={this.handleStepChange}
+						enableMouseEvents
+					>
+						{tutorialSteps.map((step, index) => (
+							<div key={index}>
+								{Math.abs(activeStep - index) <= 2 ? (
+									<LazyLoad
+										placeholder={<div>Loading</div>}
+										debounce={true}
+										height="100%"
+										width="100%"
+									>
+										<img
+											id="image-carousel"
+											className={classes.img}
+											src={step.imgPath}
+											key={index}
+											alt={step.label}
+										/>
+									</LazyLoad>
+								) : null}
+							</div>
+						))}
+					</AutoPlaySwipeableViews>
+				</center>
+				<MuiThemeProvider theme={themeMui}>
+					<MobileStepper
+						steps={maxSteps}
+						position="static"
+						LinearProgressProps={{
+							dotActive: classes.dot
+						}}
+						activeStep={activeStep}
+						className={classes.mobileStepper}
+						style={{ backgroundColor: 'transparent' }}
+						nextButton={
+							<Button
+								varian="contained"
+								size="small"
+								onClick={this.handleNext}
+								disabled={activeStep === maxSteps - 1}
+							>
+								{''}
+							</Button>
+						}
+						backButton={
+							<Button
+								varian="contained"
+								size="small"
+								onClick={this.handleBack}
+								disabled={activeStep === 0}
+							>
+								{''}
+							</Button>
+						}
+					/>
+				</MuiThemeProvider>
 			</div>
 		);
 	}

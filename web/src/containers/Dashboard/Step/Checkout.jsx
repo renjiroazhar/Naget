@@ -37,7 +37,8 @@ const themeMui = createMuiTheme({
 				},
 				'&$active': {
 					color: '#00c43e'
-				}
+				},
+				fontSize: 'xx-large'
 			}
 		},
 		typography: {
@@ -111,7 +112,7 @@ const styles = theme => ({
 	paper: {
 		marginTop: theme.spacing.unit * 3,
 		marginBottom: theme.spacing.unit * 3,
-		padding: theme.spacing.unit * 4,
+		padding: 17,
 		width: '100%',
 		[theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
 			marginTop: theme.spacing.unit * 6,
@@ -255,6 +256,7 @@ class Checkout extends React.Component {
 
 	handleChange = input => e => {
 		this.setState({ [input]: e.target.value });
+		console.log(this.state)
 	};
 
 	handleSubmit = e => {
@@ -414,6 +416,7 @@ class Checkout extends React.Component {
 	// Handle fields change
 	handleChange = input => e => {
 		this.setState({ [input]: e.target.value });
+		console.log(this.state)
 	};
 
 	handleChangeFoto = input => event => {
@@ -747,7 +750,7 @@ class Checkout extends React.Component {
 								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
-								<Toolbar style={{ paddingLeft: 0 }}>
+								<Toolbar style={{ paddingLeft: 0}}>
 									<IconButton
 										onClick={() => {
 											this.props.history.push('/');
@@ -776,7 +779,7 @@ class Checkout extends React.Component {
 								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
-								<Toolbar>
+								<Toolbar style={{ paddingLeft: 0}}>
 									<IconButton
 										onClick={() => {
 											this.props.history.push('/');
@@ -788,7 +791,7 @@ class Checkout extends React.Component {
 										<ArrowLeft />
 									</IconButton>
 									<Typography
-										variant="h7"
+										variant="title"
 										color="inherit"
 										className={classes.grow}
 									>
@@ -813,9 +816,11 @@ class Checkout extends React.Component {
 								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
-								<Toolbar>
+								<Toolbar style={{ paddingLeft: 0}}>
 									<IconButton
-										onClick={this.handleBack}
+										onClick={() => {
+											this.props.history.push('/');
+										}}
 										className={classes.menuButton}
 										color="inherit"
 										aria-label="Menu"
@@ -823,7 +828,7 @@ class Checkout extends React.Component {
 										<ArrowLeft />
 									</IconButton>
 									<Typography
-										variant="h7"
+										variant="title"
 										color="inherit"
 										className={classes.grow}
 									>

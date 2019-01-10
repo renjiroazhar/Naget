@@ -160,7 +160,7 @@ class SecondStep extends React.Component {
 									<TimePicker
 										style={{ width: '100%' }}
 										value={values.selectedDate}
-										allowedTimes={officeHours}
+										allowedtimes={officeHours}
 										onChange={handleDateChange}
 										label="Pickup Time"
 										placeholder="Choose Time"

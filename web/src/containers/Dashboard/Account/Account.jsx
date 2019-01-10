@@ -111,7 +111,7 @@ class Account extends React.Component {
 							width: '100%',
 							textAlign: 'center',
 							color: '#f43c3c',
-							height: '40px',
+							height: '46px',
 							position: 'absolute',
 							bottom: 0,
 							borderRadius: 'unset'

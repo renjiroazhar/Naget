@@ -78,7 +78,6 @@ class FirstStep extends React.Component {
 								autoComplete="fname"
 								onChange={handleChange('name')}
 								defaultValue={values.name}
-								value={values.name}
 								disabled
 							/>
 							{values.errorAll ? (
@@ -99,7 +98,6 @@ class FirstStep extends React.Component {
 								type="email"
 								label="Email"
 								fullWidth
-								value={values.email}
 								autoComplete="fname"
 								onChange={handleChange('email')}
 								defaultValue={values.email}
@@ -132,7 +130,6 @@ class FirstStep extends React.Component {
 								label="WhatsApp Number"
 								fullWidth
 								autoComplete="fname"
-								value={values.phone}
 								onChange={handleChange('phone')}
 								defaultValue={values.phone}
 								disabled
@@ -153,7 +150,6 @@ class FirstStep extends React.Component {
 							<TextField
 								required
 								label="Address"
-								value={values.address}
 								fullWidth
 								autoComplete="billing address-line1"
 								onChange={handleChange('address')}
@@ -177,7 +173,6 @@ class FirstStep extends React.Component {
 					<Grid item xs={12}>
 						<TextField
 							label="Driver Note (Optional)"
-							value={values.catatan}
 							fullWidth
 							autoComplete="billing address-line1"
 							onChange={handleChange('catatan')}

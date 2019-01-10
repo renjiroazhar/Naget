@@ -31,11 +31,12 @@ const themeMui = createMuiTheme({
 		MuiStepIcon: {
 			root: {
 				'&$completed': {
-					color: '#00c43e'
+					color: '#00c43e',
 				},
 				'&$active': {
 					color: '#00c43e'
-				}
+				},
+				fontSize: 'xx-large'
 			}
 		},
 		typography: {
@@ -109,7 +110,7 @@ const styles = theme => ({
 	paper: {
 		marginTop: theme.spacing.unit * 3,
 		marginBottom: theme.spacing.unit * 3,
-		padding: theme.spacing.unit * 4,
+		padding: 17,
 		width: '100%',
 		[theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
 			marginTop: theme.spacing.unit * 6,
@@ -160,9 +161,7 @@ const styles = theme => ({
 });
 
 class Checkout extends React.Component {
-	componentDidMount() {
-		console.log(this.context);
-	}
+
 	render() {
 		const { classes } = this.props;
 		const { activeStep } = this.context.state;
@@ -310,7 +309,7 @@ class Checkout extends React.Component {
 								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
-								<Toolbar>
+								<Toolbar style={{ paddingLeft: 0 }}>
 									<IconButton
 										onClick={() => {
 											this.props.history.push('/');
@@ -339,7 +338,7 @@ class Checkout extends React.Component {
 								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
-								<Toolbar>
+								<Toolbar style={{ paddingLeft: 0 }}>
 									<IconButton
 										onClick={() => {
 											this.props.history.push('/');
@@ -376,7 +375,7 @@ class Checkout extends React.Component {
 								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
-								<Toolbar>
+								<Toolbar style={{ paddingLeft: 0 }}>
 									<IconButton
 										onClick={() => {
 											this.props.history.push('/');
