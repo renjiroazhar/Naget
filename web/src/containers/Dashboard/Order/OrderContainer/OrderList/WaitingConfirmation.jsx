@@ -6,19 +6,17 @@ const WaitingConfirmation = ({ orders }) => {
 		<div>
 			{orders &&
 				orders.map(order => {
-					if (order.status === 'WAITING_CONFIRMATION') {
+					const { status, id } = order;
+					if (status === 'WAITING_CONFIRMATION') {
 						return (
-							<div key={order.id}>
-								<Link to={`/orderdetail/${order.id}`}>
-									<OrderSummary order={order} key={order.id} />
+							<div key={id}>
+								<Link to={`/orderdetail/${id}`}>
+									<OrderSummary order={order} key={id} />
 								</Link>
 							</div>
 						);
 					}
-					if (!order) {
-						return <p style={{ textAlign: 'center' }}>Kosong...</p>;
-					}
-					return <div key={order.id} />;
+					return <div key={id} />;
 				})}
 		</div>
 	);

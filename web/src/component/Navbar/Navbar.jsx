@@ -30,12 +30,12 @@ class Navbar extends Component {
 						}}
 						position="static"
 					>
-						<Toolbar>
+						<Toolbar style={{ paddingLeft: 0 }}>
 							<div>
 								<div
 									style={{
 										display: 'block',
-										margin: '0 auto',
+										margin: '0 auto'
 									}}
 								>
 									<IconButton
@@ -46,14 +46,14 @@ class Navbar extends Component {
 										color="inherit"
 										aria-label="Menu"
 									>
-										<ArrowLeft />
+										<ArrowLeft style={{ color: '#ffffff' }} />
 									</IconButton>
 								</div>
 							</div>
 						</Toolbar>
 					</AppBar>
 				</div>
-			</div >
+			</div>
 		);
 	}
 }

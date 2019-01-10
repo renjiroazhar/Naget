@@ -108,11 +108,11 @@ class OrderDetail extends React.Component {
 		// Delete the file
 		desertRef
 			.delete()
-			.then(function (res) {
+			.then(function(res) {
 				console.log(res, 'Waw Sukses');
 				this.deleteArrayImage();
 			})
-			.catch(function (error) {
+			.catch(function(error) {
 				console.log(error, 'Wadidaw Error');
 			});
 	};
@@ -151,7 +151,7 @@ class OrderDetail extends React.Component {
 					});
 				}
 			});
-			return getData;
+			return getData && (window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -180,6 +180,7 @@ class OrderDetail extends React.Component {
 								<Typography
 									variant="title"
 									color="inherit"
+									style={{ fontSize: '20px' }}
 									className={classes.grow}
 								>
 									Detail
@@ -272,48 +273,48 @@ class OrderDetail extends React.Component {
 								</ListItem>
 								<div>
 									{photos !== null ||
-										photos !== [] ||
-										photos !== 'undefined' ? (
-											photos &&
-											photos.map((foto, i) => {
-												return (
-													<div>
-														<Grid container spacing={24}>
-															<Grid item xs={12} align="center">
-																<img
-																	onClick={this.viewImage}
-																	src={foto}
-																	alt="preview failed"
-																	key={i}
-																	width="250"
-																	height="250"
-																	style={{
-																		display: 'block',
-																		margin: '20px',
-																		objectFit: 'contain'
-																	}}
-																/>
-															</Grid>
+									photos !== [] ||
+									photos !== 'undefined' ? (
+										photos &&
+										photos.map((foto, i) => {
+											return (
+												<div>
+													<Grid container spacing={24}>
+														<Grid item xs={12} align="center">
+															<img
+																onClick={this.viewImage}
+																src={foto}
+																alt="preview failed"
+																key={i}
+																width="250"
+																height="250"
+																style={{
+																	display: 'block',
+																	margin: '20px',
+																	objectFit: 'contain'
+																}}
+															/>
 														</Grid>
+													</Grid>
 
-														<Viewer
-															visible={this.state.visible}
-															onClose={this.cancelViewImage}
-															images={[
-																{
-																	src: foto,
-																	alt: ''
-																}
-															]}
-														/>
-													</div>
-												);
-											})
-										) : (
-											<div style={{ textAlign: 'center' }}>
-												<p>No Photo</p>
-											</div>
-										)}
+													<Viewer
+														visible={this.state.visible}
+														onClose={this.cancelViewImage}
+														images={[
+															{
+																src: foto,
+																alt: ''
+															}
+														]}
+													/>
+												</div>
+											);
+										})
+									) : (
+										<div style={{ textAlign: 'center' }}>
+											<p>No Photo</p>
+										</div>
+									)}
 									<br />
 									<br />
 									<br />
@@ -330,7 +331,8 @@ class OrderDetail extends React.Component {
 								width: '100%'
 							}}
 						>
-							<Button varian="contained"
+							<Button
+								varian="contained"
 								style={{
 									backgroundColor: '#f43c3c',
 									width: '90%',
@@ -416,7 +418,9 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-export default connect(
+const composingOrderDetail = connect(
 	mapStateToProps,
 	mapDispatchToProps
 )(withStyles(styles)(withRouter(OrderDetail)));
+
+export { composingOrderDetail as OrderDetail };

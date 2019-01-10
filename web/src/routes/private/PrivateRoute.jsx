@@ -71,7 +71,10 @@ export default class PublicRoute extends Component {
 					)}
 				/>
 				{!currentPath.includes('form_login') &&
-				!currentPath.includes('orderdetail') ? (
+				!currentPath.includes('orderdetail') &&
+				!currentPath.includes('order') &&
+				!currentPath.includes('help') &&
+				!currentPath.includes('account') ? (
 					<BottomNavigationBar
 						selectedTab={this.state.selectedTab}
 						onChangeTab={this.onChangeTab}

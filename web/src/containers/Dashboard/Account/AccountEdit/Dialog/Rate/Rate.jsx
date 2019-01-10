@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Star from '@material-ui/icons/Star';
+import StarIcon from '@material-ui/icons/StarBorder';
 import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
@@ -88,10 +88,10 @@ class Rate extends React.Component {
 		const { classes } = this.props;
 		return (
 			<div style={{ backgroundColor: 'white' }}>
-				<List className={classes.list} style={{ paddingBottom: '10px' }}>
+				<List className={classes.list}>
 					<ListItem button onClick={this.handleOpen}>
 						<ListItemIcon>
-							<Star style={{ fontSize: '24px' }} />
+							<StarIcon />
 						</ListItemIcon>
 						<ListItemSecondaryAction>
 							<ListItemText

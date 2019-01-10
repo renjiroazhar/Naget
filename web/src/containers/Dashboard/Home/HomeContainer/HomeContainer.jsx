@@ -22,7 +22,7 @@ import tTrashBag from '../../../../assets/img/webp/tTrashBag.webp';
 import tTrashPoints from '../../../../assets/img/webp/tTrashPoints.webp';
 import tTrashDrop from '../../../../assets/img/webp/tTrashDrop.webp';
 import Typography from '@material-ui/core/Typography';
-import LazyLoad from 'react-lazyload';
+import LazyLoad from 'react-lazy-load';
 import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
@@ -305,7 +305,7 @@ class HomeContainer extends Component {
 									>
 										<LazyLoad
 											placeholder={<div>Loading</div>}
-											debounce={500}
+											debounce={true}
 											throttle={200}
 											height={48}
 											width={48}
@@ -338,7 +338,7 @@ class HomeContainer extends Component {
 									>
 										<LazyLoad
 											placeholder={<div>Loading</div>}
-											debounce={500}
+											debounce={true}
 											height={48}
 											width={48}
 										>
@@ -370,7 +370,7 @@ class HomeContainer extends Component {
 									>
 										<LazyLoad
 											placeholder={<div>Loading</div>}
-											debounce={500}
+											debounce={true}
 											height={48}
 											width={48}
 										>
@@ -402,7 +402,7 @@ class HomeContainer extends Component {
 									>
 										<LazyLoad
 											placeholder={<div>Loading</div>}
-											debounce={500}
+											debounce={true}
 											height={48}
 											width={48}
 										>
@@ -449,7 +449,7 @@ class HomeContainer extends Component {
 								>
 									<LazyLoad
 										placeholder={<div>Loading</div>}
-										debounce={500}
+										debounce={true}
 										height={48}
 										width={48}
 									>
@@ -482,7 +482,7 @@ class HomeContainer extends Component {
 									{' '}
 									<LazyLoad
 										placeholder={<div>Loading</div>}
-										debounce={500}
+										debounce={true}
 										height={48}
 										width={48}
 									>
@@ -509,7 +509,7 @@ class HomeContainer extends Component {
 								<Button className={classes.cssRoot} size="small">
 									<LazyLoad
 										placeholder={<div>Loading</div>}
-										debounce={500}
+										debounce={true}
 										height={48}
 										width={48}
 									>
@@ -536,7 +536,7 @@ class HomeContainer extends Component {
 								<Button className={classes.cssRoot} size="small">
 									<LazyLoad
 										placeholder={<div>Loading</div>}
-										debounce={500}
+										debounce={true}
 										height={48}
 										width={48}
 									>
@@ -575,7 +575,7 @@ class HomeContainer extends Component {
 				<div style={{ textAlign: 'center' }}>
 					<LazyLoad
 						placeholder={<div>Loading</div>}
-						debounce={500}
+						debounce={true}
 						height="40"
 						width="141"
 					>
@@ -611,7 +611,7 @@ class HomeContainer extends Component {
 					<div style={{ padding: '7px', textAlign: 'center', marginTop: '2%' }}>
 						<LazyLoad
 							placeholder={<div>Loading</div>}
-							debounce={500}
+							debounce={true}
 							height="100%"
 							width="100%"
 						>
@@ -758,7 +758,9 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-export default connect(
+const composingHomeContainer = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(withStyles(styles)(withRouter(HomeContainer)));
+)(withStyles(styles)(withRouter(HomeContainer)))
+
+export { composingHomeContainer as HomeContainer} ;

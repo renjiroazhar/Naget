@@ -33,13 +33,13 @@ const BottomNavigationBar = props => {
 
 				<TabBar.Item
 					icon={<Icon style={{ fontSize: '19px' }} type="reconciliation" />}
-					selectedIcon={
-						<Icon style={{ fontSize: '19px' }} type="reconciliation" />
-					}
+					// selectedIcon={
+					// 	<Icon style={{ fontSize: '19px' }} type="reconciliation" />
+					// }
 					title="Order"
 					key="order"
 					// dot
-					selected={props.selectedTab === 'order'}
+					// selected={props.selectedTab === 'order'}
 					onPress={() => {
 						props.history.push('/order');
 						props.onChangeTab('order');
@@ -47,13 +47,13 @@ const BottomNavigationBar = props => {
 				/>
 				<TabBar.Item
 					icon={<Icon style={{ fontSize: '19px' }} type="question-circle" />}
-					selectedIcon={
-						<Icon style={{ fontSize: '19px' }} type="question-circle" />
-					}
+					// selectedIcon={
+					// 	<Icon style={{ fontSize: '19px' }} type="question-circle" />
+					// }
 					title="Help"
 					key="help"
 					// badge={"new"}
-					selected={props.selectedTab === 'help'}
+					// selected={props.selectedTab === 'help'}
 					onPress={() => {
 						props.history.push('/help');
 						props.onChangeTab('help');
@@ -62,10 +62,10 @@ const BottomNavigationBar = props => {
 
 				<TabBar.Item
 					icon={<Icon style={{ fontSize: '19px' }} type="user" />}
-					selectedIcon={<Icon style={{ fontSize: '19px' }} type="user" />}
+					// selectedIcon={<Icon style={{ fontSize: '19px' }} type="user" />}
 					title="Account"
 					key="account"
-					selected={props.selectedTab === 'account'}
+					// selected={props.selectedTab === 'account'}
 					onPress={() => {
 						props.history.push('/account');
 						props.onChangeTab('account');

@@ -39,14 +39,17 @@ class Account extends React.Component {
 		return (
 			<div
 				style={{
-					backgroundColor: '#e7e7e7'
+					backgroundColor: '#e7e7e7',
+					overflow: 'hidden',
+					height: '100%',
+					minHeight: '100vh'
 				}}
 			>
 				<FixedNavbar pageName="Account" />
 				<div style={{ marginTop: '57px' }}>
 					<EditProfil />
 				</div>
-				<div style={{ marginTop: '3%' }}>
+				<div style={{ marginTop: '2%' }}>
 					<GantiPassword />
 				</div>
 				<Divider />
@@ -57,7 +60,7 @@ class Account extends React.Component {
 				<div>
 					<Testimoni />
 				</div>
-				<div style={{ marginTop: '3%' }}>
+				<div style={{ marginTop: '2%' }}>
 					<div>
 						<Help renderTab={() => this.props.renderTab()} />
 					</div>
@@ -79,37 +82,45 @@ class Account extends React.Component {
 						{'You sure want to leave?'}
 					</DialogTitle>
 					<DialogActions>
-						<Button varian="contained" onClick={this.handleClose} color="primary">
+						<Button
+							varian="contained"
+							onClick={this.handleClose}
+							color="primary"
+						>
 							No
 						</Button>
-						<Button varian="contained" onClick={this.logout} color="primary" autoFocus>
+						<Button
+							varian="contained"
+							onClick={this.logout}
+							color="primary"
+							autoFocus
+						>
 							Yes
 						</Button>
 					</DialogActions>
 				</Dialog>
 				<div
 					style={{
-						textAlign: 'center',
-						width: '100%',
-						margin: '0 0 5px 0'
+						width: '100%'
 					}}
 				>
-					<Button varian="contained"
+					<Button
+						variant="contained"
 						style={{
 							backgroundColor: '#ffffff',
 							width: '100%',
 							textAlign: 'center',
 							color: '#f43c3c',
-							height: '46px'
+							height: '40px',
+							position: 'absolute',
+							bottom: 0,
+							borderRadius: 'unset'
 						}}
 						onClick={this.handleClickOpen}
 					>
 						Logout
 					</Button>
 				</div>
-				<br />
-				<br />
-				<br />
 				{/*Tooltip*/}
 			</div>
 		);

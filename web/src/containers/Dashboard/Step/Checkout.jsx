@@ -40,6 +40,10 @@ const themeMui = createMuiTheme({
 				}
 			}
 		},
+		typography: {
+			useNextVariants: true,
+			suppressDeprecationWarnings: true,
+		  },
 		step: {
 			'& $completed': {
 				color: 'lightgreen'
@@ -743,7 +747,7 @@ class Checkout extends React.Component {
 								style={{ width: '100%', backgroundColor: '#00c43e' }}
 								position="static"
 							>
-								<Toolbar>
+								<Toolbar style={{ paddingLeft: 0 }}>
 									<IconButton
 										onClick={() => {
 											this.props.history.push('/');

@@ -14,7 +14,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import List from '@material-ui/core/List';
 import red from '@material-ui/core/colors/red';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import ThumbUpIcon from '@material-ui/icons/ThumbUpOutlined';
 import Typography from '@material-ui/core/Typography';
 import CarouselTestimoni from './Carousel';
 import PaperSheet from './PaperSheet';
@@ -97,11 +97,7 @@ class Testimoni extends React.Component {
 		const { classes } = this.props;
 		return (
 			<div style={{ backgroundColor: 'white' }}>
-				<List
-					onClick={this.handleClickOpen}
-					className={classes.list}
-					style={{ paddingBottom: '10px' }}
-				>
+				<List onClick={this.handleClickOpen} className={classes.list}>
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemIcon>
 							<ThumbUpIcon style={{ fontSize: '24px' }} />
@@ -122,7 +118,7 @@ class Testimoni extends React.Component {
 					TransitionComponent={Transition}
 				>
 					<AppBar className={classes.appBar}>
-						<Toolbar>
+						<Toolbar style={{ paddingLeft: 0 }}>
 							<IconButton
 								color="inherit"
 								onClick={this.handleClose}

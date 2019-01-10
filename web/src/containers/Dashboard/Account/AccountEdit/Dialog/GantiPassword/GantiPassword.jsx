@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import { changePassword } from '../../../../../../redux/actions/profileActions';
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Lock from '@material-ui/icons/Lock';
+import Lock from '@material-ui/icons/LockOutlined';
 
 const styles = theme => ({
 	appBar: {
@@ -146,11 +146,7 @@ class GantiPassword extends React.Component {
 		const isInvalid = newPassword !== passwordConfirmation;
 		return (
 			<div style={{ backgroundColor: 'white' }}>
-				<List
-					onClick={this.handleClickOpen}
-					className={classes.list}
-					style={{ paddingBottom: '10px' }}
-				>
+				<List onClick={this.handleClickOpen} className={classes.list}>
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemIcon>
 							<Lock style={{ fontSize: '24px' }} />
@@ -171,7 +167,7 @@ class GantiPassword extends React.Component {
 					TransitionComponent={Transition}
 				>
 					<AppBar className={classes.appBar}>
-						<Toolbar>
+						<Toolbar style={{ paddingLeft: 0 }}>
 							<IconButton
 								color="inherit"
 								onClick={this.handleClose}

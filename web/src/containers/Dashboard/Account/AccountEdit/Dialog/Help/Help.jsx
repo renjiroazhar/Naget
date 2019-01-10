@@ -10,10 +10,9 @@ import Slide from '@material-ui/core/Slide';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-
+import HelpIcon from '@material-ui/icons/HelpOutlineOutlined';
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import HelpIcon from '@material-ui/icons/Help';
 import imageFaq from './svg/help.svg';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -70,14 +69,10 @@ class Faq extends React.Component {
 		const { classes } = this.props;
 		return (
 			<div style={{ backgroundColor: 'white' }}>
-				<List
-					onClick={this.handleClickOpen}
-					className={classes.list}
-					style={{ paddingBottom: '10px' }}
-				>
+				<List onClick={this.handleClickOpen} className={classes.list}>
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemIcon>
-							<HelpIcon style={{ fontSize: '24px' }} />
+							<HelpIcon />
 						</ListItemIcon>
 						<ListItemSecondaryAction>
 							<ListItemText style={{ fontSize: '24px' }} inset primary="Help" />
@@ -91,7 +86,7 @@ class Faq extends React.Component {
 					TransitionComponent={Transition}
 				>
 					<AppBar className={classes.appBar}>
-						<Toolbar>
+						<Toolbar style={{ paddingLeft: 0 }}>
 							<IconButton
 								color="inherit"
 								onClick={this.handleClose}
@@ -99,7 +94,11 @@ class Faq extends React.Component {
 							>
 								<CloseIcon />
 							</IconButton>
-							<Typography variant="title" color="inherit" className={classes.flex}>
+							<Typography
+								variant="title"
+								color="inherit"
+								className={classes.flex}
+							>
 								Help
 							</Typography>
 						</Toolbar>

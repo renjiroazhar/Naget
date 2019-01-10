@@ -5,7 +5,7 @@ import Signuppage from '../../containers/Landingpage/Signuppage';
 import Homepage from '../../containers/Landingpage/Homepage';
 import NotFound from '../../containers/Landingpage/NotFound';
 import { Route, Switch } from 'react-router-dom';
-import Checkout from '../../containers/Landingpage/Step/Checkout';
+import MainStep from '../../containers/Landingpage/Step/MainStep';
 export default class PublicRoute extends Component {
 	render() {
 		return (
@@ -17,7 +17,7 @@ export default class PublicRoute extends Component {
 							<Route exact path="/login" component={Loginpage} />
 							<Route exact path="/signup" component={Signuppage} />
 							<Route exact path="/forgot_password" component={Forgotpassword} />
-							<Route exact path="/form" component={Checkout} />
+							<Route exact path="/form" component={MainStep} />
 							<Route component={NotFound} />
 						</Switch>
 					)}

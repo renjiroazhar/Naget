@@ -32,16 +32,20 @@ class NavbarPickTrash extends Component {
 						style={{ width: '100%', backgroundColor: '#00c43e' }}
 						position="static"
 					>
-						<Toolbar>
+						<Toolbar style={{ paddingLeft: 0 }}>
 							<IconButton
 								onClick={this.handleBack}
 								className={classes.menuButton}
 								color="inherit"
 								aria-label="Menu"
 							>
-								<ArrowLeft />
+								<ArrowLeft style={{ fontSize: '1.3rem' }} />
 							</IconButton>
-							<Typography variant="title" color="inherit" className={classes.grow}>
+							<Typography
+								variant="title"
+								color="inherit"
+								className={classes.grow}
+							>
 								Pick Trash
 							</Typography>
 						</Toolbar>

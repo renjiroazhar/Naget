@@ -3,6 +3,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -10,11 +11,13 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import SwipeableViews from 'react-swipeable-views';
-import './style/style.css';
+import ArrowLeft from '@material-ui/icons/ArrowBack';
+import IconButton from '@material-ui/core/IconButton';
 import WaitingConfirmation from './OrderList/WaitingConfirmation';
 import OrderHistory from './OrderList/OrderHistory';
 import FixedNavbar from '../../../../component/FixedNavbar';
 import Toolbar from '@material-ui/core/Toolbar';
+import './style/style.css';
 
 const styles = theme => ({
 	root: {
@@ -65,9 +68,14 @@ class OrderContainer extends React.Component {
 		}
 	};
 
+	handleBack = () => {
+		this.props.history.push('/');
+	};
+
 	componentDidMount() {
 		const { orders } = this.props;
 		this.getSafe(() => orders, 'nothing');
+		window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 	}
 
 	render() {
@@ -156,14 +164,22 @@ class OrderContainer extends React.Component {
 				<div>
 					<div style={{ marginBottom: '20%' }}>
 						<AppBar color="default" style={{ position: 'fixed' }}>
-							<Toolbar style={{ backgroundColor: '#00c43e' }}>
+							<Toolbar style={{ backgroundColor: '#00c43e', paddingLeft: 0 }}>
+								<IconButton
+									onClick={this.handleBack}
+									className={classes.menuButton}
+									color="inherit"
+									aria-label="Menu"
+								>
+									<ArrowLeft style={{ color: '#ffffff' }} />
+								</IconButton>
+
 								<Typography
 									variant="title"
 									color="inherit"
 									style={{
 										color: 'white',
-										fontWeight: 'bold',
-										fontSize: '1.1rem'
+										fontSize: '20px'
 									}}
 								>
 									Order
@@ -230,7 +246,7 @@ const mapStateToProps = state => {
 	};
 };
 
-export default compose(
+const composingOrderContainer = compose(
 	connect(mapStateToProps),
 	firestoreConnect(props => {
 		// console.log(props.uid);
@@ -242,4 +258,6 @@ export default compose(
 			}
 		];
 	})
-)(withStyles(styles)(OrderContainer));
+)(withStyles(styles)(withRouter(OrderContainer)));
+
+export { composingOrderContainer as OrderContainer };

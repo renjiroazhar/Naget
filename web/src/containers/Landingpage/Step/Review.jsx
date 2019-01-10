@@ -290,7 +290,7 @@ class Review extends React.Component {
 									<div>
 										{previewGeneralPhotos &&
 											previewGeneralPhotos.map((file, i) => (
-												<div style={{ textAlign: 'center' }}>
+												<div style={{ textAlign: 'center' }} key={i}>
 													<Grid container spacing={24}>
 														<Grid item xs={12} align="center">
 															{' '}

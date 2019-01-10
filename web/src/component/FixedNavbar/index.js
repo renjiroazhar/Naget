@@ -1,2 +1,2 @@
-import FixedNavbar from './FixedNavbar';
+import { FixedNavbar } from './FixedNavbar';
 export default FixedNavbar;

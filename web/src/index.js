@@ -13,6 +13,7 @@ import { reduxFirestore, getFirestore } from 'redux-firestore';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import firebaseConfig from './services/firebaseConfig';
 import { Router } from 'react-router-dom';
+import AuthProvider from './context/AuthProvider';
 
 const store = createStore(
 	rootReducers,
@@ -33,7 +34,9 @@ store.firebaseAuthIsReady.then(() => {
 	ReactDOM.render(
 		<Provider store={store}>
 			<Router history={history}>
-				<App />
+				<AuthProvider>
+					<App />
+				</AuthProvider>
 			</Router>
 		</Provider>,
 		document.getElementById('root')

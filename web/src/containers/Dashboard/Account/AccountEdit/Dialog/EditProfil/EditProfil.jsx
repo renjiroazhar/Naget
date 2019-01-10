@@ -135,6 +135,7 @@ class EditProfil extends React.Component {
 
 	componentDidMount() {
 		this.getData();
+		window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 	}
 
 	render() {
@@ -144,7 +145,6 @@ class EditProfil extends React.Component {
 				<List
 					className={classes.list}
 					onClick={this.handleClickOpen}
-					style={{ paddingBottom: '15px' }}
 				>
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemText
@@ -153,8 +153,8 @@ class EditProfil extends React.Component {
 								profile.name
 									? profile.name
 									: auth.displayName
-										? auth.displayName
-										: 'No Name'
+									? auth.displayName
+									: 'No Name'
 							}
 							secondary={auth.email}
 						/>
@@ -181,7 +181,7 @@ class EditProfil extends React.Component {
 					TransitionComponent={Transition}
 				>
 					<AppBar className={classes.appBar}>
-						<Toolbar>
+						<Toolbar style={{ paddingLeft: 0 }}>
 							<IconButton
 								color="inherit"
 								onClick={this.handleClose}
@@ -189,10 +189,18 @@ class EditProfil extends React.Component {
 							>
 								<CloseIcon />
 							</IconButton>
-							<Typography variant="title" color="inherit" className={classes.flex}>
+							<Typography
+								variant="title"
+								color="inherit"
+								className={classes.flex}
+							>
 								Profile
 							</Typography>
-							<Button varian="contained" color="inherit" onClick={this.handleSave}>
+							<Button
+								varian="contained"
+								color="inherit"
+								onClick={this.handleSave}
+							>
 								Save
 							</Button>
 						</Toolbar>

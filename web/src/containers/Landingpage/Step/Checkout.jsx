@@ -11,10 +11,6 @@ import FirstStep from './FirstStep';
 import SecondStep from './SecondStep';
 import Review from './Review';
 import ThirdStep from './ThirdStep';
-import { connect } from 'react-redux';
-import { createOrderWithoutLogin } from '../../../redux/actions/orderActions';
-import { storage } from '../../../services/firebaseConfig';
-import { format } from 'date-fns/esm';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import checkIcon from '../../../assets/img/checkicon.jpg';
 import Button from '@material-ui/core/Button';
@@ -28,6 +24,8 @@ import './style/style.css';
 
 import idLocale from 'date-fns/locale/id';
 
+import { stepContext } from '../../../context/StepProvider';
+
 const themeMui = createMuiTheme({
 	overrides: {
 		MuiStepIcon: {
@@ -39,6 +37,10 @@ const themeMui = createMuiTheme({
 					color: '#00c43e'
 				}
 			}
+		},
+		typography: {
+			useNextVariants: true,
+			suppressDeprecationWarnings: true
 		},
 		step: {
 			'& $completed': {
@@ -157,471 +159,13 @@ const styles = theme => ({
 	}
 });
 
-function validateName(name) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsName = [];
-
-	if (name.length === 0) {
-		errorsName.push('Nama tidak boleh kosong');
-	}
-
-	return errorsName;
-}
-
-function validateEmail(email) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsEmail = [];
-	if (email.length === 0) {
-		errorsEmail.push('Email harus memiliki minimal 5 karakter');
-	}
-	return errorsEmail;
-}
-
-function validateAtEmail(email) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsAtEmail = [];
-	if (email.split('').filter(x => x === '@').length !== 1) {
-		errorsAtEmail.push('Email harus berisikan @gmail');
-	}
-	return errorsAtEmail;
-}
-
-function validateTitikEmail(email) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsTitikEmail = [];
-	if (email.indexOf('.') === -1) {
-		errorsTitikEmail.push('Email harus berisikan setidaknya 1 titik');
-	}
-	return errorsTitikEmail;
-}
-
-function validatePhone(phone) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsPhone = [];
-
-	if (phone.length === 0) {
-		errorsPhone.push('Nomor WhatsApp tidak boleh kosong');
-	}
-	if (phone.indexOf('+62') === 1) {
-		errorsPhone.push('Nomor WhatsApp harus diawali dengan +62');
-	}
-
-	return errorsPhone;
-}
-
-function validateAddress(address) {
-	// we are going to store errors for all fields
-	// in a signle array
-	const errorsAddress = [];
-
-	if (address.length === 0) {
-		errorsAddress.push('Alamat tidak boleh kosong');
-	}
-
-	return errorsAddress;
-}
-
-function validateEmailValid(email) {
-	var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	return re.test(String(email).toLowerCase());
-}
-
 class Checkout extends React.Component {
-	state = {
-		activeStep: 0,
-		database: [],
-		data: [],
-		name: '',
-		phone: '',
-		email: '',
-		selectedDate: null,
-		anchorEl: null,
-		currentLocale: 'id',
-		time: null,
-
-		occupation: '',
-		city: '',
-		bio: '',
-		catatan: '',
-		address: '',
-		foto: [],
-		previewGeneralPhotos: [],
-		generalPhotos: [],
-		downloadURLs: [],
-		uploadProgress: 0,
-		filenames: [],
-		allowSend: false,
-
-		isUploading: false,
-
-		loading: false,
-		isInvalid: false,
-
-		errorsName: false,
-		errorsAddress: false,
-		errorsPhone: false,
-		errorsEmail: false,
-		errorsAtEmail: false,
-		errorsTitikEmail: false,
-		errorsDate: false,
-		errorAll: false,
-		emailInvalid: false
-	};
-
-	handleChange = input => e => {
-		this.setState({ [input]: e.target.value });
-	};
-
-	handleSubmit = e => {
-		const { name, email, phone, address } = this.state;
-
-		const errorsName = validateName(name);
-		const errorsAddress = validateAddress(address);
-		const errorsPhone = validatePhone(phone);
-		const errorsEmail = validateEmail(email);
-		const errorsAtEmail = validateAtEmail(email);
-		const errorsTitikEmail = validateTitikEmail(email);
-		const emailInvalid = validateEmailValid(email);
-		if (!emailInvalid) {
-			this.setState({
-				emailInvalid: true
-			});
-			setTimeout(() => {
-				this.setState({
-					emailInvalid: false
-				});
-			}, 5000);
-			console.log('Email Tidak Valid');
-		}
-		if (
-			email.length === 0 &&
-			name.length === 0 &&
-			phone.length === 0 &&
-			address.length === 0
-		) {
-			this.setState({
-				errorAll: true
-			});
-			setTimeout(() => {
-				this.setState({
-					errorAll: false
-				});
-			}, 5000);
-			console.log('Kosong Semua?? Tidakkk');
-		}
-		if (errorsName.length > 0) {
-			this.setState({ errorsName: true });
-			setTimeout(() => {
-				this.setState({
-					errorsName: false
-				});
-			}, 5000);
-			return console.log(errorsName);
-		}
-		if (errorsEmail.length > 0) {
-			this.setState({ errorsEmail: true });
-			setTimeout(() => {
-				this.setState({
-					errorsEmail: false
-				});
-			}, 5000);
-			return console.log(errorsEmail);
-		}
-		if (errorsAtEmail.length > 0) {
-			this.setState({ errorsAtEmail: true });
-			setTimeout(() => {
-				this.setState({
-					errorsAtEmail: false
-				});
-			}, 5000);
-			return console.log(errorsEmail);
-		}
-		if (errorsTitikEmail.length > 0) {
-			this.setState({ errorsTitikEmail: true });
-			setTimeout(() => {
-				this.setState({
-					errorsTitikEmail: false
-				});
-			}, 5000);
-			return console.log(errorsEmail);
-		}
-		if (errorsPhone.length > 0) {
-			this.setState({ errorsPhone: true });
-			setTimeout(() => {
-				this.setState({
-					errorsPhone: false
-				});
-			}, 5000);
-			return console.log(errorsPhone);
-		}
-		if (errorsAddress.length > 0) {
-			this.setState({ errorsAddress: true });
-			setTimeout(() => {
-				this.setState({
-					errorsAddress: false
-				});
-			}, 5000);
-			return console.log(errorsAddress);
-		}
-		console.log(this.state);
-		this.handleNext();
-	};
-
-	handleNext = () => {
-		this.setState(state => ({
-			activeStep: state.activeStep + 1
-		}));
-	};
-
-	handleNextStepTwo = () => {
-		const { selectedDate } = this.state;
-
-		if (selectedDate === null || selectedDate === 'null') {
-			this.setState({
-				errorsDate: true
-			});
-			setTimeout(() => {
-				this.setState({
-					errorsDate: false
-				});
-			}, 5000);
-			console.log('Kosong Semua?? Tidakkk', selectedDate);
-		} else {
-			this.handleNext();
-		}
-	};
-
-	handleBack = () => {
-		this.setState(state => ({
-			activeStep: state.activeStep - 1
-		}));
-	};
-
-	handleReset = () => {
-		this.setState({
-			activeStep: 0
-		});
-	};
-
-	handleSendOrder = () => {
-		this.setState({
-			allowSend: true
-		});
-	};
-
-	allowSend = () => {
-		this.setState({
-			allowSend: true
-		});
-	};
-	// Handle fields change
-	handleChange = input => e => {
-		this.setState({ [input]: e.target.value });
-	};
-
-	handleChangeFoto = input => event => {
-		var dataPhotos = Array.from(event.target.files);
-		this.setState({ [input]: dataPhotos });
-	};
-
-	deleteImage = params => {
-		const { previewGeneralPhotos } = this.state;
-		previewGeneralPhotos.splice(params, 1);
-		this.setState({
-			previewGeneralPhotos
-		});
-	};
-
-	onDropGeneral = currentGeneralPhoto => {
-		let index;
-		for (index = 0; index < currentGeneralPhoto.length; ++index) {
-			const file = currentGeneralPhoto[index];
-			this.setState(({ previewGeneralPhotos }) => ({
-				previewGeneralPhotos: previewGeneralPhotos.concat(file)
-			}));
-			const reader = new FileReader();
-			reader.readAsDataURL(file);
-			reader.onload = event => {
-				this.setState({
-					generalPhotos: this.state.generalPhotos.concat([
-						{ base64: event.target.result }
-					])
-				});
-			};
-		}
-	};
-
-	isLoading = () => {
-		this.setState({
-			loading: true
-		});
-	};
-
-	isLoaded = () => {
-		this.setState({
-			loading: false
-		});
-	};
-
-	handleUpload = () => {
-		const { previewGeneralPhotos } = this.state;
-		if (previewGeneralPhotos !== [] || previewGeneralPhotos.length > 0) {
-			const promises = [];
-			previewGeneralPhotos.forEach(file => {
-				const uploadTask = storage.ref(`images/${file.name}`).put(file);
-				promises.push(uploadTask);
-
-				uploadTask.on(
-					'state_changed',
-					snapshot => {
-						const progress =
-							(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-						console.log(progress);
-						this.setState({
-							loading: true
-						});
-					},
-					error => {
-						console.log(error);
-					},
-					() => {
-						uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-							console.log(downloadURL);
-							console.log(downloadURL);
-							this.setState(oldState => ({
-								downloadURLs: [...oldState.downloadURLs, downloadURL]
-							}));
-							console.log(this.state.downloadURLs);
-							if (
-								this.state.downloadURLs.length ===
-								this.state.previewGeneralPhotos.length
-							) {
-								this.allowSend();
-								this.isLoaded();
-								this.handleNext();
-								this.props.createOrder(this.state);
-							}
-						});
-					}
-				);
-			});
-
-			Promise.all(promises).then(tasks => {
-				console.log('all uploads complete', tasks);
-				this.setState({
-					loading: false
-				});
-			});
-		} else {
-			this.props.createOrder(this.state);
-			this.handleNext();
-		}
-	};
-
-	handleCreateOrder = () => {
-		this.props.createOrder(this.state);
-		this.handleNext();
-	};
-
-	handleCreateOrderWithPicture = () => {
-		const { allowSend } = this.state;
-		if (allowSend) {
-			console.log('Gambar Terkirim');
-			this.props.createOrder(this.state);
-			this.handleNext();
-		}
-		return console.log('Gambar Belum terkirim');
-	};
-
-	handleDateChange = date => {
-		this.setState({ selectedDate: date });
-		console.log(format(this.state.selectedDate, 'dd/MM/yyyy'));
-	};
-
-	handleMenuOpen = event => {
-		event.stopPropagation();
-		this.setState({ anchorEl: event.currentTarget });
-		console.log(format(this.state.selectedDate, 'dd/MM/yyyy'));
-	};
-
-	handleMenuClose = () => {
-		this.setState({ anchorEl: null });
-	};
-
-	handleTimeChange = date => {
-		this.setState({ time: date });
-		console.log(format(this.state.time, 'HH:mm'));
-	};
-
-	selectLocale = selectedLocale => {
-		this.setState({
-			currentLocale: selectedLocale,
-			anchorEl: null
-		});
-	};
-
-	setFirstStepItem = () => {
-		sessionStorage.setItem('name', this.state.name);
-		sessionStorage.setItem('email', this.state.email);
-		sessionStorage.setItem('phone', this.state.phone);
-		sessionStorage.setItem('address', this.state.address);
-	};
-
-	setSecondStepItem = () => {
-		sessionStorage.setItem('date', this.state.selectedDate);
-	};
-
-	getSafe = () => {
-		let name = sessionStorage.getItem('name');
-		let email = sessionStorage.getItem('email');
-		let phone = sessionStorage.getItem('phone');
-		let address = sessionStorage.getItem('address');
-		let date = sessionStorage.getItem('date');
-		
-		try {
-			if(name){
-				this.setState({
-					name: name
-				})
-			}
-			if(email){
-				this.setState({
-					email: email
-				})
-			}
-			if(phone){
-				this.setState({
-					phone: phone
-				})
-			}
-			if(address){
-				this.setState({
-					address: address
-				})
-			}
-			if(date){
-				this.setState({
-					selectedDate: date
-				})
-			}
-		}
-		catch (e){
-			return console.error(e)
-		}
-	};
-
-	componentDidMount(){
-		this.getSafe()
+	componentDidMount() {
+		console.log(this.context);
 	}
-
 	render() {
 		const { classes } = this.props;
-		const { activeStep } = this.state;
+		const { activeStep } = this.context.state;
 		const locale = idLocale;
 		const localeMap = {
 			id: idLocale
@@ -657,7 +201,7 @@ class Checkout extends React.Component {
 			errorsAtEmail,
 			errorsDate,
 			emailInvalid
-		} = this.state;
+		} = this.context.state;
 		const values = {
 			name,
 			phone,
@@ -697,51 +241,51 @@ class Checkout extends React.Component {
 				case 0:
 					return (
 						<FirstStep
-							nextStep={this.handleSubmit}
-							handleChange={this.handleChange}
+							nextStep={this.context.handleSubmit}
+							handleChange={this.context.handleChange}
 							values={values}
-							setFirstStepItem={this.setFirstStepItem}
+							setFirstStepItem={this.context.setFirstStepItem}
 						/>
 					);
 				case 1:
 					return (
 						<SecondStep
-							previousStep={this.handleBack}
-							nextStep={this.handleNext}
-							handleChange={this.handleChange}
+							previousStep={this.context.handleBack}
+							nextStep={this.context.handleNext}
+							handleChange={this.context.handleChange}
 							values={values}
-							prevStep={this.prevStep}
-							handleChangeFoto={this.handleChangeFoto}
-							onDropGeneral={this.onDropGeneral}
-							deleteImage={this.deleteImage}
-							handleChangeTime={this.handleChangeTime}
-							allowSend={this.allowSendOrder}
-							handleDateChange={this.handleDateChange}
-							handleTimeChange={this.handleTimeChange}
-							handleMenuOpen={this.handleMenuOpen}
-							handleMenuClose={this.handleMenuClose}
-							handleNextStepTwo={this.handleNextStepTwo}
-							setSecondStepItem={this.setSecondStepItem}
+							prevStep={this.context.prevStep}
+							handleChangeFoto={this.context.handleChangeFoto}
+							onDropGeneral={this.context.onDropGeneral}
+							deleteImage={this.context.deleteImage}
+							handleChangeTime={this.context.handleChangeTime}
+							allowSend={this.context.allowSendOrder}
+							handleDateChange={this.context.handleDateChange}
+							handleTimeChange={this.context.handleTimeChange}
+							handleMenuOpen={this.context.handleMenuOpen}
+							handleMenuClose={this.context.handleMenuClose}
+							handleNextStepTwo={this.context.handleNextStepTwo}
+							setSecondStepItem={this.context.setSecondStepItem}
 						/>
 					);
 				case 2:
 					return (
 						<ThirdStep
-							previousStep={this.handleBack}
-							nextStep={this.handleNext}
-							handleChange={this.handleChange}
+							previousStep={this.context.handleBack}
+							nextStep={this.context.handleNext}
+							handleChange={this.context.handleChange}
 							values={values}
 						/>
 					);
 				case 3:
 					return (
 						<Review
-							allData={this.state}
+							allData={this.context.state}
 							values={values}
-							handleCreateOrder={this.handleCreateOrder}
-							previousStep={this.handleBack}
-							isLoading={this.isLoading}
-							handleUpload={this.handleUpload}
+							handleCreateOrder={this.context.handleCreateOrder}
+							previousStep={this.context.handleBack}
+							isLoading={this.context.isLoading}
+							handleUpload={this.context.handleUpload}
 						/>
 					);
 				default:
@@ -778,7 +322,7 @@ class Checkout extends React.Component {
 										<ArrowLeft />
 									</IconButton>
 									<Typography
-										variant="title"
+										variant="h6"
 										color="inherit"
 										className={classes.grow}
 									>
@@ -807,19 +351,19 @@ class Checkout extends React.Component {
 										<ArrowLeft />
 									</IconButton>
 									<Typography
-										variant="h7"
+										variant="h6"
 										color="inherit"
 										className={classes.grow}
 									>
 										{activeStep === 1
 											? 'Date, Time, and Photo'
 											: activeStep === 2
-												? 'Trash list and Price'
-												: activeStep === 3
-													? 'Confirm Order'
-													: activeStep === 4
-														? 'Order Successful'
-														: ''}
+											? 'Trash list and Price'
+											: activeStep === 3
+											? 'Confirm Order'
+											: activeStep === 4
+											? 'Order Successful'
+											: ''}
 									</Typography>
 								</Toolbar>
 							</AppBar>
@@ -834,7 +378,9 @@ class Checkout extends React.Component {
 							>
 								<Toolbar>
 									<IconButton
-										onClick={this.handleBack}
+										onClick={() => {
+											this.props.history.push('/');
+										}}
 										className={classes.menuButton}
 										color="inherit"
 										aria-label="Menu"
@@ -842,19 +388,19 @@ class Checkout extends React.Component {
 										<ArrowLeft />
 									</IconButton>
 									<Typography
-										variant="h7"
+										variant="h6"
 										color="inherit"
 										className={classes.grow}
 									>
 										{activeStep === 1
 											? 'Date, Time, and Photo'
 											: activeStep === 2
-												? 'Trash list and Price'
-												: activeStep === 3
-													? 'Confirm Order'
-													: activeStep === 4
-														? 'Order Successful'
-														: ''}
+											? 'Trash list and Price'
+											: activeStep === 3
+											? 'Confirm Order'
+											: activeStep === 4
+											? 'Order Successful'
+											: ''}
 									</Typography>
 								</Toolbar>
 							</AppBar>
@@ -949,7 +495,7 @@ class Checkout extends React.Component {
 												marginTop: '10%'
 											}}
 										>
-											<Button 
+											<Button
 												variant="contained"
 												color="primary"
 												onClick={() => {
@@ -970,7 +516,7 @@ class Checkout extends React.Component {
 												marginTop: '5%'
 											}}
 										>
-											<Button 
+											<Button
 												variant="contained"
 												color="primary"
 												onClick={() => {
@@ -1002,22 +548,8 @@ Checkout.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-const mapDispatchToProps = dispatch => {
-	return {
-		createOrder: order => {
-			dispatch(createOrderWithoutLogin(order));
-		}
-	};
-};
+Checkout.contextType = stepContext;
 
-const mapStateToProps = state => {
-	return {
-		auth: state.firebase.auth,
-		profile: state.firebase.profile
-	};
-};
+const styledCheckout = withStyles(styles)(withRouter(Checkout));
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(withStyles(styles)(withRouter(Checkout)));
+export { styledCheckout as Checkout };

@@ -9,7 +9,7 @@ import { signOut } from '../../../../../../redux/actions/authActions';
 
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ExitToApp from '@material-ui/icons/ExitToApp';
+import ExitToApp from '@material-ui/icons/ExitToAppOutlined';
 import { AlertDialog, Button } from 'react-onsenui';
 import { withRouter } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
@@ -98,11 +98,7 @@ class Logout extends React.Component {
 		const { classes } = this.props;
 		return (
 			<div style={{ backgroundColor: 'white' }}>
-				<List
-					className={classes.list}
-					onClick={this.handleOpen}
-					style={{ paddingBottom: '10px' }}
-				>
+				<List className={classes.list} onClick={this.handleOpen}>
 					<ListItem button onClick={this.handleOpen}>
 						<ListItemIcon>
 							<ExitToApp style={{ fontSize: '24px' }} />

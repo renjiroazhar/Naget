@@ -4,7 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
+import ArrowLeft from '@material-ui/icons/ArrowBack';
+import IconButton from '@material-ui/core/IconButton';
+import { withRouter } from 'react-router-dom';
 const styles = {
 	root: {
 		flexGrow: 1,
@@ -15,12 +17,15 @@ const styles = {
 	},
 	grow: {
 		color: '#ffffff',
-		fontSize: '1.1rem',
-		fontWeight: 'bold'
+		fontSize: '20px'
 	}
 };
 
 class FixedNavbar extends Component {
+	handleBack = () => {
+		this.props.history.push('/');
+	};
+
 	render() {
 		const { classes } = this.props;
 		return (
@@ -31,8 +36,21 @@ class FixedNavbar extends Component {
 						color="default"
 						style={{ backgroundColor: '#00c43e' }}
 					>
-						<Toolbar>
-							<Typography variant="title" color="inherit" className={classes.grow}>
+						<Toolbar style={{ paddingLeft: 0 }}>
+							<IconButton
+								onClick={this.handleBack}
+								className={classes.menuButton}
+								color="inherit"
+								aria-label="Menu"
+							>
+								<ArrowLeft style={{ color: '#ffffff' }} />
+							</IconButton>
+
+							<Typography
+								variant="title"
+								color="inherit"
+								className={classes.grow}
+							>
 								{this.props.pageName}
 							</Typography>
 						</Toolbar>
@@ -46,4 +64,6 @@ class FixedNavbar extends Component {
 FixedNavbar.propTypes = {
 	classes: PropTypes.object.isRequired
 };
-export default withStyles(styles)(FixedNavbar);
+
+const linkedNavbar = withStyles(styles)(withRouter(FixedNavbar));
+export { linkedNavbar as FixedNavbar };
