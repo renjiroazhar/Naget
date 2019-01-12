@@ -178,6 +178,7 @@ class FirstStep extends React.Component {
 								onClose={this.handleClose}
 								onOpen={this.handleOpen}
 								value={values.kecamatan}
+								defaultChecked={values.kecamatan}
 								onChange={handleChange('kecamatan')}
 								style={{ width: '100%' }}
 							>
@@ -211,6 +212,7 @@ class FirstStep extends React.Component {
 								onClose={this.handleCloseTwo}
 								onOpen={this.handleOpenTwo}
 								value={values.kelurahan}
+								defaultChecked={values.kelurahan}
 								onChange={handleChange('kelurahan')}
 								style={{ width: '100%' }}
 							>

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'antd-mobile/dist/antd-mobile.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './service-worker';
 import rootReducers from './redux/reducers/rootReducers';
 import { createBrowserHistory } from 'history';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -16,39 +16,41 @@ import { Router } from 'react-router-dom';
 import AuthProvider from './context/AuthProvider';
 
 const store = createStore(
-	rootReducers,
-	compose(
-		applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-		reduxFirestore(firebaseConfig),
-		reactReduxFirebase(firebaseConfig, {
-			useFirestoreForProfile: true,
-			userProfile: 'users',
-			attachAuthIsReady: true
-		})
-	)
+  rootReducers,
+  compose(
+    applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+    reduxFirestore(firebaseConfig),
+    reactReduxFirebase(firebaseConfig, {
+      useFirestoreForProfile: true,
+      userProfile: 'users',
+      attachAuthIsReady: true
+    })
+  )
 );
 
 const history = createBrowserHistory();
 
+const Main = () => {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+};
+
 store.firebaseAuthIsReady.then(() => {
-	ReactDOM.render(
-		<Provider store={store}>
-			<Router history={history}>
-				<AuthProvider>
-					<App />
-				</AuthProvider>
-			</Router>
-		</Provider>,
-		document.getElementById('root')
-	);
-	// if (process.env.NODE_ENV !== 'production') {
-	// 	const { whyDidYouUpdate } = require('why-did-you-update');
-	// 	whyDidYouUpdate(React);
-	// }
-	if (module.hot) {
-		module.hot.accept();
-	}
-	serviceWorker.unregister();
+  ReactDOM.render(
+    <Provider store={store}>
+      <Router history={history}>
+        <Main />
+      </Router>
+    </Provider>,
+    document.getElementById('root')
+  );
+  serviceWorker.unregister();
+  if (module.hot) {
+    module.hot.accept();
+  }
 });
 
 // If you want your app to work offline and load faster, you can change
