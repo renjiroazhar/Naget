@@ -300,6 +300,6 @@ const mapStateToProps = state => {
 	return {
 		order: state.order.orders
 	};
-};
+}
 
 export default connect(mapStateToProps)(withStyles(styles)(FirstStep));
