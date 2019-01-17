@@ -1,18 +1,12 @@
 {
   "projects": {
-    "default": "more-thrash"
+    "default": "naget-id"
   },
   "targets": {
-    "more-thrash": {
+    "naget-id": {
       "hosting": {
         "web": [
-          "more-thrash"
-        ],
-        "admin": [
-          "more-thrash-admin"
-        ],
-        "staging": [
-          "more-thrash-staging"
+          "naget-id"
         ]
       }
     }

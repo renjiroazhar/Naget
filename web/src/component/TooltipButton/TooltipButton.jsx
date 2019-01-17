@@ -12,7 +12,7 @@ const styles = theme => ({
 		bottom: '15px',
 		marginBottom: 0,
 		zIndex: 997,
-		backgroundColor: '#00c43e !important'
+		backgroundColor: '#fecb00ff !important'
 	}
 });
 
@@ -23,7 +23,7 @@ function TooltipButton(props) {
 			<Tooltip
 				title="Chat"
 				aria-label="Chat"
-				href="https://line.me/R/ti/p/@vzx3170v"
+				href="https://api.whatsapp.com/send?phone=6281334429348"
 				target="_blank"
 			>
 				<Fab color="primary" className={classes.fab}>
