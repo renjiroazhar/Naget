@@ -12,8 +12,8 @@ const styles = theme => ({
 	cssRoot: {
 		color: '#ffffff',
 		backgroundColor: '#fecb00ff',
-		width: '90%',
-		maxWidth: '380px',
+		width: '100%',
+		maxWidth: '300px',
 		height: '',
 		fontWeight: 400,
 		'&:hover': {

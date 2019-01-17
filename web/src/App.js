@@ -13,7 +13,7 @@ class App extends Component {
       return (
         <div style={cssInJs.backgroundLoading}>
           <div style={cssInJs.loading}>
-            <img src={logo} alt="splash-screen" width="175" height="45" />{' '}
+            <img src={logo} alt="splash-screen" width="400" height="200" />{' '}
           </div>
         </div>
       );

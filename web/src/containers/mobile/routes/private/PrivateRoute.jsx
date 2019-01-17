@@ -5,75 +5,39 @@ import Loadable from 'react-loadable';
 import Loader from '../../../../component/Loaders/component/Loader';
 
 const HomeContainer = Loadable({
-<<<<<<< HEAD:web/src/containers/mobile/routes/private/PrivateRoute.jsx
-  loader: () => import('../../Dashboard/Home/HomeContainer'),
-  loading: Loader
-});
-
-const OrderContainer = Loadable({
-  loader: () => import('../../Dashboard/Order/OrderContainer'),
-  loading: Loader
-});
-
-const Help = Loadable({
-  loader: () => import('../../Dashboard/Help'),
-  loading: Loader
-});
-
-const Account = Loadable({
-  loader: () => import('../../Dashboard/Account/Account'),
-  loading: Loader
-});
-
-const MainStep = Loadable({
-  loader: () => import('../../Dashboard/Step/MainStep'),
-  loading: Loader
-});
-
-const OrderDetail = Loadable({
-  loader: () =>
-    import('../../Dashboard/Order/OrderDetail/OrderDetail'),
-  loading: Loader
-});
-
-const EditOrder = Loadable({
-  loader: () => import('../../Dashboard/Order/EditOrder'),
-  loading: Loader
-=======
-	loader: () => import('../../containers/Dashboard/Home/HomeContainer'),
+	loader: () => import('../../Dashboard/Home/HomeContainer'),
 	loading: Loader
 });
 
 const OrderContainer = Loadable({
-	loader: () => import('../../containers/Dashboard/Order/OrderContainer'),
+	loader: () => import('../../Dashboard/Order/OrderContainer'),
 	loading: Loader
 });
 
 const Help = Loadable({
-	loader: () => import('../../containers/Dashboard/Help'),
+	loader: () => import('../../Dashboard/Help'),
 	loading: Loader
 });
 
 const Account = Loadable({
-	loader: () => import('../../containers/Dashboard/Account/Account'),
+	loader: () => import('../../Dashboard/Account/Account'),
 	loading: Loader
 });
 
 const MainStep = Loadable({
-	loader: () => import('../../containers/Dashboard/Step/MainStep'),
+	loader: () => import('../../Dashboard/Step/MainStep'),
 	loading: Loader
 });
 
 const OrderDetail = Loadable({
 	loader: () =>
-		import('../../containers/Dashboard/Order/OrderDetail/OrderDetail'),
+		import('../../Dashboard/Order/OrderDetail/OrderDetail'),
 	loading: Loader
 });
 
 const EditOrder = Loadable({
-	loader: () => import('../../containers/Dashboard/Order/EditOrder'),
+	loader: () => import('../../Dashboard/Order/EditOrder'),
 	loading: Loader
->>>>>>> parent of 7f1394c... Fix Selected (Karena sempet ilang):web/src/routes/private/PrivateRoute.jsx
 });
 
 export default class PublicRoute extends Component {
@@ -91,36 +55,6 @@ export default class PublicRoute extends Component {
 	render() {
 		const currentPath = window.location.pathname;
 
-<<<<<<< HEAD:web/src/containers/mobile/routes/private/PrivateRoute.jsx
-    return (
-      <div>
-        <Route
-          render={({ location }) => (
-            <Switch location={location}>
-              <Route exact path="/" component={HomeContainer} />
-              <Route path="/order" component={OrderContainer} />
-              <Route path="/help" component={Help} />
-              <Route path="/account" component={Account} />
-              <Route path="/form_login" component={MainStep} />
-              <Route path="/orderdetail/:id" component={OrderDetail} />
-              <Route path="/editorder/:id" component={EditOrder} />
-            </Switch>
-          )}
-        />
-        {!currentPath.includes('form_login') &&
-          !currentPath.includes('orderdetail') &&
-          !currentPath.includes('order') &&
-          !currentPath.includes('help') &&
-          !currentPath.includes('account') ? (
-            <BottomNavigationBar
-              selectedTab={this.state.selectedTab}
-              onChangeTab={this.onChangeTab}
-            />
-          ) : null}
-      </div>
-    );
-  }
-=======
 		return (
 			<div>
 				<Route
@@ -137,17 +71,16 @@ export default class PublicRoute extends Component {
 					)}
 				/>
 				{!currentPath.includes('form_login') &&
-				!currentPath.includes('orderdetail') &&
-				!currentPath.includes('order') &&
-				!currentPath.includes('help') &&
-				!currentPath.includes('account') ? (
-					<BottomNavigationBar
-						selectedTab={this.state.selectedTab}
-						onChangeTab={this.onChangeTab}
-					/>
-				) : null}
+					!currentPath.includes('orderdetail') &&
+					!currentPath.includes('order') &&
+					!currentPath.includes('help') &&
+					!currentPath.includes('account') ? (
+						<BottomNavigationBar
+							selectedTab={this.state.selectedTab}
+							onChangeTab={this.onChangeTab}
+						/>
+					) : null}
 			</div>
 		);
 	}
->>>>>>> parent of 7f1394c... Fix Selected (Karena sempet ilang):web/src/routes/private/PrivateRoute.jsx
 }

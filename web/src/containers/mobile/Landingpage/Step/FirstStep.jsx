@@ -10,7 +10,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormHelperText from '@material-ui/core/FormHelperText';
-<<<<<<< HEAD:web/src/containers/mobile/Landingpage/Step/FirstStep.jsx
 import {
   banyumanik,
   candisari,
@@ -29,8 +28,6 @@ import {
   tembalang,
   tugu
 } from '../../variables/Area';
-=======
->>>>>>> parent of 7f1394c... Fix Selected (Karena sempet ilang):web/src/containers/Landingpage/Step/FirstStep.jsx
 
 const styles = theme => ({
 	root: {

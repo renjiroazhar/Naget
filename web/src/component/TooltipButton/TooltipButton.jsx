@@ -9,7 +9,7 @@ const styles = theme => ({
 	fab: {
 		position: 'fixed',
 		right: '20px',
-		bottom: '15px',
+		bottom: '20px',
 		marginBottom: 0,
 		zIndex: 997,
 		backgroundColor: '#fecb00ff !important'
