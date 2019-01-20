@@ -4,16 +4,16 @@ import "./index.css";
 import "antd-mobile/dist/antd-mobile.css";
 import App from "./App";
 import * as serviceWorker from "./service-worker";
-import rootReducers from "./containers/mobile/redux/reducers/rootReducers";
+import rootReducers from "./views/containers/mobile/redux/reducers/rootReducers";
 import { createBrowserHistory } from "history";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { reduxFirestore, getFirestore } from "redux-firestore";
 import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
-import firebaseConfig from "./containers/mobile/services/firebaseConfig";
+import firebaseConfig from "./services/firebaseConfig";
 import { Router } from "react-router-dom";
-import AuthProvider from "./containers/mobile/context/AuthProvider";
+import AuthProvider from "./views/containers/mobile/context/AuthProvider";
 
 const store = createStore(
   rootReducers,
