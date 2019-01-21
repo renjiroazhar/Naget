@@ -74,10 +74,10 @@ class Homepage extends Component {
             variant="contained"
             color="primary"
             className={classes.cssRoot}
-            onClick={() => this.props.history.push("/form")}
+            onClick={() => this.props.history.push("/signup")}
             size="large"
           >
-            Order Now
+            Register
           </Button>
           <br />
           <br />
