@@ -19,12 +19,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { connect } from 'react-redux';
 import firebase from '../../../../../../../../services/firebaseConfig';
-import { editProfile } from '../../../../../redux/actions/profileActions';
+import { editProfile } from '../../../../../../../../redux/actions/profileActions';
 
 const styles = theme => ({
 	appBar: {
 		position: 'fixed',
-		backgroundColor: '#00c43e'
+		backgroundColor: '#fecb00ff'
 	},
 	flex: {
 		flex: 1
@@ -57,12 +57,12 @@ const styles = theme => ({
 		width: '100%',
 		fontWeight: 400,
 		color: 'white',
-		backgroundColor: '#00c43e',
+		backgroundColor: '#fecb00ff',
 		textDecoration: 'none',
 		borderRadius: 0,
 		'&:hover': {
 			backgroundColor: '#f7f7f7',
-			color: '#00c43e'
+			color: '#fecb00ff'
 		}
 	},
 	form: {

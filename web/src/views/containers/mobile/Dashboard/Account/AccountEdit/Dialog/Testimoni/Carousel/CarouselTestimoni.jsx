@@ -250,7 +250,7 @@ const styles = theme => ({
 		marginTop: '50px'
 	},
 	mobileStepper: {
-		color: '#00c43e'
+		color: '#fecb00ff'
 	},
 	/* Styles applied to a dot if `variant="dots"` and this is the active step. */
 	dot: {

@@ -29,7 +29,7 @@ const styles = theme => ({
 	},
 	title: {
 		margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`,
-		color: '#00c43e',
+		color: '#fecb00ff',
 		textAlign: 'center'
 	},
 	card: {
@@ -64,7 +64,7 @@ const styles = theme => ({
 	},
 	appBar: {
 		position: 'fixed',
-		backgroundColor: '#00c43e'
+		backgroundColor: '#fecb00ff'
 	}
 });
 

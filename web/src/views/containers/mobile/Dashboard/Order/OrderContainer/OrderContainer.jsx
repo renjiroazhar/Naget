@@ -29,7 +29,7 @@ const styles = theme => ({
 		display: 'inline'
 	},
 	indicator: {
-		backgroundColor: '#00c43e'
+		backgroundColor: '#fecb00ff'
 	}
 });
 
@@ -80,7 +80,14 @@ class OrderContainer extends React.Component {
 
 	render() {
 		const { orders, theme, classes } = this.props;
-
+		if (!this.props.isAuthenticated) {
+			return (
+				<div style={{ textAlign: "center" }}>
+					<FixedNavbar pageName="Order" />
+					<h3>You need to Login before use this features</h3>
+		  		</div>
+			);
+		}
 		if (!isLoaded(orders)) {
 			return (
 				<div
@@ -164,7 +171,7 @@ class OrderContainer extends React.Component {
 				<div>
 					<div style={{ marginBottom: '20%' }}>
 						<AppBar color="default" style={{ position: 'fixed' }}>
-							<Toolbar style={{ backgroundColor: '#00c43e', paddingLeft: 0 }}>
+							<Toolbar style={{ backgroundColor: '#fecb00ff', paddingLeft: 0 }}>
 								<IconButton
 									onClick={this.handleBack}
 									className={classes.menuButton}
@@ -231,7 +238,7 @@ OrderContainer.propTypes = {
 const stylus = {
 	tab: {
 		border: 'none',
-		borderColor: '#00c43e',
+		borderColor: '#fecb00ff',
 		borderBottomColor: 'white',
 		color: 'black',
 		fontWeight: 'normal'

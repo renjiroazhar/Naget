@@ -28,16 +28,16 @@ const styles = theme => ({
 		paddingLeft: theme.spacing.unit * 4
 	},
 	button: {
-		backgroundColor: '#00c43e',
+		backgroundColor: '#fecb00ff',
 		height: '46px',
 		'&:hover': {
-			backgroundColor: '#00c43e',
+			backgroundColor: '#fecb00ff',
 			borderColor: '#0062cc',
 			color: 'white'
 		},
 		'&:active': {
 			boxShadow: 'none',
-			backgroundColor: '#00c43e',
+			backgroundColor: '#fecb00ff',
 			borderColor: '#005cbf'
 		},
 		'&:focus': {
@@ -316,7 +316,7 @@ class SecondStep extends React.Component {
 								className={classes.button}
 								style={{
 									width: '100%',
-									backgroundColor: '#00c43e',
+									backgroundColor: '#fecb00ff',
 									color: 'white'
 								}}
 							>

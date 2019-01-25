@@ -34,7 +34,7 @@ class FixedNavbar extends Component {
 					<AppBar
 						position="static"
 						color="default"
-						style={{ backgroundColor: '#00c43e' }}
+						style={{ backgroundColor: '#fecb00ff' }}
 					>
 						<Toolbar style={{ paddingLeft: 0 }}>
 							<IconButton

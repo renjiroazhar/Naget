@@ -6,15 +6,14 @@ import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import CardPicture from "../Card/CardPicture";
 import { connect } from "react-redux";
 import Dialog from "@material-ui/core/Dialog";
-import { editProfile } from "../../../redux/actions/profileActions";
+import { editProfile } from "../../../../../../redux/actions/profileActions";
 import firebase from "../../../../../../services/firebaseConfig";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
-import Logo from "../../../../../../assets/img/webp/moretrash.webp";
-import Promo from "../../../../../../assets/img/webp/promo.webp";
+import Logo from "../../../../../../assets/img/svg/logonaget6.svg";
+import Mascott from "../../../../../../assets/img/svg/logonaget5.svg";
 import Slide from "@material-ui/core/Slide";
 import Toolbar from "@material-ui/core/Toolbar";
 import tTrashScale from "../../../../../../assets/img/webp/tTrashScale.webp";
@@ -32,7 +31,7 @@ const styles = theme => ({
   },
   appBar: {
     position: "fixed",
-    backgroundColor: "#00c43e"
+    backgroundColor: "#fecb00ff"
   },
   flex: {
     flex: 1
@@ -48,8 +47,8 @@ const styles = theme => ({
     width: 200
   },
   absolute: {
-    color: "#00c43e",
-    backgroundColor: "#00c43e",
+    color: "#fecb00ff",
+    backgroundColor: "#fecb00ff",
     position: "fixed",
     right: "0px",
     bottom: "0px",
@@ -60,7 +59,7 @@ const styles = theme => ({
     width: "90%",
     maxWidth: "380px",
     minWidth: "300px",
-    backgroundColor: "#00c43e"
+    backgroundColor: "#fecb00ff"
   },
   marginForm: {
     maxWidth: "350px",
@@ -106,7 +105,7 @@ const styles = theme => ({
   iconchat: {
     color: "#fff",
     "&:hover": {
-      color: "#00c43e"
+      color: "#fecb00ff"
     }
   },
   bootstrapRoot: {
@@ -282,7 +281,7 @@ class HomeContainer extends Component {
 
   render() {
     const { classes } = this.props;
-    const { name, screenWidth } = this.state;
+    const { screenWidth } = this.state;
     const gridPicture = () => {
       if (screenWidth > 350) {
         return (
@@ -584,9 +583,26 @@ class HomeContainer extends Component {
               srcSet={Logo}
               width="141"
               height="40"
-              alt="Moretrash Logo"
+              alt="Naget Logo"
               retina_logo_url=""
               className={classes.image}
+            />
+          </LazyLoad>
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <LazyLoad
+            placeholder={<div>Loading</div>}
+            debounce={true}
+            height="40"
+            width="141"
+          >
+            <img
+              src={Mascott}
+              srcSet={Mascott}
+              width="170"
+              height="170"
+              alt="Mascott"
+              retina_logo_url=""
             />
           </LazyLoad>
         </div>
@@ -596,34 +612,8 @@ class HomeContainer extends Component {
             padding: "5px"
           }}
         >
-          <div
-            style={{
-              padding: "10px",
-              textAlign: "center",
-              paddingTop: 0,
-              paddingBottom: 0
-            }}
-          >
-            <CardPicture name={name} />
-          </div>
           <br />
           {gridPicture()}
-          <div style={{ padding: "7px", textAlign: "center", marginTop: "2%" }}>
-            <LazyLoad
-              placeholder={<div>Loading</div>}
-              debounce={true}
-              height="100%"
-              width="100%"
-            >
-              <img
-                src={Promo}
-                height="100%"
-                width="100%"
-                alt="Promo"
-                title="Promo"
-              />
-            </LazyLoad>
-          </div>
         </div>
         <Dialog
           fullScreen

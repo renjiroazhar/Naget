@@ -16,7 +16,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import { connect } from 'react-redux';
-import { changePassword } from '../../../../../redux/actions/profileActions';
+import { changePassword } from '../../../../../../../../redux/actions/profileActions';
 import List from '@material-ui/core/List';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Lock from '@material-ui/icons/LockOutlined';
@@ -24,7 +24,7 @@ import Lock from '@material-ui/icons/LockOutlined';
 const styles = theme => ({
 	appBar: {
 		position: 'fixed',
-		backgroundColor: '#00c43e'
+		backgroundColor: '#fecb00ff'
 	},
 	flex: {
 		flex: 1
@@ -57,12 +57,12 @@ const styles = theme => ({
 		width: '100%',
 		fontWeight: 400,
 		color: 'white',
-		backgroundColor: '#00c43e',
+		backgroundColor: '#fecb00ff',
 		textDecoration: 'none',
 		borderRadius: 0,
 		'&:hover': {
 			backgroundColor: '#f7f7f7',
-			color: '#00c43e'
+			color: '#fecb00ff'
 		}
 	},
 	form: {
