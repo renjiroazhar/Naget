@@ -4852,11 +4852,6 @@ detective@^4.3.1:
     acorn "^5.2.1"
     defined "^1.0.0"
 
-dialog-polyfill@^0.4.7:
-  version "0.4.10"
-  resolved "https://registry.yarnpkg.com/dialog-polyfill/-/dialog-polyfill-0.4.10.tgz#c4ea68a0deed4abb59a6a2a025c548b278cd532e"
-  integrity sha512-j5yGMkP8T00UFgyO+78OxiN5vC5dzRQF3BEio+LhNvDbyfxWBsi3sfPArDm54VloaJwy2hm3erEiDWqHRC8rzw==
-
 diff@^3.2.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
@@ -6132,13 +6127,6 @@ firebase@^5.7.0:
     "@firebase/messaging" "0.3.7"
     "@firebase/polyfill" "0.3.3"
     "@firebase/storage" "0.2.4"
-
-firebaseui@^3.2.0:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-3.5.1.tgz#98621f7c4f4a2cc74697b07537fd7f76fd76c646"
-  integrity sha512-wDRND1Ce6KrrC7Z8Fiwt8hi9JrA44+3UpH6/49hl0MEEsvRvb6nw5GCjU5+sfPhfLZGtmYMBeCnVjrre0SZ9yA==
-  dependencies:
-    dialog-polyfill "^0.4.7"
 
 first-chunk-stream@^1.0.0:
   version "1.0.0"
@@ -12982,13 +12970,6 @@ react-firebase-file-uploader@^2.4.2:
   integrity sha512-+oevsz/MH2LdS3tx9iImB4X1gehD3LWPv/KPxLVtd6jh4mwuEyC1/rTo7EWmr39NmoDTO2hI9pHPNOhE5K6iwQ==
   dependencies:
     uuid "^3.2.1"
-
-react-firebaseui@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/react-firebaseui/-/react-firebaseui-3.1.2.tgz#a1651713a3dae989b2fb7ccb0c288afd8ae28f30"
-  integrity sha512-lpNvIPjy9rijSbaARElIooXUtFlyFZ2VUzAXi3AMximOUfLo1De0lBfoFjEiSJjC0ItNyTn4KoKIawACcElLjw==
-  dependencies:
-    firebaseui "^3.2.0"
 
 react-form-validator-core@0.5.1:
   version "0.5.1"

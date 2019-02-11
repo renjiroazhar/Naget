@@ -13,6 +13,7 @@ import FixedNavbar from "../../../../components/FixedNavbar";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import LoginContainer from "../Login";
 class Account extends React.Component {
   state = {
     open: false,
@@ -39,7 +40,7 @@ class Account extends React.Component {
       return (
         <div style={{ textAlign: "center" }}>
           <FixedNavbar pageName="Account" />
-          <h3>You need to Login before use this features</h3>
+          <LoginContainer />
         </div>
       );
     }

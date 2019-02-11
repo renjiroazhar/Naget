@@ -34,6 +34,16 @@ const EditOrder = Loadable({
   loading: Loader
 });
 
+const Signup = Loadable({
+  loader: () => import("../Dashboard/Signup/SignupContainer"),
+  loading: Loader
+});
+
+const ForgotPassword = Loadable({
+  loader: () => import("../Dashboard/ForgotPassword/ForgotPassword"),
+  loading: Loader
+});
+
 export default class MobileRoute extends Component {
   state = {
     selectedTab: "home"
@@ -73,12 +83,12 @@ export default class MobileRoute extends Component {
               <Route path="/form_login" component={MainStep} />
               <Route path="/orderdetail/:id" component={OrderDetail} />
               <Route path="/editorder/:id" component={EditOrder} />
+              <Route path="/sign_up" component={Signup} />
+              <Route path="/forgot_password" component={ForgotPassword} />
             </Switch>
           )}
         />
-        {!currentPath.includes("order") &&
-        !currentPath.includes("account") &&
-        !currentPath.includes("orderdetail") ? (
+        {!currentPath.includes("orderdetail") ? (
           <BottomNavigationBar
             selectedTab={this.state.selectedTab}
             onChangeTab={this.onChangeTab}
