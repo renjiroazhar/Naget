@@ -1,15 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Logo from '../../../assets/img/svg/logonaget7.svg';
+import { Link } from 'react-router-dom';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import { Typography } from '@material-ui/core';
 
 const styles = {
   root: {
@@ -22,8 +23,29 @@ const styles = {
     marginLeft: -12,
     marginRight: 20
   },
-  button: {
-    border: "1px solid #ffffff"
+  button1: {
+    color: '#ffffff',
+    '&:hover': {
+      backgroundColor: '#fecb00ff',
+      color: '#f5f5f5'
+    }
+  },
+  button2: {
+    border: '1px solid #ffffff',
+    margin: '0 10px 0 67%',
+    '&:hover': {
+      backgroundColor: '#ffffff',
+      color: '#000000'
+    }
+  },
+  button3: {
+    backgroundColor: '#ffffff',
+    color: '#000000',
+    width: '85px',
+    '&:hover': {
+      backgroundColor: '#ffffff',
+      color: '#fecb00ff'
+    }
   }
 };
 
@@ -53,22 +75,54 @@ class MenuAppBar extends React.Component {
     if (this.props.isAuthenticated) {
       return (
         <div className={classes.root}>
-          <AppBar position="static" style={{ backgroundColor: "#fecb00ff" }}>
+          <AppBar position="static" style={{ backgroundColor: '#fecb00ff' }}>
             <Toolbar>
-              <IconButton
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="Menu"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" color="inherit" className={classes.grow}>
-                Photos
-              </Typography>
+              <Link to="/">
+                <img
+                  src={Logo}
+                  srcSet={Logo}
+                  width="141"
+                  height="40"
+                  alt="Logo"
+                  retina_logo_url=""
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="Logo"
+                />
+              </Link>
+              <Link to="/home">
+                <Typography
+                  color="inherit"
+                  aria-label="HOME"
+                  style={{
+                    color: '#ffffff',
+                    margin: '0 20px 0 10px',
+                    '&:hover': {
+                      color: '#f7f7f7'
+                    }
+                  }}
+                >
+                  HOME
+                </Typography>
+              </Link>
+              <Link to="/order">
+                <Typography
+                  color="inherit"
+                  aria-label="ORDER"
+                  style={{
+                    color: '#ffffff',
+                    '&:hover': {
+                      color: '#f7f7f7'
+                    }
+                  }}
+                >
+                  ORDER
+                </Typography>
+              </Link>
               {auth && (
                 <div>
                   <IconButton
-                    aria-owns={open ? "menu-appbar" : undefined}
+                    aria-owns={open ? 'menu-appbar' : undefined}
                     aria-haspopup="true"
                     onClick={this.handleMenu}
                     color="inherit"
@@ -80,12 +134,12 @@ class MenuAppBar extends React.Component {
                     id="menu-appbar"
                     anchorEl={anchorEl}
                     anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right"
+                      vertical: 'top',
+                      horizontal: 'right'
                     }}
                     transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right"
+                      vertical: 'top',
+                      horizontal: 'right'
                     }}
                     open={open}
                     onClose={this.handleClose}
@@ -102,20 +156,43 @@ class MenuAppBar extends React.Component {
     } else {
       return (
         <div className={classes.root}>
-          <AppBar position="static" style={{ backgroundColor: "#fecb00ff" }}>
+          <AppBar position="static" style={{ backgroundColor: '#fecb00ff' }}>
             <Toolbar>
-              <IconButton
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="Menu"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" color="inherit" className={classes.grow}>
-                News
-              </Typography>
-              <Button color="inherit">Login</Button>
-              <Button color="inherit" className={classes.button}>
+              <Link to="/">
+                <img
+                  src={Logo}
+                  srcSet={Logo}
+                  width="141"
+                  height="40"
+                  alt="Logo"
+                  retina_logo_url=""
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="Logo"
+                />
+              </Link>
+              <Link to="/home">
+                <Button
+                  color="inherit"
+                  aria-label="HOME"
+                  className={classes.button1}
+                >
+                  HOME
+                </Button>
+              </Link>
+              <Link to="/order">
+                <Button
+                  color="inherit"
+                  aria-label="ORDER"
+                  className={classes.button1}
+                >
+                  ORDER
+                </Button>
+              </Link>
+              <Button color="inherit" className={classes.button2}>
+                Login
+              </Button>
+              <Button color="inherit" className={classes.button3}>
                 Register
               </Button>
             </Toolbar>

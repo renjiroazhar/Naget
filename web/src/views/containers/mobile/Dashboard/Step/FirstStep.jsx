@@ -10,24 +10,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import {
-  banyumanik,
-  candisari,
-  gajahmungkur,
-  gayamsari,
-  genuk,
-  gunungpati,
-  mijen,
-  ngaliyan,
-  pedurungan,
-  semarang_barat,
-  semarang_selatan,
-  semarang_tengah,
-  semarang_timur,
-  semarang_utara,
-  tembalang,
-  tugu
-} from '../../../../../variables/Area';
 
 const styles = theme => ({
 	root: {
