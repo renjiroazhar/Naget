@@ -299,60 +299,6 @@ class StepLoginProvider extends Component {
     });
   };
 
-  handleUpload = () => {
-    const { previewGeneralPhotos } = this.state;
-    if (previewGeneralPhotos !== [] || previewGeneralPhotos.length > 0) {
-      const promises = [];
-      previewGeneralPhotos.forEach(file => {
-        const uploadTask = promises.push(uploadTask);
-
-        uploadTask.on(
-          "state_changed",
-          snapshot => {
-            const progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log(progress);
-            this.setState({
-              loading: true
-            });
-          },
-          error => {
-            console.log(error);
-          },
-          () => {
-            uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-              console.log(downloadURL);
-              console.log(downloadURL);
-              this.setState(oldState => ({
-                downloadURLs: [...oldState.downloadURLs, downloadURL]
-              }));
-              console.log(this.state.downloadURLs);
-              if (
-                this.state.downloadURLs.length ===
-                this.state.previewGeneralPhotos.length
-              ) {
-                this.setState({
-                  loading: false
-                });
-                this.allowSend();
-                this.isLoaded();
-                this.handleNext();
-                this.props.createOrder(this.state);
-              }
-            });
-          }
-        );
-      });
-
-      Promise.all(promises).then(tasks => {
-        console.log("all uploads complete", tasks);
-      });
-    } else {
-      this.props.createOrder(this.state);
-      this.handleNext();
-    }
-  };
-
   handleCreateOrder = () => {
     this.props.createOrder(this.state);
     this.handleNext();

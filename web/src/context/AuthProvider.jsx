@@ -1,5 +1,4 @@
-import React, { Component, createContext } from "react";
-import firebase from "../services/firebaseConfig";
+import React, { Component, createContext } from 'react';
 
 export const AuthContext = createContext();
 const { Provider } = AuthContext;
@@ -12,30 +11,27 @@ export default class AuthProvider extends Component {
   };
 
   authListener = () => {
-    const auth = firebase.auth().onAuthStateChanged(user => {
-      if (this.state.isMounted) {
-        if (user && user !== null) {
-          this.setState({
-            isAuthenticated: user
-          });
-          this.statePersistence(user.uid);
-        } else {
-          this.setState({
-            isAuthenticated: null
-          });
-        }
+    if (this.state.isMounted) {
+      if (localStorage.getItem('email')) {
+        this.setState({
+          isAuthenticated: 'root'
+        });
+      } else {
+        this.setState({
+          isAuthenticated: null
+        });
       }
-    });
-    return auth;
+    }
   };
 
   componentDidMount() {
+    console.log(localStorage.getItem('email'));
     setTimeout(() => this.setState({ loading: false }), 750);
     this.setState({
       isMounted: true
     });
     this.authListener();
-    console.log("Mounted");
+    console.log('Mounted');
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
   }
 
@@ -47,13 +43,16 @@ export default class AuthProvider extends Component {
 
   render() {
     return (
-      <Provider
-        value={{
-          state: this.state
-        }}
-      >
-        {this.props.children}
-      </Provider>
+      console.log(this.state),
+      (
+        <Provider
+          value={{
+            state: this.state
+          }}
+        >
+          {this.props.children}
+        </Provider>
+      )
     );
   }
 }

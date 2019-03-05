@@ -1,36 +1,36 @@
-import React from "react";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { connect } from "react-redux";
-import { firestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
-import { compose } from "redux";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import AppBar from "@material-ui/core/AppBar";
-import SwipeableViews from "react-swipeable-views";
-import ArrowLeft from "@material-ui/icons/ArrowBack";
-import IconButton from "@material-ui/core/IconButton";
-import WaitingConfirmation from "./OrderList/WaitingConfirmation";
-import OrderHistory from "./OrderList/OrderHistory";
-import FixedNavbar from "../../../../../components/FixedNavbar";
-import Toolbar from "@material-ui/core/Toolbar";
-import "./style/style.css";
-import LoginContainer from "../../Login";
+import React from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { connect } from 'react-redux';
+import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+import { compose } from 'redux';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import AppBar from '@material-ui/core/AppBar';
+import SwipeableViews from 'react-swipeable-views';
+import ArrowLeft from '@material-ui/icons/ArrowBack';
+import IconButton from '@material-ui/core/IconButton';
+import WaitingConfirmation from './OrderList/WaitingConfirmation';
+import OrderHistory from './OrderList/OrderHistory';
+import FixedNavbar from '../../../../../components/FixedNavbar';
+import Toolbar from '@material-ui/core/Toolbar';
+import './style/style.css';
+import LoginContainer from '../../Login';
 
 const styles = theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper
   },
   inline: {
-    display: "inline"
+    display: 'inline'
   },
   indicator: {
-    backgroundColor: "#fecb00ff"
+    backgroundColor: '#fecb00ff'
   }
 });
 
@@ -70,20 +70,21 @@ class OrderContainer extends React.Component {
   };
 
   handleBack = () => {
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
 
   componentDidMount() {
     const { orders } = this.props;
-    this.getSafe(() => orders, "nothing");
+    this.getSafe(() => orders, 'nothing');
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+    console.log(localStorage.getItem('email'));
   }
 
   render() {
     const { orders, theme, classes } = this.props;
-    if (!this.props.isAuthenticated) {
+    if (!localStorage.getItem('email')) {
       return (
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: 'center' }}>
           <FixedNavbar pageName="Order" />
           <LoginContainer />
         </div>
@@ -93,12 +94,12 @@ class OrderContainer extends React.Component {
       return (
         <div
           style={{
-            backgroundColor: "#e7e7e7",
-            height: "100%"
+            backgroundColor: '#e7e7e7',
+            height: '100%'
           }}
         >
           <FixedNavbar pageName="Order" />
-          <AppBar style={{ marginTop: "55px" }} color="default">
+          <AppBar style={{ marginTop: '55px' }} color="default">
             <Tabs
               onChange={this.handleChange}
               indicatorColor="primary"
@@ -115,12 +116,12 @@ class OrderContainer extends React.Component {
           </AppBar>
           <div
             style={{
-              textAlign: "center",
-              minHeight: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              overflow: "hidden"
+              textAlign: 'center',
+              minHeight: '100vh',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              overflow: 'hidden'
             }}
           >
             <CircularProgress />
@@ -132,12 +133,12 @@ class OrderContainer extends React.Component {
       return (
         <div
           style={{
-            backgroundColor: "#e7e7e7",
-            height: "100%"
+            backgroundColor: '#e7e7e7',
+            height: '100%'
           }}
         >
           <FixedNavbar pageName="Order" />
-          <AppBar style={{ marginTop: "55px" }} color="default">
+          <AppBar style={{ marginTop: '55px' }} color="default">
             <Tabs
               onChange={this.handleChange}
               indicatorColor="primary"
@@ -154,12 +155,12 @@ class OrderContainer extends React.Component {
           </AppBar>
           <div
             style={{
-              textAlign: "center",
-              minHeight: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              overflow: "hidden"
+              textAlign: 'center',
+              minHeight: '100vh',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              overflow: 'hidden'
             }}
           >
             <br />
@@ -170,24 +171,24 @@ class OrderContainer extends React.Component {
     } else {
       return (
         <div>
-          <div style={{ marginBottom: "20%" }}>
-            <AppBar color="default" style={{ position: "fixed" }}>
-              <Toolbar style={{ backgroundColor: "#fecb00ff", paddingLeft: 0 }}>
+          <div style={{ marginBottom: '20%' }}>
+            <AppBar color="default" style={{ position: 'fixed' }}>
+              <Toolbar style={{ backgroundColor: '#fecb00ff', paddingLeft: 0 }}>
                 <IconButton
                   onClick={this.handleBack}
                   className={classes.menuButton}
                   color="inherit"
                   aria-label="Menu"
                 >
-                  <ArrowLeft style={{ color: "#ffffff" }} />
+                  <ArrowLeft style={{ color: '#ffffff' }} />
                 </IconButton>
 
                 <Typography
                   variant="title"
                   color="inherit"
                   style={{
-                    color: "white",
-                    fontSize: "20px"
+                    color: 'white',
+                    fontSize: '20px'
                   }}
                 >
                   Order
@@ -207,9 +208,9 @@ class OrderContainer extends React.Component {
                 <Tab label="History" style={stylus.tab} />
               </Tabs>
             </AppBar>
-            <div style={{ width: "100%", marginTop: "100px" }}>
+            <div style={{ width: '100%', marginTop: '100px' }}>
               <SwipeableViews
-                axis={theme === "rtl" ? "x-reverse" : "x"}
+                axis={theme === 'rtl' ? 'x-reverse' : 'x'}
                 index={this.state.value}
                 onChangeIndex={this.handleChangeIndex}
               >
@@ -238,11 +239,11 @@ OrderContainer.propTypes = {
 
 const stylus = {
   tab: {
-    border: "none",
-    borderColor: "#fecb00ff",
-    borderBottomColor: "white",
-    color: "black",
-    fontWeight: "normal"
+    border: 'none',
+    borderColor: '#fecb00ff',
+    borderBottomColor: 'white',
+    color: 'black',
+    fontWeight: 'normal'
   }
 };
 
@@ -261,8 +262,8 @@ const composingOrderContainer = compose(
     if (!props.uid) return [];
     return [
       {
-        collection: "orders",
-        where: [["userId", "==", props.uid]]
+        collection: 'orders',
+        where: [['userId', '==', props.uid]]
       }
     ];
   })

@@ -18,7 +18,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 import FormControl from '@material-ui/core/FormControl';
 import { connect } from 'react-redux';
-import firebase from '../../../../../../../../services/firebaseConfig';
 import { editProfile } from '../../../../../../../../redux/actions/profileActions';
 
 const styles = theme => ({
@@ -78,6 +77,7 @@ class EditProfil extends React.Component {
 	state = {
 		open: false,
 		name: '',
+		email : '',
 		address: '',
 		phone: ''
 	};
@@ -102,34 +102,26 @@ class EditProfil extends React.Component {
 	};
 
 	handleSave = () => {
-		this.editProfile();
+		localStorage.setItem('name', this.state.name);
+		localStorage.setItem('address', this.state.address);
+		localStorage.setItem('phone', this.state.phone);
 		this.handleClose();
 	};
 
-	async getData() {
-		const { auth } = this.props;
-		const ref = firebase
-			.firestore()
-			.collection('users')
-			.doc(auth.uid);
-		try {
-			const getData = await ref.onSnapshot(doc => {
-				var dataSnapshot = doc.data();
-				console.log('Data Loaded');
-				if (dataSnapshot && dataSnapshot !== undefined) {
-					this.setState({
-						name: dataSnapshot && dataSnapshot.name,
-						address: dataSnapshot && dataSnapshot.address,
-						phone: dataSnapshot && dataSnapshot.phone
-					});
-				} else {
-					console.log('Kosong? , Astaughfirullah');
-					this.handleClickOpen();
-				}
-			});
-			return getData;
-		} catch (error) {
-			console.log(error);
+	getData() {
+		let email = localStorage.getItem('email')
+		let name = localStorage.getItem('name')
+		let address = localStorage.getItem('address')
+		let phone = localStorage.getItem('phone') 
+		if(email && name && address && phone){
+			this.setState({
+				name : name,
+				email : email,
+				address : address,
+				phone : phone,
+			})
+		} else {
+			this.setState({open : true})
 		}
 	}
 
@@ -139,7 +131,7 @@ class EditProfil extends React.Component {
 	}
 
 	render() {
-		const { classes, profile, auth } = this.props;
+		const { classes } = this.props;
 		return (
 			<div style={{ backgroundColor: 'white' }}>
 				<List
@@ -150,13 +142,9 @@ class EditProfil extends React.Component {
 						<ListItemText
 							style={{ float: 'left' }}
 							primary={
-								profile.name
-									? profile.name
-									: auth.displayName
-									? auth.displayName
-									: 'No Name'
+								localStorage.getItem('name')? localStorage.getItem('name') : null 
 							}
-							secondary={auth.email}
+							secondary={localStorage.getItem('email')? localStorage.getItem('email') : null}
 						/>
 						<ListItemSecondaryAction>
 							<p
@@ -237,6 +225,27 @@ class EditProfil extends React.Component {
 									focused: classes.cssFocused
 								}}
 							>
+								Address
+							</InputLabel>
+							<Input
+								classes={{
+									underline: classes.cssUnderline
+								}}
+								onKeyPress={this.handleKeyPress}
+								id="address"
+								type="text"
+								onChange={this.handleChange}
+								value={this.state.address}
+							/>
+						</FormControl>
+						<FormControl style={{ width: '90%' }}>
+							<InputLabel
+								htmlFor="custom-css-input"
+								FormLabelClasses={{
+									root: classes.cssLabel,
+									focused: classes.cssFocused
+								}}
+							>
 								Phone Number
 							</InputLabel>
 							<Input
@@ -252,27 +261,6 @@ class EditProfil extends React.Component {
 						</FormControl>
 						<br />
 						<br />
-						<FormControl style={{ width: '90%' }}>
-							<InputLabel
-								htmlFor="custom-css-input"
-								FormLabelClasses={{
-									root: classes.cssLabel,
-									focused: classes.cssFocused
-								}}
-							>
-								Address
-							</InputLabel>
-							<Input
-								classes={{
-									underline: classes.cssUnderline
-								}}
-								onKeyPress={this.handleKeyPress}
-								id="address"
-								type="text"
-								onChange={this.handleChange}
-								value={this.state.address}
-							/>
-						</FormControl>
 					</div>
 				</Dialog>
 			</div>

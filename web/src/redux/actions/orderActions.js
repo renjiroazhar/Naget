@@ -1,4 +1,3 @@
-// import storage from '../../services/firebaseConfig';
 import { format } from 'date-fns/esm';
 
 export const cancelOrder = (orderdata, id) => {

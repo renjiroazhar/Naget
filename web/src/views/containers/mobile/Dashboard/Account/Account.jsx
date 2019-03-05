@@ -1,30 +1,30 @@
-import React from "react";
-import EditProfil from "./AccountEdit/Dialog/EditProfil";
-import GantiPassword from "./AccountEdit/Dialog/GantiPassword";
-import Help from "./AccountEdit/Dialog/Help";
-import About from "./AccountEdit/Dialog/About";
-import Testimoni from "./AccountEdit/Dialog/Testimoni";
-import Button from "@material-ui/core/Button";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import { signOut } from "../../../../../redux/actions/authActions";
-import Divider from "@material-ui/core/Divider";
-import FixedNavbar from "../../../../components/FixedNavbar";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import LoginContainer from "../Login";
+import React from 'react';
+import EditProfil from './AccountEdit/Dialog/EditProfil';
+import GantiPassword from './AccountEdit/Dialog/GantiPassword';
+import Help from './AccountEdit/Dialog/Help';
+import About from './AccountEdit/Dialog/About';
+import Testimoni from './AccountEdit/Dialog/Testimoni';
+import Button from '@material-ui/core/Button';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signOut } from '../../../../../redux/actions/authActions';
+import Divider from '@material-ui/core/Divider';
+import FixedNavbar from '../../../../components/FixedNavbar';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import LoginContainer from '../Login';
 class Account extends React.Component {
   state = {
     open: false,
-    currentPassword: "",
-    newPassword: "",
+    currentPassword: '',
+    newPassword: '',
     isOpen: false
   };
 
   logout = () => {
     this.props.signOut();
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
 
   handleClickOpen = () => {
@@ -36,9 +36,9 @@ class Account extends React.Component {
   };
 
   render() {
-    if (!this.props.isAuthenticated) {
+    if (!localStorage.getItem('email')) {
       return (
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: 'center' }}>
           <FixedNavbar pageName="Account" />
           <LoginContainer />
         </div>
@@ -47,24 +47,24 @@ class Account extends React.Component {
     return (
       <div
         style={{
-          backgroundColor: "#e7e7e7",
-          overflow: "hidden",
-          height: "100%",
-          minHeight: "100vh"
+          backgroundColor: '#e7e7e7',
+          overflow: 'hidden',
+          height: '100%',
+          minHeight: '100vh'
         }}
       >
         <FixedNavbar pageName="Account" />
-        <div style={{ marginTop: "57px" }}>
+        <div style={{ marginTop: '57px' }}>
           <EditProfil />
         </div>
-        <div style={{ marginTop: "2%" }}>
+        <div style={{ marginTop: '2%' }}>
           <GantiPassword />
         </div>
         <Divider />
         <div>
           <Testimoni />
         </div>
-        <div style={{ marginTop: "2%" }}>
+        <div style={{ marginTop: '2%' }}>
           <div>
             <Help renderTab={() => this.props.renderTab()} />
           </div>
@@ -80,7 +80,7 @@ class Account extends React.Component {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            {"You sure want to leave?"}
+            {'You sure want to leave?'}
           </DialogTitle>
           <DialogActions>
             <Button
@@ -102,20 +102,20 @@ class Account extends React.Component {
         </Dialog>
         <div
           style={{
-            width: "100%"
+            width: '100%'
           }}
         >
           <Button
             variant="contained"
             style={{
-              backgroundColor: "#ffffff",
-              width: "100%",
-              textAlign: "center",
-              color: "#f43c3c",
-              height: "46px",
-              position: "absolute",
+              backgroundColor: '#ffffff',
+              width: '100%',
+              textAlign: 'center',
+              color: '#f43c3c',
+              height: '46px',
+              position: 'absolute',
               bottom: 0,
-              borderRadius: "unset"
+              borderRadius: 'unset'
             }}
             onClick={this.handleClickOpen}
           >

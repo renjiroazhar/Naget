@@ -3,21 +3,13 @@ import './style/home.css';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import Dialog from '@material-ui/core/Dialog';
 import { editProfile } from '../../../../../../redux/actions/profileActions';
-import firebase from '../../../../../../services/firebaseConfig';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import Logo from '../../../../../../assets/img/svg/logonaget6.svg';
 import Mascott from '../../../../../../assets/img/svg/logonaget5.svg';
-import Slide from '@material-ui/core/Slide';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import Promo from '../../../../../../assets/img/svg/promo.svg';
 import LazyLoad from 'react-lazy-load';
-import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
   container: {
@@ -67,6 +59,7 @@ const styles = theme => ({
     backgroundColor: '#fecb00ff',
     width: '250px',
     height: '55px',
+    marginBottom: '10%',
     fontWeight: 400,
     '&:hover': {
       backgroundColor: '#fecb000f'
@@ -168,10 +161,6 @@ const styles = theme => ({
   }
 });
 
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
-
 class HomeContainer extends Component {
   state = {
     open: false,
@@ -181,36 +170,8 @@ class HomeContainer extends Component {
     screenWidth: window.innerWidth
   };
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleChange = e => {
-    this.setState({
-      [e.target.id]: e.target.value
-    });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
-  editProfile = () => {
-    const { auth } = this.props;
-    this.props.editProfile(this.state, auth.uid);
-  };
-
-  handleSave = () => {
-    this.editProfile();
-    this.handleClose();
-  };
-
   handleClick = () => {
     this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
   };
 
   handleResize = () => {
@@ -219,39 +180,11 @@ class HomeContainer extends Component {
     });
   };
 
-  async getData() {
-    const { auth } = this.props;
-    const ref = firebase
-      .firestore()
-      .collection('users')
-      .doc(auth.uid);
-    try {
-      const getData = await ref.onSnapshot(doc => {
-        var dataSnapshot = doc.data();
-        console.log('Data Loaded');
-        if (dataSnapshot && dataSnapshot !== undefined) {
-          this.setState({
-            name: dataSnapshot && dataSnapshot.name,
-            address: dataSnapshot && dataSnapshot.address,
-            phone: dataSnapshot && dataSnapshot.phone
-          });
-        } else {
-          console.log('Kosong? , Astaughfirullah');
-          this.handleClickOpen();
-        }
-      });
-      return getData;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   handleForm = () => {
     this.props.history.push('/form_login');
   };
 
   componentDidMount() {
-    this.getData();
     window.addEventListener('resize', this.handleResize);
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
   }
@@ -268,24 +201,62 @@ class HomeContainer extends Component {
         return (
           <div style={{ textAlign: 'center', marginTop: '1%' }}>
             <div style={{ textAlign: 'center', width: '100%' }}>
-              <center>
-                <Button
-                  className={classes.cssRoot}
-                  onClick={this.handleForm}
-                  size="small"
-                  aria-label="Order Now"
-                >
-                  <p
-                    style={{
-                      fontSize: '15px',
-                      color: '#ffffff',
-                      fontWeight: 'bold'
-                    }}
+              {localStorage.getItem('email') ? (
+                <center>
+                  <Button
+                    className={classes.cssRoot}
+                    onClick={this.handleForm}
+                    size="small"
+                    aria-label="Order Now"
                   >
-                    Order Now
-                  </p>
-                </Button>
-              </center>
+                    <p
+                      style={{
+                        fontSize: '15px',
+                        color: '#ffffff',
+                        fontWeight: 'bold'
+                      }}
+                    >
+                      Order Now
+                    </p>
+                  </Button>
+                </center>
+              ) : (
+                <center>
+                  <Button
+                    className={classes.cssRoot}
+                    onClick={() => this.props.history.push('/login')}
+                    size="small"
+                    aria-label="Order Now"
+                  >
+                    <p
+                      style={{
+                        fontSize: '15px',
+                        color: '#ffffff',
+                        fontWeight: 'bold'
+                      }}
+                    >
+                      Order Now
+                    </p>
+                  </Button>
+                </center>
+              )}
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <LazyLoad
+                placeholder={<div>Loading</div>}
+                debounce={true}
+                height="40"
+                width="141"
+              >
+                <img
+                  src={Promo}
+                  srcSet={Promo}
+                  width="200"
+                  height="200"
+                  alt="Promo"
+                  retina_logo_url=""
+                />
+              </LazyLoad>
             </div>
           </div>
         );
@@ -321,6 +292,23 @@ class HomeContainer extends Component {
                 </div>
               </div>
             </center>
+            <div style={{ textAlign: 'center' }}>
+              <LazyLoad
+                placeholder={<div>Loading</div>}
+                debounce={true}
+                height="40"
+                width="141"
+              >
+                <img
+                  src={Promo}
+                  srcSet={Promo}
+                  width="200"
+                  height="200"
+                  alt="Promo"
+                  retina_logo_url=""
+                />
+              </LazyLoad>
+            </div>
           </div>
         );
       }
@@ -377,113 +365,6 @@ class HomeContainer extends Component {
           <br />
           {gridPicture()}
         </div>
-        <Dialog
-          fullScreen
-          open={this.state.open}
-          onClose={this.handleClose}
-          TransitionComponent={Transition}
-        >
-          <AppBar className={classes.appBar}>
-            <Toolbar>
-              <Typography
-                variant="title"
-                color="inherit"
-                className={classes.flex}
-              >
-                Profile
-              </Typography>
-              <Button color="inherit" onClick={this.handleSave}>
-                Save
-              </Button>
-            </Toolbar>
-          </AppBar>
-          <div style={{ textAlign: 'center', marginTop: '75px' }}>
-            <div>
-              <h5 style={{ fontSize: '16px', margin: 0 }}>
-                Looks like , you are the new user of us
-              </h5>
-              <p
-                style={{
-                  padding: 0,
-                  margin: 0
-                }}
-              >
-                Please Complete your Profile
-              </p>
-            </div>
-
-            <FormControl style={{ width: '90%' }}>
-              <InputLabel
-                htmlFor="custom-css-input"
-                FormLabelClasses={{
-                  root: classes.cssLabel,
-                  focused: classes.cssFocused
-                }}
-              >
-                Name
-              </InputLabel>
-              <Input
-                classes={{
-                  underline: classes.cssUnderline
-                }}
-                onKeyPress={this.handleKeyPress}
-                id="name"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.name}
-              />
-            </FormControl>
-            <br />
-            <br />
-            <FormControl style={{ width: '90%' }}>
-              <InputLabel
-                htmlFor="custom-css-input"
-                FormLabelClasses={{
-                  root: classes.cssLabel,
-                  focused: classes.cssFocused
-                }}
-              >
-                Phone Number
-              </InputLabel>
-              <Input
-                classes={{
-                  underline: classes.cssUnderline
-                }}
-                onKeyPress={this.handleKeyPress}
-                id="phone"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.phone}
-              />
-            </FormControl>
-            <br />
-            <br />
-            <FormControl style={{ width: '90%' }}>
-              <InputLabel
-                htmlFor="custom-css-input"
-                FormLabelClasses={{
-                  root: classes.cssLabel,
-                  focused: classes.cssFocused
-                }}
-              >
-                Address
-              </InputLabel>
-              <Input
-                classes={{
-                  underline: classes.cssUnderline
-                }}
-                onKeyPress={this.handleKeyPress}
-                id="address"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.address}
-              />
-            </FormControl>
-          </div>
-        </Dialog>
-        <br />
-        <br />
-        <br />
       </div>
     );
   }

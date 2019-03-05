@@ -1,52 +1,57 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import BottomNavigationBar from "../../../components/BottomNavigationBar";
-import Loadable from "react-loadable";
-import Loader from "../../../components/Loaders/component/Loader";
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import BottomNavigationBar from '../../../components/BottomNavigationBar';
+import Loadable from 'react-loadable';
+import Loader from '../../../components/Loaders/component/Loader';
 
 const HomeContainer = Loadable({
-  loader: () => import("../Dashboard/Home/HomeContainer"),
+  loader: () => import('../Dashboard/Home/HomeContainer'),
   loading: Loader
 });
 
 const OrderContainer = Loadable({
-  loader: () => import("../Dashboard/Order/OrderContainer"),
+  loader: () => import('../Dashboard/Order/OrderContainer'),
   loading: Loader
 });
 
 const Account = Loadable({
-  loader: () => import("../Dashboard/Account/Account"),
+  loader: () => import('../Dashboard/Account/Account'),
   loading: Loader
 });
 
 const MainStep = Loadable({
-  loader: () => import("../Dashboard/Step/MainStep"),
+  loader: () => import('../Dashboard/Step/MainStep'),
   loading: Loader
 });
 
 const OrderDetail = Loadable({
-  loader: () => import("../Dashboard/Order/OrderDetail"),
+  loader: () => import('../Dashboard/Order/OrderDetail'),
   loading: Loader
 });
 
 const EditOrder = Loadable({
-  loader: () => import("../Dashboard/Order/EditOrder"),
+  loader: () => import('../Dashboard/Order/EditOrder'),
+  loading: Loader
+});
+
+const Login = Loadable({
+  loader: () => import('../Dashboard/Login/LoginContainer'),
   loading: Loader
 });
 
 const Signup = Loadable({
-  loader: () => import("../Dashboard/Signup/SignupContainer"),
+  loader: () => import('../Dashboard/Signup/SignupContainer'),
   loading: Loader
 });
 
 const ForgotPassword = Loadable({
-  loader: () => import("../Dashboard/ForgotPassword/ForgotPassword"),
+  loader: () => import('../Dashboard/ForgotPassword/ForgotPassword'),
   loading: Loader
 });
 
 export default class MobileRoute extends Component {
   state = {
-    selectedTab: "home"
+    selectedTab: 'home'
   };
 
   onChangeTab = selectedTab => {
@@ -83,12 +88,13 @@ export default class MobileRoute extends Component {
               <Route path="/form_login" component={MainStep} />
               <Route path="/orderdetail/:id" component={OrderDetail} />
               <Route path="/editorder/:id" component={EditOrder} />
+              <Route path="/login" component={Login} />
               <Route path="/sign_up" component={Signup} />
               <Route path="/forgot_password" component={ForgotPassword} />
             </Switch>
           )}
         />
-        {!currentPath.includes("orderdetail") ? (
+        {!currentPath.includes('orderdetail') ? (
           <BottomNavigationBar
             selectedTab={this.state.selectedTab}
             onChangeTab={this.onChangeTab}
