@@ -1,8 +1,6 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { connect } from 'react-redux';
-import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
-import { compose } from 'redux';
+import { isLoaded, isEmpty } from 'react-redux-firebase';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -81,7 +79,8 @@ class OrderContainer extends React.Component {
   }
 
   render() {
-    const { orders, theme, classes } = this.props;
+    const { theme, classes } = this.props;
+    const { orders } = this.state;
     if (!localStorage.getItem('email')) {
       return (
         <div style={{ textAlign: 'center' }}>
@@ -110,7 +109,7 @@ class OrderContainer extends React.Component {
               variant="fullWidth"
               value={this.state.value}
             >
-              <Tab label="Ordered" style={stylus.tab} />
+              <Tab label="Order" style={stylus.tab} />
               <Tab label="History" style={stylus.tab} />
             </Tabs>
           </AppBar>
@@ -149,7 +148,7 @@ class OrderContainer extends React.Component {
               variant="fullWidth"
               value={this.state.value}
             >
-              <Tab label="Ordered" style={stylus.tab} />
+              <Tab label="Order" style={stylus.tab} />
               <Tab label="History" style={stylus.tab} />
             </Tabs>
           </AppBar>
@@ -204,7 +203,7 @@ class OrderContainer extends React.Component {
                 textColor="primary"
                 variant="fullWidth"
               >
-                <Tab label="Ordered" style={stylus.tab} />
+                <Tab label="Order" style={stylus.tab} />
                 <Tab label="History" style={stylus.tab} />
               </Tabs>
             </AppBar>
@@ -247,26 +246,4 @@ const stylus = {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    orders: state.firestore.ordered.orders,
-    auth: state.firebase.auth,
-    uid: state.firebase.auth.uid
-  };
-};
-
-const composingOrderContainer = compose(
-  connect(mapStateToProps),
-  firestoreConnect(props => {
-    // console.log(props.uid);
-    if (!props.uid) return [];
-    return [
-      {
-        collection: 'orders',
-        where: [['userId', '==', props.uid]]
-      }
-    ];
-  })
-)(withStyles(styles)(withRouter(OrderContainer)));
-
-export { composingOrderContainer as OrderContainer };
+export default withStyles(styles)(withRouter(OrderContainer));

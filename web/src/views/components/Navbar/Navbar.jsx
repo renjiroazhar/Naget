@@ -41,7 +41,7 @@ const styles = {
   button3: {
     backgroundColor: '#ffffff',
     color: '#000000',
-    width: '85px',
+    width: '90px',
     '&:hover': {
       backgroundColor: '#ffffff',
       color: '#fecb00ff'

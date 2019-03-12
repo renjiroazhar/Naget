@@ -59,7 +59,7 @@ const styles = theme => ({
     backgroundColor: '#fecb00ff',
     width: '250px',
     height: '55px',
-    marginBottom: '10%',
+    marginBottom: '5%',
     fontWeight: 400,
     '&:hover': {
       backgroundColor: '#fecb000f'
