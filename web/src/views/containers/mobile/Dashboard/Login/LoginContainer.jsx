@@ -141,22 +141,6 @@ class Loginpage extends Component {
                   style={{
                     textAlign: 'center',
                     color: 'black',
-                    marginTop: '20px'
-                  }}
-                >
-                  <Link
-                    to="/forgot_password"
-                    style={{ textDecoration: 'none', color: 'black' }}
-                  >
-                    Forgot Password?
-                  </Link>
-                </p>
-              </div>
-              <div>
-                <p
-                  style={{
-                    textAlign: 'center',
-                    color: 'black',
                     padding: 0,
                     marginTop: '30px'
                   }}

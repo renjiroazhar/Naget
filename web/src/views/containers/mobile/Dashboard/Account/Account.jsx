@@ -1,9 +1,6 @@
 import React from 'react';
 import EditProfil from './AccountEdit/Dialog/EditProfil';
-import GantiPassword from './AccountEdit/Dialog/GantiPassword';
-import Help from './AccountEdit/Dialog/Help';
 import About from './AccountEdit/Dialog/About';
-import Testimoni from './AccountEdit/Dialog/Testimoni';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -57,73 +54,61 @@ class Account extends React.Component {
         <div style={{ marginTop: '57px' }}>
           <EditProfil />
         </div>
-        <div style={{ marginTop: '2%' }}>
-          <GantiPassword />
-        </div>
         <Divider />
         <div>
-          <Testimoni />
+          <About />
         </div>
-        <div style={{ marginTop: '2%' }}>
-          <div>
-            <Help renderTab={() => this.props.renderTab()} />
-          </div>
-          <Divider />
-          <div>
-            <About />
-          </div>
-        </div>
-        <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">
-            {'You sure want to leave?'}
-          </DialogTitle>
-          <DialogActions>
-            <Button
-              varian="contained"
-              onClick={this.handleClose}
-              color="primary"
-            >
-              No
-            </Button>
-            <Button
-              varian="contained"
-              onClick={this.logout}
-              color="primary"
-              autoFocus
-            >
-              Yes
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <div
-          style={{
-            width: '100%'
-          }}
-        >
+      <Dialog
+        open={this.state.open}
+        onClose={this.handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {'You sure want to leave?'}
+        </DialogTitle>
+        <DialogActions>
           <Button
-            variant="contained"
-            style={{
-              backgroundColor: '#ffffff',
-              width: '100%',
-              textAlign: 'center',
-              color: '#f43c3c',
-              height: '46px',
-              position: 'absolute',
-              bottom: 0,
-              borderRadius: 'unset'
-            }}
-            onClick={this.handleClickOpen}
+            varian="contained"
+            onClick={this.handleClose}
+            color="primary"
           >
-            Logout
+            No
+            </Button>
+          <Button
+            varian="contained"
+            onClick={this.logout}
+            color="primary"
+            autoFocus
+          >
+            Yes
+            </Button>
+        </DialogActions>
+      </Dialog>
+      <div
+        style={{
+          width: '100%'
+        }}
+      >
+        <Button
+          variant="contained"
+          style={{
+            backgroundColor: '#ffffff',
+            width: '100%',
+            textAlign: 'center',
+            color: '#f43c3c',
+            height: '46px',
+            position: 'absolute',
+            bottom: 0,
+            borderRadius: 'unset'
+          }}
+          onClick={this.handleClickOpen}
+        >
+          Logout
           </Button>
-        </div>
-        {/*Tooltip*/}
       </div>
+        {/*Tooltip*/ }
+      </div >
     );
   }
 }

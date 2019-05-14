@@ -1,24 +1,25 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
-import Navbar from "../../../components/Navbar";
-import Loadable from "react-loadable";
-import Loader from "../../../components/Loaders/component/Loader";
+// import { Route, Switch } from "react-router-dom";
+// import Navbar from "../../../components/Navbar";
+// import Loadable from "react-loadable";
+// import Loader from "../../../components/Loaders/component/Loader";
+import ComingSoon from '../Dashboard/ComingSoon.jsx'
 
-const HomeContainer = Loadable({
-  loader: () => import("../Dashboard/Home/HomeContainer"),
-  loading: Loader
-});
+// const HomeContainer = Loadable({
+//   loader: () => import("../Dashboard/Home/HomeContainer"),
+//   loading: Loader
+// });
 
 export default class WebRoute extends Component {
-  state = {
-    selectedTab: "home"
-  };
+  // state = {
+  //   selectedTab: "home"
+  // };
 
   render() {
-    const { isAuthenticated } = this.props;
+    // const { isAuthenticated } = this.props;
     return (
       <div>
-        <Route
+        {/* <Route
           render={({ location }) => (
             <Switch location={location}>
               <Navbar>
@@ -32,16 +33,17 @@ export default class WebRoute extends Component {
                     />
                   )}
                 />
-                {/* <Route
+                <Route
                 path="/account"
                 render={props => (
                   <Account {...props} isAuthenticated={isAuthenticated} />
                 )}
-              /> */}
+              />
               </Navbar>
             </Switch>
           )}
-        />
+        /> */}
+        <ComingSoon />
       </div>
     );
   }

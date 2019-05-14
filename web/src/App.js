@@ -22,8 +22,7 @@ class App extends Component {
     if (isMobile) {
       return <MobileRoute isAuthenticated={isAuthenticated} />;
     }
-
-    return <WebRoute isAuthenticated={isAuthenticated} />;
+    return <WebRoute /*isAuthenticated={isAuthenticated}*/ />;
   }
 }
 

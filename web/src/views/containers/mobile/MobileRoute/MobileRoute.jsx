@@ -44,11 +44,6 @@ const Signup = Loadable({
   loading: Loader
 });
 
-const ForgotPassword = Loadable({
-  loader: () => import('../Dashboard/ForgotPassword/ForgotPassword'),
-  loading: Loader
-});
-
 export default class MobileRoute extends Component {
   state = {
     selectedTab: 'home'
@@ -90,7 +85,6 @@ export default class MobileRoute extends Component {
               <Route path="/editorder/:id" component={EditOrder} />
               <Route path="/login" component={Login} />
               <Route path="/sign_up" component={Signup} />
-              <Route path="/forgot_password" component={ForgotPassword} />
             </Switch>
           )}
         />
