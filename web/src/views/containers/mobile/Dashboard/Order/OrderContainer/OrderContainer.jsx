@@ -75,13 +75,13 @@ class OrderContainer extends React.Component {
     const { orders } = this.props;
     this.getSafe(() => orders, 'nothing');
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-    console.log(localStorage.getItem('email'));
+    console.log(localStorage.getItem('accessToken'));
   }
 
   render() {
     const { theme, classes } = this.props;
     const { orders } = this.state;
-    if (!localStorage.getItem('email')) {
+    if (!localStorage.getItem('accessToken')) {
       return (
         <div style={{ textAlign: 'center' }}>
           <FixedNavbar pageName="Order" />

@@ -72,7 +72,7 @@ class MenuAppBar extends React.Component {
     const { auth, anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
-    if (localStorage.getItem('email')) {
+    if (localStorage.getItem('accessToken')) {
       return (
         <div className={classes.root}>
           <AppBar position="static" style={{ backgroundColor: '#fecb00ff' }}>

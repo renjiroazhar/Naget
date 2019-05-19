@@ -12,9 +12,9 @@ export default class AuthProvider extends Component {
 
   authListener = () => {
     if (this.state.isMounted) {
-      if (localStorage.getItem('email')) {
+      if (localStorage.getItem('accessToken')) {
         this.setState({
-          isAuthenticated: 'root'
+          isAuthenticated: true
         });
       } else {
         this.setState({

@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Facebook from '../images/facebook.png';
-import Twitter from '../images/twitter.png';
 import Whatsapp from '../images/whatsapp.png';
 import Gmail from '../images/gmail.png';
 
@@ -13,7 +11,8 @@ const styles = theme => ({
 	paper: {
 		height: 50,
 		width: 50,
-		borderRadius: 7
+		borderRadius: 7,
+		margin: '0px 10px 0px 10px'
 	},
 	control: {
 		padding: theme.spacing.unit * 2
@@ -37,16 +36,14 @@ class Socmed extends React.Component {
 			<div
 				style={{
 					overflow: 'hidden',
-					display: 'flex',
-					justifyContent: 'space-between',
 					margin: 0,
 					padding: 20
 				}}
 			>
-				<img src={Facebook} alt="" className={classes.paper} />
-				<img src={Twitter} alt="" className={classes.paper} />
-				<img src={Whatsapp} alt="" className={classes.paper} />
-				<img src={Gmail} alt="" className={classes.paper} />
+				<center>
+					<img src={Whatsapp} alt="" className={classes.paper} />
+					<img src={Gmail} alt="" className={classes.paper} />
+				</center>
 			</div>
 		);
 	}

@@ -14,14 +14,12 @@ import LoginContainer from '../Login';
 class Account extends React.Component {
   state = {
     open: false,
-    currentPassword: '',
-    newPassword: '',
     isOpen: false
   };
 
   logout = () => {
-    this.props.signOut();
-    this.props.history.push('/');
+    localStorage.clear()
+    this.props.history.push('/account');
   };
 
   handleClickOpen = () => {
@@ -33,7 +31,7 @@ class Account extends React.Component {
   };
 
   render() {
-    if (!localStorage.getItem('email')) {
+    if (!localStorage.getItem('userId')) {
       return (
         <div style={{ textAlign: 'center' }}>
           <FixedNavbar pageName="Account" />
@@ -51,63 +49,63 @@ class Account extends React.Component {
         }}
       >
         <FixedNavbar pageName="Account" />
-        <div style={{ marginTop: '57px' }}>
+        <div style={{ marginTop: '57px', marginBottom: '15px' }}>
           <EditProfil />
         </div>
         <Divider />
         <div>
           <About />
         </div>
-      <Dialog
-        open={this.state.open}
-        onClose={this.handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {'You sure want to leave?'}
-        </DialogTitle>
-        <DialogActions>
-          <Button
-            varian="contained"
-            onClick={this.handleClose}
-            color="primary"
-          >
-            No
-            </Button>
-          <Button
-            varian="contained"
-            onClick={this.logout}
-            color="primary"
-            autoFocus
-          >
-            Yes
-            </Button>
-        </DialogActions>
-      </Dialog>
-      <div
-        style={{
-          width: '100%'
-        }}
-      >
-        <Button
-          variant="contained"
-          style={{
-            backgroundColor: '#ffffff',
-            width: '100%',
-            textAlign: 'center',
-            color: '#f43c3c',
-            height: '46px',
-            position: 'absolute',
-            bottom: 0,
-            borderRadius: 'unset'
-          }}
-          onClick={this.handleClickOpen}
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
         >
-          Logout
+          <DialogTitle id="alert-dialog-title">
+            {'You sure want to leave?'}
+          </DialogTitle>
+          <DialogActions>
+            <Button
+              varian="contained"
+              onClick={this.handleClose}
+              color="primary"
+            >
+              No
+            </Button>
+            <Button
+              varian="contained"
+              onClick={this.logout}
+              color="primary"
+              autoFocus
+            >
+              Yes
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <div
+          style={{
+            width: '100%'
+          }}
+        >
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: '#ffffff',
+              width: '100%',
+              textAlign: 'center',
+              color: '#f43c3c',
+              height: '46px',
+              position: 'absolute',
+              bottom: 0,
+              borderRadius: 'unset'
+            }}
+            onClick={this.handleClickOpen}
+          >
+            Logout
           </Button>
-      </div>
-        {/*Tooltip*/ }
+        </div>
+        {/*Tooltip*/}
       </div >
     );
   }

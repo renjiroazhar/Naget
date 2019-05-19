@@ -123,7 +123,7 @@ class Tentang extends React.Component {
 						</div>
 
 						{/* Second Card */}
-						<div style={{ marginTop: '58px' }}>
+						<div style={{ marginTop: '45px' }}>
 							<center>
 								<div
 									className={classes.demo}
@@ -131,7 +131,7 @@ class Tentang extends React.Component {
 								>
 									<List>
 										<ListItem>
-											<ListItemText primary="Rate GMB" />
+											<ListItemText primary="History" />
 											<ListItemSecondaryAction>
 												<IconButton aria-label="Add">
 													<Add style={{ fontSize: '40px', color: '#fecb00ff' }} />
@@ -151,7 +151,7 @@ class Tentang extends React.Component {
 								>
 									<List>
 										<ListItem>
-											<ListItemText primary="Rate GMB" />
+											<ListItemText primary="Location" />
 											<ListItemSecondaryAction>
 												<IconButton aria-label="Add">
 													<Add style={{ fontSize: '40px', color: '#fecb00ff' }} />
@@ -171,8 +171,7 @@ class Tentang extends React.Component {
 										fontSize: '#353740'
 									}}
 								>
-									Moretrash is a service that helps sales of recyclable garbage
-									and household garbage (trash management platform on line)
+									Naget is a platform to buy kind of Banana Nugget
 								</p>
 								<br />
 								<br />

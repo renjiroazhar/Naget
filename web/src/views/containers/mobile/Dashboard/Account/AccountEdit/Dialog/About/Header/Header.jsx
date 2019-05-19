@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Logomoretrash from '../images/logotextsvg.svg';
+import LogoNaget from '../images/logonaget8.png';
 
 const styles = {
 	root: {
@@ -20,32 +20,34 @@ class Header extends Component {
 		const { classes } = this.props;
 		return (
 			<div>
-				<div className={classes.root}>
-					<AppBar
-						position="static"
-						color="default"
-						style={{ backgroundColor: '#fecb00ff', paddingBottom: '13px' }}
-					>
-						<Toolbar>
-							<div>
-								<img
-									src={Logomoretrash}
-									srcSet={Logomoretrash}
-									width="245"
-									height="61"
-									alt="Moretrash Logo"
-									retina_logo_url=""
-									className="fusion-standard-logo"
-									style={{
-										display: 'block',
-										margin: '0 auto',
-										marginTop: '11px'
-									}}
-								/>
-							</div>
-						</Toolbar>
-					</AppBar>
-				</div>
+				<center>
+					<div className={classes.root}>
+						<AppBar
+							position="static"
+							color="default"
+							style={{ backgroundColor: '#fecb00ff', paddingBottom: '13px' }}
+						>
+							<Toolbar>
+								<div>
+									<img
+										src={LogoNaget}
+										srcSet={LogoNaget}
+										width="245"
+										height="61"
+										alt="Naget Logo"
+										retina_logo_url=""
+										className="fusion-standard-logo"
+										style={{
+											display: 'block',
+											margin: '0 auto',
+											marginTop: '11px'
+										}}
+									/>
+								</div>
+							</Toolbar>
+						</AppBar>
+					</div>
+				</center>
 			</div>
 		);
 	}

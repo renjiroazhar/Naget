@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -17,8 +18,6 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 
 import FormControl from '@material-ui/core/FormControl';
-import { connect } from 'react-redux';
-import { editProfile } from '../../../../../../../../redux/actions/profileActions';
 
 const styles = theme => ({
 	appBar: {
@@ -76,8 +75,8 @@ function Transition(props) {
 class EditProfil extends React.Component {
 	state = {
 		open: false,
-		name: '',
-		email : '',
+		username: '',
+		email: '',
 		address: '',
 		phone: ''
 	};
@@ -102,28 +101,34 @@ class EditProfil extends React.Component {
 	};
 
 	handleSave = () => {
-		localStorage.setItem('name', this.state.name);
-		localStorage.setItem('address', this.state.address);
-		localStorage.setItem('phone', this.state.phone);
+		let userId = localStorage.getItem('userId');
+		const { email, username, phone, address } = this.state;
+		axios.patch(`https://mysqlnaget.herokuapp.com/api/Users/${userId}`, {
+			username,
+			email,
+			phone,
+			address
+		})
 		this.handleClose();
 	};
 
 	getData() {
-		let email = localStorage.getItem('email')
-		let name = localStorage.getItem('name')
-		let address = localStorage.getItem('address')
-		let phone = localStorage.getItem('phone') 
-		if(email && name && address && phone){
-			this.setState({
-				name : name,
-				email : email,
-				address : address,
-				phone : phone,
-			})
-		} else {
-			this.setState({open : true})
-		}
+		let userId = localStorage.getItem('userId');
+		axios.get(`https://mysqlnaget.herokuapp.com/api/Users/${userId}`)
+			.then(res => {
+				console.log(res)
+				this.setState({
+					email: res.data.email,
+					username: res.data.username,
+					address: res.data.address,
+					phone: res.data.phone,
+					dataUser: res.data
+				});
+			}) // else {
+		// 	this.setState({ open: true })
+		// };
 	}
+
 
 	componentDidMount() {
 		this.getData();
@@ -141,10 +146,13 @@ class EditProfil extends React.Component {
 					<ListItem button onClick={this.handleClickOpen}>
 						<ListItemText
 							style={{ float: 'left' }}
-							primary={
-								localStorage.getItem('name')? localStorage.getItem('name') : null 
-							}
-							secondary={localStorage.getItem('email')? localStorage.getItem('email') : null}
+							primary={this.state.username ? this.state.username : null}
+							secondary={
+								<div>
+									<p>{this.state.email ? this.state.email : null}</p>
+									<p>{this.state.address ? this.state.address : null}</p>
+									<p>{this.state.phone ? this.state.phone : null}</p>
+								</div>}
 						/>
 						<ListItemSecondaryAction>
 							<p
@@ -209,14 +217,33 @@ class EditProfil extends React.Component {
 									underline: classes.cssUnderline
 								}}
 								onKeyPress={this.handleKeyPress}
-								id="name"
+								id="username"
 								type="text"
 								onChange={this.handleChange}
-								value={this.state.name}
 							/>
 						</FormControl>
 						<br />
 						<br />
+						<FormControl style={{ width: '90%' }}>
+							<InputLabel
+								htmlFor="custom-css-input"
+								FormLabelClasses={{
+									root: classes.cssLabel,
+									focused: classes.cssFocused
+								}}
+							>
+								Email
+							</InputLabel>
+							<Input
+								classes={{
+									underline: classes.cssUnderline
+								}}
+								onKeyPress={this.handleKeyPress}
+								id="email"
+								type="text"
+								onChange={this.handleChange}
+							/>
+						</FormControl>
 						<FormControl style={{ width: '90%' }}>
 							<InputLabel
 								htmlFor="custom-css-input"
@@ -235,7 +262,6 @@ class EditProfil extends React.Component {
 								id="address"
 								type="text"
 								onChange={this.handleChange}
-								value={this.state.address}
 							/>
 						</FormControl>
 						<FormControl style={{ width: '90%' }}>
@@ -256,7 +282,6 @@ class EditProfil extends React.Component {
 								id="phone"
 								type="text"
 								onChange={this.handleChange}
-								value={this.state.phone}
 							/>
 						</FormControl>
 						<br />
@@ -272,24 +297,4 @@ EditProfil.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => {
-	const id = state.firebase.auth.uid;
-	const users = state.firestore.data.users;
-	const user = users ? users[id] : null;
-	return {
-		auth: state.firebase.auth,
-		profile: state.firebase.profile,
-		userdata: user
-	};
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		editProfile: (userdata, id) => dispatch(editProfile(userdata, id))
-	};
-};
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(withStyles(styles)(EditProfil));
+export default (withStyles(styles)(EditProfil));

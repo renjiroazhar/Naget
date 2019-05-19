@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style/style.css';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { signIn } from '../../../../../redux/actions/authActions';
 import { Redirect, Link } from 'react-router-dom';
@@ -10,12 +10,12 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Paper from '@material-ui/core/Paper';
+import './style/style.css';
 
 class Loginpage extends Component {
   state = {
     email: '',
     password: '',
-    showPassword: false
   };
 
   handleChange = e => {
@@ -32,14 +32,27 @@ class Loginpage extends Component {
 
   login = () => {
     const { email, password } = this.state;
-    if (email === 'renjiroazhar@gmail.com' && password === 'admin') {
-      localStorage.setItem('email', email);
-      localStorage.setItem('name', 'admin');
-    }
-  };
-
-  handleClickShowPassword = () => {
-    this.setState(state => ({ showPassword: !state.showPassword }));
+    axios.post('https://mysqlnaget.herokuapp.com/api/Users/login', {
+      email,
+      password
+    })
+      .then((res) => {
+        const { id, userId } = res.data
+        console.log(res.data)
+        localStorage.setItem('accessToken', id)
+        localStorage.setItem('userId', userId)
+        this.setState({
+          email: "",
+          password: ""
+        });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        this.setState({
+          errorSignup: true,
+          errorMessage: err.message
+        });
+      });
   };
 
   render() {

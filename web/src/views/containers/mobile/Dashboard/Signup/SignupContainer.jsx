@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import { Link, Redirect, withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import "./style/style.css";
+import axios from 'axios';
 import Button from "@material-ui/core/Button";
-import firebase from "firebase/app";
-import "@firebase/firestore";
 import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import FixedNavbar from "../../../../components/FixedNavbar";
 import PropTypes from "prop-types";
 import Paper from "@material-ui/core/Paper";
+import "./style/style.css";
 
 class Signuppage extends Component {
   state = {
-    name: "",
+    username: "",
     phone: "",
     address: "",
     email: "",
@@ -22,7 +21,6 @@ class Signuppage extends Component {
     passwordConfirmation: "",
     errorSignup: null,
     errorMessage: "",
-    showPassword: false
   };
 
   handleChange = e => {
@@ -36,26 +34,24 @@ class Signuppage extends Component {
   };
 
   signUp = () => {
-    const { name, phone, address, email, password } = this.state;
-    const firestore = firebase.firestore();
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(resp => {
-        return firestore
-          .collection("users")
-          .doc(resp.user.uid)
-          .set({
-            name: name,
-            phone: phone,
-            address: address
-          });
-      })
-      .then(() => {
+    const {  email, username, address, phone, password } = this.state;
+    axios.post('https://mysqlnaget.herokuapp.com/api/Users', {
+      phone,
+      address,
+      username,
+      email,
+      password,
+      emailVerified: true
+    })
+      .then((res) => {
         this.setState({
-          errorSignup: null
+          phone: "",
+          address: "",
+          username: "",
+          email: "",
+          password: ""
         });
-        this.props.history.push("/");
+        this.props.history.push("/account");
       })
       .catch(err => {
         this.setState({
@@ -63,10 +59,6 @@ class Signuppage extends Component {
           errorMessage: err.message
         });
       });
-  };
-
-  handleClickShowPassword = () => {
-    this.setState(state => ({ showPassword: !state.showPassword }));
   };
 
   componentWillUpdate() {
@@ -117,7 +109,7 @@ class Signuppage extends Component {
                     classes={{
                       underline: classes.cssUnderline
                     }}
-                    id="name"
+                    id="username"
                     type="text"
                     onChange={this.handleChange}
                     value={this.state.name}
