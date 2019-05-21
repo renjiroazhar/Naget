@@ -71,7 +71,7 @@ export const createOrder = (order, picture) => {
 		const userId = getState().firebase.auth.uid;
 		const lokasi = {
 			alamat: order.address,
-			catatan: order.catatan,
+			description: order.description,
 			latLng: 123131
 		};
 		const logs = {
@@ -115,7 +115,7 @@ export const createOrderWithoutLogin = (order, picture) => {
 
 		const lokasi = {
 			alamat: order.address,
-			catatan: order.catatan,
+			description: order.description,
 			latLng: 123131
 		};
 		const logs = {

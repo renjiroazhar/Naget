@@ -1,6 +1,6 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { isLoaded, isEmpty } from 'react-redux-firebase';
+import {  isEmpty } from 'react-redux-firebase';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -17,6 +17,7 @@ import FixedNavbar from '../../../../../components/FixedNavbar';
 import Toolbar from '@material-ui/core/Toolbar';
 import './style/style.css';
 import LoginContainer from '../../Login';
+import axios from 'axios';
 
 const styles = theme => ({
   root: {
@@ -48,7 +49,8 @@ TabContainer.propTypes = {
 class OrderContainer extends React.Component {
   state = {
     value: 0,
-    orders: []
+    orders: [],
+    isLoading: false
   };
 
   handleChange = (event, value) => {
@@ -71,16 +73,26 @@ class OrderContainer extends React.Component {
     this.props.history.push('/');
   };
 
-  componentDidMount() {
-    const { orders } = this.props;
-    this.getSafe(() => orders, 'nothing');
-    window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
-    console.log(localStorage.getItem('accessToken'));
+  async componentDidMount() {
+    this.setState({
+      isLoading: true
+    })
+    const userId = localStorage.getItem('userId');
+    const response = await axios.get(`https://mysqlnaget.herokuapp.com/api/Orders?filter={"where":{"usersId":"${userId}"}}`)
+    try {
+      this.setState({
+        orders: response.data,
+        isLoading: false
+      })
+    } catch (error) {
+      alert(error)
+      throw new Error(error)
+    }
   }
 
   render() {
     const { theme, classes } = this.props;
-    const { orders } = this.state;
+    const { orders , isLoading} = this.state;
     if (!localStorage.getItem('accessToken')) {
       return (
         <div style={{ textAlign: 'center' }}>
@@ -89,7 +101,7 @@ class OrderContainer extends React.Component {
         </div>
       );
     }
-    if (!isLoaded(orders)) {
+    if (isLoading) {
       return (
         <div
           style={{

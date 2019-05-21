@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Dialog from '@material-ui/core/Dialog';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
@@ -78,7 +79,8 @@ class EditProfil extends React.Component {
 		username: '',
 		email: '',
 		address: '',
-		phone: ''
+		phone: '',
+		loading: true,
 	};
 
 	handleClickOpen = () => {
@@ -116,17 +118,20 @@ class EditProfil extends React.Component {
 		let userId = localStorage.getItem('userId');
 		axios.get(`https://mysqlnaget.herokuapp.com/api/Users/${userId}`)
 			.then(res => {
-				console.log(res)
-				this.setState({
-					email: res.data.email,
-					username: res.data.username,
-					address: res.data.address,
-					phone: res.data.phone,
-					dataUser: res.data
-				});
-			}) // else {
-		// 	this.setState({ open: true })
-		// };
+				if (res.data) {
+					this.setState({
+						email: res.data.email,
+						username: res.data.username,
+						address: res.data.address,
+						phone: res.data.phone,
+						dataUser: res.data,
+						loading: false
+					});
+				} else {
+					this.setState({ open: true })
+
+				}
+			})
 	}
 
 
@@ -143,32 +148,35 @@ class EditProfil extends React.Component {
 					className={classes.list}
 					onClick={this.handleClickOpen}
 				>
-					<ListItem button onClick={this.handleClickOpen}>
-						<ListItemText
-							style={{ float: 'left' }}
-							primary={this.state.username ? this.state.username : null}
-							secondary={
-								<div>
-									<p>{this.state.email ? this.state.email : null}</p>
-									<p>{this.state.address ? this.state.address : null}</p>
-									<p>{this.state.phone ? this.state.phone : null}</p>
-								</div>}
-						/>
-						<ListItemSecondaryAction>
-							<p
-								style={{
-									margin: '20px',
-									cursor: 'pointer',
-									fontWeight: 'bold',
-									color: '#1f1f21'
-								}}
-								className={classes.editText}
-								onClick={this.handleClickOpen}
-							>
-								Edit
-							</p>
-						</ListItemSecondaryAction>
-					</ListItem>
+					{this.state.loading ? (<ListItem style={{ justifyContent: "center" }}>    <CircularProgress /></ListItem>) : (
+						<ListItem button onClick={this.handleClickOpen}>
+							<ListItemText
+								style={{ float: 'left' }}
+								primary={this.state.username ? this.state.username : null}
+								secondary={
+									<div>
+										<p>{this.state.email ? this.state.email : null}</p>
+										<p>{this.state.address ? this.state.address : null}</p>
+										<p>{this.state.phone ? this.state.phone : null}</p>
+									</div>}
+							/>
+							<ListItemSecondaryAction>
+								<p
+									style={{
+										margin: '20px',
+										cursor: 'pointer',
+										fontWeight: 'bold',
+										color: '#1f1f21'
+									}}
+									className={classes.editText}
+									onClick={this.handleClickOpen}
+								>
+									Edit
+												</p>
+							</ListItemSecondaryAction>
+						</ListItem>
+
+					)}
 				</List>
 				<Dialog
 					fullScreen

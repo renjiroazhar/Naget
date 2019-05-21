@@ -29,11 +29,6 @@ const OrderDetail = Loadable({
   loading: Loader
 });
 
-const EditOrder = Loadable({
-  loader: () => import('../Dashboard/Order/EditOrder'),
-  loading: Loader
-});
-
 const Login = Loadable({
   loader: () => import('../Dashboard/Login/LoginContainer'),
   loading: Loader
@@ -82,7 +77,6 @@ export default class MobileRoute extends Component {
               />
               <Route path="/form_login" component={MainStep} />
               <Route path="/orderdetail/:id" component={OrderDetail} />
-              <Route path="/editorder/:id" component={EditOrder} />
               <Route path="/login" component={Login} />
               <Route path="/sign_up" component={Signup} />
             </Switch>

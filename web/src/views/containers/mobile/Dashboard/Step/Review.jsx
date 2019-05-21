@@ -2,15 +2,12 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import Viewer from 'react-viewer';
 import 'react-viewer/dist/index.css';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { format } from 'date-fns/esm';
-import moment from 'moment';
 import 'moment/locale/id';
 
 const styles = theme => ({
@@ -53,147 +50,34 @@ class Review extends React.Component {
 		e.preventDefault();
 
 		await this.props.nextStep();
-	}
+	};
 
-	viewImage = () => {
-		this.setState({
-			visible: true
-		});
-	};
-	cancelViewImage = () => {
-		this.setState({
-			visible: false
-		});
-	};
 	back = () => {
 		this.props.previousStep();
-	};
-
-	uploadingImage = () => {
-		this.props.isLoading();
-		this.handleClose();
-		this.props.handleUpload();
 	};
 
 	render() {
 		const { classes } = this.props;
 		const {
 			values: {
-				name,
+				username,
 				phone,
 				email,
 				address,
-
-				selectedDate,
-				previewGeneralPhotos,
-
-				catatan,
-
-				downloadURLs,
-				loading
+				variant,
+				count,
+				description
 			}
 		} = this.props;
-
-		// const uploadImage = () => {
-		// 	if (previewGeneralPhotos.length === 0 && downloadURLs.length === 0) {
-		// 		return null;
-		// 	}
-		// 	if (!allowSend) {
-		// 		return (
-		// 			<div style={{ textAlign: 'center' }}>
-		// 				<Button varian="contained"
-		// 					style={{
-		// 						backgroundColor: '#fecb00ff',
-		// 						color: 'white',
-		// 						height: '40px',
-		// 						marginBottom: '25px'
-		// 					}}
-		// 					onClick={this.handleClickOpen}
-		// 				>
-		// 					Kirim Gambar
-		// 				</Button>
-		// 			</div>
-		// 		);
-		// 	} else {
-		// 		return (
-		// 			<div style={{ textAlign: 'center' }}>
-		// 				<p>Berhasil Mengupload Gambar</p>
-		// 			</div>
-		// 		);
-		// 	}
-		// };
-
-		const buttonSubmit = () => {
-			if (previewGeneralPhotos.length === 0 && downloadURLs.length === 0) {
-				return (
-					<div
-						style={{
-							textAlign: 'center',
-
-							width: '100%'
-						}}
-					>
-						<Button varian="contained"
-							variant="contained"
-							color="primary"
-							onClick={this.props.handleCreateOrder}
-							style={{
-								width: '100%',
-								backgroundColor: '#fecb00ff',
-								color: 'white',
-								height: '46px'
-							}}
-						>
-							Order
-						</Button>
-					</div>
-				);
-			} else {
-				return (
-					<div
-						style={{
-							textAlign: 'center',
-
-							width: '100%'
-						}}
-					>
-						<Button varian="contained"
-							variant="contained"
-							color="primary"
-							style={{
-								width: '100%',
-								backgroundColor: '#fecb00ff',
-								color: 'white',
-								height: '46px'
-							}}
-							onClick={this.props.handleUpload}
-						>
-							Order
-						</Button>
-					</div>
-				);
-			}
-		};
-
-		if (loading) {
-			return (
-				<div
-					style={{
-						textAlign: 'center',
-						justifyContent: 'center',
-						height: '100%',
-						position: 'relative',
-						top: 'calc(50% - 10px)'
-					}}
-				>
-					<br />
-					Uploading Photo...
-				</div>
-			);
-		}
+		let productPrice =
+			variant === "Original Banana Nugget" ? 15000 :
+				variant === "Chocolate Banana Nugget" ? 16000 :
+					variant === "Cheese Banana Nugget" ? 17000 :
+						variant === "Special Banana Nugget" ? 18000 : 0
+		let totalPrice = productPrice * count;
+		console.log(totalPrice)
 
 		return (
-			console.log(selectedDate),
 			(
 				<React.Fragment>
 					<Typography variant="title" gutterBottom>
@@ -208,7 +92,7 @@ class Review extends React.Component {
 								/>
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
-								<ListItemText style={{ float: 'left' }} primary={name} />
+								<ListItemText style={{ float: 'left' }} primary={username} />
 							</ListItem>
 						</List>
 						<List className={classes.list} onClick={this.handleClickOpen}>
@@ -240,91 +124,27 @@ class Review extends React.Component {
 						</List>
 						<List className={classes.list} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
-								<ListItemText
-									style={{ float: 'left' }}
-									secondary="Pickup Date"
-								/>
+								<ListItemText style={{ float: 'left' }} secondary="Price" />
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
-								<ListItemText
-									style={{ float: 'left' }}
-									primary={`${moment(selectedDate)
-										.lang('id')
-										.format('LL')}`}
-								/>
+								<ListItemText style={{ float: 'left' }} primary={productPrice} />
 							</ListItem>
 						</List>
 						<List className={classes.list} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
-								<ListItemText
-									style={{ float: 'left' }}
-									secondary="Pickup Time"
-								/>
+								<ListItemText style={{ float: 'left' }} secondary="Total" />
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
-								<ListItemText
-									style={{ float: 'left' }}
-									primary={`${format(selectedDate, 'HH:mm')}`}
-								/>
+								<ListItemText style={{ float: 'left' }} primary={totalPrice} />
 							</ListItem>
 						</List>
-
 						<List className={classes.list} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
 								<ListItemText style={{ float: 'left' }} secondary="Driver Note" />
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
-								<ListItemText style={{ float: 'left' }} primary={catatan} />
+								<ListItemText style={{ float: 'left' }} primary={description} />
 							</ListItem>
-						</List>
-						<List className={classes.list} onClick={this.handleClickOpen}>
-							<ListItem button onClick={this.handleClickOpen}>
-								<ListItemText
-									style={{ float: 'left' }}
-									secondary="Garbage Photos"
-								/>
-							</ListItem>
-
-							{previewGeneralPhotos.length > 0 ? (
-								<div>
-									<div>
-										{previewGeneralPhotos &&
-											previewGeneralPhotos.map((file, i) => (
-												<div style={{ textAlign: 'center' }}>
-													<Grid container spacing={24}>
-														<Grid item xs={12} align="center">
-															{' '}
-															<img
-																onClick={this.viewImage}
-																src={URL.createObjectURL(file)}
-																alt="preview failed"
-																key={file.base64}
-																height="175"
-																style={{
-																	width: '100%',
-																	marginTop: '20px',
-
-																	objectFit: 'contain'
-																}}
-															/>
-														</Grid>
-													</Grid>
-
-													<Viewer
-														visible={this.state.visible}
-														onClose={this.cancelViewImage}
-														images={[
-															{
-																src: URL.createObjectURL(file),
-																alt: ''
-															}
-														]}
-													/>
-												</div>
-											))}
-									</div>
-								</div>
-							) : null}
 						</List>
 					</List>
 
@@ -332,7 +152,27 @@ class Review extends React.Component {
 
 					<div style={{ marginTop: '10%', }}>
 						<Grid item xs={12}>
-							{buttonSubmit()}
+							<div
+								style={{
+									textAlign: 'center',
+
+									width: '100%'
+								}}
+							>
+								<Button varian="contained"
+									variant="contained"
+									color="primary"
+									onClick={this.props.handleCreateOrder}
+									style={{
+										width: '100%',
+										backgroundColor: '#fecb00ff',
+										color: 'white',
+										height: '46px'
+									}}
+								>
+									Order
+						</Button>
+							</div>
 						</Grid>
 					</div>
 				</React.Fragment>

@@ -1,15 +1,15 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { connect } from 'react-redux';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import NewsPaper from './images/pexels-photo-167538.jpeg';
+import MixPaper from './images/book-address-book-learning-learn-159751.jpeg';
+import BoxPaper from './images/chuttersnap-496714-unsplash.jpg';
+import Hvs from './images/pexels-photo-209137.jpeg';
 
 const styles = theme => ({
 	root: {
@@ -40,238 +40,130 @@ const styles = theme => ({
 	rightIcon: {
 		marginLeft: theme.spacing.unit
 	},
-	formControl: {
-		width: '100%'
+	card: {
+		display: 'flex',
+		height: '100px',
+		marginBottom: '15px'
+	},
+	details: {
+		display: 'flex',
+		flexDirection: 'column'
+	},
+	content: {
+		flex: '1 0 auto'
+	},
+	cover: {
+		width: '91px',
+		height: '91px'
+	},
+	controls: {
+		display: 'flex',
+		alignItems: 'center',
+		paddingLeft: theme.spacing.unit
+	},
+	playIcon: {
+		height: 38,
+		width: 38
+	},
+	p: {
+		fontSize: '11px'
 	}
 });
 
 class FirstStep extends React.Component {
 	state = {
-		name: '',
-		phone: '',
-		address: '',
-		area: '',
-		open: false,
-		openTwo: false
-	};
-
-	handleChange = e => {
-		this.setState({
-			[e.target.id]: e.target.value
-		});
-	};
-
-	handleClose = () => {
-		this.setState({
-			open: false
-		});
-	};
-
-	handleOpen = () => {
-		this.setState({
-			open: true
-		});
-	};
-
-	handleCloseTwo = () => {
-		this.setState({
-			openTwo: false
-		});
-	};
-
-	handleOpenTwo = () => {
-		this.setState({
-			openTwo: true
-		});
+		secondary: false
 	};
 
 	handleSubmit = e => {
 		e.preventDefault();
+		console.log(this.state);
 		this.props.nextStep();
-		console.log('FIRST');
+	};
+	handleBack = () => {
+		this.props.previousStep();
 	};
 
 	render() {
 		const { classes } = this.props;
-		const { values, handleChange } = this.props;
 		return (
 			<React.Fragment>
-				<Grid container spacing={24}>
+				<Grid className={classes.p} spacing={24}>
+					<h2>Trash Categories</h2>
 					<Grid item xs={12}>
-						<FormControl className={classes.formControl}>
-							<TextField
-								required
-								label="Name"
-								fullWidth
-								autoComplete="fname"
-								onChange={handleChange('name')}
-								value={values.name}
-								disabled
+						<Card className={classes.card}>
+							<CardMedia
+								className={classes.cover}
+								image={NewsPaper}
+								title="Newspaper"
 							/>
-							{values.errorAll ? (
-								<FormHelperText style={{ color: 'red' }}>
-									Required
-								</FormHelperText>
-							) : values.errorsName ? (
-								<FormHelperText style={{ color: 'red' }}>
-									Required
-								</FormHelperText>
-							) : null}
-						</FormControl>
+							<div className={classes.details}>
+								<CardContent className={classes.content}>
+									<b>
+										<p>Newspaper</p>
+									</b>
+									<p>Rp. 1000/kg</p>
+								</CardContent>
+							</div>
+						</Card>
 					</Grid>
 					<Grid item xs={12}>
-						<FormControl className={classes.formControl}>
-							<TextField
-								required
-								type="email"
-								label="Email"
-								fullWidth
-								autoComplete="fname"
-								onChange={handleChange('email')}
-								value={values.email}
-								disabled
+						<Card className={classes.card}>
+							<CardMedia
+								className={classes.cover}
+								image={MixPaper}
+								title="Mix Paper"
 							/>
-							{values.errorAll ? (
-								<FormHelperText style={{ color: 'red' }}>
-									Required
-								</FormHelperText>
-							) : values.errorsEmail ? (
-								<FormHelperText style={{ color: 'red' }}>
-									Required
-								</FormHelperText>
-							) : values.errorsTitikEmail ? (
-								<FormHelperText style={{ color: 'red' }}>
-									Email must have at least 1 dot
-								</FormHelperText>
-							) : values.errorsAtEmail ? (
-								<FormHelperText style={{ color: 'red' }}>
-									Email must have @gmail
-								</FormHelperText>
-							) : null}
-						</FormControl>
+							<div className={classes.details}>
+								<CardContent className={classes.content}>
+									<b>
+										<p>Mix Paper</p>
+									</b>
+									<p>Rp. 300/kg</p>
+								</CardContent>
+							</div>
+						</Card>
 					</Grid>
 					<Grid item xs={12}>
-						<FormControl className={classes.formControl}>
-							<TextField
-								required
-								type="number"
-								label="WhatsApp Number"
-								fullWidth
-								autoComplete="fname"
-								onChange={handleChange('phone')}
-								value={values.phone}
-								disabled
+						<Card className={classes.card}>
+							<CardMedia
+								className={classes.cover}
+								image={BoxPaper}
+								title="Box Paper"
 							/>
-							{values.errorAll ? (
-								<FormHelperText style={{ color: 'red' }}>
-									Required
-								</FormHelperText>
-							) : values.errorsPhone ? (
-								<FormHelperText style={{ color: 'red' }}>
-									Required
-								</FormHelperText>
-							) : null}
-						</FormControl>
+							<div className={classes.details}>
+								<CardContent className={classes.content}>
+									<b>
+										<p>Box Paper</p>
+									</b>
+									<p>Rp. 750/kg</p>
+								</CardContent>
+							</div>
+						</Card>
 					</Grid>
 					<Grid item xs={12}>
-						<FormControl className={classes.formControl}>
-							<InputLabel htmlFor="age-label-placeholder">Kecamatan</InputLabel>
-							<Select
-								open={this.state.open}
-								onClose={this.handleClose}
-								onOpen={this.handleOpen}
-								value={values.kecamatan}
-								onChange={handleChange('kecamatan')}
-								style={{ width: '100%' }}
-							>
-								<MenuItem disabled value="">
-									<em>- Pilih Kecamatan -</em>
-								</MenuItem>
-
-								<MenuItem value="Semarang Tengah">Semarang Tengah</MenuItem>
-								<MenuItem value="Semarang Utara">Semarang Utara</MenuItem>
-								<MenuItem value="Semarang Timur">Semarang Timur</MenuItem>
-								<MenuItem value="Semarang Selatan">Semarang Selatan</MenuItem>
-								<MenuItem value="Semarang Barat">Semarang Barat</MenuItem>
-								<MenuItem value="Gayamsari">Gayamsari</MenuItem>
-								<MenuItem value="Genuk">Genuk</MenuItem>
-								<MenuItem value="Candisari">Candisari</MenuItem>
-								<MenuItem value="Gajahmungkur">Gajahmungkur</MenuItem>
-								<MenuItem value="Tembalang">Tembalang</MenuItem>
-								<MenuItem value="Banyumanik">Banyumanik</MenuItem>
-								<MenuItem value="Gunungpati">Gunungpati</MenuItem>
-								<MenuItem value="Mijen">Mijen</MenuItem>
-								<MenuItem value="Ngaliyan">Ngaliyan</MenuItem>
-								<MenuItem value="Tugu">Tugu</MenuItem>
-							</Select>
-						</FormControl>
-					</Grid>
-					<Grid item xs={12}>
-						<FormControl className={classes.formControl}>
-							<InputLabel htmlFor="age-label-placeholder">Kelurahan</InputLabel>
-							<Select
-								open={this.state.openTwo}
-								onClose={this.handleCloseTwo}
-								onOpen={this.handleOpenTwo}
-								value={values.kelurahan}
-								onChange={handleChange('kelurahan')}
-								style={{ width: '100%' }}
-							>
-								<MenuItem value="" disabled>
-									<em>- Pilih Kelurahan -</em>
-								</MenuItem>
-								<MenuItem value="Gudang">Gudang</MenuItem>
-								<MenuItem value="Gudang Ikan">Gudang Ikan</MenuItem>
-								<MenuItem value="Kebersihan">Kebersihan</MenuItem>
-								<MenuItem value="Outbound">Outbound</MenuItem>
-								<MenuItem value="Pertamanan">Pertamanan</MenuItem>
-								<MenuItem value="Rekreasi">Rekreasi</MenuItem>
-								<MenuItem value="Restoran">Restoran</MenuItem>
-								<MenuItem value="Technical Support">Technical Support</MenuItem>
-								<MenuItem value="Security">Security</MenuItem>
-							</Select>
-						</FormControl>
-					</Grid>
-
-					<Grid item xs={12}>
-						<FormControl className={classes.formControl}>
-							<TextField
-								required
-								label="Address"
-								fullWidth
-								autoComplete="billing address-line1"
-								onChange={handleChange('address')}
-								value={values.address}
-								disabled
+						<Card className={classes.card}>
+							<CardMedia
+								className={classes.cover}
+								image={Hvs}
+								title="HVS Paper"
 							/>
-							{values.errorAll ? (
-								<FormHelperText style={{ color: 'red' }}>
-									Required
-								</FormHelperText>
-							) : values.errorsAddress ? (
-								<FormHelperText style={{ color: 'red' }}>
-									Required
-								</FormHelperText>
-							) : null}
-						</FormControl>
+							<div className={classes.details}>
+								<CardContent className={classes.content}>
+									<b>
+										<p>HVS Paper</p>
+									</b>
+									<p>Rp. 1000/kg</p>
+								</CardContent>
+							</div>
+						</Card>
 					</Grid>
-					<Grid item xs={12}>
-						<TextField
-							label="Driver Note (Optional)"
-							fullWidth
-							autoComplete="billing address-line1"
-							onChange={handleChange('catatan')}
-							value={values.catatan}
-						/>
-					</Grid>
-
 					<Grid item xs={12}>
 						<div
 							style={{
 								textAlign: 'center',
-								justifyContent: 'center',
-								width: '100%',
-								marginTop: '10%'
+								marginTop: '10%',
+								width: '100%'
 							}}
 						>
 							<Button
@@ -280,7 +172,12 @@ class FirstStep extends React.Component {
 								color="primary"
 								onClick={this.handleSubmit}
 								className={classes.button}
-								style={{ width: '100%' }}
+								style={{
+									width: '100%',
+									backgroundColor: '#fecb00ff',
+									color: 'white',
+									marginTop: '10%'
+								}}
 							>
 								Next
 							</Button>
@@ -296,10 +193,4 @@ FirstStep.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => {
-	return {
-		order: state.order.orders
-	};
-}
-
-export default connect(mapStateToProps)(withStyles(styles)(FirstStep));
+export default withStyles(styles)(FirstStep);

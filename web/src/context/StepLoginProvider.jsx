@@ -1,8 +1,6 @@
 import React, { Component, createContext } from "react";
-import { connect } from "react-redux";
-import { createOrderWithoutLogin } from "../redux/actions/orderActions";
 import { withRouter } from "react-router-dom";
-import { format } from "date-fns/esm";
+import axios from 'axios';
 
 export const stepLoginContext = createContext();
 const { Provider } = stepLoginContext;
@@ -10,13 +8,13 @@ const { Provider } = stepLoginContext;
 function validateName(name) {
   // we are going to store errors for all fields
   // in a signle array
-  const errorsName = [];
+  const errorsUsername = [];
 
   if (name.length === 0) {
-    errorsName.push("Nama tidak boleh kosong");
+    errorsUsername.push("Nama tidak boleh kosong");
   }
 
-  return errorsName;
+  return errorsUsername;
 }
 
 function validateEmail(email) {
@@ -76,6 +74,30 @@ function validateAddress(address) {
   return errorsAddress;
 }
 
+function validateVariant(variant) {
+  // we are going to store errors for all fields
+  // in a signle array
+  const errorsVariant = [];
+
+  if (variant.length === 0) {
+    errorsVariant.push("Alamat tidak boleh kosong");
+  }
+
+  return errorsVariant;
+}
+
+function validateCount(count) {
+  // we are going to store errors for all fields
+  // in a signle array
+  const errorsCount = [];
+
+  if (count.length === 0) {
+    errorsCount.push("Alamat tidak boleh kosong");
+  }
+
+  return errorsCount;
+}
+
 function validateEmailValid(email) {
   var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
@@ -86,7 +108,9 @@ class StepLoginProvider extends Component {
     activeStep: 0,
     database: [],
     data: [],
-    name: "",
+    variant: "",
+    count: "",
+    username: "",
     phone: "",
     email: "",
     selectedDate: null,
@@ -97,7 +121,7 @@ class StepLoginProvider extends Component {
     occupation: "",
     city: "",
     bio: "",
-    catatan: "",
+    description: "",
     address: "",
     foto: [],
     previewGeneralPhotos: [],
@@ -112,7 +136,7 @@ class StepLoginProvider extends Component {
     loading: false,
     isInvalid: false,
 
-    errorsName: false,
+    errorsUsername: false,
     errorsAddress: false,
     errorsPhone: false,
     errorsEmail: false,
@@ -121,21 +145,25 @@ class StepLoginProvider extends Component {
     errorsDate: false,
     errorAll: false,
     emailInvalid: false,
+    errorsVariant: false,
+    errorsCount: false,
 
     kelurahan: "",
     kecamatan: ""
   };
 
   handleSubmit = e => {
-    const { name, email, phone, address } = this.state;
+    const { username, email, phone, address, variant, count } = this.state;
 
-    const errorsName = validateName(name);
+    const errorsUsername = validateName(username);
     const errorsAddress = validateAddress(address);
     const errorsPhone = validatePhone(phone);
     const errorsEmail = validateEmail(email);
     const errorsAtEmail = validateAtEmail(email);
     const errorsTitikEmail = validateTitikEmail(email);
     const emailInvalid = validateEmailValid(email);
+    const errorsVariant = validateVariant(variant);
+    const errorsCount = validateCount(count);
     if (!emailInvalid) {
       this.setState({
         emailInvalid: true
@@ -149,9 +177,11 @@ class StepLoginProvider extends Component {
     }
     if (
       email.length === 0 &&
-      name.length === 0 &&
+      username.length === 0 &&
       phone.length === 0 &&
-      address.length === 0
+      address.length === 0 &&
+      variant.length === 0 &&
+      count.length === 0
     ) {
       this.setState({
         errorAll: true
@@ -163,14 +193,14 @@ class StepLoginProvider extends Component {
       }, 5000);
       console.log("Kosong Semua?? Tidakkk");
     }
-    if (errorsName.length > 0) {
-      this.setState({ errorsName: true });
+    if (errorsUsername.length > 0) {
+      this.setState({ errorsUsername: true });
       setTimeout(() => {
         this.setState({
-          errorsName: false
+          errorsUsername: false
         });
       }, 5000);
-      return console.log(errorsName);
+      return console.log(errorsUsername);
     }
     if (errorsEmail.length > 0) {
       this.setState({ errorsEmail: true });
@@ -216,6 +246,24 @@ class StepLoginProvider extends Component {
         });
       }, 5000);
       return console.log(errorsAddress);
+    }
+    if (errorsVariant.length > 0) {
+      this.setState({ errorsVariant: true });
+      setTimeout(() => {
+        this.setState({
+          errorsVariant: false
+        });
+      }, 5000);
+      return console.log(errorsVariant);
+    }
+    if (errorsCount.length > 0) {
+      this.setState({ errorsCount: true });
+      setTimeout(() => {
+        this.setState({
+          errorsCount: false
+        });
+      }, 5000);
+      return console.log(errorsCount);
     }
     console.log("...");
     this.handleNext();
@@ -274,19 +322,6 @@ class StepLoginProvider extends Component {
     console.log(this.state);
   };
 
-  handleChangeFoto = input => event => {
-    var dataPhotos = Array.from(event.target.files);
-    this.setState({ [input]: dataPhotos });
-  };
-
-  deleteImage = params => {
-    const { previewGeneralPhotos } = this.state;
-    previewGeneralPhotos.splice(params, 1);
-    this.setState({
-      previewGeneralPhotos
-    });
-  };
-
   isLoading = () => {
     this.setState({
       loading: true
@@ -300,38 +335,36 @@ class StepLoginProvider extends Component {
   };
 
   handleCreateOrder = () => {
-    this.props.createOrder(this.state);
+    const usersId = localStorage.getItem('userId')
+    const { username, address, phone, description, variant, count } = this.state
+
+    let productPrice =
+      variant === "Original Banana Nugget" ? 15000 :
+        variant === "Chocolate Banana Nugget" ? 16000 :
+          variant === "Cheese Banana Nugget" ? 17000 :
+            variant === "Special Banana Nugget" ? 18000 : 0
+    let totalPrice = productPrice * count;
+
+    axios.post('https://mysqlnaget.herokuapp.com/api/Orders', {
+      username,
+      phone,
+      address,
+      description: description,
+      variant,
+      count,
+      total: totalPrice,
+      usersId
+    })
     this.handleNext();
-  };
-
-  handleCreateOrderWithPicture = () => {
-    const { allowSend } = this.state;
-    if (allowSend) {
-      console.log("Gambar Terkirim");
-      this.props.createOrder(this.state);
-      this.handleNext();
-    }
-    return console.log("Gambar Belum terkirim");
-  };
-
-  handleDateChange = date => {
-    this.setState({ selectedDate: date });
-    console.log(format(this.state.selectedDate, "dd/MM/yyyy"));
   };
 
   handleMenuOpen = event => {
     event.stopPropagation();
     this.setState({ anchorEl: event.currentTarget });
-    console.log(format(this.state.selectedDate, "dd/MM/yyyy"));
   };
 
   handleMenuClose = () => {
     this.setState({ anchorEl: null });
-  };
-
-  handleTimeChange = date => {
-    this.setState({ time: date });
-    console.log(format(this.state.time, "HH:mm"));
   };
 
   selectLocale = selectedLocale => {
@@ -341,67 +374,20 @@ class StepLoginProvider extends Component {
     });
   };
 
-  setFirstStepItem = () => {
-    sessionStorage.setItem("name", this.state.name);
-    sessionStorage.setItem("email", this.state.email);
-    sessionStorage.setItem("phone", this.state.phone);
-    sessionStorage.setItem("address", this.state.address);
-  };
-
-  setSecondStepItem = () => {
-    sessionStorage.setItem("date", this.state.selectedDate);
-  };
-
-  getSafe = () => {
-    let name = sessionStorage.getItem("name");
-    let email = sessionStorage.getItem("email");
-    let phone = sessionStorage.getItem("phone");
-    let address = sessionStorage.getItem("address");
-    let date = sessionStorage.getItem("date");
-
-    try {
-      if (name) {
-        this.setState({
-          name: name
-        });
-      }
-      if (email) {
-        this.setState({
-          email: email
-        });
-      }
-      if (phone) {
-        this.setState({
-          phone: phone
-        });
-      }
-      if (address) {
-        this.setState({
-          address: address
-        });
-      }
-      if (date) {
-        this.setState({
-          selectedDate: date
-        });
-      }
-    } catch (e) {
-      return console.error(e);
-    }
-  };
-
   handleTypographyDep = () => {
     return (window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true);
   };
 
   componentDidMount() {
-    const { auth, profile } = this.props;
-    this.setState({
-      email: auth.email,
-      name: profile.name ? profile.name : auth.displayName,
-      phone: profile.phone,
-      address: profile.address
-    });
+    let userId = localStorage.getItem('userId');
+    axios.get(`https://mysqlnaget.herokuapp.com/api/Users/${userId}`).then(res => {
+      this.setState({
+        email: res.data.email,
+        username: res.data.username,
+        phone: res.data.phone,
+        address: res.data.address
+      });
+    })
     this.handleTypographyDep();
   }
 
@@ -426,7 +412,17 @@ class StepLoginProvider extends Component {
             this.handleBack();
           },
           handleReturnToHome: () => {
-            this.props.history.push("/");
+            if (this.state.activeStep === 0) {
+              this.props.history.push("/");
+            }
+            if (this.state.activeStep === 3) {
+              this.props.history.push("/");
+            }
+            if (this.state.activeStep > 0 && this.state.activeStep < 3) {
+              this.setState(state => ({
+                activeStep: state.activeStep - 1
+              }));
+            }
           },
           handleReset: () => {
             this.handleReset();
@@ -440,48 +436,14 @@ class StepLoginProvider extends Component {
           handleChangeFoto: () => {
             this.handleChangeFoto();
           },
-          deleteImage: () => {
-            this.deleteImage();
-          },
-          onDropGeneral: currentGeneralPhoto => {
-            let index;
-            for (index = 0; index < currentGeneralPhoto.length; ++index) {
-              const file = currentGeneralPhoto[index];
-              this.setState(({ previewGeneralPhotos }) => ({
-                previewGeneralPhotos: previewGeneralPhotos.concat(file)
-              }));
-              const reader = new FileReader();
-              reader.readAsDataURL(file);
-              reader.onload = event => {
-                this.setState({
-                  generalPhotos: this.state.generalPhotos.concat([
-                    { base64: event.target.result }
-                  ])
-                });
-              };
-            }
-          },
           isLoading: () => {
             this.isLoading();
           },
           isLoaded: () => {
             this.isLoaded();
           },
-          handleUpload: () => {
-            this.handleUpload();
-          },
           handleCreateOrder: () => {
             this.handleCreateOrder();
-          },
-          handleCreateOrderWithPicture: () => {
-            this.handleCreateOrderWithPicture();
-          },
-          handleDateChange: date => {
-            this.setState({ selectedDate: date });
-            console.log(format(this.state.selectedDate, "dd/MM/yyyy"));
-          },
-          handleTimeChange: () => {
-            this.handleTimeChange();
           },
           handleMenuOpen: () => {
             this.handleMenuOpen();
@@ -505,24 +467,7 @@ class StepLoginProvider extends Component {
     );
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    createOrder: order => {
-      dispatch(createOrderWithoutLogin(order));
-    }
-  };
-};
 
-const mapStateToProps = state => {
-  return {
-    auth: state.firebase.auth,
-    profile: state.firebase.profile
-  };
-};
-
-const deliveredStepLoginProvider = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(StepLoginProvider));
+const deliveredStepLoginProvider = (withRouter(StepLoginProvider));
 
 export { deliveredStepLoginProvider as StepLoginProvider };

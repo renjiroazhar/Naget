@@ -10,11 +10,10 @@ import Typography from "@material-ui/core/Typography";
 import FirstStep from "./FirstStep";
 import SecondStep from "./SecondStep";
 import Review from "./Review";
-import ThirdStep from "./ThirdStep";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import checkIcon from "../../../../../assets/img/checkicon.jpg";
 import Button from "@material-ui/core/Button";
-
+import {withRouter} from 'react-router-dom'
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -175,28 +174,19 @@ class Checkout extends React.Component {
     const { classes } = this.props;
     const { activeStep } = this.context.state;
     const locale = idLocale;
-    const localeMap = {
-      id: idLocale
-    };
 
-    const steps = ["", "", "", ""];
+    const steps = ["", "", ""];
     const {
-      name,
+      variant,
+      count,
+      username,
       phone,
       email,
-      selectedDate,
       anchorEl,
       currentLocale,
-      time,
       occupation,
-      city,
-      bio,
       address,
-      foto,
-      generalPhotos,
-      previewGeneralPhotos,
-      downloadURLs,
-      catatan,
+      description,
       loading,
       allowSend,
       isInvalid,
@@ -207,23 +197,18 @@ class Checkout extends React.Component {
       errorsEmail,
       errorsTitikEmail,
       errorsAtEmail,
-      errorsDate,
       emailInvalid,
-
-      kecamatan,
-      kelurahan
     } = this.context.state;
     const values = {
-      name,
+      variant,
+      count,
+      username,
       phone,
       allowSend,
-      selectedDate,
       anchorEl,
       currentLocale,
-      time,
       isInvalid,
       locale,
-      localeMap,
       errorsName,
       errorsPhone,
       errorsAddress,
@@ -231,23 +216,13 @@ class Checkout extends React.Component {
       errorsTitikEmail,
       errorsAtEmail,
       email,
-      catatan,
+      description,
       address,
       occupation,
-      city,
-      bio,
-      foto,
       loading,
-      generalPhotos,
-      previewGeneralPhotos,
-      downloadURLs,
-      errorsDate,
 
       errorAll,
       emailInvalid,
-
-      kecamatan,
-      kelurahan
     };
 
     const getStepContent = step => {
@@ -255,43 +230,23 @@ class Checkout extends React.Component {
         case 0:
           return (
             <FirstStep
-              nextStep={this.context.handleSubmit}
+              previousStep={this.context.handleBack}
+              nextStep={this.context.handleNext}
               handleChange={this.context.handleChange}
               values={values}
-              setFirstStepItem={this.context.setFirstStepItem}
             />
           );
         case 1:
           return (
             <SecondStep
-              previousStep={this.context.handleBack}
-              nextStep={this.context.handleNext}
+              nextStep={this.context.handleSubmit}
               handleChange={this.context.handleChange}
               values={values}
-              prevStep={this.context.prevStep}
-              handleChangeFoto={this.context.handleChangeFoto}
-              onDropGeneral={this.context.onDropGeneral}
-              deleteImage={this.context.deleteImage}
-              handleChangeTime={this.context.handleChangeTime}
-              allowSend={this.context.allowSendOrder}
-              handleDateChange={this.context.handleDateChange}
-              handleTimeChange={this.context.handleTimeChange}
-              handleMenuOpen={this.context.handleMenuOpen}
-              handleMenuClose={this.context.handleMenuClose}
-              handleNextStepTwo={this.context.handleNextStepTwo}
-              setSecondStepItem={this.context.setSecondStepItem}
+              setSecondStepItem={this.context.setFirstStepItem}
             />
+
           );
         case 2:
-          return (
-            <ThirdStep
-              previousStep={this.context.handleBack}
-              nextStep={this.context.handleNext}
-              handleChange={this.context.handleChange}
-              values={values}
-            />
-          );
-        case 3:
           return (
             <Review
               allData={this.context.state}
@@ -340,12 +295,12 @@ class Checkout extends React.Component {
                     color="inherit"
                     className={classes.grow}
                   >
-                    Fill in the Biodata's
+                    Variant List
                   </Typography>
                 </Toolbar>
               </AppBar>
             </div>
-          ) : activeStep === 4 ? (
+          ) : activeStep === 3 ? (
             <div
               style={{ width: "100%", position: "fixed", top: 0, zIndex: 1000 }}
             >
@@ -370,83 +325,79 @@ class Checkout extends React.Component {
                     className={classes.grow}
                   >
                     {activeStep === 1
-                      ? "Date, Time, and Photo"
+                      ? "Fill Biodata's"
                       : activeStep === 2
-                      ? "Trash list and Price"
-                      : activeStep === 3
-                      ? "Confirm Order"
-                      : activeStep === 4
-                      ? "Order Successful"
-                      : ""}
+                        ? "Detail"
+                        : activeStep === 3
+                          ? "Order Successful"
+                          : ""}
                   </Typography>
                 </Toolbar>
               </AppBar>
             </div>
           ) : (
-            <div
-              style={{ width: "100%", position: "fixed", top: 0, zIndex: 1000 }}
-            >
-              <AppBar
-                style={{ width: "100%", backgroundColor: "#fecb00ff" }}
-                position="static"
-              >
-                <Toolbar style={{ paddingLeft: 0 }}>
-                  <IconButton
-                    onClick={() => {
-                      this.context.handleReturnToHome();
-                    }}
-                    className={classes.menuButton}
-                    color="inherit"
-                    aria-label="Menu"
+                <div
+                  style={{ width: "100%", position: "fixed", top: 0, zIndex: 1000 }}
+                >
+                  <AppBar
+                    style={{ width: "100%", backgroundColor: "#fecb00ff" }}
+                    position="static"
                   >
-                    <ArrowLeft />
-                  </IconButton>
-                  <Typography
-                    variant="h6"
-                    color="inherit"
-                    className={classes.grow}
-                  >
-                    {activeStep === 1
-                      ? "Date, Time, and Photo"
-                      : activeStep === 2
-                      ? "Trash list and Price"
-                      : activeStep === 3
-                      ? "Confirm Order"
-                      : activeStep === 4
-                      ? "Order Successful"
-                      : ""}
-                  </Typography>
-                </Toolbar>
-              </AppBar>
-            </div>
-          )}
+                    <Toolbar style={{ paddingLeft: 0 }}>
+                      <IconButton
+                        onClick={() => {
+                          this.context.handleReturnToHome();
+                        }}
+                        className={classes.menuButton}
+                        color="inherit"
+                        aria-label="Menu"
+                      >
+                        <ArrowLeft />
+                      </IconButton>
+                      <Typography
+                        variant="h6"
+                        color="inherit"
+                        className={classes.grow}
+                      >
+                        {activeStep === 1
+                          ? "Fill Biodata's"
+                          : activeStep === 2
+                            ? "Detail"
+                            : activeStep === 3
+                              ? "Order Successful"
+                              : ""}
+                      </Typography>
+                    </Toolbar>
+                  </AppBar>
+                </div>
+              )}
           <CssBaseline />
           <br />
           <br />
           <main className={classes.layout}>
             <Paper className={classes.paper}>
-              {activeStep === 4 || activeStep > 3 ? (
+              {activeStep === 3 || activeStep > 2 ? (
                 ""
               ) : (
-                <MuiThemeProvider theme={themeMui}>
-                  <Stepper activeStep={activeStep} className={classes.stepper}>
-                    {steps.map(label => (
-                      <Step key={label}>
-                        <StepLabel
-                          StepIconProps={{
-                            classes: {
-                              active: classes.stepIcon,
-                              completed: classes.completedStep
-                            }
-                          }}
-                        >
-                          {label}
-                        </StepLabel>
-                      </Step>
-                    ))}
-                  </Stepper>
-                </MuiThemeProvider>
-              )}
+                  <MuiThemeProvider theme={themeMui}>
+                    <Stepper activeStep={activeStep} className={classes.stepper}>
+                      {steps.map(label => (
+                        <Step key={label}>
+                          <StepLabel
+                            StepIconProps={{
+                              classes: {
+                                active: classes.stepIcon,
+                                completed: classes.completedStep
+                              }
+                            }}
+                          >
+                            {label}
+                          </StepLabel>
+                        </Step>
+                      ))}
+                    </Stepper>
+                  </MuiThemeProvider>
+                )}
 
               <React.Fragment>
                 {activeStep === steps.length ? (
@@ -476,7 +427,7 @@ class Checkout extends React.Component {
                           marginTop: "10px"
                         }}
                       >
-                        Thank You,
+                        Thank You
                       </div>{" "}
                       {values.name}
                     </Typography>
@@ -484,9 +435,7 @@ class Checkout extends React.Component {
                       variant="subtitle1"
                       style={{ textAlign: "center", color: "#757575" }}
                     >
-                      Thank You for order, let's register your account so you
-                      can monitor your order in real time and get additional
-                      points.
+                      For trusting us
                     </Typography>
 
                     <Typography
@@ -498,7 +447,7 @@ class Checkout extends React.Component {
                         fontWeight: 600
                       }}
                     >
-                      *Order details have been sent to your email.
+                      *Exclude shipping cost, outside Semarang area.
                     </Typography>
 
                     <div
@@ -513,42 +462,21 @@ class Checkout extends React.Component {
                         variant="contained"
                         color="primary"
                         onClick={() => {
-                          this.props.history.push("/login");
+                          this.props.history.push("/");
                         }}
                         className={classes.buttonTwo}
                         style={{ width: "100%" }}
                       >
-                        Login
-                      </Button>
-                    </div>
-
-                    <div
-                      style={{
-                        textAlign: "center",
-                        justifyContent: "center",
-                        width: "100%",
-                        marginTop: "5%"
-                      }}
-                    >
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => {
-                          this.props.history.push("/signup");
-                        }}
-                        className={classes.button}
-                        style={{ width: "100%" }}
-                      >
-                        Register
+                        Done
                       </Button>
                     </div>
                   </React.Fragment>
                 ) : (
-                  <React.Fragment>
-                    {getStepContent(activeStep)}
-                    <div>{activeStep === steps.length - 1 ? "" : ""}</div>
-                  </React.Fragment>
-                )}
+                    <React.Fragment>
+                      {getStepContent(activeStep)}
+                      <div>{activeStep === steps.length - 1 ? "" : ""}</div>
+                    </React.Fragment>
+                  )}
               </React.Fragment>
             </Paper>
           </main>
@@ -564,6 +492,6 @@ Checkout.propTypes = {
 
 Checkout.contextType = stepLoginContext;
 
-const styledCheckout = withStyles(styles)(Checkout);
+const styledCheckout = withRouter(withStyles(styles)((Checkout)));
 
 export { styledCheckout as Checkout };

@@ -1,21 +1,14 @@
 import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
-import Fab from '@material-ui/core/Fab';
-import CloseIcon from '@material-ui/icons/Close';
-import Dropzone from 'react-dropzone';
-import Viewer from 'react-viewer';
 import FormControl from '@material-ui/core/FormControl';
-import DateFnsUtils from '@date-io/date-fns';
-import { Icon, IconButton } from '@material-ui/core';
-import {
-	DatePicker,
-	MuiPickersUtilsProvider,
-	TimePicker
-} from 'material-ui-pickers';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 const styles = theme => ({
@@ -46,266 +39,206 @@ const styles = theme => ({
 	},
 	rightIcon: {
 		marginLeft: theme.spacing.unit
+	},
+	formControl: {
+		width: '100%'
 	}
 });
 
 class SecondStep extends React.Component {
 	state = {
-		time: '',
-		filenames: [],
-		downloadURLs: [],
-		isUploading: false,
-		uploadProgress: 0,
-		visible: false
+		open: false,
+		openTwo: false
+	};
+
+	handleChange = e => {
+		this.setState({
+			[e.target.id]: e.target.value
+		});
+	};
+
+	handleClose = () => {
+		this.setState({
+			open: false
+		});
+	};
+
+	handleOpen = () => {
+		this.setState({
+			open: true
+		});
+	};
+
+	handleCloseTwo = () => {
+		this.setState({
+			openTwo: false
+		});
+	};
+
+	handleOpenTwo = () => {
+		this.setState({
+			openTwo: true
+		});
 	};
 
 	handleSubmit = e => {
 		e.preventDefault();
-		const { values } = this.props;
-
-		e.preventDefault();
-		if (
-			values.previewGeneralPhotos.length < 0 ||
-			values.previewGeneralPhotos === [] ||
-			values.previewGeneralPhotos === null
-		) {
-			this.props.allowSend();
-		}
-		this.props.handleNextStepTwo();
+		this.props.nextStep();
+		console.log('FIRST');
 	};
-
-	viewImage = () => {
-		this.setState({
-			visible: true
-		});
-	};
-	cancelViewImage = () => {
-		this.setState({
-			visible: false
-		});
-	};
-	handleChange = value => {
-		this.setState({
-			time: value
-		});
-	};
-
-	handleBack = () => {
-		this.props.previousStep();
-	};
-
-	componentWillUnmount() {
-		this.props.values.previewGeneralPhotos.forEach(file =>
-			URL.revokeObjectURL(file.preview)
-		);
-	}
 
 	render() {
-		const { classes, values, handleDateChange } = this.props;
-		const today = new Date();
+		const { classes } = this.props;
+		const { values, handleChange } = this.props;
 		return (
 			<React.Fragment>
-				<Grid container={true} spacing={24}>
+				<Grid container spacing={24}>
 					<Grid item xs={12}>
-						<MuiPickersUtilsProvider
-							utils={DateFnsUtils}
-							locale={values.locale}
-						>
-							<div className="picker">
-								<FormControl style={{ width: '100%' }}>
-									<DatePicker
-										style={{ width: '100%' }}
-										value={values.selectedDate}
-										onChange={handleDateChange}
-										label="Pickup Date"
-										required
-										minDate={today}
-										placeholder="Choose Date"
-										InputProps={{
-											startAdornment: (
-												<div>
-													<IconButton
-														aria-label="Select locale"
-														aria-owns={values.anchorEl ? 'locale-menu' : null}
-													>
-														<Icon> date_range </Icon>
-													</IconButton>
-												</div>
-											)
-										}}
-									/>
-									{values.errorsDate ? (
-										<FormHelperText style={{ color: 'red' }}>
-											Required
-										</FormHelperText>
-									) : (
-										''
-									)}
-								</FormControl>
-							</div>
-						</MuiPickersUtilsProvider>
+						<FormControl className={classes.formControl}>
+							<TextField
+								required
+								label="Name"
+								fullWidth
+								autoComplete="fname"
+								onChange={handleChange('username')}
+								value={values.username}
+								disabled
+							/>
+							{values.errorAll ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Required
+								</FormHelperText>
+							) : values.errorsName ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Required
+								</FormHelperText>
+							) : null}
+						</FormControl>
 					</Grid>
 					<Grid item xs={12}>
-						<MuiPickersUtilsProvider
-							utils={DateFnsUtils}
-							locale={values.locale}
-						>
-							<div className="picker">
-								<FormControl style={{ width: '100%' }}>
-									<TimePicker
-										style={{ width: '100%' }}
-										value={values.selectedDate}
-										onChange={handleDateChange}
-										label="Pickup Time"
-										placeholder="Choose Time"
-										required
-										ampm={false}
-										InputProps={{
-											startAdornment: (
-												<div>
-													<IconButton
-														aria-label="Select locale"
-														aria-owns={values.anchorEl ? 'locale-menu' : null}
-													>
-														<Icon> schedule </Icon>
-													</IconButton>
-												</div>
-											)
-										}}
-									/>
-									{values.errorsDate ? (
-										<FormHelperText style={{ color: 'red' }}>
-											Required
-										</FormHelperText>
-									) : (
-										''
-									)}
-								</FormControl>
-							</div>
-						</MuiPickersUtilsProvider>
+						<FormControl className={classes.formControl}>
+							<TextField
+								required
+								type="email"
+								label="Email"
+								fullWidth
+								autoComplete="fname"
+								onChange={handleChange('email')}
+								value={values.email}
+								disabled
+							/>
+							{values.errorAll ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Required
+								</FormHelperText>
+							) : values.errorsEmail ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Required
+								</FormHelperText>
+							) : values.errorsTitikEmail ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Email must have at least 1 dot
+								</FormHelperText>
+							) : values.errorsAtEmail ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Email must have @gmail
+								</FormHelperText>
+							) : null}
+						</FormControl>
 					</Grid>
 					<Grid item xs={12}>
-						{values.previewGeneralPhotos.length > 0 ? (
-							<div>
-								<div>
-									{values.previewGeneralPhotos &&
-										values.previewGeneralPhotos.map((file, i) => (
-											<div style={{ textAlign: 'center' }}>
-												<Grid container spacing={24}>
-													<Grid item xs={12} align="center">
-														{' '}
-														<img
-															onClick={this.viewImage}
-															src={URL.createObjectURL(file)}
-															alt="preview failed"
-															key={file.base64}
-															height="175"
-															style={{
-																width: '100%',
-																marginTop: '20px',
-																objectFit: 'contain'
-															}}
-														/>
-													</Grid>
-												</Grid>
+						<FormControl className={classes.formControl}>
+							<TextField
+								required
+								label="Address"
+								fullWidth
+								autoComplete="billing address-line1"
+								onChange={handleChange('address')}
+								value={values.address}
+								disabled
+							/>
+							{values.errorAll ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Required
+								</FormHelperText>
+							) : values.errorsAddress ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Required
+								</FormHelperText>
+							) : null}
+						</FormControl>
+					</Grid>
+					<Grid item xs={12}>
+						<FormControl className={classes.formControl}>
+							<TextField
+								required
+								type="number"
+								label="WhatsApp Number"
+								fullWidth
+								autoComplete="fname"
+								onChange={handleChange('phone')}
+								value={values.phone}
+								disabled
+							/>
+							{values.errorAll ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Required
+								</FormHelperText>
+							) : values.errorsPhone ? (
+								<FormHelperText style={{ color: 'red' }}>
+									Required
+								</FormHelperText>
+							) : null}
+						</FormControl>
+					</Grid>
+					<Grid item xs={12}>
+						<FormControl className={classes.formControl}>
+							<InputLabel htmlFor="age-label-placeholder">Variant</InputLabel>
+							<Select
+								open={this.state.openTwo}
+								onClose={this.handleCloseTwo}
+								onOpen={this.handleOpenTwo}
+								value={values.variant}
+								onChange={handleChange('variant')}
+								style={{ width: '100%' }}
+							>
+								<MenuItem value="" disabled>
+									<em>- Choose variant -</em>
+								</MenuItem>
+								<MenuItem value="Original Banana Nugget">Original Banana Nugget</MenuItem>
+								<MenuItem value="Chocolate Banana Nugget">Chocolate Banana Nugget</MenuItem>
+								<MenuItem value="Cheese Banana Nugget">Cheese Banana Nugget</MenuItem>
+								<MenuItem value="Special Banana Nugget">Special Banana Nugget</MenuItem>
+							</Select>
+						</FormControl>
+					</Grid>
+					<Grid item xs={12}>
+						<TextField
+							label="Count"
+							fullWidth
+							autoComplete="billing address-line1"
+							onChange={handleChange('count')}
+							value={values.count}
+						/>
+					</Grid>
 
-												<Viewer
-													visible={this.state.visible}
-													onClose={this.cancelViewImage}
-													images={[
-														{
-															src: URL.createObjectURL(file),
-															alt: ''
-														}
-													]}
-												/>
-
-												<Fab
-													size="small"
-													color="secondary"
-													aria-label="Add"
-													onClick={() => this.props.deleteImage(i)}
-													style={{ backgroundColor: 'red' }}
-												>
-													<CloseIcon />
-												</Fab>
-											</div>
-										))}
-								</div>
-							</div>
-						) : null}
+					<Grid item xs={12}>
+						<TextField
+							label="Driver Note (Optional)"
+							fullWidth
+							autoComplete="billing address-line1"
+							onChange={handleChange('description')}
+							value={values.description}
+						/>
 					</Grid>
+
 					<Grid item xs={12}>
 						<div
 							style={{
 								textAlign: 'center',
-								height: '140px',
-								border: '1.5px dashed #757575',
-								backgroundColor: '#E5E5E5',
-								display: 'flex',
 								justifyContent: 'center',
-								alignItems: 'center'
-							}}
-						>
-							<section>
-								<Dropzone
-									accept="image/*"
-									multiple={true}
-									style={dropzoneStyle}
-									onDrop={this.props.onDropGeneral.bind(this)}
-								>
-									{({ getRootProps, getInputProps }) => (
-										<div {...getRootProps()}>
-											<input {...getInputProps()} />
-											<Button
-												varian="contained"
-												component="span"
-												style={{
-													backgroundColor: '#B0B0B0',
-													color: 'white',
-													height: '40px',
-													borderRadius: '100px'
-												}}
-												color="primary"
-											>
-												Input Photo
-											</Button>
-										</div>
-									)}
-								</Dropzone>
-							</section>
-						</div>
-					</Grid>
-					{/* <Grid item xs={12}>
-						<div
-							style={{
-								textAlign: 'center',
-
 								width: '100%',
 								marginTop: '10%'
-							}}
-						>
-							<Button varian="contained"
-								variant="contained"
-								color="primary"
-								onClick={this.handleBack}
-								style={{
-									width: '100%',
-									backgroundColor: 'red',
-									color: 'white',
-									height: '46px'
-								}}
-							>
-								Kembali
-							</Button>
-						</div>
-					</Grid> */}
-					<Grid item xs={12}>
-						<div
-							style={{
-								textAlign: 'center',
-								marginTop: '10%',
-								width: '100%'
 							}}
 						>
 							<Button
@@ -314,11 +247,7 @@ class SecondStep extends React.Component {
 								color="primary"
 								onClick={this.handleSubmit}
 								className={classes.button}
-								style={{
-									width: '100%',
-									backgroundColor: '#fecb00ff',
-									color: 'white'
-								}}
+								style={{ width: '100%' }}
 							>
 								Next
 							</Button>
@@ -334,13 +263,10 @@ SecondStep.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-const dropzoneStyle = {
-	width: '100%',
-	height: '20%',
-	border: '1px solid black'
-};
+const mapStateToProps = state => {
+	return {
+		order: state.order.orders
+	};
+}
 
-export default connect(
-	null,
-	null
-)(withStyles(styles)(SecondStep));
+export default connect(mapStateToProps)(withStyles(styles)(SecondStep));

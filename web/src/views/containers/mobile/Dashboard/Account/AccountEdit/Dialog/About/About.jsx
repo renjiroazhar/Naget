@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
-import IconButton from '@material-ui/core/IconButton';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
 import Slide from '@material-ui/core/Slide';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
@@ -14,6 +17,7 @@ import Add from '@material-ui/icons/Add';
 import Header from './Header';
 import Socmed from './Socmed/Socmed';
 import Button from '@material-ui/core/Button';
+
 
 const styles = theme => ({
 	text: {
@@ -64,18 +68,23 @@ const styles = theme => ({
 	},
 	pos: {
 		marginBottom: 12
-	}
+	},
+	root: {
+		width: '100%',
+	  },
+	  heading: {
+		fontSize: theme.typography.pxToRem(15),
+		fontWeight: theme.typography.fontWeightRegular,
+	  },
 });
 
 function Transition(props) {
 	return <Slide direction="up" {...props} />;
 }
 
-class Tentang extends React.Component {
+class About extends React.Component {
 	state = {
 		open: false,
-		currentPassword: '',
-		newPassword: ''
 	};
 
 	handleClickOpen = () => {
@@ -116,7 +125,7 @@ class Tentang extends React.Component {
 					onClose={this.handleClose}
 					TransitionComponent={Transition}
 				>
-					<div>
+					<div style={{ backgroundColor: '#e7e7e7' }}>
 						<Header />
 						<div style={{ marginTop: '140px' }}>
 							<Socmed />
@@ -124,43 +133,29 @@ class Tentang extends React.Component {
 
 						{/* Second Card */}
 						<div style={{ marginTop: '45px' }}>
-							<center>
-								<div
-									className={classes.demo}
-									style={{ borderTop: '1px solid #999999' }}
-								>
-									<List>
-										<ListItem>
-											<ListItemText primary="History" />
-											<ListItemSecondaryAction>
-												<IconButton aria-label="Add">
-													<Add style={{ fontSize: '40px', color: '#fecb00ff' }} />
-												</IconButton>
-											</ListItemSecondaryAction>
-										</ListItem>
-									</List>
-								</div>
-							</center>
-							{/* End Of Second Card */}
-
-							{/* Third Card */}
-							<center>
-								<div
-									className={classes.demo}
-									style={{ borderBottom: '1px solid #999999' }}
-								>
-									<List>
-										<ListItem>
-											<ListItemText primary="Location" />
-											<ListItemSecondaryAction>
-												<IconButton aria-label="Add">
-													<Add style={{ fontSize: '40px', color: '#fecb00ff' }} />
-												</IconButton>
-											</ListItemSecondaryAction>
-										</ListItem>
-									</List>
-								</div>
-							</center>
+						<div className={classes.root}>
+							<ExpansionPanel>
+								<ExpansionPanelSummary expandIcon={<Add />}>
+								<Typography className={classes.heading}>History</Typography>
+								</ExpansionPanelSummary>
+								<ExpansionPanelDetails>
+								<Typography>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+									sit amet blandit leo lobortis eget.
+								</Typography>
+								</ExpansionPanelDetails>
+							</ExpansionPanel>
+							<ExpansionPanel>
+								<ExpansionPanelSummary expandIcon={<Add />}>
+								<Typography className={classes.heading}>Locatioan</Typography>
+								</ExpansionPanelSummary>
+								<ExpansionPanelDetails>
+								<Typography>
+									Afa Raya Street No.17 RT.01 RW.17 Kel. Sendangmulyo, Kec. Tembalang, Kota Semarang, Jawa Tengah 50272
+								</Typography>
+								</ExpansionPanelDetails>
+							</ExpansionPanel>
+							</div>
 							{/* End Of Third Card */}
 							<div style={{ margin: '20px', marginBottom: 0 }}>
 								<p
@@ -209,8 +204,8 @@ class Tentang extends React.Component {
 	}
 }
 
-Tentang.propTypes = {
+About.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Tentang);
+export default withStyles(styles)(About);
