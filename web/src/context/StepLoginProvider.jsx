@@ -349,10 +349,11 @@ class StepLoginProvider extends Component {
       username,
       phone,
       address,
-      description: description,
+      description,
       variant,
       count,
       total: totalPrice,
+      status: "Success",
       usersId
     })
     this.handleNext();

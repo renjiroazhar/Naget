@@ -1,6 +1,5 @@
 import React from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {  isEmpty } from 'react-redux-firebase';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -9,12 +8,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/AppBar';
 import SwipeableViews from 'react-swipeable-views';
-import ArrowLeft from '@material-ui/icons/ArrowBack';
-import IconButton from '@material-ui/core/IconButton';
-import WaitingConfirmation from './OrderList/WaitingConfirmation';
+import OrderOnProcess from './OrderList/OrderOnProcess';
 import OrderHistory from './OrderList/OrderHistory';
 import FixedNavbar from '../../../../../components/FixedNavbar';
-import Toolbar from '@material-ui/core/Toolbar';
 import './style/style.css';
 import LoginContainer from '../../Login';
 import axios from 'axios';
@@ -92,7 +88,7 @@ class OrderContainer extends React.Component {
 
   render() {
     const { theme, classes } = this.props;
-    const { orders , isLoading} = this.state;
+    const { orders, isLoading } = this.state;
     if (!localStorage.getItem('accessToken')) {
       return (
         <div style={{ textAlign: 'center' }}>
@@ -139,72 +135,12 @@ class OrderContainer extends React.Component {
           </div>
         </div>
       );
-    }
-    if (isEmpty(orders)) {
-      return (
-        <div
-          style={{
-            backgroundColor: '#e7e7e7',
-            height: '100%'
-          }}
-        >
-          <FixedNavbar pageName="Order" />
-          <AppBar style={{ marginTop: '55px' }} color="default">
-            <Tabs
-              onChange={this.handleChange}
-              indicatorColor="primary"
-              classes={{
-                indicator: classes.indicator
-              }}
-              textColor="primary"
-              variant="fullWidth"
-              value={this.state.value}
-            >
-              <Tab label="Order" style={stylus.tab} />
-              <Tab label="History" style={stylus.tab} />
-            </Tabs>
-          </AppBar>
-          <div
-            style={{
-              textAlign: 'center',
-              minHeight: '100vh',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              overflow: 'hidden'
-            }}
-          >
-            <br />
-            No Order
-          </div>
-        </div>
-      );
     } else {
       return (
         <div>
           <div style={{ marginBottom: '20%' }}>
-            <AppBar color="default" style={{ position: 'fixed' }}>
-              <Toolbar style={{ backgroundColor: '#fecb00ff', paddingLeft: 0 }}>
-                <IconButton
-                  onClick={this.handleBack}
-                  className={classes.menuButton}
-                  color="inherit"
-                  aria-label="Menu"
-                >
-                  <ArrowLeft style={{ color: '#ffffff' }} />
-                </IconButton>
-
-                <Typography
-                  variant="title"
-                  color="inherit"
-                  style={{
-                    color: 'white',
-                    fontSize: '20px'
-                  }}
-                >
-                  Order
-                </Typography>
-              </Toolbar>
+            <FixedNavbar pageName="Order" />
+            <AppBar style={{ marginTop: '55px' }} color="default">
               <Tabs
                 value={this.state.value}
                 onChange={this.handleChange}
@@ -227,7 +163,7 @@ class OrderContainer extends React.Component {
               >
                 <TabContainer dir="1">
                   <div>
-                    <WaitingConfirmation orders={orders} />
+                    <OrderOnProcess orders={orders} />
                   </div>
                 </TabContainer>
                 <TabContainer dir="2">

@@ -13,7 +13,7 @@ import Review from "./Review";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import checkIcon from "../../../../../assets/img/checkicon.jpg";
 import Button from "@material-ui/core/Button";
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";

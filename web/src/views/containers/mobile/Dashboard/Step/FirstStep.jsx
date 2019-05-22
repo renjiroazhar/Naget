@@ -6,10 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import NewsPaper from './images/pexels-photo-167538.jpeg';
-import MixPaper from './images/book-address-book-learning-learn-159751.jpeg';
-import BoxPaper from './images/chuttersnap-496714-unsplash.jpg';
-import Hvs from './images/pexels-photo-209137.jpeg';
+import NagetMenu from '../../../../../assets/img/png/promo.png';
 
 const styles = theme => ({
 	root: {
@@ -89,20 +86,20 @@ class FirstStep extends React.Component {
 		return (
 			<React.Fragment>
 				<Grid className={classes.p} spacing={24}>
-					<h2>Trash Categories</h2>
+					<center><h2>Banana Nugget Varian Menu</h2></center>
 					<Grid item xs={12}>
 						<Card className={classes.card}>
 							<CardMedia
 								className={classes.cover}
-								image={NewsPaper}
-								title="Newspaper"
+								image={NagetMenu}
+								title="Original Banana Nugget"
 							/>
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>
-										<p>Newspaper</p>
+										<p>Original Banana Nugget</p>
 									</b>
-									<p>Rp. 1000/kg</p>
+									<p>Rp. 15.000/pack</p>
 								</CardContent>
 							</div>
 						</Card>
@@ -111,15 +108,15 @@ class FirstStep extends React.Component {
 						<Card className={classes.card}>
 							<CardMedia
 								className={classes.cover}
-								image={MixPaper}
-								title="Mix Paper"
+								image={NagetMenu}
+								title="Chocolate Banana Naget"
 							/>
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>
-										<p>Mix Paper</p>
+										<p>Chocolate Banana Naget</p>
 									</b>
-									<p>Rp. 300/kg</p>
+									<p>Rp. 16.000/pack</p>
 								</CardContent>
 							</div>
 						</Card>
@@ -128,15 +125,15 @@ class FirstStep extends React.Component {
 						<Card className={classes.card}>
 							<CardMedia
 								className={classes.cover}
-								image={BoxPaper}
-								title="Box Paper"
+								image={NagetMenu}
+								title="Cheese Banana Nugget"
 							/>
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>
-										<p>Box Paper</p>
+										<p>Cheese Banana Nugget</p>
 									</b>
-									<p>Rp. 750/kg</p>
+									<p>Rp. 17.000/pack</p>
 								</CardContent>
 							</div>
 						</Card>
@@ -145,15 +142,15 @@ class FirstStep extends React.Component {
 						<Card className={classes.card}>
 							<CardMedia
 								className={classes.cover}
-								image={Hvs}
-								title="HVS Paper"
+								image={NagetMenu}
+								title="Special Banana Nugget"
 							/>
 							<div className={classes.details}>
 								<CardContent className={classes.content}>
 									<b>
-										<p>HVS Paper</p>
+										<p>Special Banana Nugget</p>
 									</b>
-									<p>Rp. 1000/kg</p>
+									<p>Rp. 18.000/pack</p>
 								</CardContent>
 							</div>
 						</Card>

@@ -44,7 +44,7 @@ class OrderDetail extends React.Component {
     status: "",
     user: [],
     userId: "",
-    loading: false
+    isLoading: true
   };
 
   handleClick = () => {
@@ -52,30 +52,10 @@ class OrderDetail extends React.Component {
   };
 
   cancelOrder = () => {
-    const {
-      createdAt,
-      username,
-      email,
-      phone,
-      address,
-      logs,
-      status,
-      user,
-      userId
-    } = this.state;
-    let dataItem = {
-      createdAt,
-      username,
-      email,
-      phone,
-      address,
-      logs,
-      status,
-      user,
-      userId
-    };
-    const idItem = this.props.match.params.id;
-    this.props.cancelOrder(dataItem, idItem);
+    const userId = localStorage.getItem('userId')
+    axios.patch(`https://mysqlnaget.herokuapp.com/api/Orders/${this.props.match.params.id}`, {
+      status: "Canceled"
+    })
     this.props.history.push("/order");
   };
 
@@ -88,14 +68,19 @@ class OrderDetail extends React.Component {
       isLoading: true
     })
     const userId = localStorage.getItem('userId');
-    const response = await axios.get(`https://mysqlnaget.herokuapp.com/api/Orders?filter={"where":{"usersId":"${userId}"}}`)
+    const response = await axios.get(`https://mysqlnaget.herokuapp.com/api/Orders/${this.props.match.params.id}`)
     try {
+      console.log(response)
       this.setState({
-        username: "",
-        email: "",
-        phone: "",
-        address: "",
-        description: "",
+        username: response.data.username,
+        email: response.data.email,
+        phone: response.data.phone,
+        address: response.data.address,
+        variant: response.data.variant,
+        count: response.data.count,
+        total: response.data.total,
+        description: response.data.description,
+        status: response.data.status,
         orders: response.data,
         isLoading: false
       })
@@ -103,13 +88,13 @@ class OrderDetail extends React.Component {
       alert(error)
       throw new Error(error)
     }
-    }
-  
+  }
+
   render() {
     const { classes } = this.props;
-    const { loading } = this.state;
+    const { isLoading, status } = this.state;
 
-    if (!loading) {
+    if (!isLoading) {
       return (
         <div style={{ backgroundColor: "#e7e7e7" }}>
           <div style={{ flex: 1 }}>
@@ -154,7 +139,7 @@ class OrderDetail extends React.Component {
                 <ListItem style={{ paddingTop: 0 }}>
                   <ListItemText
                     style={{ float: "left" }}
-                    primary={!this.state.username ? "" : this.state.name}
+                    primary={!this.state.username ? "" : this.state.username}
                   />
                 </ListItem>
               </List>
@@ -227,7 +212,7 @@ class OrderDetail extends React.Component {
                   />
                 </ListItem>
               </List>
-              
+
               <List className={classes.list} onClick={this.handleClickOpen}>
                 <ListItem button onClick={this.handleClickOpen}>
                   <ListItemText
@@ -244,7 +229,7 @@ class OrderDetail extends React.Component {
               </List>
             </List>
 
-            <div
+           {status === "Canceled"? (""):( <div
               style={{
                 textAlign: "center",
                 bottom: 0,
@@ -265,7 +250,7 @@ class OrderDetail extends React.Component {
               >
                 Cancel Order
               </Button>
-            </div>
+            </div>) }
           </div>
         </div>
       );

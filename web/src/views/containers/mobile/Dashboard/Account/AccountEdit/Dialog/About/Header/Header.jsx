@@ -19,8 +19,8 @@ class Header extends Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<div>
-				<center>
+			<center>
+				<div>
 					<div className={classes.root}>
 						<AppBar
 							position="static"
@@ -47,8 +47,8 @@ class Header extends Component {
 							</Toolbar>
 						</AppBar>
 					</div>
-				</center>
-			</div>
+				</div>
+			</center>
 		);
 	}
 }
