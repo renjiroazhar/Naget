@@ -34,13 +34,12 @@ const OrderSummary = ({ order }) => {
 								<Typography component="span" color="textPrimary">
 									{order.total}
 								</Typography>
-								<br />
 								{order.status
 									? order.status === 'Success'
 										? 'Success'
-											: order.status === 'Canceled'
-												? 'Canceled'
-												: ''
+										: order.status === 'Canceled'
+											? 'Canceled'
+											: ''
 									: ''}
 							</React.Fragment>
 						}
