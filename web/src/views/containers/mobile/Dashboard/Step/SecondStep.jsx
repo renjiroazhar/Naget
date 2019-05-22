@@ -216,6 +216,7 @@ class SecondStep extends React.Component {
 						<TextField
 							label="Count"
 							fullWidth
+							type="number"
 							autoComplete="billing address-line1"
 							onChange={handleChange('count')}
 							value={values.count}
