@@ -248,7 +248,7 @@ class OrderDetail extends React.Component {
               </List>
             </List>
 
-            {status === "Canceled" && "Arrived" ? ("") : (<div
+            {status === "Canceled" || "Arrived" ? ("") : (<div
               style={{
                 textAlign: "center",
                 bottom: 0,
