@@ -253,7 +253,7 @@ class Signuppage extends Component {
                       color: "red"
                     }}
                   >
-                    Password and Confirm Password must same
+                    Password must same
                   </p>
                 ) : null}
               </div>

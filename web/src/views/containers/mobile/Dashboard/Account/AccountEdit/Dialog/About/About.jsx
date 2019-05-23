@@ -140,8 +140,11 @@ class About extends React.Component {
 								</ExpansionPanelSummary>
 								<ExpansionPanelDetails>
 								<Typography>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-									sit amet blandit leo lobortis eget.
+								Starting from 3 teenagers who got the task to sell products, they thought 
+								of selling processed food products that are still rarely found, namely 
+								nuggets made from bananas. But they created a new innovation to promote 
+								their products through online media namely websites and then made this 
+								page.
 								</Typography>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>
@@ -151,7 +154,8 @@ class About extends React.Component {
 								</ExpansionPanelSummary>
 								<ExpansionPanelDetails>
 								<Typography>
-									Afa Raya Street No.17 RT.01 RW.17 Kel. Sendangmulyo, Kec. Tembalang, Kota Semarang, Jawa Tengah 50272
+									Afa Raya Street No.17 RT.01 RW.17 Kel. Sendangmulyo, Kec. Tembalang, 
+									Kota Semarang, Jawa Tengah 50272
 								</Typography>
 								</ExpansionPanelDetails>
 							</ExpansionPanel>
@@ -166,7 +170,7 @@ class About extends React.Component {
 										fontSize: '#353740'
 									}}
 								>
-									Naget is a platform to buy kind of Banana Nugget
+									Naget is platform to buy kind variant of Banana Nugget
 								</p>
 								<br />
 								<br />

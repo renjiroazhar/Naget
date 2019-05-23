@@ -99,6 +99,7 @@ class FirstStep extends React.Component {
 									<b>
 										<p>Original Banana Nugget</p>
 									</b>
+									<p>No topping</p>
 									<p>Rp. 15.000/pack</p>
 								</CardContent>
 							</div>
@@ -116,6 +117,7 @@ class FirstStep extends React.Component {
 									<b>
 										<p>Chocolate Banana Naget</p>
 									</b>
+									<p>Chocolate topping</p>
 									<p>Rp. 16.000/pack</p>
 								</CardContent>
 							</div>
@@ -133,6 +135,7 @@ class FirstStep extends React.Component {
 									<b>
 										<p>Cheese Banana Nugget</p>
 									</b>
+									<p>Cheese topping</p>
 									<p>Rp. 17.000/pack</p>
 								</CardContent>
 							</div>
@@ -150,6 +153,7 @@ class FirstStep extends React.Component {
 									<b>
 										<p>Special Banana Nugget</p>
 									</b>
+									<p>Chocolate and cheese topping</p>
 									<p>Rp. 18.000/pack</p>
 								</CardContent>
 							</div>

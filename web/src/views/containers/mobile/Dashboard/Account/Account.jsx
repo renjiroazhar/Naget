@@ -94,7 +94,6 @@ class Account extends React.Component {
               textAlign: 'center',
               color: '#ffffff',
               height: '46px',
-              bottom: 0,
               borderRadius: 'unset'
             }}
             onClick={this.handleClickOpen}

@@ -441,17 +441,27 @@ class Checkout extends React.Component {
                     >
                       For trusting us
                     </Typography>
-
                     <Typography
                       variant="subtitle2"
                       style={{
                         textAlign: "center",
                         color: "#757575",
                         fontSize: "12px",
-                        fontWeight: 600
+                        fontWeight: 300
                       }}
                     >
                       *Exclude shipping cost, outside Semarang area.
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      style={{
+                        textAlign: "center",
+                        color: "#757575",
+                        fontSize: "12px",
+                        fontWeight: 300
+                      }}
+                    >
+                      Please contact Admin at +62 81334429348
                     </Typography>
 
                     <div

@@ -89,7 +89,7 @@ class OrderContainer extends React.Component {
   render() {
     const { theme, classes } = this.props;
     const { orders, isLoading } = this.state;
-    if (!localStorage.getItem('email')) {
+    if (!localStorage.getItem('userId')) {
       return (
         <div style={{ textAlign: 'center' }}>
           <FixedNavbar pageName="Order" />

@@ -199,7 +199,7 @@ class HomeContainer extends Component {
         return (
           <div style={{ textAlign: 'center', marginTop: '1%' }}>
             <div style={{ textAlign: 'center', width: '100%' }}>
-              {localStorage.getItem('email') ? (
+              {localStorage.getItem('userId') ? (
                 <center>
                   <Button
                     className={classes.cssRoot}
