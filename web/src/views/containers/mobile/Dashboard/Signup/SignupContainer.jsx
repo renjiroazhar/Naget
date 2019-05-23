@@ -176,7 +176,7 @@ class Signuppage extends Component {
                       underline: classes.cssUnderline
                     }}
                     id="phone"
-                    type="text"
+                    type="number"
                     onChange={this.handleChange}
                     value={this.state.phone}
                   />

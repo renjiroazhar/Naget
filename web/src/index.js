@@ -4,15 +4,10 @@ import './index.css';
 import 'antd-mobile/dist/antd-mobile.css';
 import App from './App';
 import * as serviceWorker from './service-worker';
-import rootReducers from './redux/reducers/rootReducers';
 import { createBrowserHistory } from 'history';
-import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import { Router } from 'react-router-dom';
 import AuthProvider from './context/AuthProvider';
-
-const store = createStore(rootReducers, compose(applyMiddleware(thunk)));
 
 const browserHistory = createBrowserHistory();
 
@@ -25,7 +20,7 @@ const Main = () => {
 };
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider>
     <Router history={browserHistory}>
       <Main />
     </Router>

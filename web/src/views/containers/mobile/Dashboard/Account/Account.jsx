@@ -3,8 +3,6 @@ import EditProfil from './AccountEdit/Dialog/EditProfil';
 import About from './AccountEdit/Dialog/About';
 import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { signOut } from '../../../../../redux/actions/authActions';
 import Divider from '@material-ui/core/Divider';
 import FixedNavbar from '../../../../components/FixedNavbar';
 import Dialog from '@material-ui/core/Dialog';
@@ -91,12 +89,11 @@ class Account extends React.Component {
           <Button
             variant="contained"
             style={{
-              backgroundColor: '#ffffff',
+              backgroundColor: '#f43c3c',
               width: '100%',
               textAlign: 'center',
-              color: '#f43c3c',
+              color: '#ffffff',
               height: '46px',
-              position: 'absolute',
               bottom: 0,
               borderRadius: 'unset'
             }}
@@ -105,18 +102,9 @@ class Account extends React.Component {
             Logout
           </Button>
         </div>
-        {/*Tooltip*/}
       </div >
     );
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    signOut: () => dispatch(signOut())
-  };
-};
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(withRouter(Account));
+export default withRouter(Account);

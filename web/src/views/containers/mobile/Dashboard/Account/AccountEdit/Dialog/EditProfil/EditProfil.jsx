@@ -120,8 +120,8 @@ class EditProfil extends React.Component {
 			.then(res => {
 				if (res.data) {
 					this.setState({
-						email: res.data.email,
 						username: res.data.username,
+						email: res.data.email,
 						address: res.data.address,
 						phone: res.data.phone,
 						dataUser: res.data,

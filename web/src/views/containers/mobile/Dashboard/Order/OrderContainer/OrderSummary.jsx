@@ -19,8 +19,8 @@ const OrderSummary = ({ order }) => {
 						<Avatar
 							style={{
 								borderRadius: '5%',
-								width: '45px',
-								height: '45px'
+								width: '60px',
+								height: '60px'
 							}}
 							alt="Naget image"
 							src={NagetImage}
@@ -32,13 +32,15 @@ const OrderSummary = ({ order }) => {
 						secondary={
 							<React.Fragment>
 								<Typography component="span" color="textPrimary">
-									{order.total}
+									Rp. {order.total}
 								</Typography>
 								{order.status
-									? order.status === 'Success'
-										? 'Success'
-										: order.status === 'Canceled'
-											? 'Canceled'
+									? order.status === 'Arrived'
+										? 'Arrived'
+										: order.status === 'On Process'
+											? 'On Process'
+											: order.status === 'Canceled'
+												? 'Canceled'
 											: ''
 									: ''}
 							</React.Fragment>

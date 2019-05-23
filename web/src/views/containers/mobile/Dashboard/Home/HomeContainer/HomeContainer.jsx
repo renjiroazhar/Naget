@@ -4,8 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
-import { editProfile } from '../../../../../../redux/actions/profileActions';
 import Logo from '../../../../../../assets/img/svg/logonaget6.svg';
 import Mascott from '../../../../../../assets/img/svg/logonaget5.svg';
 import Promo from '../../../../../../assets/img/svg/promo.svg';
@@ -201,7 +199,7 @@ class HomeContainer extends Component {
         return (
           <div style={{ textAlign: 'center', marginTop: '1%' }}>
             <div style={{ textAlign: 'center', width: '100%' }}>
-              {localStorage.getItem('accessToken') ? (
+              {localStorage.getItem('email') ? (
                 <center>
                   <Button
                     className={classes.cssRoot}
@@ -374,26 +372,6 @@ HomeContainer.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => {
-  const id = state.firebase.auth.uid;
-  const users = state.firestore.data.users;
-  const user = users ? users[id] : null;
-  return {
-    auth: state.firebase.auth,
-    profile: state.firebase.profile,
-    userdata: user
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    editProfile: (userdata, id) => dispatch(editProfile(userdata, id))
-  };
-};
-
-const composingHomeContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(withRouter(HomeContainer)));
+const composingHomeContainer = (withStyles(styles)(withRouter(HomeContainer)));
 
 export { composingHomeContainer as HomeContainer };

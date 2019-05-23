@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { connect } from 'react-redux';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -264,10 +263,4 @@ SecondStep.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => {
-	return {
-		order: state.order.orders
-	};
-}
-
-export default connect(mapStateToProps)(withStyles(styles)(SecondStep));
+export default (withStyles(styles)(SecondStep));

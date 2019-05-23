@@ -178,6 +178,8 @@ class Checkout extends React.Component {
     const steps = ["", "", ""];
     const {
       variant,
+      productPrice,
+      total,
       count,
       username,
       phone,
@@ -201,6 +203,8 @@ class Checkout extends React.Component {
     } = this.context.state;
     const values = {
       variant,
+      productPrice,
+      total,
       count,
       username,
       phone,

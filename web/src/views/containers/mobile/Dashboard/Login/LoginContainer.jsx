@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
-import { signIn } from '../../../../../redux/actions/authActions';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -39,7 +37,7 @@ class Loginpage extends Component {
       .then((res) => {
         const { id, userId } = res.data
         console.log(res.data)
-        localStorage.setItem('accessToken', id)
+        localStorage.setItem('email', id)
         localStorage.setItem('userId', userId)
         this.setState({
           email: "",
@@ -338,24 +336,8 @@ const styles = theme => ({
   }
 });
 
-const mapStateToProps = state => {
-  return {
-    authError: state.auth.authError,
-    redirect: state.auth.redirect
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    signIn: creds => dispatch(signIn(creds))
-  };
-};
-
 Loginpage.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(Loginpage));
+export default (withStyles(styles)(Loginpage));

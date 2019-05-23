@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import axios from 'axios';
@@ -16,8 +15,6 @@ import "react-viewer/dist/index.css";
 import { withRouter } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import "moment/locale/id";
-
-import { cancelOrder } from "../../../../../../redux/actions/orderActions";
 
 const styles = theme => ({
   root: {
@@ -52,7 +49,6 @@ class OrderDetail extends React.Component {
   };
 
   cancelOrder = () => {
-    const userId = localStorage.getItem('userId')
     axios.patch(`https://mysqlnaget.herokuapp.com/api/Orders/${this.props.match.params.id}`, {
       status: "Canceled"
     })
@@ -67,16 +63,17 @@ class OrderDetail extends React.Component {
     this.setState({
       isLoading: true
     })
-    const userId = localStorage.getItem('userId');
     const response = await axios.get(`https://mysqlnaget.herokuapp.com/api/Orders/${this.props.match.params.id}`)
     try {
       console.log(response)
       this.setState({
+        id: response.data.id,
         username: response.data.username,
         email: response.data.email,
         phone: response.data.phone,
         address: response.data.address,
         variant: response.data.variant,
+        productPrice: response.data.productPrice,
         count: response.data.count,
         total: response.data.total,
         description: response.data.description,
@@ -132,6 +129,17 @@ class OrderDetail extends React.Component {
             }}
           >
             <List style={{ overflow: "hidden" }}>
+            <List className={classes.list} onClick={this.handleClickOpen}>
+                <ListItem button onClick={this.handleClickOpen}>
+                  <ListItemText style={{ float: "left" }} secondary="Order ID" />
+                </ListItem>
+                <ListItem style={{ paddingTop: 0 }}>
+                  <ListItemText
+                    style={{ float: "left" }}
+                    primary={!this.state.id ? "" : this.state.id}
+                  />
+                </ListItem>
+              </List>
               <List className={classes.list} onClick={this.handleClickOpen}>
                 <ListItem button onClick={this.handleClickOpen}>
                   <ListItemText style={{ float: "left" }} secondary="Name" />
@@ -192,6 +200,17 @@ class OrderDetail extends React.Component {
               </List>
               <List className={classes.list} onClick={this.handleClickOpen}>
                 <ListItem button onClick={this.handleClickOpen}>
+                  <ListItemText style={{ float: "left" }} secondary="Product Price" />
+                </ListItem>
+                <ListItem style={{ paddingTop: 0 }}>
+                  <ListItemText
+                    style={{ float: "left" }}
+                    primary={!this.state.productPrice ? "" : this.state.productPrice}
+                  />
+                </ListItem>
+              </List>
+              <List className={classes.list} onClick={this.handleClickOpen}>
+                <ListItem button onClick={this.handleClickOpen}>
                   <ListItemText style={{ float: "left" }} secondary="Count" />
                 </ListItem>
                 <ListItem style={{ paddingTop: 0 }}>
@@ -229,7 +248,7 @@ class OrderDetail extends React.Component {
               </List>
             </List>
 
-           {status === "Canceled"? (""):( <div
+            {status === "Canceled" && "Arrived" ? ("") : (<div
               style={{
                 textAlign: "center",
                 bottom: 0,
@@ -250,7 +269,7 @@ class OrderDetail extends React.Component {
               >
                 Cancel Order
               </Button>
-            </div>) }
+            </div>)}
           </div>
         </div>
       );
@@ -308,15 +327,6 @@ OrderDetail.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-
-const mapDispatchToProps = dispatch => {
-  return {
-    cancelOrder: (dataItem, id) => dispatch(cancelOrder(dataItem, id))
-  };
-};
-
-const composingOrderDetail = connect(
-  mapDispatchToProps
-)(withStyles(styles)(withRouter(OrderDetail)));
+const composingOrderDetail = (withStyles(styles)(withRouter(OrderDetail)));
 
 export { composingOrderDetail as OrderDetail };

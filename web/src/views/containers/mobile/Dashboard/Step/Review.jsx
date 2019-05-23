@@ -61,9 +61,9 @@ class Review extends React.Component {
 		const {
 			values: {
 				username,
-				phone,
 				email,
 				address,
+				phone,
 				variant,
 				count,
 				description
@@ -124,10 +124,26 @@ class Review extends React.Component {
 						</List>
 						<List className={classes.list} onClick={this.handleClickOpen}>
 							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText style={{ float: 'left' }} secondary="Variant" />
+							</ListItem>
+							<ListItem style={{ paddingTop: 0 }}>
+								<ListItemText style={{ float: 'left' }} primary={variant} />
+							</ListItem>
+						</List>
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItem button onClick={this.handleClickOpen}>
 								<ListItemText style={{ float: 'left' }} secondary="Price" />
 							</ListItem>
 							<ListItem style={{ paddingTop: 0 }}>
 								<ListItemText style={{ float: 'left' }} primary={productPrice} />
+							</ListItem>
+						</List>
+						<List className={classes.list} onClick={this.handleClickOpen}>
+							<ListItem button onClick={this.handleClickOpen}>
+								<ListItemText style={{ float: 'left' }} secondary="Count" />
+							</ListItem>
+							<ListItem style={{ paddingTop: 0 }}>
+								<ListItemText style={{ float: 'left' }} primary={count} />
 							</ListItem>
 						</List>
 						<List className={classes.list} onClick={this.handleClickOpen}>

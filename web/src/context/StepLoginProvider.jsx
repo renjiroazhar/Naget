@@ -336,7 +336,7 @@ class StepLoginProvider extends Component {
 
   handleCreateOrder = () => {
     const usersId = localStorage.getItem('userId')
-    const { username, address, phone, description, variant, count } = this.state
+    const { id, username, email,  address, phone, description, variant, count } = this.state
 
     let productPrice =
       variant === "Original Banana Nugget" ? 15000 :
@@ -346,14 +346,17 @@ class StepLoginProvider extends Component {
     let totalPrice = productPrice * count;
 
     axios.post('https://mysqlnaget.herokuapp.com/api/Orders', {
+      id,  
       username,
-      phone,
+      email,
       address,
-      description,
+      phone,
       variant,
+      productPrice,
       count,
       total: totalPrice,
-      status: "Success",
+      description,
+      status: "On Process",
       usersId
     })
     this.handleNext();

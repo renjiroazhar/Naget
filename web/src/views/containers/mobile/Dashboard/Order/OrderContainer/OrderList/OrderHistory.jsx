@@ -7,7 +7,7 @@ const OrderHistory = ({ orders }) => {
 			{orders &&
 				orders.map(order => {
 					const { status, id } = order;
-					if (status !== 'Success') {
+					if (status !== 'On Process') {
 						return (
 							<div key={id}>
 								<Link to={`/orderdetail/${id}`}>
