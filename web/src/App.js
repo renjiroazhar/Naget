@@ -1,51 +1,31 @@
-import React, { Component } from 'react';
-import './App.css';
-import NewRoutes from './Routes/NewRoutes';
-import Routes from './Routes';
-import { Redirect } from "react-router-dom";
-
+import React, { Component } from "react";
+import MobileRoute from "./views/containers/mobile/MobileRoute";
+import WebRoute from "./views/containers/web/WebRoute";
+import { isMobile } from "react-device-detect";
+import logo from "./assets/img/svg/logonaget2.svg";
+import { hot } from "react-hot-loader";
+import { cssInJs } from "./assets/style/splashScreen";
+import { AuthContext } from "./context/AuthProvider";
 
 class App extends Component {
-   
-  state = {
-    redirect : false,
-    login : null
-  }
-
-  changeToLogin = () => {
-    let aksesToken = "123456789";
-    sessionStorage.setItem("accessToken", aksesToken);
-    this.setState({
-      redirect : true,
-      login : true
-    })
-  }
-
-  changeToLogout = () => {
-    sessionStorage.clear();
-    this.setState({
-      login: false
-    });
-  }
-
   render() {
-    let aksesToken = sessionStorage.getItem("accessToken");
-   
-    if(!aksesToken){
-      return <NewRoutes loginFunc={this.changeToLogin} />;
+    const { loading, isAuthenticated } = this.context.state;
+    if (loading) {
+      return (
+        <div style={cssInJs.backgroundLoading}>
+          <div style={cssInJs.loading}>
+            <img src={logo} alt="splash-screen" width="400" height="200" />{" "}
+          </div>
+        </div>
+      );
     }
-    return (<div className="App">
-    
-          
-      <Routes logoutFunc={this.changeToLogout}/>
-      {this.state.redirect ? (<Redirect to="/home"/>):("")}
-      </div>
-      )
+    if (isMobile) {
+      return <MobileRoute isAuthenticated={isAuthenticated} />;
+    }
+    return <WebRoute /*isAuthenticated={isAuthenticated}*/ />;
   }
-  
 }
- 
 
+App.contextType = AuthContext;
 
-
-export default App;
+export default hot(module)(App);
