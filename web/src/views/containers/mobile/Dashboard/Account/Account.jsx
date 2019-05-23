@@ -89,10 +89,10 @@ class Account extends React.Component {
           <Button
             variant="contained"
             style={{
-              backgroundColor: '#f43c3c',
+              backgroundColor: '#ffffff',
               width: '100%',
               textAlign: 'center',
-              color: '#ffffff',
+              color: '#f43c3c',
               height: '46px',
               borderRadius: 'unset'
             }}
