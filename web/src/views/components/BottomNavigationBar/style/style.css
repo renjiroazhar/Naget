@@ -1,0 +1,10 @@
+.am-tab-bar-bar { 
+    height: 56px !important;
+}
+
+.am-tab-bar-bar .am-tab-bar-tab-title { 
+    font-size: 0.75rem !important;
+    margin: 3px 0 0 0 !important;
+    line-height: 1 !important;
+    text-align: center !important
+}

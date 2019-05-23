@@ -1,44 +1,31 @@
-import React, { Component } from 'react';
-import './App.css';
-import DashboardRoutes from './routes/DashboardRoutes';
-import LandingpageRoutes from './routes/LandingpageRoutes';
-import firebase from './services/firebaseConfig';
+import React, { Component } from "react";
+import MobileRoute from "./views/containers/mobile/MobileRoute";
+import WebRoute from "./views/containers/web/WebRoute";
+import { isMobile } from "react-device-detect";
+import logo from "./assets/img/svg/logonaget2.svg";
+import { hot } from "react-hot-loader";
+import { cssInJs } from "./assets/style/splashScreen";
+import { AuthContext } from "./context/AuthProvider";
 
 class App extends Component {
-	state = {
-		authUser: null
-	};
-
-	authListener = () => {
-		firebase.auth().onAuthStateChanged(user => {
-			if (user) {
-				this.setState({
-					authUser: user
-				});
-			} else {
-				this.setState({
-					authUser: null
-				});
-			}
-		});
-	};
-
-	componentDidMount() {
-		this.authListener();
-	}
-
-	componentWillUnmount() {
-		this.authListener();
-	}
-
-	render() {
-		const { authUser } = this.state;
-		return authUser ? (
-			<DashboardRoutes updateLogout={this.updateLogoutState} />
-		) : (
-			<LandingpageRoutes />
-		);
-	}
+  render() {
+    const { loading, isAuthenticated } = this.context.state;
+    if (loading) {
+      return (
+        <div style={cssInJs.backgroundLoading}>
+          <div style={cssInJs.loading}>
+            <img src={logo} alt="splash-screen" width="400" height="200" />{" "}
+          </div>
+        </div>
+      );
+    }
+    if (isMobile) {
+      return <MobileRoute isAuthenticated={isAuthenticated} />;
+    }
+    return <WebRoute /*isAuthenticated={isAuthenticated}*/ />;
+  }
 }
 
-export default App;
+App.contextType = AuthContext;
+
+export default hot(module)(App);
